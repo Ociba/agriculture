@@ -10,11 +10,19 @@ class ProductController extends Controller
 {
     //
     public function addProductForm(){
+        if(in_array('Can add product', auth()->user()->getUserPermisions())){
         return view('admin.product-form');
+    }else{
+        return redirect('/404');
+    }
     }
     public function editProductForm($id){
+        if(in_array('Can edit product', auth()->user()->getUserPermisions())){
         $edit_products =Product::where('id',$id)->get();
         return view('admin.edit-product-form',compact('edit_products'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function createProduct(Request $request){
         if(empty($request->product)){
@@ -52,7 +60,7 @@ class ProductController extends Controller
             'user_id'=>Auth::user()->id,
             'product'=>$request->product
         ));
-        return redirect()->back()->withErrors("Product details has been updated Succesfully");
+        return redirect()->back()->with('message',"Product details has been updated Succesfully");
     }
     public function deleteProduct($id){
         Product::where('id',$id)->update(array('status'=>'deleted'));

@@ -10,7 +10,11 @@ class NewsController extends Controller
 {
     //
     public function newsForm(){
+        if(in_array('Can add news', auth()->user()->getUserPermisions())){
         return view('admin.news-form');
+       }else{
+            return redirect('/404');
+    }
     }
     public function createNews(Request $request){
         if(empty($request->subject)){
@@ -40,15 +44,23 @@ class NewsController extends Controller
     }
 }
  public function displayNews(){
+    if(in_array('Can view news', auth()->user()->getUserPermisions())){
      $show_news =News::join('users','news.user_id','users.id')
      ->where('news.status','active')
      ->select('news.subject','news.image','users.name','news.id')
      ->paginate('10');
      return view('admin.news',compact('show_news'));
+    }else{
+        return redirect('/404');
+    }
  }
  public function editNews($id){
+    if(in_array('Can edit news', auth()->user()->getUserPermisions())){
      $get_news =News::where('id',$id)->get();
      return view('admin.edit-news-form', compact('get_news'));
+    }else{
+        return redirect('/404');
+    }
  }
  public function updateNews($id,Request $request){
      News::where('id',$id)->update(array(
@@ -56,7 +68,7 @@ class NewsController extends Controller
         'subject'=>$request->subject,
         'image'=>$request->image
      ));
-     return Redirect()->back()->withErrors("News has been updated successfully");
+     return Redirect()->back()->with('message',"News has been updated successfully");
  }
  public function deleteNews($id){
      News::where('id',$id)->update(array('status'=>'deleted'));

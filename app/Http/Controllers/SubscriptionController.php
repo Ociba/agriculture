@@ -31,7 +31,7 @@ class SubscriptionController extends Controller
         Subscription::where('id',$id)->update(array(
             'email'=>$request->email
         ));
-        return Redirect()->back()->withErrors("Subscription has been updated successfully");
+        return Redirect()->back()->with('message',"Subscription has been updated successfully");
     }
     public function deleteSubscription($id){
         Subscription::where('id',$id)->update(array('status'=>'deleted'));

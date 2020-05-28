@@ -139,7 +139,7 @@
                             <span class="btn btn-theme02 btn-file">
                             <span class="fileupload-new btn btn-success"><i class="fa fa-paperclip"></i> Select image</span>
                             <span class="fileupload-exists btn-purple"><i class="fa fa-undo"></i> Change</span>
-                            <input type="file" class="default" name="item_image" accept=".png, .jpg, jpeg"/>
+                            <input type="file" class="default" name="item_image" accept=".png, .jpg, .jpeg"/>
                             </span>
                             
                     </div>

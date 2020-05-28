@@ -49,12 +49,12 @@ class PermissionController extends Controller
                     ));
                 }
             }
-        return Redirect()->back()->withErrors("Permission(s) added Successfully");
+        return Redirect()->back()->with('message',"Permission(s) added Successfully");
     }
     public function searchPermission(Request $request){
         if(Permission::where('permission', $request->permission)->doesntExist())
         {
-            return Redirect()->back()->with('Message','permission doesnot exists, please check your spelling or it is not there');
+            return Redirect()->back()->with('message','permission doesnot exists, please check your spelling or it is not there');
             
         }
         $get_all_permissions = Permission::where('permission','like', '%'.$request->permission. '%') 
@@ -63,6 +63,6 @@ class PermissionController extends Controller
     }
     public function unsignPermission($id){
         PermissionRole::where('permission_id',$id)->delete();
-        return redirect()->back()->with('Message','Permission has been unsigned successfully');
+        return redirect()->back()->with('message','Permission has been unsigned successfully');
     }
 }

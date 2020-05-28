@@ -10,7 +10,11 @@ class FeaturesController extends Controller
 {
     //
     public function featureForm(){
+        if(in_array('Can add feature', auth()->user()->getUserPermisions())){
         return view('admin.feature-form');
+        }else{
+            return redirect('/404');
+        }
     }
     public function createFeature(Request $request){
         if(empty($request->heading)){
@@ -47,15 +51,23 @@ class FeaturesController extends Controller
     }
 }
     public function displayFeature(){
+        if(in_array('Can view features', auth()->user()->getUserPermisions())){
         $show_feature =Feature::join('users','features.user_id','users.id')
         ->where('features.status','active')
         ->select('users.name','features.id','features.heading','features.statement','features.image')
         ->paginate('10');
         return view('admin.features',compact('show_feature'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function editFeaturesForm($id){
+        if(in_array('Can edit feature', auth()->user()->getUserPermisions())){
         $get_features=Feature::where('id',$id)->get();
         return view('admin.edit-feature', compact('get_features'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function updateFeature($id,Request $request){
         Feature::where('id',$id)->update(array(
@@ -64,7 +76,7 @@ class FeaturesController extends Controller
             'statement'=>$request->statement,
             'image'=>$request->image
         ));
-        return Redirect()->back()->withErrors("Feature has been updated successfully");
+        return Redirect()->back()->with('message',"Feature has been updated successfully");
     }
     public function deleteFeature($id){
         Feature::where('id',$id)->update(array('status'=>'deleted'));

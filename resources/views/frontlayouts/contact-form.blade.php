@@ -6,7 +6,7 @@
                         <div class="row justify-content-end">
                             <div class="col-lg-8">
                                 <div class="contact-massage-item ml-35">
-                                    <form action="save-message" method="post">
+                                    <form action="save-message" method="get">
                                     @csrf
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -36,7 +36,7 @@
                                                 <div class="input-box mt-20">
                                                     <textarea name="message" id="#" cols="30" rows="10" placeholder="Write Message"></textarea>
                                                     <i class="far fa-pen"></i>
-                                                    <button type="submit" class="main-btn">send message <i class="far fa-plus"></i></button>
+                                                    <button type="submit" class="main-btn">send message </button>
                                                 </div>
                                             </div>
                                         </div>

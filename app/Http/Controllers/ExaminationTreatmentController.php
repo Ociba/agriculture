@@ -19,6 +19,7 @@ class ExaminationTreatmentController extends Controller
 {
     //
     public function addExaminationTreatmentForm(){
+      if(in_array('Can add E & T', auth()->user()->getUserPermisions())){
         $products= Product::select('product','id')->get();
         $get_signs_symptom= SignsSymptoms::select('signs_symptoms','id')->get();
         $get_diseases =Disease::select('disease_name','id')->get();
@@ -28,8 +29,12 @@ class ExaminationTreatmentController extends Controller
         $get_weight =Weight::select('weight','id')->get();
         return view('admin.examinationandtreatment-form',compact('get_signs_symptom','get_diseases','get_drugs',
                       'get_week','get_month','get_weight','products'));
+      }else{
+        return redirect('/404');
+      }
     }
     public function editExaminationTreatment($id){
+      if(in_array('Can edit E & T', auth()->user()->getUserPermisions())){
         $edit_examination_and_treatment =ExaminationTreatment::where('id',$id)->get();
         $product= Product::select('product','id')->get();
         $get_signs_symptomss= SignsSymptoms::select('signs_symptoms','id')->get();
@@ -40,6 +45,9 @@ class ExaminationTreatmentController extends Controller
         $get_weights =Weight::select('weight','id')->get();
         return view('admin.edit-examination-and-treatment-form',compact('edit_examination_and_treatment','product',
         'get_signs_symptomss','get_diseasess','get_drugg','get_weeks','get_months','get_weights'));
+      }else{
+        return redirect('/404');
+      }
     }
     public function createExaminationTreatment(Request $request){
         if(empty($request->bill)){
@@ -192,7 +200,7 @@ class ExaminationTreatmentController extends Controller
             'deposit'=>$request->deposit,
             'balance'=>$request->balance
         ));
-        return Redirect()->back()->withErrors("ExaminationTreatment details has been updated Succesfully");
+        return Redirect()->back()->with('message',"ExaminationTreatment details has been updated Succesfully");
     }
     public function deleteExaminationTreatment($id){
         ExaminationTreatment::where('id',$id)->update(array('status'=>'deleted'));

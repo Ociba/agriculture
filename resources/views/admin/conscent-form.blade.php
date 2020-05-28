@@ -27,25 +27,9 @@
   <div class="content-wrapper">
     <!-- Breadcrumbs -->
     @include('layouts.breadcrumb')
-    <!-- /.Breadcrumbs -->
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- Info boxes -->
-        
-        <!-- /.row -->
-
-        
-
-        <!-- Main row -->
-        
-        <!-- /.row -->
-      </div><!--/. container-fluid -->
-    </section>
     <section class="content">
         <div class="row">
-        @include('layouts.successfulmessage')
+        @include('layouts.message')
             <div class="col-12">
         <div class="card">
         <div class="card card-info">

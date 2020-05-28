@@ -45,7 +45,7 @@
     </section>
     <section class="content">
         <div class="row">
-        @include('layouts.successfulmessage')
+        @include('layouts.message')
             <div class="col-12">
         <div class="card">
         <div class="card card-info">
@@ -55,7 +55,7 @@
               <!-- /.card-header -->
               <!-- form start -->
               @foreach($edit_products as $edit_product)
-              <form class="form-horizontal mt-3" method="post" action="/update-product/{{ $edit_product->id }}">
+              <form class="form-horizontal mt-3" method="get" action="/update-product/{{ $edit_product->id }}">
               @csrf
                 <div class="card-body">
                 <div class="form-group row">

@@ -65,7 +65,7 @@
                   <th>No</th>
                   <th>Product</th>
                   <th>Contact</th>
-                  <th>Signs and Symptoms</th>
+                  <th>Emergency</th>
                   <th>Role</th>
                   <th>Ditrict</th>
                   <th>County</th>
@@ -88,7 +88,7 @@
                       <td>{{ $i++ }}</td>
                       <td>{{ $emergency->products->product }}</td>
                       <td>{{ $emergency->users->contact }}</td>
-                      <td>{{ $emergency->signs_symptoms->signs_symptoms }}</td>
+                      <td>{{ $emergency->problem }}</td>
                       <td>{{ $emergency->roles->role }}</td>
                       <td>{{ $emergency->districts->district }}</td>
                       <td>{{ $emergency->counties->county }}</td>

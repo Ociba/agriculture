@@ -29,7 +29,7 @@
     @include('layouts.breadcrumb')
     <section class="content">
         <div class="row">
-        @include('layouts.successfulmessage')
+        @include('layouts.message')
             <div class="col-12">
         <div class="card">
         <div class="card card-info">
@@ -39,7 +39,7 @@
               <!-- /.card-header -->
               <!-- form start -->
               @foreach($get_market_products as $products)
-              <form class="form-horizontal mt-3" method="post" action="/update-market-product/{{$products->id}}">
+              <form class="form-horizontal mt-3" method="get" action="/update-market-product/{{$products->id}}">
               @csrf
                 <div class="card-body">
                 <div class="form-group row">

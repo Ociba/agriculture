@@ -11,11 +11,19 @@ class FeedController extends Controller
 {
     //
     public function addFeedForm(){
+        if(in_array('Can add feeds', auth()->user()->getUserPermisions())){
         return view('admin.feed-form');
+        }else{
+            return redirect('/404');
+        }
     }
     public function editFeedForm($id){
+        if(in_array('Can edit feeds', auth()->user()->getUserPermisions())){
         $edit_feeds =Feed::where('id',$id)->get();
         return view('admin.edit-feed-form',compact('edit_feeds'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function createFeed(Request $request){
         if(empty($request->feed_type)){
@@ -64,7 +72,7 @@ class FeedController extends Controller
             'feed_type'=>$request->feed_type,
             'prescription'=>$request->prescription
         ));
-        return Redirect()->back()->withErrors("Feed details has been updated Succesfully");
+        return Redirect()->back()->with('message',"Feed details has been updated Succesfully");
     }
     public function deleteFeed($id){
         Feed::where('id',$id)->update(array('status'=>'deleted'));

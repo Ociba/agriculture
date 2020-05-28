@@ -10,7 +10,11 @@ class MarketController extends Controller
 {
     //
     public function marketProductsForm(){
+        if(in_array('Can add market products', auth()->user()->getUserPermisions())){
         return view('admin.market-product-form');
+        }else{
+            return redirect('/404');
+        }
     }
     public function createProductsForMarket(Request $request){
         if(empty($request->name)){
@@ -40,15 +44,23 @@ class MarketController extends Controller
     }
     }
     public function displayProductsForMarket(){
+        if(in_array('Can view market products', auth()->user()->getUserPermisions())){
         $show_market_products =Market::join('users','market_products.user_id','users.id')
         ->where('market_products.status','active')
         ->select('market_products.name','market_products.image','market_products.id')
         ->paginate('10');
         return view('admin.market-products',compact('show_market_products'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function editMarket($id){
+        if(in_array('Can edit market products', auth()->user()->getUserPermisions())){
         $get_market_products =Market::where('id',$id)->get();
         return view('admin.edit-market-products', compact('get_market_products'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function updateMarket($id,Request $request){
         Market::where('id',$id)->update(array(
@@ -56,7 +68,7 @@ class MarketController extends Controller
            'name'=>$request->name,
            'image'=>$request->image
         ));
-        return Redirect()->back()->withErrors("Market has been updated successfully");
+        return Redirect()->back()->with('message',"Market has been updated successfully");
     }
     public function deleteMarket($id){
         Market::where('id',$id)->update(array('status'=>'deleted'));

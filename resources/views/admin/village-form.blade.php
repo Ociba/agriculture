@@ -38,7 +38,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form class="form-horizontal mt-3" method="post" action="/save-village">
+              <form class="form-horizontal mt-3" method="get" action="/save-village">
               @csrf
                 <div class="card-body">
                 <div class="form-group row">

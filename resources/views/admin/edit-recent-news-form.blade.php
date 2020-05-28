@@ -29,7 +29,7 @@
     @include('layouts.breadcrumb')
     <section class="content">
         <div class="row">
-        @include('layouts.successfulmessage')
+        @include('layouts.message')
             <div class="col-12">
         <div class="card">
         <div class="card card-info">
@@ -37,7 +37,7 @@
                 <h3 class="card-title">Edit recent_news</h3>
               </div>
               @foreach($get_recent_news as $recent_news)
-              <form class="form-horizontal mt-3" method="post" action="/update-recent-news/{{$recent_news->id}}">
+              <form class="form-horizontal mt-3" method="get" action="/update-recent-news/{{$recent_news->id}}">
               @csrf
                 <div class="card-body">
                 <div class="form-group row">

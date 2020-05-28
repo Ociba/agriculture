@@ -24,10 +24,14 @@ class FarmController extends Controller
         return view('front.farming', compact('display_farms'));
     }
     public function addFarmForm(){
+        if(in_array('Can add farm', auth()->user()->getUserPermisions())){
         $get_districts =District::select('district','id')->get();
         $get_county =County::select('county','id')->get();
         $get_village =Village::select('village','id')->get();
         return view('admin.farms-form', compact('get_districts','get_county','get_village'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function createFarm(Request $request){
         if(empty($request->farm_name)){
@@ -92,6 +96,7 @@ class FarmController extends Controller
         }
     }
     public function displayFarm(){
+        if(in_array('Can view farm', auth()->user()->getUserPermisions())){
         $display_farms= Farm::join('users','farms.user_id','users.id')
         ->join('districts','farms.district_id','districts.id')
         ->join('counties','farms.county_id','counties.id')
@@ -101,13 +106,20 @@ class FarmController extends Controller
                 'counties.county','villages.village','farms.id')
         ->paginate('10');
         return view('admin.farm', compact('display_farms'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function editFarm($id){
+        if(in_array('Can edit farms', auth()->user()->getUserPermisions())){
         $edit_farm_detail =Farm::where('id',$id)->get();
         $get_districts =District::select('district','id')->get();
         $get_county =County::select('county','id')->get();
         $get_village =Village::select('village','id')->get();
         return view('admin.edit-farm',compact('edit_farm_detail','get_districts','get_county','get_village'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function updateFarm(Request $request, $id){
         $get_district_id= District::where(\strtolower("district"), strtolower($request->district))->value('id');
@@ -123,7 +135,7 @@ class FarmController extends Controller
           'statement'=>$request->statement,
           'image'=>$request->image
         ));
-        return Redirect()->back()->withInput()->withErrors('Farm details has been updated successfully');
+        return Redirect()->back()->withInput()->with('message','Farm details has been updated successfully');
     }
     public function deleteFarm($id){
         Farm::where('id', $id)->update(array('status'=>'deleted'));

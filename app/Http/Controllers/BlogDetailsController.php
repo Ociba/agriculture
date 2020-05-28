@@ -10,7 +10,11 @@ class BlogDetailsController extends Controller
 {
     //
     public function addBlogDetailsForm(){
-        return view('admin.blog-detail-form');   
+        if(in_array('Can add blog detail', auth()->user()->getUserPermisions())){
+        return view('admin.blog-detail-form');
+        }else{
+            return redirect('/404');
+        }   
     }
     public function createBlogDetail(Request $request){
         if(empty($request->title)){
@@ -70,8 +74,12 @@ class BlogDetailsController extends Controller
         return view('admin.blog-detail', compact('display_blog_detail'));
     }
     public function editBlogDetailForm($id){
+        if(in_array('display-edit-blog', auth()->user()->getUserPermisions())){
         $get_blog_detail =BlogDetails::where('id',$id)->get();
         return view('admin.edit-blog-detail',compact('get_blog_detail'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function updateBlogDetails($id, Request $request){
         BlogDetails::where('id', $id)->update(array(
@@ -83,7 +91,7 @@ class BlogDetailsController extends Controller
             'google'=>$request->google,
             'image'=>$request->image
         ));
-        return Redirect()->back()->withErrors("Blog Details has been updated Successfully");
+        return Redirect()->back()->with('message',"Blog Details has been updated Successfully");
     }
     public function deleteBlogDetail($id){
         BlogDetails::where('id',$id)->update(array('status'=>'deleted'));

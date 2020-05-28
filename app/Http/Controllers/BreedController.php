@@ -11,11 +11,19 @@ class BreedController extends Controller
 {
     //
     public function addBreedForm(){
+        if(in_array('Can add breed', auth()->user()->getUserPermisions())){
         return view('admin.add-breed-form');
+        }else{
+            return redirect('/404');
+        }
     }
     public function editBreedForm($id){
+        if(in_array('edit-product-form', auth()->user()->getUserPermisions())){
         $edit_breed =Breed::where('id',$id)->get();
         return view('admin.edit-breed-form', compact('edit_breed'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function createBreed(Request $request){
         if(empty($request->breed)){
@@ -53,7 +61,7 @@ class BreedController extends Controller
             'user_id'=>Auth::user()->id,
             'breed'=>$request->breed
         ));
-        return redirect('/display-breed')->withErrors('Breed information has been updated successfully');
+        return redirect()->back()->with('message','Breed information has been updated successfully');
     }
     public function deleteBreed($id){
         Breed::where('id',$id)->update(array('status'=>'deleted'));

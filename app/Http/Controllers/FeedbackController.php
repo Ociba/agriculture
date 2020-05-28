@@ -32,8 +32,12 @@ class FeedbackController extends Controller
     }
    }
    public function displayFeedback(){
+    if(in_array('Can edit feedback', auth()->user()->getUserPermisions())){
        $display_feedback =Feedback::where('status','approve')->paginate('10');
        return view('admin.feedback', compact('display_feedback'));
+    }else{
+        return redirect('/404');
+    }
    }
    public function approveFeedback($id){
        Feedback::where('id',$id)->update(array('status'=>'active'));

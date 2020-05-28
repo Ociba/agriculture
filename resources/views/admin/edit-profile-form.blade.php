@@ -29,7 +29,7 @@
     @include('layouts.breadcrumb')
     <section class="content">
         <div class="row">
-        @include('layouts.successfulmessage')
+        @include('layouts.message')
             <div class="col-12">
         <div class="card">
         <div class="card card-info">
@@ -38,7 +38,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form class="form-horizontal mt-3" method="post" action="change-profile" enctype="multipart/form-data">
+              <form class="form-horizontal mt-3" method="get" action="change-profile" enctype="multipart/form-data">
               @csrf
                 <div class="card-body">
                 <div class="form-group row">

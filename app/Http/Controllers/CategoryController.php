@@ -11,11 +11,19 @@ class CategoryController extends Controller
 {
     //
     public function AddCategoryForm(){
+        if(in_array('Can add category', auth()->user()->getUserPermisions())){
         return view('admin.add-category-form');
+        }else{
+            return redirect('/404');
+        }
     }
     public function editCategoryForm($id){
+        if(in_array('Can edit category', auth()->user()->getUserPermisions())){
         $edit_category =Category::where('id',$id)->get();
         return view('admin.edit-category-form', compact('edit_category'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function createCategory(Request $request){
         if(empty($request->category)){
@@ -53,7 +61,7 @@ class CategoryController extends Controller
             'user_id'=>Auth::user()->id,
             'category'=>$request->category
         ));
-        return redirect('/display-categories')->withErrors("Your Category details has been successfully updated");
+        return redirect()->back()->with('message',"Your Category details has been successfully updated");
     }
     public function deleteCategory($id){
         Category::where('id',$id)->update(array('status'=>'deleted'));

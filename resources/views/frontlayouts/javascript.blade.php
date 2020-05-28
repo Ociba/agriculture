@@ -28,3 +28,4 @@
 
     <!--====== Main js ======-->
     <script src="{{asset('assets/js/main.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.min.js')}}">

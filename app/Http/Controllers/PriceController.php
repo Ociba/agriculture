@@ -15,19 +15,27 @@ class PriceController extends Controller
 {
     //
     public function addPriceForm(){
+        if(in_array('Can add prices', auth()->user()->getUserPermisions())){
         $get_product =Product::select('product','id')->get();
         $get_district =District::select('district','id')->get();
         $get_county =County::select('county','id')->get();
         $get_day =Day::select('day','id')->get();
         return view('admin.price-form', compact("get_product",'get_district','get_county','get_day'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function editPriceForm($id){
+        if(in_array('Can edit price', auth()->user()->getUserPermisions())){
         $get_product =Product::select('product','id')->get();
         $get_district =District::select('district','id')->get();
         $get_county =County::select('county','id')->get();
         $get_day =Day::select('day','id')->get();
         $edit_prices =Price::where('id',$id)->get();
         return view('admin.edit-price-form',compact('edit_prices',"get_product",'get_district','get_county','get_day'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function createPrice(Request $request){
         if(District::where(\strtolower('district'), strtolower($request->district))->exists()){
@@ -128,7 +136,7 @@ class PriceController extends Controller
             'quantity'=>$request->quantity,
             'price'=>$request->price
         ));
-        return Redirect()->back()->withErrors("Price details has been updated Succesfully");
+        return Redirect()->back()->with('message',"Price details has been updated Succesfully");
     }
     public function deletePrice($id){
         Price::where('id',$id)->update(array('status'=>'deleted'));

@@ -11,11 +11,19 @@ class WeekController extends Controller
 {
     //
     public function addWeekForm(){
+        if(in_array('Can add week', auth()->user()->getUserPermisions())){
         return view('admin.Week-form');
+        }else{
+            return redirect('/404');
+        }
     }
     public function editWeekForm($id){
+        if(in_array('Can edit week', auth()->user()->getUserPermisions())){
         $edit_weeks =Week::where('id',$id)->get();
         return view('admin.edit-week-form',compact('edit_weeks'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function createWeek(Request $request){
      if(empty($request->week)){
@@ -54,7 +62,7 @@ class WeekController extends Controller
             'user_id'=>Auth::user()->id,
             'week'=>$request->week
         ));
-        return Redirect()->back()->withErrors("Week details has been updated Succesfully");
+        return Redirect()->back()->with('message',"Week details has been updated Succesfully");
     }
     public function deleteWeek($id){
         Week::where('id',$id)->update(array('status'=>'deleted'));

@@ -79,7 +79,9 @@
                                     <img style="border-radius:50%; width:70px; height:70px;" src="{{asset('assets/images/'.$comment->photo)}}" alt="comments">
                                     <h5 class="title">{{$comment->name}} <span>{{ date('d F, Y', strtotime($comment->created_at))}} {{ date('g:ia', strtotime($comment->created_at))}}</span></h5>
                                     <p>{{$comment->comment}}</p>
-                                    <a href="#">Reply Commet</a>
+                                   
+                                    <button>Reply Commet</button>
+                                    <p>This is a paragraph with little content.</p>
                                 </div>
                             @endforeach
                             </div>
@@ -88,7 +90,7 @@
                             <div class="massage-title">
                                 <h3 class="title">Send A Message</h3>
                             </div>
-                            <form action="/save-comment" method="post" enctype="multipart/form-data">
+                            <form action="/save-comment" method="get" enctype="multipart/form-data">
                             @csrf
                             <div class="blog-massage-item">
                                 <div class="row">
@@ -192,4 +194,11 @@
             </div>
         </div>
     </section>
+    <script>
+    $(document).ready(function(){
+    $("button").click(function(){
+        $("p").toggle();
+    });
+    });
+    </script>
     

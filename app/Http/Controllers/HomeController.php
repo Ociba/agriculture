@@ -37,4 +37,13 @@ class HomeController extends Controller
             return redirect("/display-profile");
         }
     }
+    public function documentationData(){
+        return view('admin.documentation');
+    }
+    public function loginRegistration(){
+        return view('admin.Login');
+    }
+    public function documentationDashboardDetails(){
+        return view('admin.documentation-dash');
+    }
 }

@@ -61,7 +61,7 @@ class UserController extends Controller
             'contact'=>$request->contact,
             'role_id'=>$request->role
         ));
-        return Redirect()->back()->withErrors("User Details have been updated successfully");
+        return Redirect()->back()->with('message',"User Details have been updated successfully");
     }
     public function SuspendUserInformation($id, Request $request){
         DB::table('users')->where('id',$id)->update(array(

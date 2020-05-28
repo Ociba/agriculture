@@ -27,22 +27,6 @@
   <div class="content-wrapper">
     <!-- Breadcrumbs -->
     @include('layouts.breadcrumb')
-    <!-- /.Breadcrumbs -->
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- Info boxes -->
-        
-        <!-- /.row -->
-
-        
-
-        <!-- Main row -->
-        
-        <!-- /.row -->
-      </div><!--/. container-fluid -->
-    </section>
     <section class="content">
         <div class="row">
         @include('layouts.message')
@@ -54,7 +38,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form class="form-horizontal mt-3" method="post" action="/save-profile" enctype="multipart/form-data">
+              <form class="form-horizontal mt-3" method="get" action="/save-profile" enctype="multipart/form-data">
               @csrf
                 <div class="card-body">
                 <div class="form-group row">

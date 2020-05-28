@@ -10,7 +10,11 @@ class GalleryController extends Controller
 {
     //
     public function galleryForm(){
+        if(in_array('Can add gallery', auth()->user()->getUserPermisions())){
         return view('admin.gallery-form');
+        }else{
+            return redirect('/404');
+        }
     }
     public function createGallery(Request $request){
         if(empty($request->title)){
@@ -47,15 +51,23 @@ class GalleryController extends Controller
     }
 }
  public function displayGallery(){
+    if(in_array('Can view gallery', auth()->user()->getUserPermisions())){
      $show_gallery =Gallery::join('users','galleries.user_id','users.id')
      ->where('galleries.status','active')
      ->select('galleries.title','galleries.message','galleries.image','users.name','galleries.id')
      ->paginate('10');
      return view('admin.gallery',compact('show_gallery'));
+    }else{
+        return redirect('/404');
+    }
  }
  public function editGallery($id){
+    if(in_array('Can edit gallery', auth()->user()->getUserPermisions())){
      $get_galleries =Gallery::where('id',$id)->get();
      return view('admin.edit-gallery', compact('get_galleries'));
+    }else{
+        return redirect('/404');
+    }
  }
  public function updateGallery($id,Request $request){
      Gallery::where('id',$id)->update(array(
@@ -64,7 +76,7 @@ class GalleryController extends Controller
         'message'=>$request->message,
         'image'=>$request->image
      ));
-     return Redirect()->back()->withErrors("Gallery has been updated successfully");
+     return Redirect()->back()->with('message',"Gallery has been updated successfully");
  }
  public function deleteGallery($id){
      Gallery::where('id',$id)->update(array('status'=>'deleted'));

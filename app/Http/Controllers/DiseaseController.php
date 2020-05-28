@@ -11,11 +11,19 @@ class DiseaseController extends Controller
 {
     //
     public function addDiseaseForm(){
+        if(in_array('Can add disease', auth()->user()->getUserPermisions())){
         return view('admin.add-disease-form');
+        }else{
+            return redirect('/404');
+        }
     }
     public function editDiseaseForm($id){
+        if(in_array('Can edit disease', auth()->user()->getUserPermisions())){
         $edit_disease =Disease::where('id',$id)->get();
         return view('admin.edit-disease-form', compact('edit_disease'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function createDisease(Request $request){
         if(empty($request->disease_name)){
@@ -53,7 +61,7 @@ class DiseaseController extends Controller
             'user_id'=>Auth::user()->id,
             'disease_name'=>$request->disease_name
         ));
-        return Redirect()->back()->withErrors("Disease has been updated successfully");
+        return Redirect()->back()->with('message',"Disease has been updated successfully");
     }
     public function deleteDisease($id){
         Disease::where('id',$id)->update(array('status'=>'deleted'));

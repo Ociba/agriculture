@@ -12,9 +12,13 @@ class FarmerController extends Controller
 {
     //
     public function farmerForm(){
+        if(in_array('Can add farmers', auth()->user()->getUserPermisions())){
         $select_username =User::select('name','id')->get();
         $select_profile_image =Profiles::select('image','id')->get();
         return view('admin.farmers-form', compact('select_username','select_profile_image'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function createFarmer(Request $request){
         // // if(empty($request->user_id)){
@@ -36,23 +40,31 @@ class FarmerController extends Controller
     return Redirect()->back()->with('message',"Farmers details created Successfully"); 
      }
      public function displayFarmer(){
+        if(in_array('Can view farms', auth()->user()->getUserPermisions())){
          $show_farmer_detail =Farmer::join('users','famers.user_id','users.id')
          ->join('profiles','famers.profile_id','profiles.id','famers.id')
          ->where('famers.status','active')
          ->select('users.name','profiles.image','famers.id')
          ->paginate('10');
          return view('admin.farmers',compact('show_farmer_detail'));
+        }else{
+            return redirect('/404');
+         }
      }
      public function editFarmerForm($id){
+        if(in_array('Can edit farmers', auth()->user()->getUserPermisions())){
          $get_farmer =Farmer::where('id',$id)->get();
          return view('admin.edit-farmer', compact('get_farmer'));
+        }else{
+            return redirect('/404');
+        }
      }
      public function updateFarmerDetail($id, Request $request){
          Farmer::where('id',$id)->update(array(
             'user_id'=>$request->name,
             'profile_id'=>$request->image   
          ));
-         return Redirect()->back()->withErrors("Farmers Details has been updated successfully");
+         return Redirect()->back()->with('message',"Farmers Details has been updated successfully");
      }
      public function deleteFarmer($id){
          Farmer::where('id',$id)->update(array('status'=>'deleted'));

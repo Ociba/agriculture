@@ -11,11 +11,19 @@ class PestController extends Controller
 {
     //
     public function addPestForm(){
+        if(in_array('Can add pest', auth()->user()->getUserPermisions())){
         return view('admin.add-pest-form');
+        }else{
+            return redirect('/404');
+        }
     }
     public function editPestForm($id){
+        if(in_array('Can edit pest', auth()->user()->getUserPermisions())){
         $edit_pest =Pest::where('id',$id)->get();
         return view('admin.edit-pest-form', compact('edit_pest'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function createPest(Request $request){
         if(empty($request->pest)){
@@ -53,7 +61,7 @@ class PestController extends Controller
             'user_id'=>Auth::user()->id,
             'pest'=>$request->pest
         ));
-        return Redirect()->back()->withErrors("Pest has been updated successfully");
+        return Redirect()->back()->with('message',"Pest has been updated successfully");
     }
     public function deletePest($id){
         Pest::where('id',$id)->update(array('status'=>'deleted'));

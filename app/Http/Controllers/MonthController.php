@@ -11,11 +11,19 @@ class MonthController extends Controller
 {
     //
     public function addMonthForm(){
+        if(in_array('Can add month', auth()->user()->getUserPermisions())){
         return view('admin.month-form');
+        }else{
+            return redirect('/404');
+        }
     }
     public function editMonthForm($id){
+        if(in_array('Can edit month', auth()->user()->getUserPermisions())){
         $edit_months =Month::where('id',$id)->get();
         return view('admin.edit-month-form',compact('edit_months'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function createMonth(Request $request){
         if(empty($request->month)){
@@ -53,7 +61,7 @@ class MonthController extends Controller
             'user_id'=>Auth::user()->id,
             'month'=>$request->month
         ));
-        return Redirect()->back()->withErrors("Month details has been updated Succesfully");
+        return Redirect()->back()->with('message',"Month details has been updated Succesfully");
     }
     public function deleteMonth($id){
         Month::where('id',$id)->update(array('status'=>'deleted'));

@@ -11,11 +11,19 @@ class CountyController extends Controller
 {
     //
     public function addCountyForm(){
+        if(in_array('Can add county', auth()->user()->getUserPermisions())){
         return view('admin.add-county-form');
+        }else{
+            return redirect('/404');
+        }
     }
     public function editCountyForm($id){
+        if(in_array('Can edit county', auth()->user()->getUserPermisions())){
         $edit_county =County::where('id',$id)->get();
         return view('admin.edit-county-form',compact('edit_county'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function createCounty(Request $request){
         if(empty($request->county)){
@@ -32,8 +40,12 @@ class CountyController extends Controller
         return Redirect()->back()->with('message',"County has been added Successfully");
     }
     public function displayCounty(){
+        if(in_array('Can view counties', auth()->user()->getUserPermisions())){
         $show_county =County::orderby('created_at','desc')->paginate('10');
         return view('admin.county-table',compact('show_county'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function searchCounty(Request $request){
         $show_county =County::where('counties.county',$request->county)
@@ -44,7 +56,7 @@ class CountyController extends Controller
         County::where('id',$id)->update(array(
             'county'=>$request->county
         ));
-        return Redirect()->back()->withErrors("County Details has been updated successfully");
+        return Redirect()->back()->with('message',"County Details has been updated successfully");
     }
     public function deleteCounty($id){
         County::where('id',$id)->update(array('status'=>'deleted'));

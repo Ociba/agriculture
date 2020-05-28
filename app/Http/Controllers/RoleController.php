@@ -10,14 +10,15 @@ class RoleController extends Controller
 {
     //
     public function addRoleForm(){
-       
             return view('admin.add_role_form');
-        
     }
     public function getAllRoles(){
         $get_all_roles = Role::paginate('10');
-        
+        if(in_array('Can view user account', auth()->user()->getUserPermisions())){
             return view('admin.roles-table',compact('get_all_roles'));
+        }else{
+            return redirect('/404');
+        }
        
 }
 
@@ -47,9 +48,10 @@ public function createRoles(Request $request){
     'role' =>$request->role, 
     
     ));
-    return Redirect()->back()->withErrors("Role has been added successfully");
+    return Redirect()->back()->with('message',"Role has been added successfully");
 }
 public function editRoles(Request $request){
+   
     Role::update(array(
     'updated_by'=>Auth::user()->id,
     'role' =>$request->role

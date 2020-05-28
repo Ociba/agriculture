@@ -39,8 +39,8 @@
                 <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
                 @if(in_array('Can search product', auth()->user()->getUserPermisions()))
                 <form action="/search-product" method="get">
-                        <div class="input-group ">
-                          <input class="form-control"  selected="selected" placeholder="Search By product name" name="product" id="srch-term" aria-label="Search" required>
+                        <div class="input-group">
+                          <input class="form-control input-sm" selected="selected" placeholder="Search By product name" name="product" id="srch-term" aria-label="example1" required>
                           <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
                               <i class="fas fa-search"></i>

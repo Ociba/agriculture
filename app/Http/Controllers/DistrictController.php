@@ -11,11 +11,19 @@ class DistrictController extends Controller
 {
     //
     public function addDistrictForm(){
+        if(in_array('Can add district', auth()->user()->getUserPermisions())){
         return view('admin.add-district-form');
+        }else{
+            return redirect('/404');
+        }
     }
     public function editDistrictForm($id){
+        if(in_array('Can edit district', auth()->user()->getUserPermisions())){
         $get_district =District::where('id',$id)->get();
         return view('admin.edit-district-form', compact('get_district'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function createDistrict(Request $request){
         if(empty($request->district)){
@@ -33,11 +41,15 @@ class DistrictController extends Controller
         return Redirect()->back()->with('message',"District has been added Successfully");
     }
     public function displayDistrict(){
+        if(in_array('Can view districts', auth()->user()->getUserPermisions())){
         $show_district =District::join('users','districts.user_id','users.id')
         ->select('users.name','districts.district','districts.id')
         ->orderBy('districts.created_at','desc')
         ->paginate('10');
         return view('admin.district-table',compact('show_district'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function searchDistrict(Request $request){
         $show_district =District::join('users','districts.user_id','users.id')
@@ -52,7 +64,7 @@ class DistrictController extends Controller
             'user_id'=>Auth::user()->id,
             'district'=>$request->district
         ));
-        return Redirect()->back()->withErrors("District Details has been updated successfully");
+        return Redirect()->back()->with('message',"District Details has been updated successfully");
     }
     public function deleteDistrict($id){
         District::where('id',$id)->update(array('status'=>'deleted'));

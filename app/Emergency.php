@@ -15,7 +15,7 @@ class Emergency extends Model
 {
     //
     protected $fillable =['user_id','role_id','district_id','county_id','village_id','product_id',
-                          'signs_symptom_id','affected_number','image'];
+                          'problem','affected_number','image'];
 public function products()
 {
     return $this->belongsTo('App\Product','product_id');
@@ -35,11 +35,7 @@ public function counties()
 public function villages()
 {
     return $this->belongsTo('App\Village','village_id');
-} 
-public function signs_symptoms()
-{
-    return $this->belongsTo('App\SignsSymptoms','signs_symptom_id');
-} 
+}  
 public function users()
 {
     return $this->belongsTo('App\User','user_id');

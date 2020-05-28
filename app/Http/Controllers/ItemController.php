@@ -45,9 +45,9 @@ class ItemController extends Controller
                                                       'pick_district','pick_county','pick_village','pick_category'));
     }
     public function createSellItem(Request $request){
-        if(empty($request->item_image)){
-            return Redirect()->back()->withInput()->withErrors("image cannot be empty");
-        }
+        // if(empty($request->item_image)){
+        //     return Redirect()->back()->withInput()->withErrors("image cannot be empty");
+        // }
         if(empty($request->price)){
             return Redirect()->back()->withInput()->withErrors("Price cannot be empty");
         }
@@ -161,7 +161,7 @@ class ItemController extends Controller
         ->join('categories','items.category_id','categories.id')
         ->where('items.status','available')
         ->select('users.id','users.name','users.contact','products.product','breeds.breed','weights.weight','districts.district','categories.category','counties.county',
-                  'villages.village','items.price','items.number','items.item_image','items.id')
+                  'villages.village','items.price','items.number','items.item_image','items.id','items.user_id')
         ->orderBy('items.created_at','DESC')
         ->paginate('10');
         return view('admin.sell-items', compact('display_all_items_to_sell'));
@@ -189,7 +189,7 @@ class ItemController extends Controller
         ->orWhere('items.number',$request->product)
         ->orWhere('items.image',$request->product)
         ->select('users.name','users.contact','products.product','breeds.breed','weights.weight','districts.district','categories.category','counties.county',
-                  'villages.village','items.price','items.number','items.item_image','items.id')
+                  'villages.village','items.price','items.number','items.item_image','items.id','items.user_id')
         ->paginate('10');
         
         return view('admin.sell-items', compact('display_all_items_to_sell'));
@@ -414,6 +414,6 @@ class ItemController extends Controller
             'role_id'=>$request->role,
             'declaration'=>$request->declaration
         ));
-        return Redirect()->back()->withErrors("Your Conscent(s) details Saved successfully");
+        return Redirect()->back()->with('message',"Your Conscent(s) details Saved successfully");
     }
 }

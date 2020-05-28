@@ -6,7 +6,7 @@
                         <div class="row justify-content-end">
                             <div class="col-lg-8">
                                 <div class="feedback-massage-item ml-35">
-                                    <form action="/save-feedback" method="post" enctype="multipart/form-data">
+                                    <form action="/save-feedback" method="get" enctype="multipart/form-data">
                                     @csrf
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

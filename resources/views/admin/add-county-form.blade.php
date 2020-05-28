@@ -38,7 +38,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form class="form-horizontal mt-3" method="post" action="/save-county">
+              <form class="form-horizontal mt-3" method="get" action="/save-county">
               @csrf
                 <div class="card-body">
                 <div class="form-group row">

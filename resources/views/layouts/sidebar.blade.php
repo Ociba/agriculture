@@ -7,7 +7,7 @@
         </div>
         <div class="info">
           <a href="#" class="d-block">{{auth()->user()->name}}</a>
-          <a href="#" class="d-block">{{auth()->user()->contact}}</a>
+          <a href="#" class="text-primary">{{auth()->user()->getUsersRole()}}</a>
         </div>
       </div>
 
@@ -319,15 +319,33 @@
             </a>
           </li>
           @endif
-          @if(in_array('Can view emrgency report', auth()->user()->getUserPermisions()))
-          <li class="nav-item has-treeview" @if(\Request::route()->getName() == "Weight")class="active" @endif>
-            <a href="/display-emergency-reports" class="nav-link">
+          @if(in_array('Can view reports', auth()->user()->getUserPermisions()))
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
               <i class="nav-icon fa fa-medkit"></i>
               <p>
-                Emergency Report
-                {{--<i class="fas fa-angle-left right"></i>--}}
+               Reports
+                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
+            @if(in_array('Can view emrgency report', auth()->user()->getUserPermisions()))
+            <ul class="nav nav-treeview">
+              <li class="nav-item" @if(\Request::route()->getName() == "Emergency Reports")class="active" @endif>
+                <a href="/display-emergency-reports" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Emergency Report</p>
+                </a>
+              </li>
+              @endif
+              @if(in_array('Can view doctors treatment records', auth()->user()->getUserPermisions()))
+              <li class="nav-item" @if(\Request::route()->getName() == "Doctors report")class="active" @endif>
+                <a href="/display-doctors-report" class="nav-link">
+                  <i class="fa fa-linux nav-icon"></i>
+                  <p>Doctors Report</p>
+                </a>
+              </li>
+              @endif
+            </ul>
           </li>
           @endif
           @if(in_array('Can view user account', auth()->user()->getUserPermisions()))
@@ -554,6 +572,17 @@
             </li>
            @endif
             </ul>
+          </li>
+          @endif
+          @if(in_array('Can view documentation', auth()->user()->getUserPermisions()))
+          <li class="nav-item has-treeview" @if(\Request::route()->getName() == "documentation")class="active" @endif>
+            <a href="/display-documentation" class="nav-link">
+              <i class="nav-icon fa fa-book"></i>
+              <p>
+                Documentation
+                {{--<i class="fas fa-angle-left right"></i>--}}
+              </p>
+            </a>
           </li>
           @endif
         </ul>

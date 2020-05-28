@@ -27,25 +27,9 @@
   <div class="content-wrapper">
     <!-- Breadcrumbs -->
     @include('layouts.breadcrumb')
-    <!-- /.Breadcrumbs -->
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- Info boxes -->
-        
-        <!-- /.row -->
-
-        
-
-        <!-- Main row -->
-        
-        <!-- /.row -->
-      </div><!--/. container-fluid -->
-    </section>
     <section class="content">
         <div class="row">
-        @include('layouts.successfulmessage')
+        @include('layouts.message')
             <div class="col-12">
         <div class="card">
         <div class="card card-info">
@@ -55,7 +39,7 @@
               <!-- /.card-header -->
               <!-- form start -->
               @foreach($edit_drug as $drug)
-              <form class="form-horizontal mt-3" method="post" action="/update-drug/{{$drug->id}}">
+              <form class="form-horizontal mt-3" method="get" action="/update-drug/{{$drug->id}}">
               @csrf
                 <div class="card-body">
                 <div class="form-group row">

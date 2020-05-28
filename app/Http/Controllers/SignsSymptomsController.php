@@ -11,11 +11,19 @@ class SignsSymptomsController extends Controller
 {
     //
     public function addSignsSymptomsForm(){
+        if(in_array('Can add signs and symptoms', auth()->user()->getUserPermisions())){
         return view('admin.signssymptoms-form');
+        }else{
+            return redirect('/404');
+        }
     }
     public function editSignsSymptomsForm($id){
+        if(in_array('Can edit sign and symptom action', auth()->user()->getUserPermisions())){
         $edit_signssymptomss =SignsSymptoms::where('id',$id)->get();
         return view('admin.edit-signssymptoms-form',compact('edit_signssymptomss'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function createSignsSymptoms(Request $request){
         if(empty($request->signs_symptoms)){
@@ -53,7 +61,7 @@ class SignsSymptomsController extends Controller
             'user_id'=>Auth::user()->id,
             'signs_symptoms'=>$request->signs_symptoms
         ));
-        return Redirect()->back()->withErrors("SignsSymptoms details has been updated Succesfully");
+        return Redirect()->back()->with('message',"SignsSymptoms details has been updated Succesfully");
     }
     public function deleteSignsSymptoms($id){
         SignsSymptoms::where('id',$id)->update(array('status'=>'deleted'));

@@ -11,11 +11,19 @@ class DaysController extends Controller
 {
     //
     public function addDayForm(){
+        if(in_array('Can add day', auth()->user()->getUserPermisions())){
         return view('admin.day-form');
+        }else{
+            return redirect('/404');
+        }
     }
     public function editDayForm($id){
+        if(in_array('Can edit day', auth()->user()->getUserPermisions())){
         $edit_day =Day::where('id',$id)->get();
         return view('admin.edit-day-form',compact('edit_day'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function createDay(Request $request){
         if(empty($request->day)){
@@ -34,11 +42,15 @@ class DaysController extends Controller
         return Redirect()->back()->with('message',"Day details has been updated Succesfully");
     }
     public function displayDay(){
+        if(in_array('Can view Days', auth()->user()->getUserPermisions())){
         $show_all_days =Day::join('users','days.user_id','users.id')
         ->where('days.status','active')
         ->select('users.name','days.day','days.id')
         ->paginate('10');
         return view('admin.day-table',compact('show_all_days'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function searchDay(Request $request){
         $show_all_days =Day::join('users','days.user_id','users.id')
@@ -54,7 +66,7 @@ class DaysController extends Controller
             'user_id'=>Auth::user()->id,
             'day'=>$request->day
         ));
-        return Redirect()->back()->withErrors("Day details has been updated Succesfully");
+        return Redirect()->back()->with('message',"Day details has been updated Succesfully");
     }
     public function deleteDay($id){
         Day::where('id',$id)->update(array('status'=>'deleted'));

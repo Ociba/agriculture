@@ -21,13 +21,13 @@
                     <div class="newsletters-box">
                         <span>Newsletters</span>
                         <h3 class="title">Subscribe Our Newsletters</h3>
-                        <form action="/save-subscription" method="post">
+                        <form action="/save-subscription" method="get">
                         @csrf
                             <div class="input-box mb-20">
                                 <input type="email" name="email" placeholder="Enter Email Address" required>
                                 <i class="far fa-envelope-open"></i>
                             </div>
-                            <button typr="submit" class="main-btn">subscribe now <i class="far fa-plus"></i></button>
+                            <button typr="submit" class="main-btn">subscribe now</button>
                         </form>
                     </div>
                 </div>

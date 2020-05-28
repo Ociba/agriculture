@@ -10,7 +10,11 @@ class RecentNewsController extends Controller
 {
     //
     public function RecentNewsForm(){
+        if(in_array('Can add recent news', auth()->user()->getUserPermisions())){
         return view('admin.recent-news-form');
+        }else{
+            return redirect('/404');
+        }
     }
     public function createRecentNews(Request $request){
         if($request->hasFile('image')) {
@@ -31,15 +35,23 @@ class RecentNewsController extends Controller
     }
 }
  public function displayRecentNews(){
+    if(in_array('Can view recent news', auth()->user()->getUserPermisions())){
      $show_recent_news =RecentNews::join('users','recent_news.user_id','users.id')
      ->where('recent_news.status','active')
      ->select('recent_news.title','recent_news.image','users.name','recent_news.id')
      ->paginate('10');
      return view('admin.recent-news',compact('show_recent_news'));
+    }else{
+        return redirect('/404');
+    }
  }
  public function editRecentNews($id){
+    if(in_array('Can edit recent news', auth()->user()->getUserPermisions())){
      $get_recent_news =RecentNews::where('id',$id)->get();
      return view('admin.edit-recent-news-form', compact('get_recent_news'));
+    }else{
+        return redirect('/404');
+    }
  }
  public function updateRecentNews($id,Request $request){
     RecentNews::where('id',$id)->update(array(
@@ -47,7 +59,7 @@ class RecentNewsController extends Controller
         'title'=>$request->title,
         'image'=>$request->image
      ));
-     return Redirect()->back()->withErrors("News has been updated successfully");
+     return Redirect()->back()->with('message',"News has been updated successfully");
  }
  public function deleteRecentNews($id){
     RecentNews::where('id',$id)->update(array('status'=>'deleted'));

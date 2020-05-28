@@ -12,12 +12,20 @@ class EmployeesController extends Controller
 {
     //
     public function editEmployeesForm($id){
+        if(in_array('Can edit employee', auth()->user()->getUserPermisions())){
         $edit_employees =Employees::where('id',$id)->get();
         return view('admin.edit-employees-form', compact('edit_employees'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function addEmployeesForm(){
+        if(in_array('Can add employee', auth()->user()->getUserPermisions())){
         $get_user_name =User::select('name','id')->get();
         return view('admin.add-employee-form', compact('get_user_name'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function createEmployee(Request $request){
         if(empty($request->name)){
@@ -41,12 +49,16 @@ class EmployeesController extends Controller
         return redirect()->back()->with('message',"Employee Details has been Saved successfully");
     }
     public function displayEmployees(){
+        if(in_array('Can view employees', auth()->user()->getUserPermisions())){
         $display_employees =Employees::join('users','employees.user_id','users.id')
         ->where('employees.status','active')
         ->select('employees.qualification','employees.experience','employees.id','users.name')
         ->orderBy('employees.created_at','desc')
         ->paginate('10');
         return view('admin.employees-table', compact('display_employees'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function searchEmployees(Request $request){
         $display_employees =Employees::join('users','employees.user_id','users.id')
@@ -64,7 +76,7 @@ class EmployeesController extends Controller
             'qualification'=>$request->qualification,
             'experience'=>$request->experience
         ));
-        return Redirect()->back()->withErrors("Employees Details has been updatedsuccessfully");
+        return Redirect()->back()->with('message',"Employees Details has been updatedsuccessfully");
     }
     public function deleteEmployee($id){
         Employees::where('id', $id)->update(array('status'=>'deleted'));

@@ -125,7 +125,9 @@
       <!-- this row will not appear when printing -->
       <div class="row no-print">
         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-122">
+        @if(in_array('Can see print Permit', auth()->user()->getUserPermisions())){
           <a href="/invoice-print" button class="btn btn-success"><i class="fa fa-print"></i> Print</button></a>
+        @endif
           <div class="pull-right">
           <button type="button" class="btn btn-warning pull-right" style="margin-right: 5px;">
             <i class="fa fa-warning" style="color:red;"></i> Note:&nbsp;Copy is Valid with original Stamp and sign for responsible person

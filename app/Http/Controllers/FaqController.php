@@ -10,7 +10,11 @@ class FaqController extends Controller
 {
     //
     public function faqForm(){
+        if(in_array('Can add question', auth()->user()->getUserPermisions())){
         return view('admin.faq-form');
+        }else{
+            return redirect('/404');
+        }
     }
     public function createFaqQuestion(Request $request){
         if(empty($request->question)){
@@ -26,22 +30,30 @@ class FaqController extends Controller
         return Redirect()->back()->with('message',"Question has been created successfully");
     }
     public function displayFaqQuestion(){
+        if(in_array('Can view faq', auth()->user()->getUserPermisions())){
         $display_frequently_asked_questions =Faq::join('users','faqs.user_id','users.id')
         ->where('faqs.status','active')
         ->select('faqs.question','users.name','faqs.id')
         ->paginate('10');
         return view('admin.questions',compact('display_frequently_asked_questions'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function editFaqQuestion($id){
+        if(in_array('Can edit question', auth()->user()->getUserPermisions())){
         $get_faq_question =Faq::where('id',$id);
             return view('admin.edit-faq-questions', compact('get_faq_question'));
+        }else{
+            return redirect('/404');
+        }
         }
     public function updateFaqQuestions($id,Request $request){
         Faq::where('id',$id)->update(array(
             'user_id'=>Auth::user()->id,
             'question'=>$request->question
         ));
-        return Redirect()->back()->withErrors("Question has been updated successfully");
+        return Redirect()->back()->with('message',"Question has been updated successfully");
     }
     public function deleteQuestion($id){
         Faq::where('id',$id)->update(array('status'=>'deleted'));

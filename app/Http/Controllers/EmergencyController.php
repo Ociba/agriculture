@@ -20,27 +20,24 @@ class EmergencyController extends Controller
     public function addEmergency(){
         $pick_product =Product::select('product','id')->get();
         $pick_role =Role::select('role','id')->get();
-        $pick_signs =SignsSymptoms::select('signs_symptoms','id')->get();
         $pick_district =District::select('district','id')->get();
         $pick_county =County::select('county','id')->get();
         $pick_village =Village::select('village','id')->get();
-        return view('admin.emergency-form', compact('pick_product','pick_role','pick_signs','pick_district',
+        return view('admin.emergency-form', compact('pick_product','pick_role','pick_district',
                                                    'pick_county','pick_village'));
     }
     public function displayEmergency(){
-        $display_all_emergencies_reported = EmergencyResource::collection(Emergency::paginate(10));
-        //return $display_all_emergencies_reported;
+        $display_all_emergencies_reported = EmergencyResource::collection(Emergency::orderBy('created_at','desc')->paginate(10));
         return view('admin.emergency-table', compact('display_all_emergencies_reported'));
     }
     public function editEmergencyForm($id){
         $edit_emergency=Emergency::where('id',$id)->get();
         $pick_product =Product::select('product','id')->get();
         $pick_role =Role::select('role','id')->get();
-        $pick_signs =SignsSymptoms::select('signs_symptoms','id')->get();
         $pick_district =District::select('district','id')->get();
         $pick_county =County::select('county','id')->get();
         $pick_village =Village::select('village','id')->get();
-        return view('admin.edit-emergency-form', compact('pick_product','pick_role','pick_signs','pick_district',
+        return view('admin.edit-emergency-form', compact('pick_product','pick_role','pick_district',
                                                          'pick_county','pick_village','edit_emergency'));
     }
     public function createEmergency(Request $request){
@@ -84,15 +81,6 @@ class EmergencyController extends Controller
            ));
            
           } 
-          if(SignsSymptoms::where(\strtolower('signs_symptoms'), strtolower($request->signs_symptoms))->exists()){
-           $get_sign= SignsSymptoms::where("signs_symptoms", $request->signs_symptoms)->value('id');
-         }
-         else{
-            SignsSymptoms::create(array('signs_symptoms'=>$request->signs_symptoms,
-                                'user_id'=>Auth::user()->id
-          ));
-          
-         }
          if(Role::where(\strtolower('role'), strtolower($request->role))->exists()){
            $get_village= Role::where("role", $request->role)->value('id');
          }
@@ -107,7 +95,6 @@ class EmergencyController extends Controller
           $get_village_id= Village::where(\strtolower("village"), strtolower($request->village))->value('id');
           $get_product_id= Product::where(\strtolower("product"), strtolower($request->product))->value('id');
           $get_role_id= Role::where(\strtolower("role"), strtolower($request->role))->value('id');
-          $get_sign_id= SignsSymptoms::where(\strtolower("signs_symptoms"), strtolower($request->signs_symptoms))->value('id');
         if($request->hasFile('image')) {
 
             $files = $request->file('image');
@@ -120,7 +107,7 @@ class EmergencyController extends Controller
                 'user_id'=>Auth::user()->id,
                 'product_id'=>$get_product_id,
                 'role_id' =>$get_role_id,
-                'signs_symptom_id'=>$get_sign_id,
+                'problem'=>$request->problem,
                 'district_id' =>$get_district_id,
                 'county_id' =>$get_county_id,
                 'village_id' =>$get_village_id,
@@ -140,7 +127,6 @@ class EmergencyController extends Controller
           $get_village_id= Village::where(\strtolower("village"), strtolower($request->village))->value('id');
           $get_product_id= Product::where(\strtolower("product"), strtolower($request->product))->value('id');
           $get_role_id= Role::where(\strtolower("role"), strtolower($request->role))->value('id');
-          $get_sign_id= SignsSymptoms::where(\strtolower("signs_symptoms"), strtolower($request->signs_symptoms))->value('id');
         if($request->hasFile('image')) {
             $files = $request->file('image');
             $extension = $files->getClientOriginalExtension();
@@ -152,7 +138,7 @@ class EmergencyController extends Controller
                 'user_id'=>Auth::user()->id,
                 'product_id'=>$get_product_id,
                 'role_id' =>$get_role_id,
-                'signs_symptom_id'=>$get_sign_id,
+                'problem'=>$request->problem,
                 'district_id' =>$get_district_id,
                 'county_id' =>$get_county_id,
                 'village_id' =>$get_village_id,

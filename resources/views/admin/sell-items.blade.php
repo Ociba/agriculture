@@ -101,24 +101,19 @@
                       <td>{{ $items->price }}</td>
                       <td>{{ $items->number }}</td>
                       <td><img src="{{asset('items/images/'.$items->item_image)}}" style="width:60px" height="30px" alt=""></td>
-                      @if(in_array('Can edit item', auth()->user()->getUserPermisions()))
                       <td>
+                      @if(auth()->user()->id == $items->user_id)
                       <a href="/edit-sell-item-form/{{ $items->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
                       <span style="color:blue;"><i class="fa fa-edit"></i></span></a>
-                      @endif
-                      @if(in_array('Can delete item', auth()->user()->getUserPermisions()))
                       <a href="/delete-item/{{ $items->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
                       <span style="color:red;"><i class="fa fa-trash"></i></span></a>
-                      @endif
-                      @if(in_array('Can view conscent', auth()->user()->getUserPermisions()))
-                      <a href="/view-conscent/{{ $items->id }}" data-widget="view conscent" data-toggle="tooltip" title="view conscent and Doctors Report">
-                      <span style="color:green;"><i class="fa fa-eye"></i></span></a>
-                      @endif
-                      @if(in_array('Can view conscent form', auth()->user()->getUserPermisions()))
                       <a href="/view-conscent-form/{{ $items->id }}" data-widget="view conscent" data-toggle="tooltip" title="write conscent">
                       <span style="color:orange;"><i class="fa fa-plus-circle"></i></span></a>
-                      </td>
                       @endif
+                      <a href="/view-conscent/{{ $items->id }}" data-widget="view conscent" data-toggle="tooltip" title="view conscent and Doctors Report">
+                      <span style="color:green;"><i class="fa fa-eye"></i></span></a>
+
+                      </td>
                   </tr>
                  @endforeach
                 </tbody>

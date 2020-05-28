@@ -38,7 +38,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form class="form-horizontal mt-3" method="post" action="/save-feed">
+              <form class="form-horizontal mt-3" method="get" action="/save-feed">
               @csrf
                 <div class="card-body">
                 <div class="form-group row">

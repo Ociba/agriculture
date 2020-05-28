@@ -39,7 +39,7 @@
               <!-- /.card-header -->
               <!-- form start -->
               @foreach($edit_emergency as $emergency)
-              <form class="form-horizontal mt-3" method="post" action="/update-emergency/{{$emergency->id}}" enctype="multipart/form-data">
+              <form class="form-horizontal mt-3" method="get" action="/update-emergency/{{$emergency->id}}" enctype="multipart/form-data">
               @csrf
                 <div class="card-body">
                 <div class="form-group row">
@@ -65,14 +65,9 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Signs & Symptoms</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Problem</label>
                     <div class="col-sm-10">
-                    <input type="text" name="signs_symptoms" class="form-control" autocomplete="off">
-                    <datalist id="signs_symptoms" style="width: 100%;">
-                        @foreach($pick_signs as $pick_from_signs_table)
-                        <option selected="selected" value="{{$pick_from_signs_table->signs_symptoms}}"></option>
-                        @endforeach
-                    </datalist>
+                    <input type="text" selected="selected" class="form-control" id="inputEmail3" name="problem" value="{{$emergency->problem}}" placeholder="" required>
                     </div>
                   </div>
                   <div class="form-group row">

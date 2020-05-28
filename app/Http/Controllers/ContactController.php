@@ -23,8 +23,12 @@ class ContactController extends Controller
       return Redirect()->back()->withErrors("You have sent your Message Successfully");
     }
     public function displayMessages(){
+        if(in_array('Can view messages', auth()->user()->getUserPermisions())){
         $display_contact_messages =Contact::where('status','active')->paginate('10');
         return view('admin.messages', compact('display_contact_messages'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function deleteMessages($id){
         Contact::where('id',$id)->update(array('status'=>'deleted'));

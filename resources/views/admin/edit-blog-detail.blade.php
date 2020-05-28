@@ -29,7 +29,7 @@
     @include('layouts.breadcrumb')
     <section class="content">
         <div class="row">
-        @include('layouts.successfulmessage')
+        @include('layouts.message')
             <div class="col-12">
         <div class="card">
         <div class="card card-info">
@@ -37,7 +37,7 @@
                 <h3 class="card-title">Edit Blog Details</h3>
               </div>
               @foreach($get_blog_detail as $blog-detail)
-              <form class="form-horizontal mt-3" method="post" action="/update-blog-detail/{{$blog-detail->id}}" enctype="multipart/form-data">
+              <form class="form-horizontal mt-3" method="get" action="/update-blog-detail/{{$blog-detail->id}}" enctype="multipart/form-data">
               @csrf
                 <div class="card-body">
                 <div class="form-group row">

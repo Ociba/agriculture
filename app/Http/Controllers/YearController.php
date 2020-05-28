@@ -22,6 +22,7 @@ class YearController extends Controller
             'user_id'=>Auth::user()->id,
             'year'=>$request->year
         ));
+        return Redirect()->back()->with('message',"Year has been created Succesfully");
     }
     public function displayYear(){
         $show_all_years =Year::join('users','years.user_id','users.id')
@@ -44,7 +45,7 @@ class YearController extends Controller
             'user_id'=>Auth::user()->id,
             'year'=>$request->year
         ));
-        return Redirect()->back()->withErrors("Year details has been updated Succesfully");
+        return Redirect()->back()->with('message',"Year details has been updated Succesfully");
     }
     public function deleteYear($id){
         Year::where('id',$id)->update(array('status'=>'deleted'));

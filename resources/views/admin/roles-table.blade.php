@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
-    <!-- Added by HTTrack -->
-    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-    <!-- /Added by HTTrack -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
     @include('layouts.stylecss')
+    <title>Uganda| Agriculture system</title>
+</head>
     <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
         <div class="wrapper">
             @include('layouts.topnavbar')

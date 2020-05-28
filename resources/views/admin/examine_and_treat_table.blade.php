@@ -64,7 +64,7 @@
                 <tr>
                   <th>No</th>
                   <th>Item</th>
-                  <th>Sign and Symptom</th>
+                  <th>Sign/Symptom</th>
                   <th>Disease</th>
                   <th>Drug</th>
                   <th>Weight</th>

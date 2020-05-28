@@ -94,10 +94,12 @@
         </div>
       </li>
       <!-- Logout Dropdown Menu --> 
-      <li class="nav-item dropdown">
-        <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+      <li class="nav-item dropdown show">
+        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
             {{--{{ auth()->user()->name }}--}}
-            {{--<span class=" fa fa-angle-down"></span>--}}
+            {{--<span class=" fa fa-angle-down"></span>
+              <i class="fa fa-linux nav-icon"></i>
+            --}}
             
         </a>
         <ul class="dropdown-menu dropdown-usermenu">

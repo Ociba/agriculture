@@ -4,11 +4,8 @@
               <span class="info-box-icon bg-info elevation-1"><i class="fas fa-group"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Registered Sacco Members</span>
-                <span class="info-box-number text-center">
-                
-                  
-                </span>
+                <span class="info-box-text">No. Items on sale</span>
+                <span class="info-box-number text-center">{{ auth()->user()->countItemsOnSale() }}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -20,8 +17,8 @@
               <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-bank"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Total Account Number</span>
-                <span class="info-box-number text-center"></span>
+                <span class="info-box-text">Employees</span>
+                <span class="info-box-number text-center">{{ auth()->user()->numberOfEmployees() }}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -37,8 +34,8 @@
               <span class="info-box-icon bg-success elevation-1"><i class="fas fa-briefcase"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Current Active Loans</span>
-                <span class="info-box-number text-center"></span>
+                <span class="info-box-text">No. of Emergency Reports</span>
+                <span class="info-box-number text-center">{{ auth()->user()->getNumberOfEmergencies() }}</span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -50,8 +47,8 @@
               <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-book"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Expenses Total Amount</span>
-                <span class="info-box-number text-center"></span>
+                <span class="info-box-text">No. of Markets</span>
+                <span class="info-box-number text-center">{{ auth()->user()->getNumberOfMarkets() }}</span>
               </div>
               <!-- /.info-box-content -->
             </div>

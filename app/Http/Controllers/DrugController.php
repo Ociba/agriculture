@@ -11,7 +11,11 @@ class DrugController extends Controller
 {
     //
     public function addDrugForm(){
+        if(in_array('Can add drug', auth()->user()->getUserPermisions())){
         return view('admin.add-drug-form');
+        }else{
+            return redirect('/404');
+        }
     }
     public function createDrug(Request $request){
         if(empty($request->drug_name)){
@@ -45,15 +49,19 @@ class DrugController extends Controller
         return view('admin.drug-table',compact('display_drugs'));
     }
     public function editDrugForm($id){
+        if(in_array('Can edit drug', auth()->user()->getUserPermisions())){
         $edit_drug =Drug::where('id',$id)->get();
         return view('admin.edit-drug-form', compact('edit_drug'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function updateDrugInformation($id, Request $request){
         Drug::where('id',$id)->update(array(
             'user_id'=>Auth::user()->id,
             'drug_name'=>$request->drug_name
         ));
-        return Redirect()->back()->withErrors("Drugs details has been updated Successfully");
+        return Redirect()->back()->with('message',"Drugs details has been updated Successfully");
     }
     public function deleteDrug($id){
         Drug::where('id', $id)->update(array('status'=>'deleted'));

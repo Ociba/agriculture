@@ -11,11 +11,19 @@ class WeightController extends Controller
 {
     //
     public function addWeightForm(){
+        if(in_array('Can add weight', auth()->user()->getUserPermisions())){
         return view('admin.weight-form');
+        }else{
+            return redirect('/404');
+        }
     }
     public function editWeightForm($id){
+        if(in_array('Can edit weight', auth()->user()->getUserPermisions())){
         $edit_weights =Weight::where('id',$id)->get();
         return view('admin.edit-weight-form',compact('edit_weights'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function createWeight(Request $request){
         if(empty($request->weight)){
@@ -53,7 +61,7 @@ class WeightController extends Controller
             'user_id'=>Auth::user()->id,
             'weight'=>$request->weight
         ));
-        return Redirect()->back()->withErrors("Weight details has been updated Succesfully");
+        return Redirect()->back()->with('message',"Weight details has been updated Succesfully");
     }
     public function deleteWeight($id){
         Weight::where('id',$id)->update(array('status'=>'deleted'));

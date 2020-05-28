@@ -10,7 +10,11 @@ class SponsorController extends Controller
 {
     //
     public function SponsorForm(){
+        if(in_array('Can add sponsor', auth()->user()->getUserPermisions())){
         return view('admin.sponsor-form');
+        }else{
+            return redirect('/404');
+        }
     }
     public function createSponsor(Request $request){
         if($request->hasFile('image')) {
@@ -31,15 +35,23 @@ class SponsorController extends Controller
     }
 }
  public function displaySponsor(){
+    if(in_array('Can view sponsors', auth()->user()->getUserPermisions())){
      $show_sponsors =Sponsor::join('users','sponsors.user_id','users.id')
      ->where('sponsors.status','active')
      ->select('sponsors.sponsor','sponsors.image','users.name','sponsors.id')
      ->paginate('10');
      return view('admin.sponsor',compact('show_sponsors'));
+    }else{
+        return redirect('/404');
+    }
  }
  public function editSponsor($id){
+    if(in_array('Can edit sponsor', auth()->user()->getUserPermisions())){
      $get_sponsors =Sponsor::where('id',$id)->get();
      return view('admin.edit-sponsors-form', compact('get_sponsors'));
+    }else{
+        return redirect('/404');
+    }
  }
  public function updateSponsor($id,Request $request){
     Sponsor::where('id',$id)->update(array(
@@ -47,7 +59,7 @@ class SponsorController extends Controller
         'sponsor'=>$request->sponsor,
         'image'=>$request->image
      ));
-     return Redirect()->back()->withErrors("Sponsor has been updated successfully");
+     return Redirect()->back()->with('message',"Sponsor has been updated successfully");
  }
  public function deleteSponsor($id){
     Sponsor::where('id',$id)->update(array('status'=>'deleted'));

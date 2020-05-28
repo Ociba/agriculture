@@ -29,8 +29,12 @@ class CommentController extends Controller
     }
 }
      public function displayComments(){
+        if(in_array('Can view comments', auth()->user()->getUserPermisions())){
          $display_comments =Comment::where('status','approve')->paginate('10');
          return view('admin.comments', compact('display_comments'));
+        }else{
+            return redirect('/404');
+        }
      }
      public function approveComment($id, Request $request){
          Comment::where('id',$id)->update(array('status'=>'active'));

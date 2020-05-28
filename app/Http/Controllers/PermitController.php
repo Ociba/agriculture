@@ -14,12 +14,17 @@ class PermitController extends Controller
 {
     //
     public function addPermitForm(){
+        if(in_array('Can view Permit form', auth()->user()->getUserPermisions())){
         $pick_product_details =Product::select('product','id')->get();
         $get_role =Role::select('role','id')->get();
         $get_district =District::select('district','id')->get();
         return view('admin.add-permit-form', compact('pick_product_details','get_role','get_district'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function PrintForm(){
+        if(in_array('Can see print Permit', auth()->user()->getUserPermisions())){
         $display_permits =Permit::join('users','permits.user_id','users.id')
         ->join('products','permits.product_id','products.id')
         ->join('roles','permits.role_id','roles.id')
@@ -32,10 +37,17 @@ class PermitController extends Controller
         ->limit(1)
         ->paginate('1');
         return view('admin.invoice-print',compact('display_permits'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function editPermitForm($id){
+        if(in_array('Can edit Permit form', auth()->user()->getUserPermisions())){
         $edit_permit =Permit::where('id',$id)->get();
         return view('admin.edit-permit-form', compact('edit_permit'));
+        }else{
+            return redirect('/404');
+        }
     }
     public function createPermit(Request $request){
         if(Product::where(\strtolower('product'), strtolower($request->product))->exists()){
@@ -150,7 +162,7 @@ class PermitController extends Controller
             'from_destination'=>$request->from_destination,
             'to_destination'=>$request->to_destination
         ));
-        return Redirect()->back()->withErrors("Permit has been updated successfully");
+        return Redirect()->back()->with('message',"Permit has been updated successfully");
     }
     public function deletePermit($id){
         Permit::where('id',$id)->update(array('status'=>'deleted'));

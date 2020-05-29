@@ -35,7 +35,7 @@
             <section class="content">
             <div class="row">
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-          <a href="/display-compose" class="btn btn-primary btn-block margin-bottom">Documentation</a>
+          <a href="/display-documentation" class="btn btn-success btn-block margin-bottom">Documentation</a>
 
           <div class="box box-solid card pt-2 mb-2 p-2 pl-2">
             <div class="box-header with-border">
@@ -47,29 +47,15 @@
                   </a></li>
                 <li class="list-group-item"><a href="/display-documentation-dashboard" class="btn-default"><i class="fa fa-home"></i> Documentation Dashboard
                   <span class="pull-right text-success"></span></a></li>
-                <li class="list-group-item"><a href="/display-draft" class="btn-default"><i class="fa fa-file-text-o"></i> Drafts
+                <li class="list-group-item"><a href="/display-menu-description" class="btn-default"><i class="fa fa-file-text-o"></i> Menu Description
                    <span class="pull-right text-primary"></span></a></li>
-                <li class="list-group-item"><a href="/display-junk" class="btn-default"><i class="fa fa-filter"></i> Junk
+                <li class="list-group-item"><a href="/display-functionality" class="btn-default"><i class="fa fa-filter"></i> Functionality
                  </a>
                 </li>
-                <li class="list-group-item"><a href="/display-trash" class="btn-default"><i class="fa fa-trash-o"></i> Trash
+                <li class="list-group-item"><a href="/display-trash" class="btn-default"><i class="fa fa-trash-o"></i> Our Contact
                 <span class="pull-right text-dangers"></span></a></li>
-                <li class="list-group-item"><a href="/display-reply" class="btn-default"><i class="fa fa-mail-reply-all"></i> Replies
+                <li class="list-group-item"><a href="/display-reply" class="btn-default"><i class="fa fa-mail-reply-all"></i> Closure
                 <span class="pull-right text-danger"></span></a></li>
-              </ul>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /. box -->
-          <div class=" box box-solid card pt-2 mb-2 p-2 pl-2">
-            <div class="box-header with-border">
-              <h3 class="box-title">Labels</h3>
-            </div>
-            <div class="box box-body">
-              <ul class="list-unstyled list-group list-group-unbordered">
-                <li class="list-group-item"><a href="#" class="btn-default"><i class="fa fa-circle-o text-red"></i> Important</a></li>
-                <li class="list-group-item"><a href="#" class="btn-default"><i class="fa fa-circle-o text-yellow"></i> Promotions</a></li>
-                <li class="list-group-item"><a href="#" class="btn-default"><i class="fa fa-circle-o text-light-blue"></i> Social</a></li>
               </ul>
             </div>
             <!-- /.box-body -->

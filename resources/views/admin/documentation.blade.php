@@ -35,7 +35,7 @@
             <section class="content">
             <div class="row">
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
-          <a href="/display-compose" class="btn btn-primary btn-block margin-bottom">Documentation</a>
+          <a href="/display-documentation" class="btn btn-success btn-block margin-bottom">Documentation</a>
 
           <div class="box box-solid card pt-2 mb-2 p-2 pl-2">
             <div class="box-header with-border">
@@ -53,34 +53,19 @@
                   </a></li>
                 <li class="list-group-item"><a href="/display-documentation-dashboard" class="btn-default"><i class="fa fa-home"></i> Documentation Dashboard
                   <span class="pull-right text-success"></span></a></li>
-                <li class="list-group-item"><a href="/display-draft" class="btn-default"><i class="fa fa-file-text-o"></i> Drafts
+                <li class="list-group-item"><a href="/display-menu-description" class="btn-default"><i class="fa fa-file-text-o"></i> Menu Description
                    <span class="pull-right text-primary"></span></a></li>
-                <li class="list-group-item"><a href="/display-junk" class="btn-default"><i class="fa fa-filter"></i> Junk
-                 <span class="btn btn-warning pull-right"></span></a>
+                <li class="list-group-item"><a href="/display-functionality" class="btn-default"><i class="fa fa-filter"></i> Functionality
+                 </a>
                 </li>
-                <li class="list-group-item"><a href="/display-trash" class="btn-default"><i class="fa fa-trash-o"></i> Trash
+                <li class="list-group-item"><a href="/display-trash" class="btn-default"><i class="fa fa-trash-o"></i> Our Contact
                 <span class="pull-right text-dangers"></span></a></li>
-                <li class="list-group-item"><a href="/display-reply" class="btn-default"><i class="fa fa-mail-reply-all"></i> Replies
+                <li class="list-group-item"><a href="/display-reply" class="btn-default"><i class="fa fa-mail-reply-all"></i> Closure
                 <span class="pull-right text-danger"></span></a></li>
               </ul>
             </div>
             <!-- /.box-body -->
           </div>
-          <!-- /. box -->
-          <div class=" box box-solid card pt-2 mb-2 p-2 pl-2">
-            <div class="box-header with-border">
-              <h3 class="box-title">Labels</h3>
-            </div>
-            <div class="box box-body">
-              <ul class="list-unstyled list-group list-group-unbordered">
-                <li class="list-group-item"><a href="#" class="btn-default"><i class="fa fa-circle-o text-red"></i> Important</a></li>
-                <li class="list-group-item"><a href="#" class="btn-default"><i class="fa fa-circle-o text-yellow"></i> Promotions</a></li>
-                <li class="list-group-item"><a href="#" class="btn-default"><i class="fa fa-circle-o text-light-blue"></i> Social</a></li>
-              </ul>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
         </div>
         <!-- /.col -->
         <div class=" card col-lg-9 col-md-9 col-xs-9 col-sm-9 table-responsive no-padding">
@@ -95,7 +80,7 @@
             <!-- /.box-header -->
             <div class="box-body no-padding text-right m-4">
             <p class="text-justify">This System is based on Agriculture sector, it is mostly to connect Famers, Sellers and Buyers within Uganda and outside Countries in Business field.It provides room for Market.</p>
-            <h3 class="box-title text-center"><u>Obectives</u></h3>
+            <h3 class="box-title text-center"><u>Objectives</u></h3>
             <p class="text-justify">1. To connect Farmers, Buyers from any locationin Uganda and outside countries.</p>
             <p class="text-justify">2. To create ready Market for Farmers for their products and to easy Buyers work to look for Products</p>
             <p class="text-justify">3. To have standard prices for products to avoid cheating Farmers with low prices and unlawfully taking their products. </p>

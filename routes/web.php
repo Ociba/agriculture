@@ -23,6 +23,8 @@ Route::get('/home-dash','HomeController@index')->name('Dashboard');
 Route::get('/display-documentation','HomeController@documentationData')->name('Documentation');
 Route::get('/display-login','HomeController@loginRegistration')->name('Login and Registration');
 Route::get('/display-documentation-dashboard','HomeController@documentationDashboardDetails')->name('Dashboard');
+Route::get('/display-menu-description','HomeController@menuDetail')->name('Menu Detail');
+Route::get('/display-functionality','HomeController@Functionality')->name('Functionality');
 Route::get('/404', function () { return view('admin.errorpage');})->name('Error');
 //Bought
  Route::get('/display-bought-form','BoughtController@boughtForm');

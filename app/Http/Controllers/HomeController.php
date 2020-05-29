@@ -46,4 +46,10 @@ class HomeController extends Controller
     public function documentationDashboardDetails(){
         return view('admin.documentation-dash');
     }
+    public function menuDetail(){
+        return view('admin.menu');
+    }
+    public function Functionality(){
+        return view('admin.functionality');
+    }
 }

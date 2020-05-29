@@ -27,7 +27,7 @@
   <div class="content-wrapper">
     <!-- Breadcrumbs -->
     @include('layouts.breadcrumb')
-    <section class="invoice mr-3">
+    <section class="invoice mr-3 m-2">
       <!-- title row -->
       <div class="row">
         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
@@ -125,7 +125,7 @@
       <!-- this row will not appear when printing -->
       <div class="row no-print">
         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-122">
-        @if(in_array('Can see print Permit', auth()->user()->getUserPermisions())){
+        @if(in_array('Can see print Permit', auth()->user()->getUserPermisions()))
           <a href="/invoice-print" button class="btn btn-success"><i class="fa fa-print"></i> Print</button></a>
         @endif
           <div class="pull-right">

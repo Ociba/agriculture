@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-content">
-                        <h4 class="title">About Company</h4>
+                        <h4 class="title">About Agriculture System</h4>
                         <p>We connect sellers, Buyers through Advertising their products, connect doctors with the owners of the sick animals</p>
                         <ul>
                             <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-lg-2 col-md-6 col-sm-6">
                     <div class="footer-list">
-                        <h4 class="title">Qucik Links</h4>
+                        <h4 class="title">Quick Links</h4>
                         <ul>
                             <li><a href="/services"><i class="far fa-long-arrow-right"></i> Our Services</a></li>
                             <li><a href="/about"><i class="far fa-long-arrow-right"></i> About Company</a></li>

@@ -16,7 +16,7 @@
                     <div class="project-box mt-30">
                         <div class="project-content">
                             <h3 class="title">{{$farms->activity}}</h3>
-                            <p class="justify-center">{{$farms->statement}}</p>
+                            <p class="justify-center text-justify">{{$farms->statement}}</p>
                         </div>
                     </div>
                 </div>

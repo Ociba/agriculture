@@ -1,12 +1,13 @@
 <section class="feedback-massage-area pt-130 pb-130">
         <div class="container">
+            @include('layouts.message')
             <div class="row">
             <div class="col-lg-12">
                     <div class="feedback-massage">
                         <div class="row justify-content-end">
                             <div class="col-lg-8">
                                 <div class="feedback-massage-item ml-35">
-                                    <form action="/save-feedback" method="get" enctype="multipart/form-data">
+                                    <form action="/save-feedback" method="post" enctype="multipart/form-data">
                                     @csrf
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -28,7 +29,7 @@
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <div class="input-box mt-20">
-                                                    <input type="file" name="image" placeholder="Your image" accept=".jpg,.png,.gif">
+                                                    <input type="file" name="image" placeholder="Your image" accept="jpgpng,.gif,JPG,PNG">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

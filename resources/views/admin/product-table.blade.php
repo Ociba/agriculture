@@ -40,7 +40,7 @@
                 @if(in_array('Can search product', auth()->user()->getUserPermisions()))
                 <form action="/search-product" method="get">
                         <div class="input-group">
-                          <input class="form-control input-sm" selected="selected" placeholder="Search By product name" name="product" id="srch-term" aria-label="example1" required>
+                          <input class="form-control input-sm" selected="selected" name="product" id="myInput" aria-label="example1" required>
                           <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
                               <i class="fas fa-search"></i>
@@ -72,7 +72,7 @@
                   @endif
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                 @if ($show_all_products->currentPage() > 1)
                       @php($i =  1 + (($show_all_products->currentPage() - 1) * $show_all_products->perPage()))
                       @else

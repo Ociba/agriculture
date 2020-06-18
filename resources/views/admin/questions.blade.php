@@ -40,7 +40,7 @@
                 @if(in_array('Can search question', auth()->user()->getUserPermisions()))
                 <form action="/search-question" method="get">
                         <div class="input-group ">
-                          <input class="form-control"  selected="selected" placeholder="Search By question" name="question" id="srch-term" aria-label="Search" required>
+                          <input class="form-control"  selected="selected" name="question" id="myInput" aria-label="Search" required>
                           <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
                               <i class="fas fa-search"></i>
@@ -70,7 +70,7 @@
                   @endif
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                 @if ($display_frequently_asked_questions->currentPage() > 1)
                       @php($i =  1 + (($display_frequently_asked_questions->currentPage() - 1) * $display_frequently_asked_questions->perPage()))
                       @else

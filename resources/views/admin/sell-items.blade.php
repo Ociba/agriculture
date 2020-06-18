@@ -40,7 +40,7 @@
                 @if(in_array('Can search items advertised', auth()->user()->getUserPermisions()))
                 <form action="/search-items" method="get">
                         <div class="input-group ">
-                          <input class="form-control"  selected="selected" placeholder="Search By name" name="name" id="srch-term" aria-label="Search" required>
+                          <input class="form-control"  selected="selected" name="product" id="myInput" aria-label="Search" required>
                           <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
                               <i class="fas fa-search"></i>
@@ -64,6 +64,7 @@
                 <tr>
                   <th>No</th>
                   <th>Product</th>
+                  <th>Image</th>
                   <th>Name</th>
                   <th>Contact</th>
                   <th>Breed</th>
@@ -74,13 +75,12 @@
                   <th>Category</th>
                   <th>Price(Shs)</th>
                   <th>Number</th>
-                  <th>Image</th>
                   @if(in_array('Can see item action', auth()->user()->getUserPermisions()))
                   <th>Action</th>
                   @endif
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                 @if ($display_all_items_to_sell->currentPage() > 1)
                       @php($i =  1 + (($display_all_items_to_sell->currentPage() - 1) * $display_all_items_to_sell->perPage()))
                       @else
@@ -90,6 +90,7 @@
                   <tr>
                       <td>{{ $i++ }}</td>
                       <td>{{ $items->product }}</td>
+                      <td><img src="{{asset('items/images/'.$items->item_image)}}" class="thumbnail responsive" height="30" width="60" alt=""></td>
                       <td>{{ $items->name }}</td>
                       <td>{{ $items->contact }}</td>
                       <td>{{ $items->breed }}</td>
@@ -98,9 +99,8 @@
                       <td>{{ $items->county }}</td>
                       <td>{{ $items->village }}</td>
                       <td>{{ $items->category }}</td>
-                      <td>{{ $items->price }}</td>
+                      <td>{{ number_format($items->price) }}</td>
                       <td>{{ $items->number }}</td>
-                      <td><img src="{{asset('items/images/'.$items->item_image)}}" style="width:60px" height="30px" alt=""></td>
                       <td>
                       @if(auth()->user()->id == $items->user_id)
                       <a href="/edit-sell-item-form/{{ $items->id }}" data-widget="edit" data-toggle="tooltip" title="edit">

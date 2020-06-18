@@ -40,7 +40,7 @@
                 
                 <form action="/search-doctor-req" method="get">
                         <div class="input-group ">
-                          <input class="form-control"  selected="selected" placeholder="Search By name" name="name" id="srch-term" aria-label="Search" required>
+                          <input class="form-control"  selected="selected" id="myInput" name="name" aria-label="Search" required>
                           <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
                               <i class="fas fa-search"></i>
@@ -73,7 +73,7 @@
                   
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                 @if ($display_all_doctors_requests_details->currentPage() > 1)
                       @php($i =  1 + (($display_all_doctors_requests_details->currentPage() - 1) * $display_all_doctors_requests_details->perPage()))
                       @else

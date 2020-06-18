@@ -228,7 +228,7 @@
     });
     //BAR CHART
     var bar = new Morris.Bar({
-      element: 'bar-chart',
+      element: 'barChart',
       resize: true,
       data: [
         {y: '2006', a: 100, b: 90},
@@ -260,5 +260,16 @@
       }
     })
   })
+</script>
+<!--javascript for table filters-->
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
 </script>
 

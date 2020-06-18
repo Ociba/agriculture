@@ -6,7 +6,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
     @include('layouts.stylecss')
     
-  <title>Uganda| Sacco system</title>
+  <title>Uganda| Agriculture system</title>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -52,9 +52,9 @@
                 <li class="list-group-item"><a href="/display-functionality" class="btn-default"><i class="fa fa-filter"></i> Functionality
                  </a>
                 </li>
-                <li class="list-group-item"><a href="/display-trash" class="btn-default"><i class="fa fa-trash-o"></i> Our Contact
+                <li class="list-group-item"><a href="/display-front-pages" class="btn-default"><i class="fa fa-map-o"></i>  Front pages
                 <span class="pull-right text-dangers"></span></a></li>
-                <li class="list-group-item"><a href="/display-reply" class="btn-default"><i class="fa fa-mail-reply-all"></i> Closure
+                <li class="list-group-item"><a href="/display-conclusion" class="btn-default"><i class="fa  fa-gg"></i> Conclusion
                 <span class="pull-right text-danger"></span></a></li>
               </ul>
             </div>
@@ -111,7 +111,7 @@
             <p class=""><b>Doctors Report</b>-system user should view doctors report, search doctors report, This report is report given by veterenary doctor(s) for the times he/ she treats and examines farmers animals for esy folloe up. Auhtorized user can add report, can edit report and can delete report.</p>
             <p class=""><b>User Accounts</b></p>
             <p class=""><b></b>-Authorized system user view user accounts.This is where access to the system menu is controlled who to view what, who is to do what in the system. Authorized user can add role(s), Can assign permissin, Can delete permission</p>
-            <p class=""><b>Front Pages</b></p>
+           
             </div>
           </div>
           <!-- /. box -->

@@ -36,7 +36,6 @@
 
           <p>
             We could not find the page you were looking for.<br>
-            <span class="text-red">Possibly you might not have right to access this page.</span>
           </p>
 
         </div>

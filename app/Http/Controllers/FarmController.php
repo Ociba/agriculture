@@ -96,7 +96,7 @@ class FarmController extends Controller
         }
     }
     public function displayFarm(){
-        if(in_array('Can view farm', auth()->user()->getUserPermisions())){
+        if(in_array('Can view farms', auth()->user()->getUserPermisions())){
         $display_farms= Farm::join('users','farms.user_id','users.id')
         ->join('districts','farms.district_id','districts.id')
         ->join('counties','farms.county_id','counties.id')

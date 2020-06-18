@@ -11,6 +11,7 @@ use App\User;
 use App\Emergency;
 use App\Item;
 use App\Price;
+use App\Doctors;
 use DB;
 
 class User extends Authenticatable
@@ -122,312 +123,13 @@ class User extends Authenticatable
         ->count();
         return $count_number_of_markets;
       }
-      //Cereals Each Month
-    public function getAveragePricePerMonth(){
-        $months_array = [];
-        $prices = Price::whereYear('created_at', date('Y'))
-        ->select(DB::raw('MONTHNAME(created_at) month'))
-        ->orderBy('month', 'Asc')
-        ->groupBy('month')
-        ->get();
-        foreach($prices as $price){
-            array_push($months_array, $price->month);
-        }
-        $months_array = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-        return $months_array;
-    }
-     //Prices for the whole Year for every month
-     public function getVegetablesAveragePricePerMonths(){
-        $months_array = [];
-        $vegetable = Price::whereYear('created_at', date('Y'))
-        ->select(DB::raw('MONTHNAME(created_at) month'))
-        ->orderBy('month', 'Asc')
-        ->groupBy('month')
-        ->get();
-        foreach($vegetable as $vegetable){
-            array_push($months_array, $vegetable->month);
-        }
-        $months_array = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-        return $months_array;
-    }
 
-    public function getJanuaryPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"January")->get()->count();
-        return $count;
-    }
-    public function getFebrauryPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"February")->get()->count();
-        return $count;
-    }
-    public function getMarchPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"March")->get()->count();
-        return $count;
-    }
-    public function getAprilPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"April")->get()->count();
-        return $count;
-    }
-    public function getMayPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"May")->get()->count();
-        return $count;
-    }
-    public function getJunePrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"June")->get()->count();
-        return $count;
-    }
-    public function getJulyPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"July")->get()->count();
-        return $count;
-    }
-    public function getAugustPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"August")->get()->count();
-        return $count;
-    }
-    public function getSeptemberPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"September")->get()->count();
-        return $count;
-    }
-    public function getOctoberPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"October")->get()->count();
-        return $count;
-    }
-    public function getNovemberPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"November")->get()->count();
-        return $count;
-    }
-    public function getDecemberPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"December")->get()->count();
-        return $count;
-    }
-
-      //Prices cereals for whole Year
-
-    public function getPriceInJanuary(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"January")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getPriceInFebruary(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"February")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getPriceInMarch(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"March")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getPriceInApril(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"April")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getPriceInMay(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"May")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getPriceInJune(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"June")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getPriceInjuly(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"July")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getPriceInAugust(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"August")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getPriceInSeptember(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"September")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getPriceInOctober(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"October")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getPriceInNovember(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"November")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getPriceInDecember(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"December")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-
-     //Prices Animals for whole Year
-     public function getAverageAnimalPricePerMonth(){
-        $months_array = [];
-        $animals = Price::whereYear('created_at', date('Y'))
-        ->select(DB::raw('MONTHNAME(created_at) month'))
-        ->orderBy('month', 'Asc')
-        ->groupBy('month')
-        ->get();
-        foreach($animals as $animal){
-            array_push($months_array, $animal->month);
-        }
-        $months_array = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-        return $months_array;
-    }
-
-     public function getAnimalPriceInJanuary(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"January")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getAnimalPriceInFebruary(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"February")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getAnimalPriceInMarch(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"March")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getAnimalPriceInApril(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"April")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getAnimalPriceInMay(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"May")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getAnimalPriceInJune(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"June")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getAnimalPriceInjuly(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"July")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getAnimalPriceInAugust(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"August")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getAnimalPriceInSeptember(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"September")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getAnimalPriceInOctober(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"October")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getAnimalPriceInNovember(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"November")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getAnimalPriceInDecember(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"December")
-        ->where('status','active')
-        ->get()->sum('Price');
-        return $count;
-    }
-    public function getPoultryAveragePricePerMonths(){
-        $months_array = [];
-        $poultries = Price::whereYear('created_at', date('Y'))
-        ->select(DB::raw('MONTHNAME(created_at) month'))
-        ->orderBy('month', 'Asc')
-        ->groupBy('month')
-        ->get();
-        foreach($poultries as $poultry){
-            array_push($months_array, $poultry->month);
-        }
-        $months_array = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-        return $months_array;
-    }
-    //Average Prices for Poultry
-    public function getJanuaryPoultryPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"January")->get()->count();
-        return $count;
-    }
-    public function getFebrauryPoultryPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"February")->get()->count();
-        return $count;
-    }
-    public function getMarchPoultryPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"March")->get()->count();
-        return $count;
-    }
-    public function getAprilPoultryPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"April")->get()->count();
-        return $count;
-    }
-    public function getMayPoultryPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"May")->get()->count();
-        return $count;
-    }
-    public function getJunePoultryPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"June")->get()->count();
-        return $count;
-    }
-    public function getJulyPoultryPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"July")->get()->count();
-        return $count;
-    }
-    public function getAugustPoultryPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"August")->get()->count();
-        return $count;
-    }
-    public function getSeptemberPoultryPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"September")->get()->count();
-        return $count;
-    }
-    public function getOctoberPoultryPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"October")->get()->count();
-        return $count;
-    }
-    public function getNovemberPoultryPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"November")->get()->count();
-        return $count;
-    }
-    public function getDecemberPoultryPrices(){
-        $count = Price::whereYear('created_at', date('Y'))->where(DB::raw("(MONTHNAME(created_at))"),"December")->get()->count();
-        return $count;
-    }
+     
     //Pie chart 1
     public function getNumberOfVetenaryDoctors(){
-        $count_all_vetenary_doctors = User::join('roles','users.role_id','roles.id')
-            ->where('users.role_id',5)->count();
+        $count_all_vetenary_doctors = Doctors::join('users','doctors.user_id','users.id')
+        ->join('districts','doctors.district_id','districts.id')
+            ->where('doctors.status','active')->count();
         return $count_all_vetenary_doctors;
     }
     public function getNumberOfFisheriesOfficers(){
@@ -472,5 +174,96 @@ class User extends Authenticatable
         ->join('villages','farms.village_id','villages.id')
         ->where('farms.status','active')->count();
         return $count_all_farms;
+    }
+
+    public function getItemsAveragePrice(){
+        /**
+         * get all the products from the products table,
+         * we use a for each loop to get the products ids, and push the id in a unique array.
+         * use a for loop to loop through the array as we get the sum of the prices of the items_id[$i]
+         */
+        $items_id = [];
+        $item_prices = [];
+        $all_items = Product::get();
+        foreach($all_items as $item){
+            if(in_array($item->id, $items_id)){
+                continue;
+            }else{
+                array_push($items_id, $item->id);
+            }
+        }
+        for($i=0; $i<count($items_id); $i++){
+            $price_sum = Price::where('product_id',$items_id[$i])->sum('price');
+            //get total number of items of the same id
+            $total_number_of_items =Price::where('product_id',$items_id[$i])->count();
+            if($price_sum == 0){
+                continue;
+            }else{
+                array_push($item_prices, ($price_sum / $total_number_of_items));
+            }
+        }
+        return collect($item_prices);
+    }
+
+    public function getItemsNames(){
+        $items_id = [];
+        $item_names = [];
+        $all_items_with_prices = Price::get();
+        foreach($all_items_with_prices as $item){
+            if(in_array($item->product_id, $items_id)){
+                continue;
+            }else{
+                array_push($items_id, $item->product_id);
+            }
+        }
+        for($i=0; $i<count($items_id); $i++){
+            $product_name = Product::where('id',$items_id[$i])->value('product');
+            if(in_array($product_name, $item_names)){
+                continue;
+            }else{
+                array_push($item_names, $product_name);
+            }
+        }
+        return collect($item_names);
+    }
+    public function getNumberOfSubscription(){
+        $count_subScriptions =Subscription::all()->count();
+        return $count_subScriptions;
+    }
+    
+    public function timeForSubscription(){
+        $display_subscription_time =Subscription::where('status','active')->select('created_at')->orderBy('created_at','desc')->value('created_at');
+        return $display_subscription_time;
+    }
+    public function getNumberOfMessages(){
+        $count_messages =Contact::where('messages.status','approve')->count();
+        return $count_messages;
+    }
+    public function timeForMessages(){
+        $display_notif_time =Contact::where('status','approve')->select('created_at')->orderBy('created_at','desc')->value('created_at');
+        return $display_notif_time;
+    }
+    public function getNumberOfEmergencyReports(){
+        $count_emergency_reports =Emergency::where('emergencies.status','active')->count();
+        return $count_emergency_reports;
+    }
+    public function timeForEmergency(){
+        $display_emergency =Emergency::where('status','active')->select('created_at')->orderBy('created_at','desc')->value('created_at');
+        return $display_emergency;
+    }
+    public function totalAllNotifications(){
+        $count_subScriptions =Subscription::all()->count();
+        $count_messages =Contact::where('messages.status','approve')->count();
+        $count_emergency_reports =Emergency::where('emergencies.status','active')->count();
+        $total_all_notifications =$count_emergency_reports+$count_messages+$count_subScriptions;
+        return $total_all_notifications;
+    }
+    public function getFeedBack(){
+        $feed_back = DB::table('feedbacks')->where('status','approve')->take(3)->get();
+        return collect($feed_back);
+    }
+    public function getNumberOfApprovedFeedback(){
+        $count_approved_feedback =DB::table('feedbacks')->where('status','approve')->count();
+        return $count_approved_feedback;
     }
 }

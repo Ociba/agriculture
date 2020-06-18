@@ -43,7 +43,7 @@
                @if(in_array('Can search message', auth()->user()->getUserPermisions()))
                 <form action="/search-message" method="get">
                         <div class="input-group ">
-                          <input class="form-control"  selected="selected" placeholder="Search By message" name="message" id="srch-term" aria-label="Search" required>
+                          <input class="form-control"  selected="selected" name="message" id="myInput" aria-label="Search" required>
                           <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
                               <i class="fas fa-search"></i>
@@ -70,7 +70,7 @@
                   @endif
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                 @if ($display_contact_messages->currentPage() > 1)
                       @php($i =  1 + (($display_contact_messages->currentPage() - 1) * $display_contact_messages->perPage()))
                       @else

@@ -40,7 +40,7 @@
                 @if(in_array('Can search emergency', auth()->user()->getUserPermisions()))
                 <form action="/search-emergency" method="get">
                         <div class="input-group ">
-                          <input class="form-control"  selected="selected" placeholder="Search By product" name="product" id="srch-term" aria-label="Search" required>
+                          <input class="form-control"  selected="selected" name="product" id="myInput" aria-label="Search" required>
                           <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
                               <i class="fas fa-search"></i>
@@ -77,7 +77,7 @@
                   @endif
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                 @if ($display_all_emergencies_reported->currentPage() > 1)
                       @php($i =  1 + (($display_all_emergencies_reported->currentPage() - 1) * $display_all_emergencies_reported->perPage()))
                       @else

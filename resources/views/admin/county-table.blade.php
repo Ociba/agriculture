@@ -40,7 +40,7 @@
                 @if(in_array('Can search county', auth()->user()->getUserPermisions()))
                 <form action="/search-county" method="get">
                         <div class="input-group">
-                          <input class="form-control"  selected="selected" placeholder="Search By county name" name="county" id="srch-term" aria-label="Search" required>
+                          <input class="form-control"  selected="selected" name="county" id="myInput" aria-label="Search" required>
                         </datalist>
                           <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
@@ -70,7 +70,7 @@
                   @endif
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                 @if ($show_county->currentPage() > 1)
                       @php($i =  1 + (($show_county->currentPage() - 1) * $show_county->perPage()))
                       @else

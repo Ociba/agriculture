@@ -25,15 +25,17 @@ Route::get('/display-login','HomeController@loginRegistration')->name('Login and
 Route::get('/display-documentation-dashboard','HomeController@documentationDashboardDetails')->name('Dashboard');
 Route::get('/display-menu-description','HomeController@menuDetail')->name('Menu Detail');
 Route::get('/display-functionality','HomeController@Functionality')->name('Functionality');
+Route::get('/display-front-pages','HomeController@frontPages')->name('Functionality');
+Route::get('/display-conclusion','HomeController@conclusion')->name('Conclusion');
 Route::get('/404', function () { return view('admin.errorpage');})->name('Error');
-//Bought
- Route::get('/display-bought-form','BoughtController@boughtForm');
- Route::get('/display-edit-bought-items','BoughtController@editBoughtItemsForm');
- Route::get('/save-items-bought','BoughtController@createBoughtItem');
- Route::get('/display-items-bought','BoughtController@displayBoughtItems');
- Route::get('/search-items-bought','BoughtController@searchBoughtItems');
- Route::get('/save-edited-bought-items/{id}','BoughtController@updateBoughtItems');
- Route::get('/delete-bought-item/{id}','BoughtController@deleteBoughtItems');
+//Doctor
+ Route::get('/display-veterinary-form','DoctorsController@addDoctorsForm')->name('Doctors Form');
+ Route::get('/display-edit-veterinary-doctor/{id}','DoctorsController@editDoctor')->name('edit Doctor');
+ Route::get('/save-veterinary-doctor','DoctorsController@createDoctor');
+ Route::get('/show-veterinary-doctors','DoctorsController@displayDoctor')->name('Doctor table');
+ Route::get('/search-items-bought','DoctorsController@searchBoughtItems');
+ Route::get('/save-edited-veterinary-doctor/{id}','DoctorsController@updateDoctorsInformation');
+ Route::get('/delete-veterinary-doctor/{id}','DoctorsController@deleteDoctor');
 //Breed
 Route::get('/add-breed-form','BreedController@addBreedForm')->name('Add Breed');
 Route::get('/edit-breed-form/{id}','BreedController@editBreedForm')->name('Edit Breed');
@@ -111,7 +113,7 @@ Route::get('/delete-drug/{id}','DrugController@deleteDrug');
 //Employees
 Route::get('/edit-employee/{id}','EmployeesController@editEmployeesForm')->name('Edit Employee');
 Route::get('/display-employees-form','EmployeesController@addEmployeesForm')->name('Employees-form');
-Route::get('/save-employee','EmployeesController@createEmployee');
+Route::post('/save-employee','EmployeesController@createEmployee');
 Route::get('/display-employees-details','EmployeesController@displayEmployees')->name('Employees Table');
 Route::get('/search-employee','EmployeesController@searchEmployees')->name('Searched Employee');
 Route::get('/update-employee/{id}','EmployeesController@updateEmployeesInformation');
@@ -142,10 +144,10 @@ Route::post('/update-items-on-sell/{id}','ItemController@updateSellItems');
 Route::get('/delete-item/{id}','ItemController@deleteitemItems');
 Route::get('/display-doctors-form','ItemController@DoctorsRequestForm')->name('Request Doctor');
 Route::get('/edit-doctor-req-form/{id}','ItemController@editDoctorsForm')->name('Edit Doctor Request');
-Route::get('/save-doctor-request','ItemController@createDoctorsRequest');
+Route::post('/save-doctor-request','ItemController@createDoctorsRequest');
 Route::get('/display-doctor-req','ItemController@displayDoctorsRequests')->name('Doctors Request');
 Route::get('/search-doctor-req','ItemController@searchDoctorsRequest')->name('Searched Doctor');
-Route::get('/save-request/{id}','ItemController@updateDoctorsRequests');
+Route::post('/save-request/{id}','ItemController@updateDoctorsRequests');
 Route::get('/delete-doctors-req/{id}','ItemController@deleteDoctorsRequest');
 Route::get('/view-conscent/{id}','ItemController@displayConscent')->name('Conscent Paper');
 Route::get('/view-conscent-form/{id}','ItemController@displayConscentForm')->name('Conscent Form');
@@ -203,7 +205,7 @@ Route::get('/update-product/{id}','ProductController@updateProductInformation');
 Route::get('/delete-product/{id}','ProductController@deleteProduct');
 //Profile
 Route::get('/display-profile-form','ProfileController@addProfileForm')->name('Add Profile Form');
-Route::get('/save-profile','ProfileController@createProfile');
+Route::post('/save-profile','ProfileController@createProfile');
 Route::get('/display-profile','ProfileController@displayProfile')->name('Profile Table');
 Route::get('/search-profile','ProfileController@searchProfile')->name('Searched Profile');
 Route::get('/update-profile/{id}','ProfileController@updateProfileInformation');
@@ -214,14 +216,14 @@ Route::get('/change-profile-form','ProfileController@showChangeProfileForm')->na
 Route::get('/display-emergency-reports','EmergencyController@displayEmergency')->name('Emergency Table');
 Route::get('/display-emergency-form','EmergencyController@addEmergency')->name('Emergency Form');
 Route::get('/display-emergency-edit-form/{id}','EmergencyController@editEmergencyForm')->name('edit Emergency Form');
-Route::get('/save-emergency','EmergencyController@createEmergency');
-Route::get('/update-emergency/{id}','EmergencyController@updateEmergency');
+Route::post('/save-emergency','EmergencyController@createEmergency');
+Route::post('/update-emergency/{id}','EmergencyController@updateEmergency');
 Route::get('/delete-emergency/{id}','EmergencyController@deleteEmergency');
 // Permit
 Route::get('/display-permit','PermitController@displayPermit')->name('Permit Details')->name('Permit Details');
 Route::get('/invoice-print','PermitController@PrintForm')->name('Print Invoice');
 Route::get('/display-permit-form','PermitController@addPermitForm')->name('Permit Form');
-Route::get('/save-print-information','PermitController@createPermit');
+Route::post('/save-print-information','PermitController@createPermit');
 //Village
 Route::get('/display-add-village-form','Village@addVillageForm')->name('Add Village');
 Route::get('/display-edit-form/{id}','Village@editVillageForm')->name('Edit Village Form');
@@ -282,6 +284,58 @@ Route::get('/delete-year/{id}','YearController@deleteWeight');
 //Change Password
 Route::get('/change-passwords',"UserController@displayChangePasswordForm")->name('Change Password');
 Route::get('/save-change-password','UserController@store_users_password');
+//News
+Route::get('/display-news-form','NewsController@newsForm')->name('News Form');
+Route::post('/save-news','NewsController@createNews');
+Route::get('/display-news','NewsController@displayNews')->name('News Table');
+Route::get('/display-edit-news/{id}','NewsController@editNews')->name('edit News Form');
+Route::get('/update-news/{id}','NewsController@updateNews');
+Route::get('/delete-news/{id}','NewsController@deleteNews');
+//Others
+Route::get('/display-others-form','OthersController@otherForm')->name('Others Form');
+Route::get('/save-others','OthersController@createOthers');
+Route::get('/display-others','OthersController@displayOthers')->name('Others Table');
+Route::get('/display-edit-others/{id}','OthersController@editOthers')->name('edit Others Form');
+Route::get('/update-others/{id}','OthersController@updateOthers');
+Route::get('/delete-others/{id}','OthersController@deleteOthers');
+//Project Gallery
+Route::get('/display-project-gallery-form','ProjectGalleryController@projectGalleryForm')->name('Project Gallery Form');
+Route::post('/save-project-gallery','ProjectGalleryController@createProjectGallery');
+Route::get('/display-project-gallery','ProjectGalleryController@displayProjectGallery')->name('Project Gallery Table');
+Route::get('/display-edit-project-gallery/{id}','ProjectGalleryController@editProjectGalleryForm')->name('edit Gallery Form');
+Route::get('/save-project-galleri/{id}','ProjectGalleryController@updateProjectGallery');
+Route::get('/delete-project-gallery/{id}','ProjectGalleryController@deleteProjectGallery');
+//Recent News
+Route::get('/display-recent-news-form','RecentNewsController@RecentNewsForm')->name('Recent News Form');
+Route::post('/save-recent-news','RecentNewsController@createRecentNews');
+Route::get('/display-recent-news','RecentNewsController@displayRecentNews')->name('Recent News Table');
+Route::get('/display-edit-recent-news/{id}','RecentNewsController@editRecentNews')->name('edit Recent News');
+Route::get('/update-recent-news/{id}','RecentNewsController@updateRecentNews');
+Route::get('/delete-recent-news/{id}','RecentNewsController@deleteRecentNews');
+//Services
+Route::get('/display-service-form','ServicesController@featureServiceForm')->name('Feature Service Form');
+Route::get('/display-feature_service','ServicesController@displayFeatureService')->name('Feature Services Table');
+Route::get('/display-service-we-do-form','ServicesController@weDoServiceForm')->name('Services We Do Form');
+Route::get('/save-feature-service','ServicesController@createFeatureService');
+Route::get('/display-edit-service/{id}','ServicesController@editFeatureForm')->name('edit Feature service Form');
+Route::get('/update-feature_service/{id}','ServicesController@updateServiceFeature');
+Route::get('/delete-service/{id}','ServicesController@deleteServiceFeature');
+
+Route::get('/display-service-we-do','ServicesController@displayWedoService')->name('Service We Do Table');
+Route::post('/save-we-do-service','ServicesController@createWedoService');
+Route::get('/display-edit-service-we-do/{id}','ServicesController@editServiceForm')->name('edit Service We Do Form');
+Route::get('/update-service-we-do/{id}','ServicesController@updateService');
+Route::get('/delete-service-we-do/{id}','ServicesController@deleteService');
+//Sponsor
+Route::get('/display-sponsor-form','SponsorController@SponsorForm')->name('Add Sponsor Table');
+Route::post('/save-sponsor','SponsorController@createSponsor');
+Route::get('/display-sponsor','SponsorController@displaySponsor')->name('Sponsor Table');
+Route::get('/display-edit-sponsor/{id}','SponsorController@editSponsor')->name('edit Sponsor Form');
+Route::get('/update-sponsor/{id}','SponsorController@updateSponsor');
+Route::get('/delete-sponsor/{id}','SponsorController@deleteSponsor');
+
+Route::get('/display-subscription','SubscriptionController@displaySubscription')->name('Subscription Table');
+Route::get('/delete-subscription/{id}','SubscriptionController@deleteSubscription');
 });
 Route::get('/', 'FrontPageController@showFrontPages');
 Route::get('/about', 'AboutController@displayAbout');
@@ -291,7 +345,7 @@ Route::get('/project', 'ProjectController@displayProject');
 Route::get('/services', 'ServicesController@displayServices');
 //Blog Details
 Route::get('/display-blog-form','BlogDetailsController@addBlogDetailsForm')->name('Blog Details Form');
-Route::get('/save-blog-details','BlogDetailsController@createBlogDetail');
+Route::post('/save-blog-details','BlogDetailsController@createBlogDetail');
 Route::get('/display-blog-detail','BlogDetailsController@displayBlogDetail')->name('Blog Details Table');
 Route::get('/display-edit-blog/{id}','BlogDetailsController@editBlogDetailForm')->name('Edit Blog Details Form');
 Route::get('/update-blog-detail/{id}','BlogDetailsController@updateBlogDetails');
@@ -321,92 +375,41 @@ Route::get('/update-farmer/{id}','FarmerController@updateFarmerDetail');
 Route::get('/delete-farmers/{id}','FarmerController@deleteFarmer');
 //Features
 Route::get('/display-feature-form','FeaturesController@featureForm')->name('Feature Form');
-Route::get('/save-feature','FeaturesController@createFeature');
+Route::post('/save-feature','FeaturesController@createFeature');
 Route::get('/display-feature','FeaturesController@displayFeature')->name('Feature Table');
 Route::get('/display-edit-feature/{id}','FeaturesController@editFeaturesForm')->name('Edit Feature Form');
 Route::get('/update-feature/{id}','FeaturesController@updateFeature');
 Route::get('/delete-feature/{id}','FeaturesController@deleteFeature');
 //Feedback
-Route::get('/save-feedback','FeedbackController@createFeedback');
+Route::post('/save-feedback','FeedbackController@createFeedback');
 Route::get('/display-feedback','FeedbackController@displayFeedback')->name('Unapproved Feedback');
 Route::get('/display-approve-feedback/{id}','FeedbackController@approveFeedback');
 Route::get('/delete-feedback/{id}}','FeedbackController@deleteFeedback');
 Route::get('/front-page-feedback','FeedbackController@displayFrontFeedbackPage');
 //Gallery
 Route::get('/display-gallery-form','GalleryController@galleryForm')->name('Gallery Form');
-Route::get('/save-gallery','GalleryController@createGallery');
+Route::post('/save-gallery','GalleryController@createGallery');
 Route::get('/display-gallery','GalleryController@displayGallery')->name('Gallery Table');
 Route::get('/display-edit-gallery/{id}','GalleryController@editGallery')->name('Gallery Form');
 Route::get('/update-gallery/{id}','GalleryController@updateGallery');
 Route::get('/delete-gallery/{id}','GalleryController@deleteGallery');
 //Market Products
 Route::get('/display-market-products-form','MarketController@marketProductsForm')->name('Market Product Form');
-Route::get('/save-market-product','MarketController@createProductsForMarket');
+Route::post('/save-market-product','MarketController@createProductsForMarket');
 Route::get('/display-market-product','MarketController@displayProductsForMarket')->name('Market Product Table');
 Route::get('/display-edit-market-products/{id}','MarketController@editMarket')->name('Edit Market Product Form');
 Route::get('/update-market-product/{id}','MarketController@updateMarket');
 Route::get('/delete-market-products','MarketController@deleteMarket');
-//News
-Route::get('/display-news-form','NewsController@newsForm')->name('News Form');
-Route::get('/save-news','NewsController@createNews');
-Route::get('/display-news','NewsController@displayNews')->name('News Table');
-Route::get('/display-edit-news/{id}','NewsController@editNews')->name('edit News Form');
-Route::get('/update-news/{id}','NewsController@updateNews');
-Route::get('/delete-news/{id}','NewsController@deleteNews');
-//Others
-Route::get('/display-others-form','OthersController@otherForm')->name('Others Form');
-Route::get('/save-others','OthersController@createOthers');
-Route::get('/display-others','OthersController@displayOthers')->name('Others Table');
-Route::get('/display-edit-others/{id}','OthersController@editOthers')->name('edit Others Form');
-Route::get('/update-others/{id}','OthersController@updateOthers');
-Route::get('/delete-others/{id}','OthersController@deleteOthers');
-//Project Gallery
-Route::get('/display-project-gallery-form','ProjectGalleryController@projectGalleryForm')->name('Project Gallery Form');
-Route::get('/save-project-gallery','ProjectGalleryController@createProjectGallery');
-Route::get('/display-project-gallery','ProjectGalleryController@displayProjectGallery')->name('Project Gallery Table');
-Route::get('/display-edit-project-gallery/{id}','ProjectGalleryController@editProjectGalleryForm')->name('edit Gallery Form');
-Route::get('/save-project-galleri/{id}','ProjectGalleryController@updateProjectGallery');
-Route::get('/delete-project-gallery/{id}','ProjectGalleryController@deleteProjectGallery');
-//Recent News
-Route::get('/display-recent-news-form','RecentNewsController@RecentNewsForm')->name('Recent News Form');
-Route::get('/save-recent-news','RecentNewsController@createRecentNews');
-Route::get('/display-recent-news','RecentNewsController@displayRecentNews')->name('Recent News Table');
-Route::get('/display-edit-recent-news/{id}','RecentNewsController@editRecentNews')->name('edit Recent News');
-Route::get('/update-recent-news/{id}','RecentNewsController@updateRecentNews');
-Route::get('/delete-recent-news/{id}','RecentNewsController@deleteRecentNews');
 //Reply
 Route::get('/save-reply','ReplyController@createReply');
 Route::get('/display-reply','ReplyController@displayReply')->name('Reply Table');
 Route::get('/delete-reply/{id}','ReplyController@deleteReply');
-//Services
-Route::get('/display-service-form','ServicesController@featureServiceForm')->name('Feature Service Form');
-Route::get('/display-feature_service','ServicesController@displayFeatureService')->name('Feature Services Table');
-Route::get('/display-service-we-do-form','ServicesController@weDoServiceForm')->name('Services We Do Form');
-Route::get('/save-feature-service','ServicesController@createFeatureService');
-Route::get('/display-edit-service/{id}','ServicesController@editFeatureForm')->name('edit Feature service Form');
-Route::get('/update-feature_service/{id}','ServicesController@updateServiceFeature');
-Route::get('/delete-service/{id}','ServicesController@deleteServiceFeature');
-
-Route::get('/display-service-we-do','ServicesController@displayWedoService')->name('Service We Do Table');
-Route::get('/save-we-do-service','ServicesController@createWedoService');
-Route::get('/display-edit-service-we-do/{id}','ServicesController@editServiceForm')->name('edit Service We Do Form');
-Route::get('/update-service-we-do/{id}','ServicesController@updateService');
-Route::get('/delete-service-we-do/{id}','ServicesController@deleteService');
-//Sponsor
-Route::get('/display-sponsor-form','SponsorController@SponsorForm')->name('Add Sponsor Table');
-Route::get('/save-sponsor','SponsorController@createSponsor');
-Route::get('/display-sponsor','SponsorController@displaySponsor')->name('Sponsor Table');
-Route::get('/display-edit-sponsor/{id}','SponsorController@editSponsor')->name('edit Sponsor Form');
-Route::get('/update-sponsor/{id}','SponsorController@updateSponsor');
-Route::get('/delete-sponsor/{id}','SponsorController@deleteSponsor');
 //Subscription
 Route::get('/save-subscription','SubscriptionController@createSubscription');
-Route::get('/display-subscription','SubscriptionController@displaySubscription')->name('Subscription Table');
-Route::get('/delete-subscription/{id}','SubscriptionController@deleteSubscription');
 //Farm
 Route::get('/farm','FarmController@displayFrontFarms');
 Route::get('/display-farm-form','FarmController@addFarmForm')->name('Farm Form');
-Route::get('/save-farm','FarmController@createFarm');
+Route::post('/save-farm','FarmController@createFarm');
 Route::get('/display-farm','FarmController@displayFarm')->name('Farm Table');
 Route::get('/edit-farm/{id}','FarmController@editFarm')->name('Edit Farm Form');
 Route::get('/update-farm/{id}','FarmController@updateFarm');

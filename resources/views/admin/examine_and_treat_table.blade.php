@@ -40,7 +40,7 @@
                 @if(in_array('Can search E & T', auth()->user()->getUserPermisions()))
                 <form action="/search-examine-treatment" method="get">
                         <div class="input-group ">
-                          <input class="form-control"  selected="selected" placeholder="Search By pest name" name="pest" id="srch-term" aria-label="Search" required>
+                          <input class="form-control"  selected="selected" name="pest" id="myInput" aria-label="Search" required>
                           <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
                               <i class="fas fa-search"></i>
@@ -70,7 +70,7 @@
                   <th>Weight</th>
                   <th>Week</th>
                   <th>Month</th>
-                  <th>Bill</th>
+                  <th>Bill(shs)</th>
                   <th>Deposit</th>
                   <th>Balance</th>
                   @if(in_array('Can see E & T created by', auth()->user()->getUserPermisions()))
@@ -81,7 +81,7 @@
                   @endif
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                 @if ($show_all->currentPage() > 1)
                       @php($i =  1 + (($show_all->currentPage() - 1) * $show_all->perPage()))
                       @else
@@ -97,9 +97,9 @@
                       <td>{{ $treatment->weight }}</td>
                       <td>{{ $treatment->week }}</td>
                       <td>{{ $treatment->month }}</td>
-                      <td>{{ $treatment->bill }}</td>
-                      <td>{{ $treatment->deposit }}</td>
-                      <td>{{ $treatment->balance }}</td>
+                      <td>{{ number_format($treatment->bill) }}</td>
+                      <td>{{ number_format($treatment->deposit) }}</td>
+                      <td>{{ number_format($treatment->balance) }}</td>
                       @if(in_array('Can see E & T created by name', auth()->user()->getUserPermisions()))
                       <td>{{ $treatment->name }}</td>
                       @endif

@@ -52,9 +52,9 @@
                 <li class="list-group-item"><a href="/display-functionality" class="btn-default"><i class="fa fa-filter"></i> Functionality
                  </a>
                 </li>
-                <li class="list-group-item"><a href="/display-trash" class="btn-default"><i class="fa fa-trash-o"></i> Our Contact
+                <li class="list-group-item"><a href="/display-front-pages" class="btn-default"><i class="fa fa-map-o"></i>  Front Pages
                 <span class="pull-right text-dangers"></span></a></li>
-                <li class="list-group-item"><a href="/display-reply" class="btn-default"><i class="fa fa-mail-reply-all"></i> Closure
+                <li class="list-group-item"><a href="/display-conclusion" class="btn-default"><i class="fa fa-gg"></i> Conclusion
                 <span class="pull-right text-danger"></span></a></li>
               </ul>
             </div>

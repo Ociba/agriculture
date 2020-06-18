@@ -39,7 +39,7 @@
               <!-- /.card-header -->
               <!-- form start -->
               @foreach($edit_emergency as $emergency)
-              <form class="form-horizontal mt-3" method="get" action="/update-emergency/{{$emergency->id}}" enctype="multipart/form-data">
+              <form class="form-horizontal mt-3" method="post" action="/update-emergency/{{$emergency->id}}" enctype="multipart/form-data">
               @csrf
                 <div class="card-body">
                 <div class="form-group row">

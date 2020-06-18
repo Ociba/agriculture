@@ -40,7 +40,7 @@
                 @if(in_array('Can search pest', auth()->user()->getUserPermisions()))
                 <form action="/search-pest" method="get">
                         <div class="input-group ">
-                          <input class="form-control"  selected="selected" placeholder="Search By pest name" name="pest" id="srch-term" aria-label="Search" required>
+                          <input class="form-control"  selected="selected" name="pest" id="myInput" aria-label="Search" required>
                           <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
                               <i class="fas fa-search"></i>
@@ -72,7 +72,7 @@
                   @endif
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                 @if ($display_pests->currentPage() > 1)
                       @php($i =  1 + (($display_pests->currentPage() - 1) * $display_pests->perPage()))
                       @else

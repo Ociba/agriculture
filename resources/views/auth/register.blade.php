@@ -125,7 +125,7 @@
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                                 <div class="input-box item-2 mt-20">
-                                                <input id="contact" type="text" class="form-control @error('contact') is-invalid @enderror" name="contact" required placeholder="Your register phone number"  autocomplete="current-password">
+                                                <input id="contact" type="text" class="form-control @error('contact') is-invalid @enderror" name="contact" required placeholder="Your registered phone number"  autocomplete="current-password">
 
                                                 @error('password')
                                                     <span class="invalid-feedback" role="alert">

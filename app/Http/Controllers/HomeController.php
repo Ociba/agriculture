@@ -52,4 +52,10 @@ class HomeController extends Controller
     public function Functionality(){
         return view('admin.functionality');
     }
+    public function frontPages(){
+        return view('admin.front-pages');
+    }
+    public function conclusion(){
+        return view('admin.conclusion');
+    }
 }

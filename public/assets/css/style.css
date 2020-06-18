@@ -674,7 +674,7 @@ Search Overlay CSS
     2.HEADER css 
 ===========================*/
 .header-area .header-top {
-  background: #eef2fb; }
+  background: #161616; }
   .header-area .header-top .header-top-content {
     height: 60px; }
     .header-area .header-top .header-top-content .header-top-text p {
@@ -693,7 +693,7 @@ Search Overlay CSS
           font-size: 16px;
           line-height: 28px; } }
       .header-area .header-top .header-top-content .header-top-text p i {
-        color: #6cbe03;
+        color: #ffffff;
         font-size: 24px;
         padding-right: 14px; }
     .header-area .header-top .header-top-content .header-top-btns ul li {
@@ -762,7 +762,7 @@ Search Overlay CSS
     color: #333333; }
   .header-area.header-2-area .header-menu .navigation .navbar-btns ul li:last-child a {
     color: #fff;
-    background: #6cbe03;
+    background: #be3803;
     background-image: -moz-linear-gradient(-49deg, #6cbe03 0%, #b0b302 60%, #f4a700 100%);
     background-image: -webkit-linear-gradient(-49deg, #6cbe03 0%, #b0b302 60%, #f4a700 100%);
     background-image: -ms-linear-gradient(-49deg, #6cbe03 0%, #b0b302 60%, #f4a700 100%);
@@ -780,7 +780,7 @@ Search Overlay CSS
   .header-area.header-3-area .header-top .header-top-content .header-top-btns ul li a {
     color: #fff; }
   .header-area.header-3-area .header-top .header-top-content .header-top-btns > a {
-    background: #f4a700; }
+    background: #f4e400; }
 .header-area.header-3-area .header-menu {
   background: #fff; }
   .header-area.header-3-area .header-menu .navigation .navbar .navbar-toggler .toggler-icon {
@@ -788,7 +788,7 @@ Search Overlay CSS
   .header-area.header-3-area .header-menu .navigation .navbar .navbar-nav .nav-item a {
     color: #333333; }
     .header-area.header-3-area .header-menu .navigation .navbar .navbar-nav .nav-item a.active, .header-area.header-3-area .header-menu .navigation .navbar .navbar-nav .nav-item a:hover {
-      color: #6cbe03; }
+      color: #be2803; }
   .header-area.header-3-area .header-menu .navigation .navbar .navbar-btns .header-flag {
     margin-right: 28px; }
     .header-area.header-3-area .header-menu .navigation .navbar .navbar-btns .header-flag a span {
@@ -801,7 +801,7 @@ Search Overlay CSS
     color: #333333; }
 
 .header-info {
-  background: #02060e; }
+  background: #e4e00a; }
   .header-info .header-info-item {
     height: 80px;
     display: -webkit-flex;
@@ -820,7 +820,8 @@ Search Overlay CSS
     .header-info .header-info-item .header-info .item {
       padding-left: 55px;
       position: relative;
-      margin: 0 40px; }
+      margin: 0 40px; 
+      color: blue;}
       @media only screen and (min-width: 992px) and (max-width: 1200px) {
         .header-info .header-info-item .header-info .item {
           margin: 0 20px; } }
@@ -837,14 +838,14 @@ Search Overlay CSS
       .header-info .header-info-item .header-info .item .title {
         font-weight: 200;
         font-size: 18px;
-        color: #fff; }
+        color: #ffffff; }
         @media only screen and (min-width: 992px) and (max-width: 1200px) {
           .header-info .header-info-item .header-info .item .title {
             font-size: 18px; } }
 
 .header-menu {
   height: 60px;
-  background: #6cbe03; }
+  background: #be1f03; }
 
 .navigation {
   padding: 0;
@@ -1104,7 +1105,7 @@ Search Overlay CSS
           .navigation .navbar .navbar-nav .nav-item .sub-menu > li:hover .sub-nav-toggler {
             color: #fff; }
           .navigation .navbar .navbar-nav .nav-item .sub-menu > li:hover > a {
-            background-color: #6cbe03;
+            background-color: #be1903;
             color: #fff !important; }
             .navigation .navbar .navbar-nav .nav-item .sub-menu > li:hover > a::before {
               opacity: 1; }
@@ -4231,7 +4232,7 @@ Search Overlay CSS
       top: 0;
       height: 100%;
       width: 370px;
-      background-image: url(../images/questions-thumb.png);
+      background-image: url(../images/apiary.JPG);
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat; }
@@ -5791,7 +5792,7 @@ Search Overlay CSS
     top: 0;
     height: 100%;
     width: 37%;
-    background-image: url(../images/ociba.png);
+    background-image: url(../images/got.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat; }
@@ -5902,7 +5903,7 @@ Search Overlay CSS
     21.Login css 
 ===========================*/
 .login-massage-area .login-massage {
-  background: #eef2fb;
+  background: #79e264;
   position: relative; }
   .login-massage-area .login-massage::before {
     position: absolute;
@@ -5911,13 +5912,16 @@ Search Overlay CSS
     top: 0;
     height: 100%;
     width: 37%;
-    background-image: url(../images/crop.jpg);
-    background-size: cover;
+    background-image: url(../images/arms.PNG);
+    background-size: contain;
     background-position: center;
-    background-repeat: no-repeat; }
+    background-repeat: no-repeat;}
     @media only screen and (min-width: 768px) and (max-width: 991px) {
       .login-massage-area .login-massage::before {
         width: 0; } }
+        @media only screen and (min-device-width: 400px) and (max-device-width: 400px) {
+          .login-massage-area .login-massage::before {
+            width: 0; } }
     @media (max-width: 767px) {
       .login-massage-area .login-massage::before {
         width: 0; } }
@@ -6023,8 +6027,8 @@ Search Overlay CSS
     22.Register css 
 ===========================*/
 .register-massage-area .register-massage {
-  background: #eef2fb;
-  position: relative; }
+  background: #79e264;
+  position: absolute; }
   .register-massage-area  .register-massage::before {
     position: absolute;
     content: '';
@@ -6032,7 +6036,7 @@ Search Overlay CSS
     top: 0;
     height: 100%;
     width: 37%;
-    background-image: url(../images/uganda-flag.png);
+    background-image: url(../images/flag.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat; }

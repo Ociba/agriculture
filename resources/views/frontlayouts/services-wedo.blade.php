@@ -35,7 +35,7 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                     <div class="what-we-do-item text-center mt-30">
-                    <img src="{{asset('assets/images/gallery-3.jpg')}}" style=" width:300px; height:150px;" alt="">
+                    <img src="{{asset('assets/images/cattle treat.JPG')}}" style=" width:300px; height:150px;" alt="">
                         <h4 class="title">Treatment</h4>
                         <p>Connect you nearest Vetenary,Agricultural officer for immediate help</p>
                         {{--<a href="#">read more</a>--}}
@@ -43,9 +43,9 @@
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                     <div class="what-we-do-item text-center mt-30">
-                        <i class="flaticon-mushroom"></i>
+                    <img src="{{asset('assets/images/gran2.jpg')}}" style=" width:300px; height:150px;" alt="">
                         <h4 class="title">Security & Safety</h4>
-                        <p>Advice on how to harvest and keep for dry crops for long time to avoid losses</p>
+                        <p>Advice on how to harvest and keep dry crops for long time to avoid losses</p>
                         {{--<a href="#">read more</a>--}}
                     </div>
                 </div>

@@ -38,7 +38,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form class="form-horizontal mt-3" method="get" action="/save-employee" enctype="multipart/form-data">
+              <form class="form-horizontal mt-3" method="post" action="/save-employee" enctype="multipart/form-data">
               @csrf
                 <div class="card-body">
                 <div class="form-group row">
@@ -55,7 +55,7 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Qualification</label>
                     <div class="col-sm-10">
-                    <input type="file" selected="selected" class="form-control"  name="qualification" accept=".pdf"  maxFileSize="2048 KiB" required>
+                    <input type="file" selected="selected" class="form-control"  name="qualification" accept=".pdf"  maxFileSize="2MB" required>
                     </div>
                   </div>
                   <div class="form-group row">

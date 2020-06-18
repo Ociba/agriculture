@@ -9,7 +9,7 @@ use App\Feedback;
 use App\Farm;
 use App\User;
 use App\Product;
-
+use App\Doctors;
 class AboutController extends Controller
 {
     //
@@ -22,8 +22,9 @@ class AboutController extends Controller
         $display_members_count =User::join('roles','users.role_id','roles.id')
         ->where('users.role_id',4)
         ->count();
-        $display_doctors_count =User::join('roles','users.role_id','roles.id')
-        ->where('users.role_id',9)
+        $display_doctors_count =Doctors::join('users','doctors.user_id','users.id')
+        ->join('districts','doctors.district_id','districts.id')
+        ->where('doctors.status','active')
         ->count();
         $display_farms_count =Farm::join('users','farms.user_id','users.id')
         ->where('farms.status','active')

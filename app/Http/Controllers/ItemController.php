@@ -174,9 +174,8 @@ class ItemController extends Controller
         ->join('districts','items.district_id','districts.id')
         ->join('counties','items.county_id','counties.id')
         ->join('villages','items.village_id','villages.id')
-        ->join('prices','items.price_id','price.id')
         ->join('categories','items.category_id','categories.id')
-        ->where('members.status','available')
+        ->where('items.status','available')
         ->Where('products.product',$request->product)
         ->orwhere('users.contact',$request->product)
         ->orWhere('breeds.breed',$request->product)
@@ -187,7 +186,7 @@ class ItemController extends Controller
         ->orWhere('villages.village',$request->product)
         ->orWhere('items.price',$request->product)
         ->orWhere('items.number',$request->product)
-        ->orWhere('items.image',$request->product)
+        ->orWhere('items.item_image',$request->product)
         ->select('users.name','users.contact','products.product','breeds.breed','weights.weight','districts.district','categories.category','counties.county',
                   'villages.village','items.price','items.number','items.item_image','items.id','items.user_id')
         ->paginate('10');

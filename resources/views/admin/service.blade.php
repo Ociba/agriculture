@@ -40,7 +40,7 @@
                 @if(in_array('Can search service', auth()->user()->getUserPermisions()))
                 <form action="/search-service" method="get">
                         <div class="input-group ">
-                          <input class="form-control"  selected="selected" placeholder="Search By title" name="title" id="srch-term" aria-label="Search" required>
+                          <input class="form-control"  selected="selected" name="title" id="myInput" aria-label="Search" required>
                           <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
                               <i class="fas fa-search"></i>
@@ -72,7 +72,7 @@
                   @endif
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                 @if ($features_services->currentPage() > 1)
                       @php($i =  1 + (($features_services->currentPage() - 1) * $features_services->perPage()))
                       @else

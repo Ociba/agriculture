@@ -18,3 +18,10 @@ div.desc {
     padding: 15px;
     text-align: center;
 }
+.thumbnail:hover {
+    position:relative;
+    width:500px;
+    height:300px;
+    display:block;
+    z-index:999;
+}

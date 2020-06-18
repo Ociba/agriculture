@@ -40,7 +40,7 @@
                 @if(in_array('Can search service we do', auth()->user()->getUserPermisions()))
                 <form action="/search-do" method="get">
                         <div class="input-group ">
-                          <input class="form-control"  selected="selected" placeholder="Search By title" name="title" id="srch-term" aria-label="Search" required>
+                          <input class="form-control"  selected="selected"  name="title" id="myInput" aria-label="Search" required>
                           <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
                               <i class="fas fa-search"></i>
@@ -72,7 +72,7 @@
                   @endif
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                 @if ($we_do_services->currentPage() > 1)
                       @php($i =  1 + (($we_do_services->currentPage() - 1) * $we_do_services->perPage()))
                       @else

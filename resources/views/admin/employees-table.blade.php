@@ -40,7 +40,7 @@
                 @if(in_array('Can search Employees', auth()->user()->getUserPermisions()))
                 <form action="/search-employee" method="get">
                         <div class="input-group ">
-                          <input class="form-control"  selected="selected" placeholder="Search By Name" name="name" id="srch-term" aria-label="Search" required>
+                          <input class="form-control"  selected="selected" name="name" id="myInput" aria-label="Search" required>
                           <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
                               <i class="fas fa-search"></i>
@@ -71,7 +71,7 @@
                   @endif
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                 @if ($display_employees->currentPage() > 1)
                       @php($i =  1 + (($display_employees->currentPage() - 1) * $display_employees->perPage()))
                       @else
@@ -81,7 +81,7 @@
                   <tr>
                       <td>{{ $i++ }}</td>
                       <td>{{ $employee->name }}</td>
-                      <td class="btn-link hidden-print"><a href="">{{asset('files/pdf/'.$employee->qualification)}}</a></td>
+                      <td class="btn-link"><a href="{{asset('files/'.$employee->qualification)}}" target="_blank">{{asset('files/'.$employee->qualification)}}</a></td>
                       <td>{{ $employee->experience }}</td>
                       @if(in_array('Can edit employee', auth()->user()->getUserPermisions()))
                       <td>

@@ -10,6 +10,7 @@
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
   <!-- Navbar -->
+
   @include('layouts.topnavbar')
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     
@@ -31,48 +32,28 @@
     <div class="card m-3">
       <div class="container-fluid">
         @include('layouts.cards')
-      </div>
+        <div class="row">
+        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="background-color:white;">
+            <!-- Bar CHART -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h5 class="box-title">Average Price Of Products as Reported from various markets in all the regions in uganda</h5>
+                </div>
+                <div class="box-body chart-responsive">
+                <canvas id="myChart"></canvas>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+            <!-- BAR CHART -->
+                            
+        </div>
+        </div>
       <div class="row">
                         <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6" style="background-color:white;">
-                            <!-- AREA CHART -->
-                            <div class="box box-primary">
-                                <div class="box-header with-border">
-                                <h3 class="box-title">Average Price fo Vegetables Per Month</h3> 
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                                <div class="box-body chart-responsive">
-                                    <canvas id="lineChart"></canvas>
-                                </div>
-                                <!-- /.box-body -->
-                            </div>
-                            <!-- /.box -->
-                            <!-- DONUT CHART -->
                             <div class="box box-danger">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Average Price for Animals Per Month</h3>
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                                <div class="box-body chart-responsive">
-                                <canvas id="barchart" style="height: 300px;"></canvas>
-                                </div>
-                                <!-- /.box-body -->
-                            </div>
-                            <div class="box box-danger">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Employees | no. of emergency</h3>
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                                    </div>
+                                    <h5 class="box-title">Employees | no. of emergency</h5>
                                 </div>
                                 <div class="box-body chart-responsive">
                                 <canvas id="piechart" style="height: 300px;"></canvas>
@@ -83,44 +64,10 @@
                         </div>
                         <!-- /.col (LEFT) -->
                         <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6" style="background-color:white;">
-                            <!-- Bar CHART -->
-                            <div class="box box-info">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Average Price Of Cereals Per Month</h3>
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                                <div class="box-body chart-responsive">
-                                    <canvas id="barChart"></canvas>
-                                </div>
-                                <!-- /.box-body -->
-                            </div>
-                            <!-- /.box -->
-                            <!-- BAR CHART -->
+                            
                             <div class="box box-success">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Average Price for Poultry Per Month</h3>
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                                <div class="box-body chart-responsive">
-                                    <canvas id="poultry"></canvas>
-                                </div>
-                            </div>
-                            <div class="box box-success">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Products|Farms|Markets|Sponsors|Breeds</h3>
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                                    </div>
+                                    <h5 class="box-title">Products|Farms|Markets|Sponsors|Breeds</h5>
                                 </div>
                                 <div class="box-body chart-responsive">
                                     <canvas id="product"></canvas>
@@ -141,144 +88,57 @@
 </div>
 <!-- ./wrapper -->
 @include('layouts.javascript')
-<script>
-            //Line Graph for Vegetables
-             var ctxL = document.getElementById("lineChart").getContext('2d');
-            var myLineChart = new Chart(ctxL, {
-            type: 'line',
-            data: {
-            labels: {!! json_encode(auth()->user()->getVegetablesAveragePricePerMonths()) !!},
-            datasets: [{
-            label: "Average Vegetable Prices per month",
-            data: [{!! auth()->user()->getJanuaryPrices() !!},{!! auth()->user()->getFebrauryPrices() !!},{!! auth()->user()->getMarchPrices() !!},
-            {!! auth()->user()->getAprilPrices() !!},{!! auth()->user()->getMayPrices() !!},{!! auth()->user()->getJunePrices() !!},
-            {!! auth()->user()->getJulyPrices() !!},{!! auth()->user()->getAugustPrices() !!}
-        ,{!! auth()->user()->getSeptemberPrices() !!},{!! auth()->user()->getOctoberPrices() !!},{!! auth()->user()->getNovemberPrices() !!},{!! auth()->user()->getDecemberPrices() !!}],
-            backgroundColor: [
-            'rgb(255, 0, 0, 0)',
-            ],
-            borderColor: [
-            'rgba(200, 99, 132, .7)',
-            ],
-            borderWidth: 2
-            },
-            ]
-            },
-            options: {
-            responsive: true
-            }
-            });
-            
-          //Bar graph for Cereals
-            var ctxB = document.getElementById("barChart").getContext('2d');
-            var myBarChart = new Chart(ctxB, {
-            type: 'bar',
-            data: {
-            labels: {!! json_encode(auth()->user()->getAveragePricePerMonth()) !!},
-            datasets: [{
-            label: 'Average Cereal Price per month',
-            data: [{!! auth()->user()->getPriceInJanuary() !!},{!! auth()->user()->getPriceInFebruary() !!},{!! auth()->user()->getPriceInMarch() !!},
-            {!! auth()->user()->getPriceInApril() !!},{!! auth()->user()->getPriceInMay() !!},{!! auth()->user()->getPriceInJune() !!},{!! auth()->user()->getPriceInjuly() !!},{!! auth()->user()->getPriceInAugust() !!}
-             ,{!! auth()->user()->getPriceInSeptember() !!},{!! auth()->user()->getPriceInOctober() !!},{!! auth()->user()->getPriceInNovember() !!},{!! auth()->user()->getPriceInDecember() !!}],
-            backgroundColor: [
-            'rgb(255, 0, 0, 0)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-            'rgba(255,99,132,1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-            }]
-            },
-            options: {
-            scales: {
-            yAxes: [{
-            ticks: {
-            beginAtZero: true
-            }
-            }]
-            }
-            }
-            });
+<script>  
+          //Bar graph for all products
+          var ctx = document.getElementById("myChart").getContext('2d');
+                var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                labels: {!! auth()->user()->getItemsNames() !!},
+                datasets: [{
+                label: 'Average price in the market',
+                data: {!! auth()->user()->getItemsAveragePrice() !!},
+                backgroundColor: [
+                'rgba(255, 0, 0)',
+                'rgba(0, 0, 255)',
+                'rgba(60, 179, 113)',
+                'rgba(238, 130, 238)',
+                'rgba(255, 165, 0)',
+                'rgba(255, 99, 71)',
+                'rgba(128, 0, 0)',
+                'rgba(220, 20, 60)',
+                'rgba(255, 215, 0)',
+                'rgba((255, 255,0)',
+                'rgba(0, 100, 0)',
+                'rgba(0, 250, 154)',
+                'rgba(0, 128, 128)',
+                'rgba(255, 0, 255)',
+                'rgba(255, 20, 147)',
+                'rgba(106, 90, 205)'
+                ],
+                borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 0.05
+                }]
+                },
+                options: {
+                scales: {
+                yAxes: [{
+                ticks: {
+                beginAtZero: true
+                }
+                }]
+                }
+                }
+                });
 
-            //Bar graph for Animals
-            var ctxB = document.getElementById("barchart").getContext('2d');
-            var myBarChart = new Chart(ctxB, {
-            type: 'bar',
-            data: {
-            labels: {!! json_encode(auth()->user()->getAverageAnimalPricePerMonth()) !!},
-            datasets: [{
-            label: 'Average Price for animals per month',
-            data: [{!! auth()->user()->getAnimalPriceInJanuary() !!},{!! auth()->user()->getAnimalPriceInFebruary() !!},{!! auth()->user()->getAnimalPriceInMarch() !!},
-            {!! auth()->user()->getAnimalPriceInApril() !!},{!! auth()->user()->getAnimalPriceInMay() !!},{!! auth()->user()->getAnimalPriceInJune() !!},{!! auth()->user()->getAnimalPriceInjuly() !!},{!! auth()->user()->getAnimalPriceInAugust() !!}
-             ,{!! auth()->user()->getAnimalPriceInSeptember() !!},{!! auth()->user()->getAnimalPriceInOctober() !!},{!! auth()->user()->getAnimalPriceInNovember() !!},{!! auth()->user()->getAnimalPriceInDecember() !!}],
-            backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-            'rgba(255,99,132,1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-            }]
-            },
-            options: {
-            scales: {
-            yAxes: [{
-            ticks: {
-            beginAtZero: true
-            }
-            }]
-            }
-            }
-            });
            
-            //Line Graph for Poultry
-            var ctxL = document.getElementById("poultry").getContext('2d');
-            var myLineChart = new Chart(ctxL, {
-            type: 'line',
-            data: {
-            labels: {!! json_encode(auth()->user()->getPoultryAveragePricePerMonths()) !!},
-            datasets: [{
-            label: "Average Poultry Prices per month",
-            data: [{!! auth()->user()->getJanuaryPoultryPrices() !!},{!! auth()->user()->getFebrauryPoultryPrices() !!},{!! auth()->user()->getMarchPoultryPrices() !!},
-            {!! auth()->user()->getAprilPoultryPrices() !!},{!! auth()->user()->getMayPoultryPrices() !!},{!! auth()->user()->getJunePoultryPrices() !!},
-            {!! auth()->user()->getJulyPrices() !!},{!! auth()->user()->getAugustPrices() !!}
-        ,{!! auth()->user()->getSeptemberPoultryPrices() !!},{!! auth()->user()->getOctoberPoultryPrices() !!},{!! auth()->user()->getNovemberPoultryPrices() !!},{!! auth()->user()->getDecemberPoultryPrices() !!}],
-            backgroundColor: [
-            'rgba(105, 0, 132, .2)',
-            ],
-            borderColor: [
-            'rgba(200, 99, 132, .7)',
-            ],
-            borderWidth: 2
-            },
-            ]
-            },
-            options: {
-            responsive: true
-            }
-            });
-            
-
             //Pie chart 1
             $(function () {
             var ctxP = document.getElementById("piechart").getContext('2d');

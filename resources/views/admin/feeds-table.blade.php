@@ -40,7 +40,7 @@
                 @if(in_array('Can search feeds', auth()->user()->getUserPermisions()))
                 <form action="/search-feed" method="get">
                         <div class="input-group ">
-                          <input class="form-control"  selected="selected" placeholder="Search By feed name" name="feed_type" id="srch-term" aria-label="Search" required>
+                          <input class="form-control"  selected="selected" name="feed_type" id="myInput" aria-label="Search" required>
                           <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
                               <i class="fas fa-search"></i>
@@ -73,7 +73,7 @@
                   @endif
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                 @if ($show_all_feeds->currentPage() > 1)
                       @php($i =  1 + (($show_all_feeds->currentPage() - 1) * $show_all_feeds->perPage()))
                       @else

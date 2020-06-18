@@ -40,7 +40,7 @@
                 @if(in_array('Can search month', auth()->user()->getUserPermisions()))
                 <form action="/search-month" method="get">
                         <div class="input-group ">
-                          <input class="form-control"  selected="selected" placeholder="Search By number of weeks" name="month" id="srch-term" aria-label="Search" required>
+                          <input class="form-control"  selected="selected" name="month" id="myInput" aria-label="Search" required>
                           <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
                               <i class="fas fa-search"></i>
@@ -72,7 +72,7 @@
                   @endif
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                 @if ($show_all_months->currentPage() > 1)
                       @php($i =  1 + (($show_all_months->currentPage() - 1) * $show_all_months->perPage()))
                       @else

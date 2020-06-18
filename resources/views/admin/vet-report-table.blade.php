@@ -40,7 +40,7 @@
                 @if(in_array('Can search vet reports', auth()->user()->getUserPermisions()))
                 <form action="/search-doctor-reports" method="get">
                         <div class="input-group">
-                          <input class="form-control"  selected="selected" placeholder="Search By farmers name" name="farmer_name" id="srch-term" aria-label="Search" required>
+                          <input class="form-control"  selected="selected" name="farmer_name" id="myInput" aria-label="Search" required>
                         </datalist>
                           <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
@@ -76,7 +76,7 @@
                   @endif
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                 @if ($display_doctors_report->currentPage() > 1)
                       @php($i =  1 + (($display_doctors_report->currentPage() - 1) * $display_doctors_report->perPage()))
                       @else

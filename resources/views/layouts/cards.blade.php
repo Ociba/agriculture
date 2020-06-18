@@ -1,7 +1,7 @@
 <div class="row">
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box">
-              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-group"></i></span>
+              <span class="info-box-icon"><i class="fa fa-sitemap"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">No. Items on sale</span>
@@ -14,7 +14,7 @@
           <!-- /.col -->
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-bank"></i></span>
+              <span class="info-box-icon"><i class="fa fa-user" style="color:yellow;"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Employees</span>
@@ -31,10 +31,10 @@
 
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-briefcase"></i></span>
+              <span class="info-box-icon"><i class="fa fa-plus-square" style="color:red;"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">No. of Emergency Reports</span>
+                <span class="info-box-text">Emergency Reports Total</span>
                 <span class="info-box-number text-center">{{ auth()->user()->getNumberOfEmergencies() }}</span>
               </div>
               <!-- /.info-box-content -->
@@ -44,7 +44,7 @@
           <!-- /.col -->
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-book"></i></span>
+              <span class="info-box-icon"><i class="fa fa-bank" style="color:green;"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">No. of Markets</span>

@@ -40,7 +40,7 @@
                 @if(in_array('Can search prices', auth()->user()->getUserPermisions()))
                 <form action="/search-price" method="get">
                         <div class="input-group ">
-                          <input class="form-control"  selected="selected" placeholder="Search by product name" name="product" id="srch-term" aria-label="Search" required>
+                          <input class="form-control"  selected="selected" name="product" id="myInput" aria-label="Search" required>
                           <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
                               <i class="fas fa-search"></i>
@@ -77,7 +77,7 @@
                   @endif
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                 @if ($show_all_prices->currentPage() > 1)
                       @php($i =  1 + (($show_all_prices->currentPage() - 1) * $show_all_prices->perPage()))
                       @else
@@ -92,7 +92,7 @@
                       <td>{{ $prices->market_name }}</td>
                       <td>{{ $prices->day }}</td>
                       <td>{{ $prices->quantity }}</td>
-                      <td>{{ $prices->price }}</td>
+                      <td>{{ number_format($prices->price) }}</td>
                       <td>{{ $prices->name }}</td>
                       <td>{{ $prices->created_at }}</td>
                       @if(in_array('Can edit price', auth()->user()->getUserPermisions()))

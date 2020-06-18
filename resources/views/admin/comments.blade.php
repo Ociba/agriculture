@@ -43,7 +43,7 @@
                @if(in_array('Can search comment', auth()->user()->getUserPermisions()))
                 <form action="/search-comment" method="get">
                         <div class="input-group ">
-                          <input class="form-control"  selected="selected" placeholder="Search By heading" name="heading" id="srch-term" aria-label="Search" required>
+                          <input class="form-control"  selected="selected" name="heading" id="myInput" aria-label="Search" required>
                           <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
                               <i class="fas fa-search"></i>
@@ -70,7 +70,7 @@
                   @endif
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                 @if ($display_comments->currentPage() > 1)
                       @php($i =  1 + (($display_comments->currentPage() - 1) * $display_comments->perPage()))
                       @else

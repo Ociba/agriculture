@@ -40,7 +40,7 @@
                 @if(in_array('Can search drug', auth()->user()->getUserPermisions()))
                 <form action="/search-drug" method="get">
                         <div class="input-group ">
-                          <input class="form-control"  selected="selected" placeholder="Search By Drug Name" name="drug_name" id="srch-term" aria-label="Search" required>
+                          <input class="form-control"  selected="selected" name="drug_name" id="myInput" aria-label="Search" required>
                           <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
                               <i class="fas fa-search"></i>
@@ -72,7 +72,7 @@
                   @endif
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                 @if ($display_drugs->currentPage() > 1)
                       @php($i =  1 + (($display_drugs->currentPage() - 1) * $display_drugs->perPage()))
                       @else

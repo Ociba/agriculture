@@ -14,7 +14,7 @@
                         <p class="text">Therefore we call upon your cooperation towards agricultural practices, observation of market prices and care for your farm products for sustainable production to meet the world demands. </p>
                         <div class="info">
                             <img style="border-radius:50%; height:60px; width:60px;" src="{{asset('images/profile_pictures/james ociba.png')}}" alt="user">
-                            <img src="{{asset('assets/images/sing.png')}}" alt="sing">
+                            {{--<img src="{{asset('assets/images/sing.png')}}" alt="sing">--}}
                         </div>
                     </div>
                 </div>

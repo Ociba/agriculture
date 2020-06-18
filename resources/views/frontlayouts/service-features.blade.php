@@ -28,7 +28,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                     <div class="features-items">
                         <div class="item mt-30">
-                        <img src="{{asset('assets/images/07.jpg')}}" height="180" width="370" alt="">
+                        <img src="{{asset('assets/images/220px-Australorp_Rooster.jpg')}}" height="180" width="370" alt="">
                             <h4 class="title">Birds & their Feeds</h4>
                             <p>Conneting you with Buyers, sellers and suppliers for feeds</p>
                             {{--<a href="#">read more</a>--}}

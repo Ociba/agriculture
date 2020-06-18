@@ -5,7 +5,13 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="header-top-content d-flex justify-content-center  justify-content-sm-between align-items-center">
                             <div class="header-top-text d-sm-block d-lg-block d-xs-block d-md-block">
-                                <p><i class="far fa-leaf"></i>Marketing your products ,connect buyers and improve Agric services</p>
+                                <p>
+                                <img style="height:35px; width:50px;" src="{{asset('assets/images/flag.png')}}" alt="Image"> &nbsp;
+                                  Marketing products,connecting and improve Agriculture
+                                </p>
+                            </div>
+                            <div class="header-top-text d-sm-block d-lg-block d-xs-block d-md-block">
+                            <img style="height:40px; width:50px;" src="{{asset('assets/images/arms.png')}}" alt="Image">
                             </div>
                             <div class="header-top-btns d-flex align-items-center text-lg-right text-center">
                                 {{--
@@ -34,26 +40,19 @@
                             <div class="header-info d-lg-flex d-md-flex d-sm-flex d-xs-flex">
                                 <div class="item">
                                    <i class="fal fa-phone"></i>
-                                   <span style="font-size:11px; font-weight:20px;">Phone Number</span>
+                                   <span style="font-size:11px; font-weight:20px; color:green;">Phone Number</span>
                                     <a href="tel:+12345678999">
                                         <h6 class="title">+256 775 401793</h6>
                                     </a>
                                 </div>
                                 <div class="item">
                                 <i class="fal fa-envelope-open"></i>
-                                <span style="font-size:11px; font-weight:20px;">Email Address</span>
+                                <span style="font-size:11px; font-weight:20px; color:green;">Email Address</span>
                                     <a href="mailto:support@gmail.com">
                                         <h6 class="title">agricug@gmail.com</h6>
                                     </a>
 
                                 </div>
-                                {{--
-                                <div class="item">
-                                <?php
-                                echo "Today is"." ".date("l") ." ". date("F d, Y");
-                                ?>
-                                </div>
-                                --}}
                             </div>
                             {{--
                             <div class="header-flag">
@@ -114,7 +113,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="navigation ">
+                        <div class="navigation">
                             <nav class="navbar navbar-expand-lg">
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarFive" aria-controls="navbarFive" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="toggler-icon"></span>
@@ -175,7 +174,7 @@
                                 <div class="navbar-btns">
                                     <ul>
                                         <li><a class="search-box" href="#"><i class="fal fa-search"></i></a></li>
-                                        <li><a class="d-lg-inline d-md-inline d-sm-inline d-xs-inline " href="#myModal2" data-toggle="modal"><i class="fal fa-bars"></i></a></li>
+                                        <li><a class="d-lg-inline d-md-inline d-sm-inline d-xs-inline" href="#myModal2" data-toggle="modal"><i class="fal fa-bars"></i></a></li>
                                     </ul>
                                 </div>
                             </nav> <!-- navbar -->

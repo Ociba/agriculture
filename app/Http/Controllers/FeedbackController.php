@@ -26,14 +26,14 @@ class FeedbackController extends Controller
             'feedback'=>$request->feedback,
             'image'=>$file_name
         ));
-        return Redirect()->back()->withErrors("Feedback has been sent successfully");
+        return Redirect()->back()->with('message',"Feedback has been sent successfully");
     }else{
         return Redirect()->back()->withErrors("Image has not been uploaded successfully"); 
     }
    }
    public function displayFeedback(){
     if(in_array('Can edit feedback', auth()->user()->getUserPermisions())){
-       $display_feedback =Feedback::where('status','approve')->paginate('10');
+       $display_feedback =Feedback::where('status','approve')->orderBy('created_at','desc')->paginate('10');
        return view('admin.feedback', compact('display_feedback'));
     }else{
         return redirect('/404');

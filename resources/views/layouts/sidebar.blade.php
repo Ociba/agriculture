@@ -39,7 +39,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item" @if(\Request::route()->getName() == "Registered Members")class="active" @endif>
                 <a href="/display-profile" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="fa fa-user-circle-o nav-icon"></i>
                   <p>Profile</p>
                 </a>
               </li>
@@ -57,7 +57,7 @@
             @if(in_array('Can view registered users', auth()->user()->getUserPermisions())) 
             <li class="nav-item" @if(\Request::route()->getName() == "Registered Users")class="active" @endif>
                 <a href="/all_users" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="far fa-registered nav-icon"></i>
                   <p>Registered Users</p>
                 </a>
               </li>
@@ -65,7 +65,7 @@
               @if(in_array('Can view employees', auth()->user()->getUserPermisions()))
               <li class="nav-item" @if(\Request::route()->getName() == "Employee")class="active" @endif>
                 <a href="/display-employees-details" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  <i class="far fa-user nav-icon"></i>
                   <p>Employees</p>
                 </a>
               </li>
@@ -76,7 +76,7 @@
           @if(in_array('Can view items', auth()->user()->getUserPermisions()))
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-bank"></i>
+              <i class="nav-icon fa fa-object-group"></i>
               <p>
                 Items 
                 <i class="fas fa-angle-left right"></i>
@@ -196,6 +196,14 @@
                 <a href="/show-signs" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Signs & Symptoms</p>
+                </a>
+              </li>
+              @endif
+              @if(in_array('Can view veterinary doctors', auth()->user()->getUserPermisions()))
+            <li class="nav-item" @if(\Request::route()->getName() == "Pests")class="active" @endif>
+                <a href="/show-veterinary-doctors" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Veterinary Doctors</p>
                 </a>
               </li>
               @endif

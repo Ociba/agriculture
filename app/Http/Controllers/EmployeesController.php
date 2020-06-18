@@ -31,19 +31,18 @@ class EmployeesController extends Controller
         if(empty($request->name)){
             return Redirect()->back()->withInput()->withErrors("Name cannot be empty");
         }
-        
-        if(Employees::where('user_id',Auth::user()->id ,$request->user_id)->exists())
-        {
-            return Redirect()->back()->withInput()->withErrors('Employee already exists.');
-
+        // return getSize($request->qualification);
+        $required_size = 2048000;
+        if($request->file('qualification')->getSize() > $required_size){
+            return Redirect()->back()->withInput()->withErrors("The Uploaded file is big, please put a file not bigger than 2 mb");
         }
-        $document_name=$request->qualification;
-        $uniqueFileName=$document_name->getClientOriginalName();
-        $request->file('qualification')->move('files/', $uniqueFileName);
+        $employee_qualification=$request->qualification;
+        $qualification=$employee_qualification->getClientOriginalName();
+        $request->file('qualification')->move('files/',$qualification);
         
         Employees::create(array(
             'user_id'=>$request->name,
-            'qualification'=>$uniqueFileName,
+            'qualification'=>$qualification,
             'experience'=>$request->experience
         ));
         return redirect()->back()->with('message',"Employee Details has been Saved successfully");

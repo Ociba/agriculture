@@ -11,7 +11,7 @@
             <div class="row gallery-active">
                 <div class="col-lg-4">
                     <div class="gallery-box mt-30">
-                        <img src="{{asset('assets/images/gallery-4.jpg')}}" alt="gallery">
+                        <img src="{{asset('assets/images/spray.jpg')}}" alt="gallery">
                         <div class="gallery-overlay d-flex justify-content-center align-items-end">
                             <div class="item text-center">
                                 <h5 class="title">Planning and Organizing Planting crops</h5>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="gallery-box mt-30">
-                        <img src="{{asset('assets/images/gallery-5.jpg')}}" alt="gallery">
+                        <img style="height:275px;" src="{{asset('assets/images/chicks.jpg')}}" alt="gallery">
                         <div class="gallery-overlay d-flex justify-content-center align-items-end">
                             <div class="item text-center">
                                 <h5 class="title">Assessing and Managing your Poultry</h5>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="gallery-box mt-30">
-                        <img src="{{asset('assets/images/gallery-6.jpg')}}" alt="gallery">
+                        <img style="height:275px;" src="{{asset('assets/images/cattle treat.jpg')}}" alt="gallery">
                         <div class="gallery-overlay d-flex justify-content-center align-items-end">
                             <div class="item text-center">
                                 <h5 class="title">Checking animals health</h5>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="gallery-box mt-30">
-                        <img src="{{asset('assets/images/gallery-5.jpg')}}" alt="gallery">
+                        <img style="height:275px;" src="{{asset('assets/images/ffish.jpg')}}" alt="gallery">
                         <div class="gallery-overlay d-flex justify-content-center align-items-end">
                             <div class="item text-center">
                                 <h5 class="title">Fish maintanace & Feeding</h5>

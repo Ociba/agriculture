@@ -75,7 +75,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="store-item text-center bg-white">
-                                <img src="{{asset('assets/images/store-item-3.png')}}" height="120" height="120" alt="store">
+                                <img src="{{asset('assets/images/cassava.jpg')}}" height="120" height="120" alt="store">
                                 <div class="store-title d-flex justify-content-between align-items-center">
                                     <a href="#"><h5 class="title">Tubers</h5></a>
                                     {{--<span><i class="fas fa-heart"></i> (1k)</span>--}}
@@ -96,7 +96,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="store-item text-center bg-white">
-                                <img src="{{asset('assets/images/07.jpg')}}" height="120" alt="store">
+                                <img src="{{asset('assets/images/eggs.jpg')}}" height="120" alt="store">
                                 <div class="store-title d-flex justify-content-between align-items-center">
                                     <a href="#"><h5 class="title">Chicken & Eggs</h5></a>
                                     {{--<span><i class="fas fa-heart"></i> (1k)</span>--}}

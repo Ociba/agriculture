@@ -35,7 +35,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="header-info-item">
                             <div class="logo">
-                            <a href="#"><img src="{{asset('assets/images/agricul.png')}}" alt="logo">AgricUg</a>
+                            <a href="#"><img class="img-responsive" style="border-radius:50%; width:70px; height:70px;" src="{{asset('assets/images/loggo.JPG')}}" alt="logo"></a>
                             </div>
                             <div class="header-info d-lg-flex d-md-flex d-sm-flex d-xs-flex">
                                 <div class="item">

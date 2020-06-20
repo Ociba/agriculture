@@ -4,7 +4,7 @@
                 <div class="col-lg-12">
                     <div class="footer-top align-items-center">
                         <div class="footer-logo">
-                            <a href="#"><img src="{{asset('assets/images/agricul.png')}}" alt="">AgricUg</a>
+                            <a href="#"><img style="color:white;"src="{{asset('assets/images/agricul.png')}}" alt="">AgricUg</a>
                         </div>
                         <div class="footer-menu">
                             <ul>

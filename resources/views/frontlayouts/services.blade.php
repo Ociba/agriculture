@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-lg-4 col-md-7 col-sm-9">
                     <div class="single-services mt-30">
-                        <img src="{{asset('assets/images/services-3.png')}}" alt="services">
+                        <img style="border-radius:60%; width:250px; height:260px;" src="{{asset('assets/images/meat4.jpg')}}" alt="services">
                         <h4 class="title">Fresh Meat</h4>
                         <p>We provide you with products for meat,chicken and others </p>
                         {{--<a href="#">read more</a>--}}

@@ -323,35 +323,35 @@ class ItemController extends Controller
     }
     }
     public function displayDoctorsRequests(){
-        $display_all_doctors_requests_details =DoctorRequest::join('users','doctors_requests.user_id','users.id')
-        ->join('products','doctors_requests.product_id','products.id')
-        ->join('districts','doctors_requests.district_id','districts.id')
-        ->join('counties','doctors_requests.county_id','counties.id')
-        ->join('villages','doctors_requests.village_id','villages.id')
-        ->where('doctors_requests.status','active')
+        $display_all_doctors_requests_details =DoctorRequest::join('users','doctor_requests.user_id','users.id')
+        ->join('products','doctor_requests.product_id','products.id')
+        ->join('districts','doctor_requests.district_id','districts.id')
+        ->join('counties','doctor_requests.county_id','counties.id')
+        ->join('villages','doctor_requests.village_id','villages.id')
+        ->where('doctor_requests.status','active')
         ->select('users.name','users.contact','products.product','districts.district','counties.county',
-                  'villages.village','doctors_requests.number','doctors_requests.photo','doctors_requests.id','doctors_requests.conditions')
-        ->orderBy('doctors_requests.created_at','desc')
+                  'villages.village','doctor_requests.number','doctor_requests.photo','doctor_requests.id','doctor_requests.conditions')
+        ->orderBy('doctor_requests.created_at','desc')
         ->paginate('10');
         return view('admin.all-doctors-requests', compact('display_all_doctors_requests_details'));
     }
     public function searchDoctorsRequest(Request $request){
-        $display_all_doctors_requests_details =DoctorRequest::join('users','doctors_requests.user_id','users.id')
-        ->join('products','doctors_requests.product_id','products.id')
-        ->join('districts','doctors_requests.district_id','districts.id')
-        ->join('counties','doctors_requests.county_id','counties.id')
-        ->join('villages','doctors_requests.village_id','villages.id')
-        ->where('doctors_requests.status','active')
+        $display_all_doctors_requests_details =DoctorRequest::join('users','doctor_requests.user_id','users.id')
+        ->join('products','doctor_requests.product_id','products.id')
+        ->join('districts','doctor_requests.district_id','districts.id')
+        ->join('counties','doctor_requests.county_id','counties.id')
+        ->join('villages','doctor_requests.village_id','villages.id')
+        ->where('doctor_requests.status','active')
         ->Where('products.product',$request->name)
         ->orwhere('users.contact',$request->name)
         ->orWhere('users.contact',$request->name)
         ->orWhere('districts.district',$request->name)
         ->orWhere('counties.county',$request->name)
         ->orWhere('villages.village',$request->name)
-        ->orWhere('doctors_requests.number',$request->name)
-        ->orWhere('doctors_requests.image',$request->name)
+        ->orWhere('doctor_requests.number',$request->name)
+        ->orWhere('doctor_requests.image',$request->name)
         ->select('users.name','products.product','districts.district','counties.county',
-        'villages.village','doctors_requests.number','doctors_requests.photo','doctors_requests.id','doctors_requests.conditions')
+        'villages.village','doctor_requests.number','doctor_requests.photo','doctor_requests.id','doctor_requests.conditions')
         ->paginate('10');
         return view('admin.all-doctors-requests', compact('display_all_doctors_requests_details'));
     }

@@ -35,16 +35,13 @@ class DistrictController extends Controller
 
         }
         District::create(array(
-            'user_id'=>Auth::user()->id,
             'district'=>$request->district
         ));
         return Redirect()->back()->with('message',"District has been added Successfully");
     }
     public function displayDistrict(){
         if(in_array('Can view districts', auth()->user()->getUserPermisions())){
-        $show_district =District::join('users','districts.user_id','users.id')
-        ->select('users.name','districts.district','districts.id')
-        ->orderBy('districts.created_at','desc')
+        $show_district =District::orderBy('districts.created_at','desc')
         ->paginate('10');
         return view('admin.district-table',compact('show_district'));
         }else{
@@ -52,16 +49,13 @@ class DistrictController extends Controller
         }
     }
     public function searchDistrict(Request $request){
-        $show_district =District::join('users','districts.user_id','users.id')
-        ->where('districts.district',$request->district)
+        $show_district =District::where('districts.district',$request->district)
         ->orwhere('users.name',$request->district)
-        ->select('users.name','districts.district','districts.id')
         ->paginate('10');
         return view('admin.district-table',compact('show_district'));
     }
     public function updateDistrictInformation($id, Request $request){
         District::where('id',$id)->update(array(
-            'user_id'=>Auth::user()->id,
             'district'=>$request->district
         ));
         return Redirect()->back()->with('message',"District Details has been updated successfully");

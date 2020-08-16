@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Faq;
 use App\Feature;
-use App\Feedback;
+use App\Feedbacks;
 use App\Market;
 use App\News;
 use App\Sponsor;
@@ -28,7 +28,7 @@ class FrontPageController extends Controller
         ->where('features.status','active')
         ->select('users.name','features.id','features.heading','features.statement','features.image')
         ->get();
-        $display_feedback =Feedback::where('status','active')->get();
+        $display_feedback =Feedbacks::where('status','active')->get();
         $show_market_products =Market::join('users','market_products.user_id','users.id')
         ->where('market_products.status','active')
         ->select('market_products.name','market_products.image','market_products.id')
@@ -50,7 +50,7 @@ class FrontPageController extends Controller
         ->where('features.status','active')
         ->select('users.name','features.id','features.heading','features.statement','features.image')
         ->get();
-        $display_feedback =Feedback::where('status','active')->get();
+        $display_feedback =Feedbacks::where('status','active')->get();
         $show_gallery =Gallery::join('users','galleries.user_id','users.id')
         ->where('galleries.status','active')
         ->select('galleries.title','galleries.message','galleries.image','users.name','galleries.id')->get();

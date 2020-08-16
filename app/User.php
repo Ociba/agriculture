@@ -12,6 +12,7 @@ use App\Emergency;
 use App\Item;
 use App\Price;
 use App\Doctors;
+use App\Message;
 use DB;
 
 class User extends Authenticatable
@@ -236,11 +237,11 @@ class User extends Authenticatable
         return $display_subscription_time;
     }
     public function getNumberOfMessages(){
-        $count_messages =Contact::where('messages.status','approve')->count();
+        $count_messages =Message::where('messages.status','approve')->count();
         return $count_messages;
     }
     public function timeForMessages(){
-        $display_notif_time =Contact::where('status','approve')->select('created_at')->orderBy('created_at','desc')->value('created_at');
+        $display_notif_time =Message::where('status','approve')->select('created_at')->orderBy('created_at','desc')->value('created_at');
         return $display_notif_time;
     }
     public function getNumberOfEmergencyReports(){
@@ -253,7 +254,7 @@ class User extends Authenticatable
     }
     public function totalAllNotifications(){
         $count_subScriptions =Subscription::all()->count();
-        $count_messages =Contact::where('messages.status','approve')->count();
+        $count_messages =Message::where('messages.status','approve')->count();
         $count_emergency_reports =Emergency::where('emergencies.status','active')->count();
         $total_all_notifications =$count_emergency_reports+$count_messages+$count_subScriptions;
         return $total_all_notifications;

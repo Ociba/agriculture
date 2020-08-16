@@ -65,9 +65,6 @@
                 <tr>
                   <th>No</th>
                   <th>District</th>
-                  @if(in_array('Can see district created by', auth()->user()->getUserPermisions()))
-                  <th>Created By</th>
-                  @endif
                   @if(in_array('Can see district action', auth()->user()->getUserPermisions()))
                   <th>Action</th>
                   @endif
@@ -83,9 +80,6 @@
                   <tr>
                       <td>{{ $i++ }}</td>
                       <td>{{ $district->district }}</td>
-                      @if(in_array('Can see district createdby name', auth()->user()->getUserPermisions()))
-                      <td>{{ $district->name }}</td>
-                      @endif
                       @if(in_array('Can edit district', auth()->user()->getUserPermisions()))
                       <td>
                       <a href="/display-edit-district/{{ $district->id }}" data-widget="edit" data-toggle="tooltip" title="edit">

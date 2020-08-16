@@ -12,7 +12,7 @@ class DistrictsTableSeeder extends Seeder
     public function run()
     {
         //
-        $permissions = ['Buikwe','Bukomansimbi','Butambala','Buvuma','Gomba','Kalangala','Kalungu','Kampala',
+        $districts = ['Buikwe','Bukomansimbi','Butambala','Buvuma','Gomba','Kalangala','Kalungu','Kampala',
                         'Kayunga','Kiboga','Kyankwanzi','Luweero','Lwengo','Lyantonde','Masaka','Mityana',
                         'Mpigi','Mubende','Mukono','Nakaseke','Nakasongola','Rakai','Sembabule','Wakiso',
                         'Amuria','Budaka','Bududa','Bugiri','Bukedea','Bukwa','Bulambuli','Busia','Butaleja',
@@ -27,15 +27,16 @@ class DistrictsTableSeeder extends Seeder
                         'Kisoro','Kyegegwa','Kyenjojo','Masindi','Mbarara','Mitooma','Ntoroko','Ntungamo',
                         'Rubirizi','Rukungiri','Sheema'
         ];
-        for($i=0; $i < count($permissions); $i++){
-            $permission = new District();
+        for($i=0; $i < count($districts); $i++){
+            $district = new District();
             if(District::where("id",$i)->exists()){
-                $permission->id = $i+1;
+                $district->id = $i+1;
             }
             else{
-                $permission->id = $i;
+                $district->id = $i;
             } 
-            $permission->permission=$permissions[$i];
+            $district->district=$districts[$i];
+            $district->save();
            
     }
 }

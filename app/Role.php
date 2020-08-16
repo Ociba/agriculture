@@ -8,7 +8,7 @@ use App\Emergency;
 class Role extends Model
 {
     //
-    protected $fillable =['role','status'];
+    protected $fillable =['role'];
 
     public function emergencies()
     {

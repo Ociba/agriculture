@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Farmer;
-use App\Feedback;
+use App\Feedbacks;
 use App\Farm;
 use App\User;
 use App\Product;
@@ -14,11 +14,11 @@ class AboutController extends Controller
 {
     //
     public function displayAbout(){
-        $show_farmer_detail =Farmer::join('users','famers.user_id','users.id')
-        ->join('profiles','famers.profile_id','profiles.id','famers.id')
-        ->where('famers.status','active')
+        $show_farmer_detail =Farmer::join('users','farmers.user_id','users.id')
+        ->join('profiles','farmers.profile_id','profiles.id','farmers.id')
+        ->where('farmers.status','active')
         ->select('users.name','profiles.image')->get();
-        $display_feedback =Feedback::where('status','active')->get();
+        $display_feedback =Feedbacks::where('status','active')->get();
         $display_members_count =User::join('roles','users.role_id','roles.id')
         ->where('users.role_id',4)
         ->count();

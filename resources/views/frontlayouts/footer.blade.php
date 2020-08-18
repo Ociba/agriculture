@@ -40,9 +40,9 @@
                         <ul>
                             <li><a href="/services"><i class="far fa-long-arrow-right"></i> Our Services</a></li>
                             <li><a href="/about"><i class="far fa-long-arrow-right"></i> About Company</a></li>
-                            <li><a href="#"><i class="far fa-long-arrow-right"></i> Latest News</a></li>
-                            <li><a href="#"><i class="far fa-long-arrow-right"></i> Meet The Team</a></li>
-                            <li><a href="#"><i class="far fa-long-arrow-right"></i> Our Product</a></li>
+                            <li><a href="/blog"><i class="far fa-long-arrow-right"></i> Latest News</a></li>
+                            <li><a href="/about"><i class="far fa-long-arrow-right"></i> Meet The Team</a></li>
+                            <li><a href="/"><i class="far fa-long-arrow-right"></i> Our Product</a></li>
                             <li><a href="#"><i class="far fa-long-arrow-right"></i> Setting & Privecy</a></li>
                         </ul>
                     </div>
@@ -51,12 +51,12 @@
                     <div class="footer-list footer-list-2">
                         <h4 class="title">Services</h4>
                         <ul>
-                            <li><a href="#"><i class="far fa-long-arrow-right"></i> Help & Ordering</a></li>
-                            <li><a href="#"><i class="far fa-long-arrow-right"></i> Order Tracking</a></li>
-                            <li><a href="#"><i class="far fa-long-arrow-right"></i> Return & Cancelation</a></li>
-                            <li><a href="#"><i class="far fa-long-arrow-right"></i> Delivery Schedule</a></li>
-                            <li><a href="#"><i class="far fa-long-arrow-right"></i> Get a Call</a></li>
-                            <li><a href="#"><i class="far fa-long-arrow-right"></i> Online Enquiry</a></li>
+                            <li><a href="/display-login"><i class="far fa-long-arrow-right"></i> Help & Ordering</a></li>
+                            <li><a href="/display-login"><i class="far fa-long-arrow-right"></i> Order Tracking</a></li>
+                            <li><a href="/display-login"><i class="far fa-long-arrow-right"></i> Return & Cancelation</a></li>
+                            <li><a href="/display-login"><i class="far fa-long-arrow-right"></i> Delivery Schedule</a></li>
+                            <li><a href="/display-login"><i class="far fa-long-arrow-right"></i> Get a Call</a></li>
+                            <li><a href="/display-login"><i class="far fa-long-arrow-right"></i> Online Enquiry</a></li>
                         </ul>
                     </div>
                 </div>

@@ -41,10 +41,10 @@ class FarmerController extends Controller
      }
      public function displayFarmer(){
         if(in_array('Can view farms', auth()->user()->getUserPermisions())){
-         $show_farmer_detail =Farmer::join('users','famers.user_id','users.id')
-         ->join('profiles','famers.profile_id','profiles.id','famers.id')
-         ->where('famers.status','active')
-         ->select('users.name','profiles.image','famers.id')
+         $show_farmer_detail =Farmer::join('users','farmers.user_id','users.id')
+         ->join('profiles','farmers.profile_id','profiles.id','farmers.id')
+         ->where('farmers.status','active')
+         ->select('users.name','profiles.image','farmers.id')
          ->paginate('10');
          return view('admin.farmers',compact('show_farmer_detail'));
         }else{

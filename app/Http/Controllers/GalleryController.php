@@ -55,7 +55,7 @@ class GalleryController extends Controller
      $show_gallery =Gallery::join('users','galleries.user_id','users.id')
      ->where('galleries.status','active')
      ->select('galleries.title','galleries.message','galleries.image','users.name','galleries.id')
-     ->paginate('10');
+     ->get();
      return view('admin.gallery',compact('show_gallery'));
     }else{
         return redirect('/404');

@@ -55,7 +55,7 @@ class FeaturesController extends Controller
         $show_feature =Feature::join('users','features.user_id','users.id')
         ->where('features.status','active')
         ->select('users.name','features.id','features.heading','features.statement','features.image')
-        ->paginate('10');
+        ->get();
         return view('admin.features',compact('show_feature'));
         }else{
             return redirect('/404');

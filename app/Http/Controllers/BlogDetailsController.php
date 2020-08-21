@@ -70,7 +70,7 @@ class BlogDetailsController extends Controller
         ->where('blog_details.status','active')
         ->select('users.name','blog_details.title','blog_details.statement','blog_details.image',
                  'blog_details.facebook','blog_details.google','blog_details.twitter','blog_details.image','blog_details.created_at')
-        ->paginate('10');
+        ->get();
         return view('admin.blog-detail', compact('display_blog_detail'));
     }
     public function editBlogDetailForm($id){

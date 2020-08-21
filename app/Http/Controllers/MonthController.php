@@ -44,16 +44,7 @@ class MonthController extends Controller
         $show_all_months =Month::join('users','months.user_id','users.id')
         ->where('months.status','active')
         ->select('users.name','months.month','months.id')
-        ->paginate('10');
-        return view('admin.months-table',compact('show_all_months'));
-    }
-    public function searchMonth(Request $request){
-        $show_all_months =Month::join('users','months.user_id','users.id')
-        ->where('months.status','active')
-        ->where('months.month',$request->month)
-        ->orwhere('users.name',$request->month)
-        ->select('users.name','months.month','months.id')
-        ->paginate('10');
+        ->get();
         return view('admin.months-table',compact('show_all_months'));
     }
     public function updateMonthInformation($id, Request $request){

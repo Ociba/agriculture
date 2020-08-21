@@ -44,16 +44,7 @@ class DiseaseController extends Controller
         $display_diseases =Disease::join('users','diseases.user_id','users.id')
         ->where('diseases.status','active')
         ->select('users.name','diseases.disease_name','diseases.id')
-        ->paginate('10');
-        return view('admin.disease-table', compact('display_diseases'));
-    }
-    public function searchDisease(Request $request){
-        $display_diseases =Disease::join('users','diseases.user_id','users.id')
-        ->where('diseases.status','active')
-        ->where('diseases.disease_name',$request->disease_name)
-        ->orwhere('users.name',$request->disease_name)
-        ->select('users.name','diseases.disease_name','diseases.id')
-        ->paginate('10');
+        ->get();
         return view('admin.disease-table', compact('display_diseases'));
     }
     public function updateDiseaseInformation($id, Request $request){

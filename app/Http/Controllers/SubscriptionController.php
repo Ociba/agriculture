@@ -20,7 +20,7 @@ class SubscriptionController extends Controller
     }
     public function displaySubscription(){
         $display_subscription =Subscription::where('status','active')
-        ->paginate('10');
+        ->get();
         return view('admin.subscription',compact('display_subscription'));
     }
     public function editSubscription($id){

@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
     @include('layouts.stylecss')
-  <title>Uganda | Agriculture system</title>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -34,29 +33,27 @@
         <div class="card">
         <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Edit Sub county</h3>
+                <h3 class="card-title">Make Payment</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              @foreach($edit_villages as $village)
-              <form class="form-horizontal mt-3" method="get" action="/update-village/{{$village->id}}">
+              <form class="form-horizontal mt-3" method="get" action="/create-payment">
               @csrf
                 <div class="card-body">
                 <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Sub County</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Amount</label>
                     <div class="col-sm-10">
-                    <input type="text" selected="selected" class="form-control" id="inputEmail3" name="village" value="{{$village->village}}" placeholder="Enter Distrct Name" required>
+                    <input type="text" selected="selected" class="form-control" id="inputEmail3" name="amount"  placeholder="Enter amount Name" required>
                     </div>
                   </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="text-center mb-3">
-                <a href="/display-sub-counties"><button type="button" class="btn btn-warning">Back</button></a>
+                <a href="/payment"><button type="button" class="btn btn-warning">Back</button></a>
                   <button type="submit" class="btn btn-success ">Save</button>
                 </div>
                 <!-- /.card-footer -->
               </form>
-              @endforeach
             </div>
         </div>
             <!-- /.card -->

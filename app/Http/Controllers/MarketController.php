@@ -48,7 +48,7 @@ class MarketController extends Controller
         $show_market_products =Market::join('users','market_products.user_id','users.id')
         ->where('market_products.status','active')
         ->select('market_products.name','market_products.image','market_products.id')
-        ->paginate('10');
+        ->get();
         return view('admin.market-products',compact('show_market_products'));
         }else{
             return redirect('/404');

@@ -30,7 +30,7 @@ class CommentController extends Controller
 }
      public function displayComments(){
         if(in_array('Can view comments', auth()->user()->getUserPermisions())){
-         $display_comments =Comment::where('status','approve')->paginate('10');
+         $display_comments =Comment::where('status','approve')->get();
          return view('admin.comments', compact('display_comments'));
         }else{
             return redirect('/404');

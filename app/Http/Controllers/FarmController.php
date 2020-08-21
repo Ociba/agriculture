@@ -104,7 +104,7 @@ class FarmController extends Controller
         ->where('farms.status','active')
         ->select('farms.farm_name','farms.activity','farms.statement','farms.image','districts.district',
                 'counties.county','villages.village','farms.id')
-        ->paginate('10');
+        ->get();
         return view('admin.farm', compact('display_farms'));
         }else{
             return redirect('/404');

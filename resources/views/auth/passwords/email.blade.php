@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{--@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -45,3 +45,52 @@
     </div>
 </div>
 @endsection
+--}}
+@include('layouts.stylecss')
+<div class="col-12">
+        <div class="card mt-3">
+        <div class="card card-info">
+              <div class="card-header bg-primary">
+                <h3 class="card-title">Change Password</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              
+              <div class="card-body">
+              @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+              <form class="form-horizontal mt-3" method="get" action="/save-change-password">
+              @csrf
+                <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Current PassWord</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" id="inputEmail3" name="current_password"  placeholder="Enter current Password" required>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">New password</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputEmail3" name="new_password"  placeholder="Enter Your new password" required>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Corfirm Password</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputEmail3" name="confirm_password" placeholder="enter selected account" required>
+                    </div>
+                  </div>
+                <!-- /.card-body -->
+                <div class="text-center mb-3">
+                <a href="{{url()->previous()}}"><button type="button" class="btn btn-warning">Back</button></a>
+                  <button type="submit" class="btn btn-success ">Save</button>
+                </div>
+                <!-- /.card-footer -->
+              </form>
+              </div>
+            </div>
+        </div>
+            <!-- /.card -->
+            </div>

@@ -53,17 +53,7 @@ class FeedController extends Controller
         $show_all_feeds =Feed::join('users','feeds.user_id','users.id')
         ->where('feeds.status','active')
         ->select('users.name','feeds.id','feeds.prescription','feeds.feed_type')
-        ->paginate('10');
-        return view('admin.feeds-table',compact('show_all_feeds'));
-    }
-    public function searchFeed(Request $request){
-        $show_all_feeds =Feed::join('users','feeds.user_id','users.id')
-        ->where('feeds.status','active')
-        ->where('feeds.feed_type',$request->feed_type)
-        ->orwhere('users.name',$request->feed_type)
-        ->orwhere('feeds.prescription',$request->feed_type)
-        ->select('users.name','feeds.id','feeds.prescription','feeds.feed_type')
-        ->paginate('10');
+        ->get();
         return view('admin.feeds-table',compact('show_all_feeds'));
     }
     public function updateFeedInformation($id, Request $request){

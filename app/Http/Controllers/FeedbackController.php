@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Feedback;
+use App\Feedbacks;
 
 class FeedbackController extends Controller
 {
@@ -20,7 +20,7 @@ class FeedbackController extends Controller
             $file_name = $files->getClientOriginalName();
             $folderpath =public_path().'/assets/images/';
             $files->move($folderpath, $file_name);
-        Feedback::create(array(
+        Feedbacks::create(array(
             'name'=>$request->name,
             'email'=>$request->email,
             'feedback'=>$request->feedback,
@@ -33,19 +33,19 @@ class FeedbackController extends Controller
    }
    public function displayFeedback(){
     if(in_array('Can edit feedback', auth()->user()->getUserPermisions())){
-       $display_feedback =Feedback::where('status','approve')->orderBy('created_at','desc')->paginate('10');
+       $display_feedback =Feedbacks::where('status','approve')->orderBy('created_at','desc')->get();
        return view('admin.feedback', compact('display_feedback'));
     }else{
         return redirect('/404');
     }
    }
    public function approveFeedback($id){
-       Feedback::where('id',$id)->update(array('status'=>'active'));
+       Feedbacks::where('id',$id)->update(array('status'=>'active'));
        return Redirect()->back()->withErrors("Feedback has been approved successfully");
 
    }
    public function deleteFeedback($id){
-    Feedback::where('id',$id)->update(array('status'=>'deleted'));
+    Feedbacks::where('id',$id)->update(array('status'=>'deleted'));
     return Redirect()->back()->withErrors("Feedback has been deleted successfully");
 
 }

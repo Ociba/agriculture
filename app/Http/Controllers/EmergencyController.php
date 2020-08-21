@@ -27,7 +27,7 @@ class EmergencyController extends Controller
                                                    'pick_county','pick_village'));
     }
     public function displayEmergency(){
-        $display_all_emergencies_reported = EmergencyResource::collection(Emergency::orderBy('created_at','desc')->paginate(10));
+        $display_all_emergencies_reported = EmergencyResource::collection(Emergency::orderBy('created_at','desc')->get());
         return view('admin.emergency-table', compact('display_all_emergencies_reported'));
     }
     public function editEmergencyForm($id){

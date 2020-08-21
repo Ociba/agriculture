@@ -39,7 +39,7 @@ class RecentNewsController extends Controller
      $show_recent_news =RecentNews::join('users','recent_news.user_id','users.id')
      ->where('recent_news.status','active')
      ->select('recent_news.title','recent_news.image','users.name','recent_news.id')
-     ->paginate('10');
+     ->get();
      return view('admin.recent-news',compact('show_recent_news'));
     }else{
         return redirect('/404');

@@ -44,16 +44,7 @@ class CategoryController extends Controller
         $show_category =Category::join('users','categories.user_id','users.id')
         ->where('categories.status','active')
         ->select('categories.category','categories.id','users.name')
-        ->paginate('10');
-        return view('admin.category-table', compact('show_category'));
-    }
-    public function searchCategory(Requst $request){
-        $show_category =Category::join('users','categories.user_id','users.id')
-        ->where('categories.status','active')
-        ->where('categories.category',$request->category)
-        ->orwhere('users.name',$request->category)
-        ->select('categories.category','categories.id','users.name')
-        ->paginate('10');
+        ->get();
         return view('admin.category-table', compact('show_category'));
     }
     public function updateCategoryInformation($id, Request $request){

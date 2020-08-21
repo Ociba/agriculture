@@ -44,16 +44,7 @@ class BreedController extends Controller
         $display_breeds =Breed::join('users','breeds.user_id','users.id')
         ->where('breeds.status','active')
         ->select('breeds.breed','breeds.id','users.name')
-        ->paginate('10');
-        return view('admin.breed-table', compact('display_breeds'));
-    }
-    public function searchBreed(Request $request){
-        $display_breeds =Breed::join('users','breeds.user_id','users.id')
-        ->where('breeds.status','active')
-        ->Where('breeds.breed',$request->breed)
-        ->orwhere('users.name',$request->breed)
-        ->select('breeds.breed','breeds.id','users.name')
-        ->paginate('10');
+        ->get();
         return view('admin.breed-table', compact('display_breeds'));
     }
     public function updateBreedInformation($id,Request $request){

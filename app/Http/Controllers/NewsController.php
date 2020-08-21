@@ -48,7 +48,7 @@ class NewsController extends Controller
      $show_news =News::join('users','news.user_id','users.id')
      ->where('news.status','active')
      ->select('news.subject','news.image','users.name','news.id')
-     ->paginate('10');
+     ->get();
      return view('admin.news',compact('show_news'));
     }else{
         return redirect('/404');

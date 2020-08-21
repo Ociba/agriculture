@@ -44,16 +44,7 @@ class PestController extends Controller
         $display_pests =Pest::join('users','pests.user_id','users.id')
         ->where('pests.status','active')
         ->select('users.name','pests.pest','pests.id')
-        ->paginate('10');
-        return view('admin.pest-table', compact('display_pests'));
-    }
-    public function searchPest(Request $request){
-        $display_pests =Pest::join('users','pests.user_id','users.id')
-        ->where('pests.status','active')
-        ->where('pests.pest',$request->pest)
-        ->orwhere('users.name',$request->pest)
-        ->select('users.name','pests.pest','pests.id')
-        ->paginate('10');
+        ->get();
         return view('admin.pest-table', compact('display_pests'));
     }
     public function updatePestInformation($id, Request $request){

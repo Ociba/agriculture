@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
     @include('layouts.stylecss')
-  <title>Uganda | Agriculture system</title>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -34,17 +33,18 @@
         <div class="card">
         <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Create Sub county</h3>
+                <h3 class="card-title">Edit Sub county</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form class="form-horizontal mt-3" method="get" action="/save-village">
+              @foreach($edit_subcounties as $subcounty)
+              <form class="form-horizontal mt-3" method="get" action="/update-subcounty/{{$subcounty->id}}">
               @csrf
                 <div class="card-body">
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Sub County</label>
                     <div class="col-sm-10">
-                    <input type="text" selected="selected" class="form-control" id="inputEmail3" name="village"  placeholder="Enter Distrct Name" required>
+                    <input type="text" selected="selected" class="form-control" id="inputEmail3" name="subcounty" value="{{$subcounty->subcounty}}" placeholder="Enter Distrct Name" required>
                     </div>
                   </div>
                 </div>
@@ -55,6 +55,7 @@
                 </div>
                 <!-- /.card-footer -->
               </form>
+              @endforeach
             </div>
         </div>
             <!-- /.card -->

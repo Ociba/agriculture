@@ -42,24 +42,8 @@ class VetReportController extends Controller
         ->select('vet_reports.farmer_name','users.name','vet_reports.farmer_contact','vet_reports.doctor_name','vet_reports.doctor_contact',
         'vet_reports.treatment','vet_reports.number','vet_reports.id','vet_reports.created_at')
         ->orderBy('vet_reports.created_at','DESC')
-        ->paginate('10');
+        ->get();
         return view('admin.vet-report-table',compact('display_doctors_report'));
-    }
-    public function searchVetReportDetails(Request $request){
-        $display_doctors_report =VetReport::join('users','vet_reports.user_id','user_id')
-        ->where('vet_reports.status','active')
-        ->where('vet_reports.farmer_name',$request->farmer_name)
-        ->orWhere('users.name',$request->farmer_name)
-        ->orWhere('vet_reports.farmer_contact',$request->farmer_name)
-        ->orWhere('vet_reports.doctor_name',$request->farmer_name)
-        ->orWhere('vet_reports.doctor_contact',$request->farmer_name)
-        ->orWhere('vet_reports.treatment',$request->farmer_name)
-        ->orWhere('vet_reports.farmer_name',$request->farmer_name)
-        ->select('vet_reports.farmer_name','users.name','vet_reports.farmer_contact','vet_reports.doctor_name','vet_reports.doctor_contact',
-        'vet_reports.treatment','vet_reports.number','vet_reports.id','vet_reports.created_at')
-        ->orderBy('vet_reports.created_at','desc')
-        ->paginate('10');
-        return view('admin.vet-report-table', compact('display_doctors_report'));
     }
     public function updateDoctorReports($id, Request $request){
         VetReport::where('id',$id)->update(array(

@@ -39,7 +39,7 @@ class SponsorController extends Controller
      $show_sponsors =Sponsor::join('users','sponsors.user_id','users.id')
      ->where('sponsors.status','active')
      ->select('sponsors.sponsor','sponsors.image','users.name','sponsors.id')
-     ->paginate('10');
+     ->get();
      return view('admin.sponsor',compact('show_sponsors'));
     }else{
         return redirect('/404');

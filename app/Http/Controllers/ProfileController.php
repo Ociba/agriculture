@@ -10,14 +10,14 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
     //
-    public function addProfileForm(){
+    protected function addProfileForm(){
         return view('admin.profile-form');
     }
-    public function showChangeProfileForm()
+    protected function showChangeProfileForm()
     {
         return view('admin.edit-profile-form');
     }
-    public function createEditedPicture(Request $request)
+    protected function createEditedPicture(Request $request)
     {
         //
         if(empty($request->image)){
@@ -46,7 +46,7 @@ class ProfileController extends Controller
     }
        return Redirect()->back()->withErrors(['Profile picture has been updated successfully','']);
     }
-    public function createProfile(Request $request){
+    protected function createProfile(Request $request){
         if(empty($request->image)){
             return Redirect()->back()->withInput()->withErrors("Image cannot be empty");
         }
@@ -58,7 +58,7 @@ class ProfileController extends Controller
         $files = $request->file('image');
         $extension = $files->getClientOriginalExtension();
         $file_name = $files->getClientOriginalName();
-        $folderpath = public_path().'/images/profile_pictures/';
+        $folderpath = protected_path().'/images/profile_pictures/';
         $files->move($folderpath, $file_name);
         Profiles::create(array(
             'user_id'=>Auth::user()->id,
@@ -66,23 +66,14 @@ class ProfileController extends Controller
         ));
         return redirect()->back()->with('message',"Profile Details has been Saved successfully");
     }
-    public function displayProfile(){
+    protected function displayProfile(){
         $show_all_profiles =Profiles::join('users','profiles.user_id','users.id')
         ->where('user_id',Auth::user()->id)
         ->select('users.name','profiles.image','profiles.id')
-        ->paginate('10');
+        ->get();
         return view('admin.profile-table',compact('show_all_profiles'));
     }
-    public function searchProfile(Request $request){
-        $show_all_profiles =Profiles::join('users','profiles.user_id','users.id')
-        ->where('profiles.status','active')
-        ->where('users.name',$request->name)
-        ->orwhere('profiles.image',$request->name)
-        ->select('users.name','profiles.image','profiles.id')
-        ->paginate('10');
-        return view('admin.profile-table',compact('show_all_profiles'));
-    }
-    public function updateProfileInformation($id, Request $request){
+    protected function updateProfileInformation($id, Request $request){
        
         Profiles::where('id',$id)->update(array(
             'user_id'=>Auth::user()->id,
@@ -90,7 +81,7 @@ class ProfileController extends Controller
         ));
         return Redirect()->back()->with('message',"Profile details has been updated Succesfully");
     }
-    public function deleteProfile($id){
+    protected function deleteProfile($id){
         Profiles::where('id',$id)->update(array('status'=>'deleted'));
         return Redirect()->back()->with('message',"Profile details has been deleted Succesfully");
     }

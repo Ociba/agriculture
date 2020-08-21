@@ -53,21 +53,11 @@ class EmployeesController extends Controller
         ->where('employees.status','active')
         ->select('employees.qualification','employees.experience','employees.id','users.name')
         ->orderBy('employees.created_at','desc')
-        ->paginate('10');
+        ->get();
         return view('admin.employees-table', compact('display_employees'));
         }else{
             return redirect('/404');
         }
-    }
-    public function searchEmployees(Request $request){
-        $display_employees =Employees::join('users','employees.user_id','users.id')
-        ->where('employees.status','active')
-        ->where('users.name',$request->name)
-        ->orwhere('employees.qualification',$request->name)
-        ->orwhere('employees.experience',$request->name)
-        ->select('employees.qualification','employees.experience','employees.id','users.name')
-        ->paginate('10');
-        return view('admin.employees-table', compact('display_employees'));
     }
     public function updateEmployeesInformation($id,Request $request){
         Employees::where('id',$id)->update(array(

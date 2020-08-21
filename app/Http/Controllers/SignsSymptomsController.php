@@ -44,16 +44,7 @@ class SignsSymptomsController extends Controller
         $signs_symptoms =SignsSymptoms::join('users','signs_symptoms.user_id','users.id')
         ->where('signs_symptoms.status','active')
         ->select('users.name','signs_symptoms.signs_symptoms','signs_symptoms.id')
-        ->paginate('10');
-        return view('admin.signssymptoms-table',compact('signs_symptoms'));
-    }
-    public function searchSignsSymptoms(Request $request){
-        $signs_symptoms =SignsSymptoms::join('users','signs_symptoms.user_id','users.id')
-        ->where('signs_symptoms.status','active')
-        ->where('signs_symptoms.signs_symptoms',$request->signs_symptoms)
-        ->orwhere('users.name',$request->SignsSymptoms)
-        ->select('users.name','signs_symptoms.signs_symptoms','signs_symptoms.id')
-        ->paginate('10');
+        ->get();
         return view('admin.signssymptoms-table',compact('signs_symptoms'));
     }
     public function updateSignsSymptomsInformation($id, Request $request){

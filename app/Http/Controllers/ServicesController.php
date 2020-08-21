@@ -33,7 +33,7 @@ class ServicesController extends Controller
         $features_services =ServiceFeature::join('users','service_features.user_id','users.id')
         ->where('service_features.status','active')
         ->select('service_features.title','service_features.statement','service_features.image','service_features.id','users.name')
-        ->paginate('10');
+        ->get();
         return view('admin.service', compact('features_services'));
         }else{
             return redirect('/404');
@@ -92,7 +92,7 @@ class ServicesController extends Controller
         $we_do_services =Services::join('users','services.user_id','users.id')
         ->where('services.status','active')
         ->select('services.subject','services.statement','services.image','services.id','users.name')
-        ->paginate('10');
+        ->get();
         return view('admin.service-we-do', compact('we_do_services'));
         }else{
             return redirect('/404');

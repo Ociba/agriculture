@@ -40,7 +40,7 @@ class OthersController extends Controller
         $display_others =Others::join('users','others.user_id','users.id')
         ->where('others.status','active')
         ->select('others.title','others.number','users.name','others.id')
-        ->paginate('10');
+        ->get();
         return view('admin.others',compact('display_others'));
         }else{
             return redirect('/404');

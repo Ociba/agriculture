@@ -44,16 +44,7 @@ class WeightController extends Controller
         $show_all_weights =Weight::join('users','weights.user_id','users.id')
         ->where('weights.status','active')
         ->select('users.name','weights.weight','weights.id')
-        ->paginate('10');
-        return view('admin.weight-table',compact('show_all_weights'));
-    }
-    public function searchWeight(Request $request){
-        $show_all_weights =Weight::join('users','weights.user_id','users.id')
-        ->where('weights.status','active')
-        ->where('weights.weight',$request->weight)
-        ->orwhere('users.name',$request->weight)
-        ->select('users.name','weights.weight','weights.id')
-        ->paginate('10');
+        ->get();
         return view('admin.weight-table',compact('show_all_weights'));
     }
     public function updateWeightInformation($id, Request $request){

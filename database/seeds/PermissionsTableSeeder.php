@@ -75,7 +75,8 @@ class PermissionsTableSeeder extends Seeder
                         "Can view doctors treatment records","Can search vet reports","Can add vet reports","Can see vet reports action",
                         "Can edit vet reports","Can delete vet reports","Can view documentation","Can view veterinary doctors","Can delete doctor",
                         "Can edit doctor","Can see doctor createdby name","Can see doctor action","Can see doctor created by","Can add doctor",
-                        "Can search doctors","Can view notification messages","Can view notifications"];
+                        "Can search doctors","Can view notification messages","Can view notifications","Can view payments","Can see payment action",
+                         "Can delete payment"];
 
                     for($i=0; $i < count($permissions); $i++){
                         $permission = new permission();

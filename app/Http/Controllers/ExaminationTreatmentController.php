@@ -158,25 +158,7 @@ class ExaminationTreatmentController extends Controller
         ->select('users.name','signs_symptoms.signs_symptoms','weights.weight','diseases.disease_name','drugs.drug_name',
                  'weeks.week','months.month','examination_treatments.bill','examination_treatments.deposit',
                  'examination_treatments.balance','examination_treatments.id','products.product')
-        ->paginate('10');
-        return view('admin.examine_and_treat_table',compact('show_all'));
-    }
-    public function searchExaminationTreatment(Request $request){
-        $show_all =ExaminationTreatment::jpoin('users','examination_treatments.user_id','users.id')
-        ->join('signs_symptoms','examination_treatments.signs_symptom_id','signs_symptoms.id')
-        ->join('weights','examination_treatments.weight_id','weights.id')
-        ->join('diseases','examination_treatments.disease_id','diseases.id')
-        ->join('drugs','examination_treatments.drug_id','drugs.id')
-        ->join('weeks','examination_treatments.week_id','weeks.id')
-        ->join('months','examination_treatments.month_id','months.id')
-        ->where('examination_treatments.status','active')
-        ->orwhere('examination_treatments.signs_and_symptom',$request->signs_and_symptom)
-        ->orwhere('users.name',$request->signs_and_symptom)
-        ->orwhere('examination_treatments.prescription',$request->signs_and_symptom)
-        ->select('users.name','signs_symptoms.signs_symptoms','weights.weight','diseases.disease_name','drugs.drug_name',
-                 'weeks.week','months.month','examination_treatments.bill','examination_treatments.deposit',
-                 'examination_treatments.balance','examination_treatments.id','products.product')
-        ->paginate('10');
+        ->get();
         return view('admin.examine_and_treat_table',compact('show_all'));
     }
     public function updateExaminationTreatmentInformation($id, Request $request){

@@ -46,20 +46,11 @@ class DaysController extends Controller
         $show_all_days =Day::join('users','days.user_id','users.id')
         ->where('days.status','active')
         ->select('users.name','days.day','days.id')
-        ->paginate('10');
+        ->get();
         return view('admin.day-table',compact('show_all_days'));
         }else{
             return redirect('/404');
         }
-    }
-    public function searchDay(Request $request){
-        $show_all_days =Day::join('users','days.user_id','users.id')
-        ->where('days.status','active')
-        ->where('days.day',$request->day)
-        ->where('users.name',$request->day)
-        ->select('users.name','days.day','days.id')
-        ->paginate('10');
-        return view('admin.day-table',compact('show_all_days'));
     }
     public function updateDayInformation($id, Request $request){
         Day::where('id',$id)->update(array(

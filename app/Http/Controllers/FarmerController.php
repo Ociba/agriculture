@@ -45,7 +45,7 @@ class FarmerController extends Controller
          ->join('profiles','farmers.profile_id','profiles.id','farmers.id')
          ->where('farmers.status','active')
          ->select('users.name','profiles.image','farmers.id')
-         ->paginate('10');
+         ->get();
          return view('admin.farmers',compact('show_farmer_detail'));
         }else{
             return redirect('/404');

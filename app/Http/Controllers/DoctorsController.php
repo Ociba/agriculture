@@ -39,7 +39,7 @@ class DoctorsController extends Controller
         ->join('districts','doctors.district_id','districts.id')
         ->where('doctors.status','active')
         ->select('doctors.names','doctors.id','doctors.phone_number_1','doctors.phone_number_2','districts.district','users.name')
-        ->paginate('10');
+        ->get();
         return view('admin.doctors-table', compact('display_doctors_details'));
     }
     public function editDoctor($id){

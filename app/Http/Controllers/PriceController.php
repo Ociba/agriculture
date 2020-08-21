@@ -98,27 +98,7 @@ class PriceController extends Controller
         ->where('prices.status','active')
         ->select('users.name','prices.price','prices.id','prices.market_name','prices.created_at','prices.quantity','days.day','products.product','districts.district','counties.county')
         ->orderBy('created_at', 'desc')
-        ->paginate('10');
-        return view('admin.price-table',compact('show_all_prices'));
-    }
-    public function searchPrice(Request $request){
-        $show_all_prices =Price::join('users','prices.user_id','users.id')
-        ->join('products','prices.product_id','products.id')
-        ->join('districts','prices.district_id','districts.id')
-        ->join('counties','prices.county_id','counties.id')
-        ->join('days','prices.day_id','days.id')
-        ->where('prices.status','active')
-        ->where('products.product',$request->product)
-        ->orwhere('districts.district',$request->product)
-        ->orwhere('counties.county',$request->product)
-        ->orwhere('prices.market_name',$request->product)
-        ->orwhere('days.day',$request->product)
-        ->orwhere('users.name',$request->price)
-        ->orwhere('prices.quantity',$request->product)
-        ->orwhere('prices.price',$request->price)
-        ->orwhere('prices.created_at',$request->price)
-        ->select('users.name','prices.price','prices.id','prices.market_name','prices.created_at','prices.quantity','days.day','products.product','districts.district','counties.county')
-        ->paginate('10');
+        ->get();
         return view('admin.price-table',compact('show_all_prices'));
     }
     public function updatePriceInformation($id, Request $request){

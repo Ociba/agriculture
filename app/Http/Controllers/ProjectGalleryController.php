@@ -55,7 +55,7 @@ class ProjectGalleryController extends Controller
         $show_project_gallery =ProjectGallery::join('users','project_galleries.user_id','users.id')
         ->where('project_galleries.status','active')
         ->select('users.name','project_galleries.id','project_galleries.title','project_galleries.names','project_galleries.image')
-        ->paginate('10');
+        ->get();
         return view('admin.project-gallery',compact('show_project_gallery'));
         }else{
             return redirect('/404');

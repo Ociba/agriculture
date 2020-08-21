@@ -42,17 +42,11 @@ class DistrictController extends Controller
     public function displayDistrict(){
         if(in_array('Can view districts', auth()->user()->getUserPermisions())){
         $show_district =District::orderBy('districts.created_at','desc')
-        ->paginate('10');
+        ->get();
         return view('admin.district-table',compact('show_district'));
         }else{
             return redirect('/404');
         }
-    }
-    public function searchDistrict(Request $request){
-        $show_district =District::where('districts.district',$request->district)
-        ->orwhere('users.name',$request->district)
-        ->paginate('10');
-        return view('admin.district-table',compact('show_district'));
     }
     public function updateDistrictInformation($id, Request $request){
         District::where('id',$id)->update(array(

@@ -19,6 +19,10 @@ Route::get('/try', function () {
 Route::get('/display-item','ProduceController@index');
 
 Route::group(['middleware' => ['auth']], function () {
+Route::get('/payment','PaymentController@getPayment')->name('Payment');
+Route::get('/make-payment','PaymentController@makePayment')->name('Payment Form');
+Route::get('/create-payment','PaymentController@validatePayment');
+Route::get('/delete-payment/{$payment_id}','PaymentController@deletePayment');
 Route::get('/home-dash','HomeController@index')->name('Dashboard');
 Route::get('/display-documentation','HomeController@documentationData')->name('Documentation');
 Route::get('/display-login','HomeController@loginRegistration')->name('Login and Registration');
@@ -224,14 +228,13 @@ Route::get('/display-permit','PermitController@displayPermit')->name('Permit Det
 Route::get('/invoice-print','PermitController@PrintForm')->name('Print Invoice');
 Route::get('/display-permit-form','PermitController@addPermitForm')->name('Permit Form');
 Route::post('/save-print-information','PermitController@createPermit');
-//Village
-Route::get('/display-add-village-form','Village@addVillageForm')->name('Add Village');
-Route::get('/display-edit-form/{id}','Village@editVillageForm')->name('Edit Village Form');
-Route::get('/display-village','Village@displayVillage')->name('Villages');
-Route::get('/save-village','Village@createVillage');
-Route::get('/search-village','Village@searchVillage')->name('Searched Village');
-Route::get('/Update-village/{id}','Village@updateVillageInformation');
-Route::get('/delete-village/{id}','Village@deleteVillage');
+//Subcounty
+Route::get('/displaysubcounty-form','SubcountyController@addSubcountyForm')->name('Add Sub county');
+Route::get('/editsubcounty-form/{id}','SubcountyController@editSubcountyForm')->name('Edit Sub county');
+Route::get('/savesubcounty','SubcountyController@createSubcounty');
+Route::get('/display-sub-counties','SubcountyController@displaySubcounty')->name('Subcounty Table');
+Route::get('/updatesubcounty/{id}','SubcountyController@updateSubcountyInformation');
+Route::get('/deletesubcounty/{id}','SubcountyController@deleteSubcounty');
 //Week
 Route::get('/display-week-form','WeekController@addWeekForm')->name('Add Week Form');
 Route::get('/edit-week-form/{id}','WeekController@editWeekForm')->name('Edit Week Form');
@@ -264,14 +267,6 @@ Route::get('/display-county','CountyController@displayCounty')->name('County Tab
 Route::get('/serch-county','CountyController@searchCounty');
 Route::get('/update-county/{id}','CountyController@updateCountyInformation');
 Route::get('/delete-county/{id}','CountyController@deleteCounty');
-//Village
-Route::get('/display-village-form','VillageController@addVillageForm')->name('Add Sub county');
-Route::get('/edit-village-form/{id}','VillageController@editVillageForm')->name('Edit Sub county');
-Route::get('/save-village','VillageController@createVillage');
-Route::get('/display-sub-counties','VillageController@displayVillage')->name('Subcounty Table');
-Route::get('/search-village','VillageController@searchVillage')->name('Subcounty Searched');
-Route::get('/update-village/{id}','VillageController@updateVillageInformation');
-Route::get('/delete-village/{id}','VillageController@deleteVillage');
 //Year
 Route::get('/display-add-year','YearController@addWeightForm');
 Route::get('/display-edit-year/{id}','YearController@editWeightForm');

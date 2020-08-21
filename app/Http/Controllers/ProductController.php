@@ -43,16 +43,7 @@ class ProductController extends Controller
         $show_all_products =Product::join('users','products.user_id','users.id')
         ->where('products.status','active')
         ->select('users.name','products.product','products.id')
-        ->paginate('10');
-        return view('admin.product-table',compact('show_all_products'));
-    }
-    public function searchProduct(Request $request){
-        $show_all_products =Product::join('users','products.user_id','users.id')
-        ->where('products.status','active')
-        ->where('products.product',$request->product)
-        ->orwhere('users.name',$request->product)
-        ->select('users.name','products.product','products.id')
-        ->paginate('10');
+        ->get();
         return view('admin.product-table',compact('show_all_products'));
     }
     public function updateProductInformation($id, Request $request){

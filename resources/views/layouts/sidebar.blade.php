@@ -366,18 +366,16 @@
             </a>
           </li>
           @endif
-          {{--
-            @if(in_array('Can view register user', auth()->user()->getUserPermisions()))
-          <li class="nav-item has-treeview" @if(\Request::route()->getName() == "Register User")class="active" @endif>
-            <a href="/capture-user" class="nav-link">
-              <i class="nav-icon fa fa-registered"></i>
+            @if(in_array('Can view payments', auth()->user()->getUserPermisions()))
+          <li class="nav-item has-treeview" @if(\Request::route()->getName() == "Payment")class="active" @endif>
+            <a href="/payment" class="nav-link">
+              <i class="nav-icon fa fa-money"></i>
               <p>
-                Register User
+                Payment
               </p>
             </a>
           </li>
           @endif
-           --}}
          
           @if(in_array('Can view front pages', auth()->user()->getUserPermisions()))
           <li class="nav-item has-treeview">

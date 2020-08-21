@@ -45,16 +45,7 @@ class WeekController extends Controller
         $show_all_weeks =Week::join('users','weeks.user_id','users.id')
         ->where('weeks.status','active')
         ->select('users.name','weeks.week','weeks.id')
-        ->paginate('10');
-        return view('admin.week-table',compact('show_all_weeks'));
-    }
-    public function searchWeek(Request $request){
-        $show_all_weeks =Week::join('users','weeks.user_id','users.id')
-        ->where('weeks.status','active')
-        ->where('weeks.week',$request->week)
-        ->orwhere('users.name',$request->week)
-        ->select('users.name','weeks.week','weeks.id')
-        ->paginate('10');
+        ->get();
         return view('admin.week-table',compact('show_all_weeks'));
     }
     public function updateWeekInformation($id, Request $request){

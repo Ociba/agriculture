@@ -36,16 +36,7 @@ class DrugController extends Controller
         $display_drugs =Drug::join('users','drugs.user_id','users.id')
         ->where('drugs.status','active')
         ->select('drugs.drug_name','users.name','drugs.id')
-        ->paginate('10');
-        return view('admin.drug-table',compact('display_drugs'));
-    }
-    public function searchDrug(Request $request){
-        $display_drugs =Drug::join('users','drugs.user_id','users.id')
-        ->where('drugs.status','active')
-        ->where('drugs.drug_name',$request->drug_name)
-        ->orwhere('users.name',$request->drug_name)
-        ->select('drugs.drug_name','users.name','drugs.id')
-        ->paginate('10');
+        ->get();
         return view('admin.drug-table',compact('display_drugs'));
     }
     public function editDrugForm($id){

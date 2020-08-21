@@ -41,17 +41,13 @@ class CountyController extends Controller
     }
     public function displayCounty(){
         if(in_array('Can view counties', auth()->user()->getUserPermisions())){
-        $show_county =County::orderby('created_at','desc')->paginate('10');
+        $show_county =County::orderby('created_at','desc')->get();
         return view('admin.county-table',compact('show_county'));
         }else{
             return redirect('/404');
         }
     }
-    public function searchCounty(Request $request){
-        $show_county =County::where('counties.county',$request->county)
-        ->paginate('10');
-        return view('admin.county-table',compact('show_county'));
-    }
+    
     public function updateCountyInformation($id, Request $request){
         County::where('id',$id)->update(array(
             'county'=>$request->county

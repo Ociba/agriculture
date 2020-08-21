@@ -28,16 +28,7 @@ class YearController extends Controller
         $show_all_years =Year::join('users','years.user_id','users.id')
         ->where('years.status','active')
         ->select('users.name','years.year')
-        ->paginate('10');
-        return view('admin.year-table',compact('show_all_years'));
-    }
-    public function searchYear(Request $request){
-        $show_all_years =Year::join('users','years.user_id','users.id')
-        ->where('years.status','active')
-        ->orwhere('users.name',$request->year)
-        ->orwhere('years.year',$request->year)
-        ->select('users.name','years.year')
-        ->paginate('10');
+        ->get();
         return view('admin.year-table',compact('show_all_years'));
     }
     public function updateYearInformation($id, Request $request){

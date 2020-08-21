@@ -23,7 +23,10 @@
   <link rel="stylesheet" href="{{asset('bower_components/font-awesome/css/font-awesome.min.css')}}">
   <!-- Ionicons -->
   <link rel="stylesheet" href="{{asset('bower_components/Ionicons/css/ionicons.min.css')}}">
+  <link rel="stylesheet" href="{{asset('bower_components/datatables.net-bs/dataTabless.bootstrap.min.css.css')}}">
 
   <!--<link rel="stylesheet" href="{{asset('dist/css/AdminLTE.min.css')}}">-->
   <!-- iCheck -->
   <link rel="stylesheet" href="{{asset('plugins/iCheck/square/blue.css')}}">
+  
+  <title>Uganda Agriculture system</title>

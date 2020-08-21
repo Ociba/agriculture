@@ -34,7 +34,7 @@ class FaqController extends Controller
         $display_frequently_asked_questions =Faq::join('users','faqs.user_id','users.id')
         ->where('faqs.status','active')
         ->select('faqs.question','users.name','faqs.id')
-        ->paginate('10');
+        ->get();
         return view('admin.questions',compact('display_frequently_asked_questions'));
         }else{
             return redirect('/404');

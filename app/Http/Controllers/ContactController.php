@@ -24,7 +24,7 @@ class ContactController extends Controller
     }
     public function displayMessages(){
         if(in_array('Can view messages', auth()->user()->getUserPermisions())){
-        $display_contact_messages =Message::where('status','approve')->paginate('10');
+        $display_contact_messages =Message::where('status','approve')->get();
         return view('admin.messages', compact('display_contact_messages'));
         }else{
             return redirect('/404');

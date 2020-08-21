@@ -17,11 +17,12 @@ use App\User;
 use App\DoctorRequest;
 use App\Conscent;
 use App\Role;
+use App\Payment;
 
 class ItemController extends Controller
 {
     //
-    public function sellItemForm(){
+    protected function sellItemForm(){
         $pick_product=Product::select('product','id')->get();
         $pick_breed=Breed::select('breed','id')->get();
         $pick_weight=Weight::select('weight','id')->get();
@@ -29,8 +30,19 @@ class ItemController extends Controller
         $pick_county=County::select('county','id')->get();
         $pick_village=Village::select('village','id')->get();
         $pick_category=Category::select('category','id')->get();
+        if($this->checkPayment() < 10000 && !in_array('Can add item details', auth()->user()->getUserPermisions())){
+            return redirect()->back()->withErrors('Please make payments to continue advertising you item(s)');
+        }else{
         return view('admin.sell-item-form', compact('pick_product','pick_breed','pick_weight','pick_district','pick_category',
                     'pick_county','pick_village'));
+        }
+    }
+    private function checkPayment(){
+        $check_payment_status= Payment::join('users','payments.user_id','users.id')
+        ->where('payments.user_id',auth()->user()->id)
+        ->where('payments.amount','=',10000)
+        ->where('payments.status','active');
+        return $check_payment_status;
     }
     public function editSellAnimalForm($id){
         $pick_product=Product::select('product','id')->get();
@@ -163,34 +175,7 @@ class ItemController extends Controller
         ->select('users.id','users.name','users.contact','products.product','breeds.breed','weights.weight','districts.district','categories.category','counties.county',
                   'villages.village','items.price','items.number','items.item_image','items.id','items.user_id')
         ->orderBy('items.created_at','DESC')
-        ->paginate('10');
-        return view('admin.sell-items', compact('display_all_items_to_sell'));
-    }
-    public function searchitemItems(Request $request){
-        $display_all_items_to_sell =item::join('users','items.user_id','users.id')
-        ->join('products','items.product_id','products.id')
-        ->join('breeds','items.breed_id','breeds.id')
-        ->join('weights','items.weight_id','weights.id')
-        ->join('districts','items.district_id','districts.id')
-        ->join('counties','items.county_id','counties.id')
-        ->join('villages','items.village_id','villages.id')
-        ->join('categories','items.category_id','categories.id')
-        ->where('items.status','available')
-        ->Where('products.product',$request->product)
-        ->orwhere('users.contact',$request->product)
-        ->orWhere('breeds.breed',$request->product)
-        ->orWhere('weights.weight',$request->product)
-        ->orWhere('districts.district',$request->product)
-        ->orWhere('categories.category',$request->product)
-        ->orWhere('counties.county',$request->product)
-        ->orWhere('villages.village',$request->product)
-        ->orWhere('items.price',$request->product)
-        ->orWhere('items.number',$request->product)
-        ->orWhere('items.item_image',$request->product)
-        ->select('users.name','users.contact','products.product','breeds.breed','weights.weight','districts.district','categories.category','counties.county',
-                  'villages.village','items.price','items.number','items.item_image','items.id','items.user_id')
-        ->paginate('10');
-        
+        ->get();
         return view('admin.sell-items', compact('display_all_items_to_sell'));
     }
     public function updateSellItems(Request $request,$id){
@@ -332,29 +317,10 @@ class ItemController extends Controller
         ->select('users.name','users.contact','products.product','districts.district','counties.county',
                   'villages.village','doctor_requests.number','doctor_requests.photo','doctor_requests.id','doctor_requests.conditions')
         ->orderBy('doctor_requests.created_at','desc')
-        ->paginate('10');
+        ->get();
         return view('admin.all-doctors-requests', compact('display_all_doctors_requests_details'));
     }
-    public function searchDoctorsRequest(Request $request){
-        $display_all_doctors_requests_details =DoctorRequest::join('users','doctor_requests.user_id','users.id')
-        ->join('products','doctor_requests.product_id','products.id')
-        ->join('districts','doctor_requests.district_id','districts.id')
-        ->join('counties','doctor_requests.county_id','counties.id')
-        ->join('villages','doctor_requests.village_id','villages.id')
-        ->where('doctor_requests.status','active')
-        ->Where('products.product',$request->name)
-        ->orwhere('users.contact',$request->name)
-        ->orWhere('users.contact',$request->name)
-        ->orWhere('districts.district',$request->name)
-        ->orWhere('counties.county',$request->name)
-        ->orWhere('villages.village',$request->name)
-        ->orWhere('doctor_requests.number',$request->name)
-        ->orWhere('doctor_requests.image',$request->name)
-        ->select('users.name','products.product','districts.district','counties.county',
-        'villages.village','doctor_requests.number','doctor_requests.photo','doctor_requests.id','doctor_requests.conditions')
-        ->paginate('10');
-        return view('admin.all-doctors-requests', compact('display_all_doctors_requests_details'));
-    }
+    
     public function updateDoctorsRequests($id,Request $request){
             $get_district_id= District::where(\strtolower("district"), strtolower($request->district))->value('id');
             $get_county_id= County::where(\strtolower("county"), strtolower($request->county))->value('id');

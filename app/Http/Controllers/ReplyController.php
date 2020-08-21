@@ -34,7 +34,7 @@ class ReplyController extends Controller
      $show_reply =Reply::join('comments','replies.comment_id','comments.id')
      ->where('replies.status','active')
      ->select('replies.reply','replies.photo','comments.comment','replies.id')
-     ->paginate('10');
+     ->get();
      return view('admin.reply',compact('show_reply'));
  }
  public function deleteReply($id){

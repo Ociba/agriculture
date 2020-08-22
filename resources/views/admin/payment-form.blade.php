@@ -41,15 +41,15 @@
               @csrf
                 <div class="card-body">
                 <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Amount</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Amount <span style="color:blue;">(UGX.10000)</span></label>
                     <div class="col-sm-10">
-                    <input type="text" selected="selected" class="form-control" id="inputEmail3" name="amount"  placeholder="Enter amount Name" required>
+                    <input type="text" selected="selected" class="form-control" id="inputEmail3" name="amount"  placeholder="Enter amount" required>
                     </div>
                   </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="text-center mb-3">
-                <a href="/payment"><button type="button" class="btn btn-warning">Back</button></a>
+                <a href="/display-items-on-sell"><button type="button" class="btn btn-warning">Back</button></a>
                   <button type="submit" class="btn btn-success ">Save</button>
                 </div>
                 <!-- /.card-footer -->

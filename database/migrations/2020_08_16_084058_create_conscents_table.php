@@ -18,6 +18,9 @@ class CreateConscentsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('item_id ');
             $table->unsignedBigInteger('role_id');
+            $table->unsignedBigInteger('role_id');
+            $table->unsignedBigInteger('county_id');
+            $table->unsignedBigInteger('subcounty_id');
             $table->string('declaration');
             $table->enum('status',['active','inactive','deleted'])->default('active');
             $table->timestamps();

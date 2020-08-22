@@ -55,11 +55,14 @@ class ProfileController extends Controller
             return Redirect()->back()->withInput()->withErrors('You profile image already exists.');
 
         }
-        $files = $request->file('image');
-        $extension = $files->getClientOriginalExtension();
+        $files = $request->file('image');;
         $file_name = $files->getClientOriginalName();
-        $folderpath = protected_path().'/images/profile_pictures/';
-        $files->move($folderpath, $file_name);
+        $files->move('images/profile_pictures/',$file_name);
+        
+        // $extension = $files->getClientOriginalExtension();
+        // $file_name = $files->getClientOriginalName();
+        // $folderpath = protected_path().'/images/profile_pictures/';
+        // $files->move($folderpath, $file_name);
         Profiles::create(array(
             'user_id'=>Auth::user()->id,
             'image'=>$file_name

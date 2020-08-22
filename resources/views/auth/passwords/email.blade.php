@@ -47,50 +47,63 @@
 @endsection
 --}}
 @include('layouts.stylecss')
-<div class="col-12">
-        <div class="card mt-3">
-        <div class="card card-info">
-              <div class="card-header bg-primary">
-                <h3 class="card-title">Change Password</h3>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs">
+<div class="card card-widget widget-user">
+              <!-- Add the bg color to the header using any of the bg-* classes -->
+              <div class="widget-user-header bg-info">
+                <h3 class="widget-user-username">Uganda Agriculture System</h3>
+                <h5 class="widget-user-desc">Uganda Backbone</h5>
               </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-              
-              <div class="card-body">
-              @if (session('status'))
+              <div class="widget-user-image">
+                <img class="img-circle elevation-2" src="{{asset('assets/images/arms.png')}}" alt="User Avatar">
+              </div>
+              <div class="card-footer">
+                <div class="row">
+                  <div class="col-sm-2 col-lg-2 col-md-2 col-xs-2">
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-8 col-lg-8 col-md-8 col-xs-8">
+                  @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-              <form class="form-horizontal mt-3" method="get" action="/save-change-password">
-              @csrf
-                <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Current PassWord</label>
-                    <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" name="current_password"  placeholder="Enter current Password" required>
+                  <form method="POST" action="{{ route('password.email') }}">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md- offset-md-5 text-center">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Send Password Reset Link') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                     </div>
+                  <!-- /.col -->
+                  <div class="col-sm-2 col-lg-2 col-md-2 col-xs-2">
                   </div>
-                  <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">New password</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputEmail3" name="new_password"  placeholder="Enter Your new password" required>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Corfirm Password</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputEmail3" name="confirm_password" placeholder="enter selected account" required>
-                    </div>
-                  </div>
-                <!-- /.card-body -->
-                <div class="text-center mb-3">
-                <a href="{{url()->previous()}}"><button type="button" class="btn btn-warning">Back</button></a>
-                  <button type="submit" class="btn btn-success ">Save</button>
+                  <!-- /.col -->
                 </div>
-                <!-- /.card-footer -->
-              </form>
+                <!-- /.row -->
               </div>
             </div>
-        </div>
             <!-- /.card -->
             </div>
+
+            

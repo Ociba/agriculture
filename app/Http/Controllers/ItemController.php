@@ -18,6 +18,8 @@ use App\DoctorRequest;
 use App\Conscent;
 use App\Role;
 use App\Payment;
+use App\Doctors;
+use App\SubCounty;
 
 class ItemController extends Controller
 {
@@ -27,21 +29,21 @@ class ItemController extends Controller
         $pick_breed=Breed::select('breed','id')->get();
         $pick_weight=Weight::select('weight','id')->get();
         $pick_district=District::select('district','id')->get();
-        $pick_county=County::select('county','id')->get();
-        $pick_village=Village::select('village','id')->get();
         $pick_category=Category::select('category','id')->get();
-        if($this->checkPayment() < 10000 && !in_array('Can add item details', auth()->user()->getUserPermisions())){
-            return redirect()->back()->withErrors('Please make payments to continue advertising you item(s)');
+        if($this->checkPayment()->doesntExist()){
+            return redirect()->back()->with('emessage','Please make payments to continue advertising your item(s)');
+        }elseif(Payment::join('users','payments.user_id','users.id')
+        ->where('payments.user_id',auth()->user()->id)
+        ->where('payments.status', '!=', 'active')->exists()){
+            return redirect()->back()->with('emessage','Your payments is overdue please subscribe to continue advertising your item(s)');
         }else{
-        return view('admin.sell-item-form', compact('pick_product','pick_breed','pick_weight','pick_district','pick_category',
-                    'pick_county','pick_village'));
+        return view('admin.sell-item-form', compact('pick_product','pick_breed','pick_weight','pick_district','pick_category'));
         }
     }
     private function checkPayment(){
         $check_payment_status= Payment::join('users','payments.user_id','users.id')
         ->where('payments.user_id',auth()->user()->id)
-        ->where('payments.amount','=',10000)
-        ->where('payments.status','active');
+        ->where('payments.amount','>=',10000);
         return $check_payment_status;
     }
     public function editSellAnimalForm($id){
@@ -49,17 +51,12 @@ class ItemController extends Controller
         $pick_breed=Breed::select('breed','id')->get();
         $pick_weight=Weight::select('weight','id')->get();
         $pick_district=District::select('district','id')->get();
-        $pick_county=County::select('county','id')->get();
-        $pick_village=Village::select('village','id')->get();
         $pick_category=Category::select('category','id')->get();
          $edit_sell_items =Item::where('id',$id)->get();
          return view('admin.edit-sell-items',compact('edit_sell_items','pick_product','pick_breed','pick_weight',
-                                                      'pick_district','pick_county','pick_village','pick_category'));
+                                                      'pick_district','pick_category'));
     }
     public function createSellItem(Request $request){
-        // if(empty($request->item_image)){
-        //     return Redirect()->back()->withInput()->withErrors("image cannot be empty");
-        // }
         if(empty($request->price)){
             return Redirect()->back()->withInput()->withErrors("Price cannot be empty");
         }
@@ -75,22 +72,6 @@ class ItemController extends Controller
            ));
            
           } 
-          if(County::where(\strtolower('county'), strtolower($request->county))->exists()){
-           $get_county= County::where("county", $request->county)->value('id');
-         }
-         else{
-           County::create(array('county'=>$request->county
-          ));
-          
-         }
-         if(Village::where(\strtolower('village'), strtolower($request->village))->exists()){
-           $get_village= Village::where("village", $request->village)->value('id');
-         }
-         else{
-           Village::create(array('village'=>$request->village
-          ));
-          
-         }
          if(Product::where(\strtolower('product'), strtolower($request->product))->exists()){
             $get_district= Product::where("product", $request->product)->value('id');
           }
@@ -128,8 +109,6 @@ class ItemController extends Controller
            
           }
           $get_district_id= District::where(\strtolower("district"), strtolower($request->district))->value('id');
-          $get_county_id= County::where(\strtolower("county"), strtolower($request->county))->value('id');
-          $get_village_id= Village::where(\strtolower("village"), strtolower($request->village))->value('id');
           $get_product_id= Product::where(\strtolower("product"), strtolower($request->product))->value('id');
           $get_breed_id= Breed::where(\strtolower("breed"), strtolower($request->breed))->value('id');
           $get_weight_id= Weight::where(\strtolower("weight"), strtolower($request->weight))->value('id');
@@ -148,8 +127,6 @@ class ItemController extends Controller
                 'breed_id' =>$get_breed_id,
                 'weight_id'=>$get_weight_id,
                 'district_id' =>$get_district_id,
-                'county_id' =>$get_county_id,
-                'village_id' =>$get_village_id,
                 'price' =>$request->price,
                 'category_id' =>$get_category_id,
                 'number' =>$request->number,
@@ -168,20 +145,16 @@ class ItemController extends Controller
         ->join('breeds','items.breed_id','breeds.id')
         ->join('weights','items.weight_id','weights.id')
         ->join('districts','items.district_id','districts.id')
-        ->join('counties','items.county_id','counties.id')
-        ->join('villages','items.village_id','villages.id')
         ->join('categories','items.category_id','categories.id')
         ->where('items.status','available')
-        ->select('users.id','users.name','users.contact','products.product','breeds.breed','weights.weight','districts.district','categories.category','counties.county',
-                  'villages.village','items.price','items.number','items.item_image','items.id','items.user_id')
+        ->select('users.id','users.name','products.product','breeds.breed','weights.weight','districts.district','categories.category',
+                  'items.price','items.number','items.item_image','items.id','items.user_id')
         ->orderBy('items.created_at','DESC')
         ->get();
         return view('admin.sell-items', compact('display_all_items_to_sell'));
     }
     public function updateSellItems(Request $request,$id){
         $get_district_id= District::where(\strtolower("district"), strtolower($request->district))->value('id');
-        $get_county_id= County::where(\strtolower("county"), strtolower($request->county))->value('id');
-        $get_village_id= Village::where(\strtolower("village"), strtolower($request->village))->value('id');
         $get_product_id= Product::where(\strtolower("product"), strtolower($request->product))->value('id');
         $get_breed_id= Breed::where(\strtolower("breed"), strtolower($request->breed))->value('id');
         $get_weight_id= Weight::where(\strtolower("weight"), strtolower($request->weight))->value('id');
@@ -200,8 +173,6 @@ class ItemController extends Controller
             'breed_id' =>$get_breed_id,
             'weight_id'=>$get_weight_id,
             'district_id' =>$get_district_id,
-            'county_id' =>$get_county_id,
-            'village_id' =>$get_village_id,
             'price' =>$request->price,
             'category_id' =>$get_category_id,
             'number' =>$request->number,
@@ -355,27 +326,42 @@ class ItemController extends Controller
     public function displayConscent(Request $id){
         $display_all_conscent_details =Conscent::join('users','conscents.user_id','users.id')
         ->join('roles','conscents.role_id','roles.id')
+        ->join('doctors','conscents.doctor_id','doctors.id')
+        ->join('counties','conscents.county_id','counties.id')
+        ->join('subcounties','conscents.subcounty_id','subcounties.id')
+        ->join('items','conscents.item_id','items.id')
         ->where(['conscents.status'=>'active', 'conscents.item_id'=>$id->id])
-        ->select('users.name','roles.role','users.contact','conscents.declaration','conscents.id','conscents.created_at')
+        ->select('doctors.names','roles.role','users.contact','users.name','doctors.phone_number_1','doctors.phone_number_2','conscents.declaration',
+                 'counties.county','subcounties.subcounty','conscents.id','conscents.created_at')
         ->orderBy('conscents.created_at','desc')
         ->limit(1)
         ->get();
 
         $noconscent_available = "Sorry, Consent is not available. Please check again later";
-        
+        if($this->checkPayment()->doesntExist()){
+            return redirect()->back()->with('emessage','Please make payments to continue viewing conscent Details for the item(s)');
+        }elseif(Payment::join('users','payments.user_id','users.id')
+        ->where('payments.user_id',auth()->user()->id)
+        ->where('payments.status', '!=', 'active')->exists()){
+            return redirect()->back()->with('emessage','Your payments is overdue please subscribe to continue advertising your item(s)');
+        }else{
         return view('admin.conscent-page',compact('display_all_conscent_details', 'noconscent_available'));
-        
+        }
     }
     public function displayConscentForm($id){
-        $pick_item =Item::select('product_id','id')->get();
-        $pick_user=User::select('name', 'id')->get();
+        $edit_sell_items =Item::where('id',$id)->get();
+        $pick_doctor=Doctors::select('names', 'id')->get();
         $pick_role=Role::select('role', 'id')->get();
-        return view('admin.conscent-form', compact('pick_user','pick_item','pick_role'));
+        $get_county=County::select('county', 'id')->get();
+        $get_subcounty=SubCounty::select('subcounty', 'id')->get();
+        return view('admin.conscent-form', compact('edit_sell_items','pick_doctor','pick_role','get_county','get_subcounty'));
     }
     public function createConscent(Request $request){
         Conscent::create(array(
-            'user_id'=>$request->name,
-            'item_id'=>$request->product_id,
+            'user_id'=>Auth::user()->id,
+            'doctor_id'=>$request->names,
+            'county_id'=>$request->county,
+            'subcounty_id'=>$request->subcounty,
             'role_id'=>$request->role,
             'declaration'=>$request->declaration
         ));

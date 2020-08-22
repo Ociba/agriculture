@@ -56,12 +56,17 @@
             </div>
             <div class="box-body">
             <div class="text-justify">
-              <p>Dear Customer,<span class="pull-right"></span></p>
-              <p>{{$conscent->created_at}}</p>
+              <p>Dear <b>Customer</b>,<span class="pull-right"></span></p>
+              <p>{{ date('F d, Y', strtotime($conscent->created_at))}}</p>
               <p><b>RE:<u>TO APPROVE AND CONFIRM WHAT IS TO BE SOLD</u></b></p>
               <p>I hereby confirm that the animals/crops were checked by <b>{{$conscent->role}}</b><br>
-              Mr/Ms/Mrs/sis/Rev <b>{{$conscent->name}}</b> his/her Contact(s) is <b>{{$conscent->contact}}</b></p>
+              Mr/Ms/Mrs/sis/Rev <b>{{$conscent->names}}</b> his/her Contact(s) is <b>{{$conscent->phone_number_1}} or {{$conscent->phone_number_2}}</b></p>
               <p>Therefore {{$conscent->declaration}}</p>
+              
+              <b>{{$conscent->county}}</br>
+              <b>{{$conscent->subcounty}} subcounty</b><br>
+              <b>{{$conscent->contact}}</br>
+              <b>{{$conscent->name}}</br>
               <p>Thank You</p>
               </div>
             </div>

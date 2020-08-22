@@ -51,6 +51,8 @@
                                                     <th>Contact</th>
                                                     <th>Amount</th>
                                                     <th>Date</th>
+                                                    <th>Time</th>
+                                                    <th>Status</th>
                                                     @if(in_array('Can see payment action', auth()->user()->getUserPermisions()))
                                                     <th>Action</th>
                                                     @endif
@@ -62,7 +64,10 @@
                                                     <td>{{ $payments->name }}</td>
                                                     <td>{{ $payments->contact }}</td>
                                                     <td>{{ $payments->amount }}</td>
-                                                    <td>{{ $payments->created_at }}</td>
+                                                    {{--<td>{{ $payments->created_at }}</td>--}}
+                                                    <td>{{ date('F d, Y', strtotime($payments->created_at))}}</td>
+                                                    <td> {{Carbon\Carbon::parse($payments->created_at)->diffForHumans()}}</td>
+                                                    <td>{{ $payments->status }}</td>
                                                     <td>
                                                         @if(in_array('Can delete payment', auth()->user()->getUserPermisions()))
                                                         <a href="/delet-payment/{{ $payments->id }}" data-widget="deny" data-toggle="tooltip" title="delete">

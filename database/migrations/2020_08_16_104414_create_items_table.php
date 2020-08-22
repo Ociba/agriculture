@@ -20,8 +20,6 @@ class CreateItemsTable extends Migration
             $table->unsignedBigInteger('breed_id');
             $table->unsignedBigInteger('weight_id');
             $table->unsignedBigInteger('district_id');
-            $table->unsignedBigInteger('county_id');
-            $table->unsignedBigInteger('village_id');
             $table->unsignedBigInteger('category_id');
             $table->string('price');
             $table->string('number');

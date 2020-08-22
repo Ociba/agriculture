@@ -89,8 +89,6 @@ class User extends Authenticatable
         ->join('breeds','items.breed_id','breeds.id')
         ->join('weights','items.weight_id','weights.id')
         ->join('districts','items.district_id','districts.id')
-        ->join('counties','items.county_id','counties.id')
-        ->join('villages','items.village_id','villages.id')
         ->join('categories','items.category_id','categories.id')
         ->where('items.status','available')
         ->count();
@@ -218,7 +216,8 @@ class User extends Authenticatable
             }
         }
         for($i=0; $i<count($items_id); $i++){
-            $product_name = Product::where('id',$items_id[$i])->value('product');
+            $product_name = price::join('products','prices.product_id','products.id')
+            ->where('product_id',$items_id[$i])->value('product');
             if(in_array($product_name, $item_names)){
                 continue;
             }else{

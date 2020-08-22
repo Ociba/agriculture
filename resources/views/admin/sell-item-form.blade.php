@@ -85,28 +85,6 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">County</label>
-                    <div class="col-sm-10">
-                    <input type="text" name="county" list="counties" class="form-control" autocomplete="off">
-                    <datalist id="counties" style="width: 100%;">
-                        @foreach($pick_county as $pick_from_county_table)
-                        <option selected="selected" value="{{$pick_from_county_table->county}}"></option>
-                        @endforeach
-                    </datalist>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Village</label>
-                    <div class="col-sm-10">
-                    <input type="text" name="village" list="villages" class="form-control" autocomplete="off">
-                    <datalist id="villages" style="width: 100%;">
-                        @foreach($pick_village as $pick_from_village_table)
-                        <option selected="selected" value="{{$pick_from_village_table->village}}"></option>
-                        @endforeach
-                    </datalist>
-                    </div>
-                  </div>
-                  <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Category</label>
                     <div class="col-sm-10">
                     <input type="text" name="category" list="categories" class="form-control" autocomplete="off">

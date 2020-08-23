@@ -359,6 +359,7 @@ class ItemController extends Controller
     public function createConscent(Request $request){
         Conscent::create(array(
             'user_id'=>Auth::user()->id,
+            'item_id'=>$request->item_id,
             'doctor_id'=>$request->names,
             'county_id'=>$request->county,
             'subcounty_id'=>$request->subcounty,

@@ -75,7 +75,7 @@
                                                     <td>{{ $items->weight }}</td>
                                                     <td>{{ $items->district }}</td>
                                                     <td>{{ $items->category }}</td>
-                                                    <td>{{ number_format($items->price) }}</td>
+                                                    <td>{{ $items->price }}</td>
                                                     <td>{{ $items->number }}</td>
                                                     <td>
                                                         @if(auth()->user()->id == $items->user_id)

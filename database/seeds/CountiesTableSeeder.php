@@ -30,7 +30,13 @@ class CountiesTableSeeder extends Seeder
                         'Fort Portal Municipality','Bukonjo','Busongora','Bugangaizi','Buyaga','Buyanja','Bufumbira','Bujenje',
                         'Buruuli','Kibanda','Kashari','Mbarara Municipality','Rwampara','Kajara','Ruhaama','Rushenyi','Rubabo',
                         'Rujumbura','Kibale','Kitagwenda','Kinkiizi','Kyaka','Mwenge','Bukanga','Isingiro','Kazo','Nyabushozi',
-                        'oditel','bombo','Kampala'
+                        'oditel','bombo','Kampala','Kapir','Batiru','Kioga North','Napore West','Bakora East','Nwoya East',
+                        'Namayingo South','Elgon North','Samia Bugwe South','Mawogola West','Otuke East','Ruhama East',
+                        'Isingiro West','Too','Ochero','Soi','Namisindwa','Gweri','Pingire','Bunghoko Central','Aringa East',
+                        'Kyaka Central','Ruhinda South','Bushigai','Gogonyo','Busiki North','Maruzi North','Rwapara South',
+                        'Buhanguzi','West Budama North East','Dodoth','Buhweju West','Buwekula South','Kiboga West','Lamwo East',
+                        'Bugangaizi South','Chekwi East','Kwania North','Buyanja East','Kagoma North','Ngariam','Agago West',
+                        'Bukanga North','Bukimbiri','Nakaseke Central','West Budama Central','Kyigai'
                     ];
         for($i=0; $i < count($county); $i++){
             $counties = new County();

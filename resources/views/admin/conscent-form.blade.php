@@ -68,7 +68,7 @@
                   <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Item</label>
                     <div class="col-sm-10">
-                    <input type="text" name="item_id" value="{{$make_conscent}}" class="form-control" autocomplete="off">
+                    <input type="text" name="item_id" value="{{$make_conscent->id}}" class="form-control" autocomplete="off" readonly>
                     </div>
                   </div>
                   <div class="form-group row">

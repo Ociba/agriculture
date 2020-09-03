@@ -27,15 +27,18 @@
                 @include('layouts.errormessage')
                 @include('layouts.message')
                 <section class="content" id="file-export">
-                    <div class="row">
+                    <div class="row m-2">
                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-
                                     <h4 class="card-title pull-right">
                                     <a href="/make-payment" button type="button" class="btn btn-warning">Make payment</button></a>
                                         <a href="/display-sell-item-form" button type="button" class="btn btn-primary">Add Item Details</button></a>
                                     </h4>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline mb-0">
@@ -55,7 +58,6 @@
                                                     <th>Image</th>
                                                     <th>Name</th>
                                                     <th>Breed</th>
-                                                    <th>Weight</th>
                                                     <th>Ditrict</th>
                                                     <th>Category</th>
                                                     <th>Price(Shs)</th>
@@ -66,13 +68,12 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($display_all_items_to_sell as $index =>$items)
+                                                @foreach ($display_all_items_to_sell as $items)
                                                 <tr>
                                                     <td>{{ $items->product }}</td>
                                                     <td><img src="{{asset('items/images/'.$items->item_image)}}" class="thumbnail responsive" height="30" width="60" alt=""></td>
                                                     <td>{{ $items->name }}</td>
                                                     <td>{{ $items->breed }}</td>
-                                                    <td>{{ $items->weight }}</td>
                                                     <td>{{ $items->district }}</td>
                                                     <td>{{ $items->category }}</td>
                                                     <td>{{ $items->price }}</td>
@@ -80,14 +81,14 @@
                                                     <td>
                                                         @if(auth()->user()->id == $items->user_id)
                                                         <a href="/edit-sell-item-form/{{ $items->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                        <span style="color:blue;"><i class="fa fa-edit"></i></span></a>
+                                                        <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
                                                         <a href="/delete-item/{{ $items->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                        <span style="color:red;"><i class="fa fa-trash"></i></span></a><br>
+                                                        <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a><br>
                                                         <a href="/view-conscent-form/{{ $items->id }}" data-widget="view conscent" data-toggle="tooltip" title="write conscent">
-                                                        <span style="color:orange;"><i class="fa fa-plus-circle"></i></span></a>
+                                                        <span class="btn btn-warning btn-xs"><i class="fa fa-plus-circle"></i></span></a>
                                                         @endif
                                                         <a href="/view-conscent/{{ $items->id }}" data-widget="view conscent" data-toggle="tooltip" title="view conscent and Doctors Report">
-                                                        <span style="color:green;"><i class="fa fa-eye"></i></span></a>
+                                                        <span class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></span></a>
                                                     </td>
                                                 </tr>
                                                 @endforeach

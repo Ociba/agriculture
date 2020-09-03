@@ -104,11 +104,11 @@
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <div class="massage-title">
-                                                    <h3 class="title">Register Now</h3>
+                                                    <h3 class="title font-weight-bold">Register Now</h3>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div class="input-box mt-20">
+                                                <div class="input-box mt-20 font-weight-bold">
                                                     <input type="text" name="name" placeholder="Full names">
                                                 </div>
                                             </div>
@@ -151,14 +151,14 @@
                                             </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                                                <div class="input-box mt-20">
+                                                <div class="input-box mt-20 font-weight-bold">
                                                     <button type="submit" class="main-btn">
                                                         {{ __('Register Now') }}
                                                     </button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center font-weight-bold">
                                         <a class="u-text-mute u-text-small" href="{{ route('login') }}">Have an account Already? Get Started</a>
                                         </div>
                                     </form>

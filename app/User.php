@@ -128,7 +128,9 @@ class User extends Authenticatable
     public function getNumberOfVetenaryDoctors(){
         $count_all_vetenary_doctors = Doctors::join('users','doctors.user_id','users.id')
         ->join('districts','doctors.district_id','districts.id')
-            ->where('doctors.status','active')->count();
+        ->join('roles','doctors.role_id','roles.id')
+        ->where('doctors.role_id', 5)
+         ->where('doctors.status','active')->count();
         return $count_all_vetenary_doctors;
     }
     public function getNumberOfFisheriesOfficers(){
@@ -137,8 +139,11 @@ class User extends Authenticatable
         return $count_all_fisheries_officers;
     }
     public function getNumberOfAgricultureOfficers(){
-        $count_all_agriculture_officers = User::join('roles','users.role_id','roles.id')
-            ->where('users.role_id',6)->count();
+        $count_all_agriculture_officers = Doctors::join('roles','doctors.role_id','roles.id')
+        ->join('districts','doctors.district_id','districts.id')
+        ->join('users','doctors.user_id','users.id')
+        ->where('doctors.role_id',6)
+        ->where('doctors.status','active')->count();
         return $count_all_agriculture_officers;
     }
     public function getNumberOfForestryOfficers(){

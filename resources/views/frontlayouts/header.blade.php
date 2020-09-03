@@ -141,9 +141,9 @@
                                         <li class="nav-item">
                                             <a class="page-scroll" href="/services">Services</a>
                                         </li>
-                                        {{--
                                         <li class="nav-item">
-                                            <a class="page-scroll" href="#">Shop +</a>
+                                            <a class="page-scroll" href="/sell-and-buy">Sell & Buy</a>
+                                        {{--
                                             <ul class="sub-menu">
                                                 <li><a href="shop.html">Shop 1</a></li>
                                                 <li><a href="shop-2.html">Shop 2</a></li>
@@ -151,8 +151,9 @@
                                                 <li><a href="checkout.html">Check Out</a></li>
                                                 <li><a href="shopping-cart.html">Shopping Cart</a></li>
                                             </ul> 
-                                        </li>
                                         --}}
+                                        </li>
+                                        
                                         <li class="nav-item">
                                             <a class="page-scroll" href="/blog">Blog</a>
                                         </li>

@@ -30,7 +30,6 @@
         <div class="row">
         @include('layouts.successfulmessage')
             <div class="col-12">
-        <div class="card">
         <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">Report Market Prices</h3>
@@ -111,8 +110,6 @@
               </form>
             </div>
         </div>
-            <!-- /.card -->
-            </div>
             </div>
     </section>
     <!-- /.content -->

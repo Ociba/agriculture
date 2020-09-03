@@ -42,7 +42,7 @@
                                                 <div class="form-check mt-20">
                                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                                    <label class="form-check-label" for="remember">
+                                                    <label class="form-check-label font-weight-bold" for="remember">
                                                         {{ __('Remember Me') }}
                                                     </label>
                                                 </div>
@@ -50,7 +50,7 @@
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                             <div class="mt-20">
                                             @if (Route::has('password.request'))
-                                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                <a class="btn btn-link font-weight-bold" href="{{ route('password.request') }}">
                                                     {{ __('Forgot Your Password?') }}
                                                 </a>
                                             @endif

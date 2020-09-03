@@ -77,7 +77,7 @@
                     <input type="text" name="county" list="counties" class="form-control" autocomplete="off">
                     <datalist id="counties" style="width: 100%;">
                         @foreach($get_county as $pick_from_county_table)
-                        <option selected="selected" value="{{$pick_from_county_table->id}}">{{$pick_from_county_table->county}}</option>
+                        <option selected="selected" value="{{$pick_from_county_table->county}}"></option>
                         @endforeach
                     </datalist>
                     </div>
@@ -88,7 +88,7 @@
                     <input type="text" name="subcounty" list="subcounties" class="form-control" autocomplete="off">
                     <datalist id="subcounties" style="width: 100%;">
                         @foreach($get_subcounty as $pick_from_subcounty_table)
-                        <option selected="selected" value="{{$pick_from_subcounty_table->id}}">{{$pick_from_subcounty_table->subcounty}}</option>
+                        <option selected="selected" value="{{$pick_from_subcounty_table->subcounty}}"></option>
                         @endforeach
                     </datalist>
                     </div>

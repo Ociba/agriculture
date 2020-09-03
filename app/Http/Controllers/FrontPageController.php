@@ -61,17 +61,27 @@ class FrontPageController extends Controller
         $display_members_count =User::join('roles','users.role_id','roles.id')
         ->where('users.role_id',4)
         ->count();
-        $display_doctors_count =Doctors::join('users','doctors.user_id','users.id')
+        // $display_doctors_count =Doctors::join('users','doctors.user_id','users.id')
+        // ->join('districts','doctors.district_id','districts.id')
+        // ->where('doctors.status','active')
+        // ->count();
+        $display_doctors_count = Doctors::join('users','doctors.user_id','users.id')
         ->join('districts','doctors.district_id','districts.id')
-        ->where('doctors.status','active')
-        ->count();
+        ->join('roles','doctors.role_id','roles.id')
+        ->where('doctors.role_id', 5)
+         ->where('doctors.status','active')->count();
         $display_farms_count =Farm::join('users','farms.user_id','users.id')
         ->where('farms.status','active')
         ->count();
+        $count_all_agriculture_officers = Doctors::join('roles','doctors.role_id','roles.id')
+        ->join('districts','doctors.district_id','districts.id')
+        ->join('users','doctors.user_id','users.id')
+        ->where('doctors.role_id',6)
+        ->where('doctors.status','active')->count();
         $display_products_count =Product::join('users','products.user_id','users.id')
         ->where('products.status','active')
         ->count();
        return view('welcome', compact('show_feature','display_feedback','show_gallery','show_sponsors','display_members_count',
-                    'display_doctors_count','display_farms_count','display_products_count'));
+                    'display_doctors_count','display_farms_count','display_products_count','count_all_agriculture_officers'));
     }
 }

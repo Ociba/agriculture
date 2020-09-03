@@ -1,7 +1,4 @@
 <section class="features-area pt-130 pb-130">
-        <div class="features-dot">
-            <img src="{{asset('assets/images/features-dot.png')}}" alt="">
-        </div>
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
@@ -68,30 +65,37 @@
             </div>
             <div class="features-counter-area">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-2 col-md-6 col-sm-6">
                         <div class="features-counter mt-30 text-center text-sm-left">
                             <span>Member</span>
                             <h3 class="title counter">{{$display_members_count}}</h3>
                             <i class="far fa-users"></i>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-2 col-md-6 col-sm-6">
                         <div class="features-counter item-2 mt-30 text-center text-sm-left">
                             <span>Our Farms</span>
                             <h3 class="title counter">{{$display_farms_count}}</h3>
                             <i class="far fa-leaf"></i>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-2 col-md-6 col-sm-6">
                         <div class="features-counter item-3 mt-30 text-center text-sm-left">
-                            <span>Registered Doctors</span>
+                            <span>Doctors</span>
                             <h3 class="title counter">{{$display_doctors_count}}</h3>
                             <i class="far fa-trophy-alt"></i>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-2 col-md-6 col-sm-6">
+                        <div class="features-counter item-3 mt-30 text-center text-sm-left">
+                            <span>Agric</span>
+                            <h3 class="title counter">{{$count_all_agriculture_officers}}</h3>
+                            <i class="far fa-trophy-alt"></i>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-6">
                         <div class="features-counter item-4 mt-30 text-center text-sm-left">
-                            <span>Available Products</span>
+                            <span>Products</span>
                             <h3 class="title counter">{{$display_products_count}}</h3>
                             <i class="far fa-coffee"></i>
                         </div>

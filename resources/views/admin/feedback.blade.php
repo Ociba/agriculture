@@ -24,7 +24,7 @@
                 <!-- Breadcrumbs -->
                 @include('layouts.breadcrumb')
                 <section  id="file-export">
-                    <div class="row">
+                    <div class="row m-2">
                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                             <div class="card">
                                 <div class="card-header">
@@ -64,11 +64,11 @@
                                                   <td>
                                                   @if(in_array('Can edit feedback', auth()->user()->getUserPermisions()))
                                                   <a href="/display-approve-feedback/{{ $feedback->id }}" data-widget="edit" data-toggle="tooltip" title="approve">
-                                                  <span style="color:green;"><i class="fa fa-check-circle-o"></i></span></a>
+                                                  <span class="btn btn-success btn-xs"><i class="fa fa-check-circle-o"></i></span></a>
                                                   @endif
                                                   @if(in_array('Can delete feedback', auth()->user()->getUserPermisions()))
                                                   <a href="/delete-feedback/{{ $feedback->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                  <span style="color:red;"><i class="fa fa-trash"></i></span></a>
+                                                  <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
                                                       
                                                   </td>
                                                   @endif

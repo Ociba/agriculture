@@ -28,7 +28,7 @@
     @include('layouts.breadcrumb')
     <section class="invoice mr-3 m-2">
       <!-- title row -->
-      <div class="row">
+      <div class="row m-2">
         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
             @foreach($display_permits as $permit)
           <h2 class="page-header">
@@ -39,7 +39,7 @@
         <!-- /.col -->
       </div>
       <!-- info row -->
-      <div class="row invoice-info">
+      <div class="row invoice-info m-2">
         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4 invoice-col">
          <b> From</b>
           <address>
@@ -72,7 +72,7 @@
       <!-- /.row -->
 
       <!-- Table row -->
-      <div class="row">
+      <div class="row m-2">
         <div class="card-body table-responsive col-lg-12 col-md-12 col-xs-12 col-sm-12">
           <table class="table table-striped">
             <thead>
@@ -100,7 +100,7 @@
       </div>
       <!-- /.row -->
 
-      <div class="row">
+      <div class="row m-2">
         <!-- accepted payments column -->
         <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
           <p class="lead"><strong>Local Council:</strong></p>
@@ -122,7 +122,7 @@
       <!-- /.row -->
 
       <!-- this row will not appear when printing -->
-      <div class="row no-print">
+      <div class="row no-print m-2">
         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-122">
         @if(in_array('Can see print Permit', auth()->user()->getUserPermisions()))
           <a href="/invoice-print" button class="btn btn-success"><i class="fa fa-print"></i> Print</button></a>

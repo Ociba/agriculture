@@ -31,7 +31,7 @@
             <!-- /.card-header -->
             <div class="card-body table-responsive no-padding">
             <section class="content">
-            <div class="row">
+            <div class="row m-2">
         <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
           <a href="/display-documentation" class="btn btn-success btn-block margin-bottom">Documentation</a>
 
@@ -61,7 +61,7 @@
         </div>
         <!-- /.col -->
         <div class=" card col-lg-9 col-md-9 col-xs-9 col-sm-9 table-responsive no-padding">
-        <div class="row">
+        <div class="row m-2">
         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
           <div class="box box-primary">
             <div class="box-header">

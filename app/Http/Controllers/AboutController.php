@@ -23,16 +23,23 @@ class AboutController extends Controller
         ->where('users.role_id',4)
         ->count();
         $display_doctors_count =Doctors::join('users','doctors.user_id','users.id')
+        ->join('roles','doctors.role_id','roles.id')
         ->join('districts','doctors.district_id','districts.id')
+        ->where('doctors.role_id',5)
         ->where('doctors.status','active')
         ->count();
         $display_farms_count =Farm::join('users','farms.user_id','users.id')
         ->where('farms.status','active')
         ->count();
+        $count_all_agriculture_officers = Doctors::join('roles','doctors.role_id','roles.id')
+        ->join('districts','doctors.district_id','districts.id')
+        ->join('users','doctors.user_id','users.id')
+        ->where('doctors.role_id',6)
+        ->where('doctors.status','active')->count();
         $display_products_count =Product::join('users','products.user_id','users.id')
         ->where('products.status','active')
         ->count();
         return view('front.about-us',compact('show_farmer_detail','display_feedback','display_members_count',
-                     'display_doctors_count','display_farms_count','display_products_count'));
+                     'display_doctors_count','display_farms_count','display_products_count','count_all_agriculture_officers'));
     }
 }

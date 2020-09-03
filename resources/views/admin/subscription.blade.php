@@ -24,7 +24,7 @@
                 <!-- Breadcrumbs -->
                 @include('layouts.breadcrumb')
                 <section  id="file-export">
-                    <div class="row">
+                    <div class="row m-2">
                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                             <div class="card">
                                 <div class="card-header">
@@ -56,7 +56,7 @@
                                                   <td>
                                                   @if(in_array('Can delete subscription', auth()->user()->getUserPermisions()))
                                                   <a href="/delete-subscription/{{ $subscription->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                  <span style="color:red;"><i class="fa fa-trash"></i></span></a>
+                                                  <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
                                                       
                                                   </td>
                                                   @endif

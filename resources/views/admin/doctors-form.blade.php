@@ -30,7 +30,6 @@
         <div class="row">
         @include('layouts.message')
             <div class="col-12">
-        <div class="card">
         <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">Doctors Form</h3>
@@ -47,6 +46,17 @@
                     <datalist id="districts" style="width: 100%;">
                         @foreach($get_district as $pick_from_district_table)
                         <option selected="selected" value="{{$pick_from_district_table->district}}"></option>
+                        @endforeach
+                    </datalist>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Role</label>
+                    <div class="col-sm-10">
+                    <input type="text" name="role" list="roles" class="form-control" autocomplete="off">
+                    <datalist id="roles" style="width: 100%;">
+                        @foreach($get_role as $get_roles)
+                        <option selected="selected" value="{{$get_roles->role}}"></option>
                         @endforeach
                     </datalist>
                     </div>
@@ -78,8 +88,7 @@
               </form>
             </div>
         </div>
-            <!-- /.card -->
-            </div>
+            <!-
             </div>
     </section>
     <!-- /.content -->

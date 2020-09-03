@@ -35,8 +35,8 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            @if(in_array('Can view profile', auth()->user()->getUserPermisions()))
             <ul class="nav nav-treeview">
+            @if(in_array('Can view profile', auth()->user()->getUserPermisions()))
               <li class="nav-item" @if(\Request::route()->getName() == "Registered Members")class="active" @endif>
                 <a href="/display-profile" class="nav-link">
                   <i class="fa fa-user-circle-o nav-icon"></i>
@@ -82,8 +82,8 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            @if(in_array('Can view products', auth()->user()->getUserPermisions()))
             <ul class="nav nav-treeview">
+            @if(in_array('Can view products', auth()->user()->getUserPermisions()))
             <li class="nav-item" @if(\Request::route()->getName() == "All Products")class="active" @endif>
                 <a href="/display-product" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -127,13 +127,33 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            @if(in_array('Can view market items', auth()->user()->getUserPermisions()))
             <ul class="nav nav-treeview">
+            @if(in_array('Can view market items', auth()->user()->getUserPermisions()))
             <li class="nav-item" @if(\Request::route()->getName() == "View All Savings")class="active" @endif>
             <a href="/display-items-on-sell" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>
                 Market Items 
+              </p>
+            </a>
+            </li>
+            @endif
+            @if(in_array('Can view buyers items on sell', auth()->user()->getUserPermisions()))
+            <li class="nav-item" @if(\Request::route()->getName() == "Buyers Items On Sell")class="active" @endif>
+            <a href="/display-buyers-items-on-sell" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+                Buyers View Items 
+              </p>
+            </a>
+            </li>
+            @endif
+            @if(in_array('Can view buyers message', auth()->user()->getUserPermisions()))
+            <li class="nav-item" @if(\Request::route()->getName() == "Buyers Message")class="active" @endif>
+            <a href="/get-buyers-message" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+                Buyers Messages 
               </p>
             </a>
             </li>
@@ -190,8 +210,8 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            @if(in_array('Can view signs and symptoms', auth()->user()->getUserPermisions()))
             <ul class="nav nav-treeview">
+            @if(in_array('Can view signs and symptoms', auth()->user()->getUserPermisions()))
             <li class="nav-item" @if(\Request::route()->getName() == "Pests")class="active" @endif>
                 <a href="/show-signs" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -203,7 +223,7 @@
             <li class="nav-item" @if(\Request::route()->getName() == "Pests")class="active" @endif>
                 <a href="/show-veterinary-doctors" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Veterinary Doctors</p>
+                  <p>Officers</p>
                 </a>
               </li>
               @endif
@@ -251,8 +271,8 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            @if(in_array('Can view months', auth()->user()->getUserPermisions()))
             <ul class="nav nav-treeview">
+            @if(in_array('Can view months', auth()->user()->getUserPermisions()))
               <li class="nav-item" @if(\Request::route()->getName() == "Accepted Benefits")class="active" @endif>
                 <a href="/display-months" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -288,8 +308,8 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            @if(in_array('Can view districts', auth()->user()->getUserPermisions()))
             <ul class="nav nav-treeview">
+            @if(in_array('Can view districts', auth()->user()->getUserPermisions()))
               <li class="nav-item" @if(\Request::route()->getName() == "Accepted Benefits")class="active" @endif>
                 <a href="/display-districts" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -336,8 +356,8 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            @if(in_array('Can view emrgency report', auth()->user()->getUserPermisions()))
             <ul class="nav nav-treeview">
+            @if(in_array('Can view emrgency report', auth()->user()->getUserPermisions()))
               <li class="nav-item" @if(\Request::route()->getName() == "Emergency Reports")class="active" @endif>
                 <a href="/display-emergency-reports" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -386,8 +406,8 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            @if(in_array('Can view blog details', auth()->user()->getUserPermisions()))
             <ul class="nav nav-treeview">
+            @if(in_array('Can view blog details', auth()->user()->getUserPermisions()))
             <li class="nav-item" @if(\Request::route()->getName() == "Blog Details")class="active" @endif>
             <a href="/display-blog-detail" class="nav-link">
               <i class="far fa-circle nav-icon"></i>

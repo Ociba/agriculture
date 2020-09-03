@@ -3,18 +3,19 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="sponsor-box">
-                        <span>Best Sponsor</span>
-                        <h3 class="title">Our World Wide Partnership</h3>
+                        <span>Other services</span>
+                        <h3 class="title">We also Offer IT Services like</h3>
                         <ul class="d-flex justify-content-between">
-                            <li><img src="{{asset('assets/images/brand-1.png')}}" alt="brand"></li>
-                            <li><img src="{{asset('assets/images/brand-2.png')}}" alt="brand"></li>
-                            <li><img src="{{asset('assets/images/brand-3.png')}}" alt="brand"></li>
+                            <li>Websites Development</li>
+                            <li>Web Application Systems</li>
+                            <li>Mobile Applications</li>
                         </ul>
                         <ul class="d-flex justify-content-between">
-                            <li><img src="{{asset('assets/images/brand-4.png')}}" alt="brand"></li>
-                            <li><img src="{{asset('assets/images/brand-5.png')}}" alt="brand"></li>
-                            <li><img src="{{asset('assets/images/brand-6.png')}}" alt="brand"></li>
-                        </ul>
+                            <li>Logo Creation</li>
+                            <li>Softwares Installation</li>
+                            <li>Others</li>
+                        </ul><br>
+                        <p>Contact us on 0775401793 | ocibajames@gmail.com</p>
                     </div>
                 </div>
                 <div class="col-lg-6">

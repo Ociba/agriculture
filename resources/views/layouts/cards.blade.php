@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row m-0">
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box">
               <span class="info-box-icon"><i class="fa fa-sitemap"></i></span>

@@ -20,14 +20,14 @@
                 <!-- Content Header (Page header) -->
                 @include('layouts.breadcrumb')
                 <section class="content">
-                    <div class="row">
+                    <div class="row m-2">
                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                         <div class="card">
-                            <div class="row">
+                            <div class="row m-2">
                                {{-- @include('layouts.errorsmgs')--}}
                             </div>
                         <section class="content">
-                            <div class="row">
+                            <div class="row m-2">
                             <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
         <div class="box">
         <div class="box-header with-border">
@@ -79,7 +79,7 @@
         @endforeach
         </tbody>
         </table>
-        <div class="row">
+        <div class="row m-2">
         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
         <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
         @if(isset($search_query))
@@ -91,7 +91,7 @@
         </div>
         </div>
         </div>
-        <div class="row">
+        <div class="row m-2">
         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4 pull-right">
         <a href="/checkbox_permissions/{{request()->route()->id}}" button type="text" name="permission" class="form-control  btn btn-primary">
         <li class="fa fa-plus"> Permissions</li>

@@ -43,7 +43,7 @@
       </div><!--/. container-fluid -->
     </section>
     <section class="content">
-      <div class="row">
+      <div class="row m-2">
         <div class="col-12">
     <div class="card">
         <!-- /.card-header -->

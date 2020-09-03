@@ -47,7 +47,6 @@
         @include('layouts.successfulmessage')
             <div class="col-12">
         <div class="card">
-        <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">Change Password</h3>
               </div>
@@ -85,7 +84,6 @@
             </div>
         </div>
             <!-- /.card -->
-            </div>
             </div>
     </section>
     <!-- /.content -->

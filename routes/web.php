@@ -156,6 +156,12 @@ Route::get('/delete-doctors-req/{id}','ItemController@deleteDoctorsRequest');
 Route::get('/view-conscent/{id}','ItemController@displayConscent')->name('Conscent Paper');
 Route::get('/view-conscent-form/{id}','ItemController@displayConscentForm')->name('Conscent Form');
 Route::post('/save-conscent','ItemController@createConscent');
+//Buyers Items View
+Route::get('/display-buyers-items-on-sell','BoughtController@displayBoughtItems')->name('Buyers Items On Sell');
+Route::get('/send-message/{id}','BoughtController@sendMessageToSellerForm')->name('Send Message To Seller');
+Route::get('/send-message-to-seller','BoughtController@validateMessageSentToSeller');
+Route::get('/get-buyers-message','BoughtController@getBuyersMessage')->name('Buyers Message');
+Route::get('/delete-buyers-message/{id}','BoughtController@deleteMessage');
 //Months
 Route::get('/show-add-month-form','MonthController@addMonthForm')->name('Add Month Form');
 Route::get('/edit-month-form/{id}','MonthController@editMonthForm')->name('Edit Month Form');
@@ -410,6 +416,11 @@ Route::get('/edit-farm/{id}','FarmController@editFarm')->name('Edit Farm Form');
 Route::get('/update-farm/{id}','FarmController@updateFarm');
 Route::get('/delete-farm/{id}','FarmController@deleteFarm');
 
+//Sell and Buy
+Route::get('/sell-and-buy','BoughtController@getSellBuyItem');
+Route::get('/buyers-registration','BoughtController@registerBuyerForm');
+Route::get('/buyer-view-item-details/{id}','BoughtController@viewItemDetails');
+Route::get('/register-buyer','BoughtController@validateBuyerRegistration');
 
 //Route::get('/front','HomeController@showFeature');
 Auth::routes();

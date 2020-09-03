@@ -25,13 +25,17 @@
                 <!-- Breadcrumbs -->
                 @include('layouts.breadcrumb')
                 <section class="content" id="file-export">
-                    <div class="row">
+                    <div class="row m-2">
                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title pull-right">
                                         <a href="/make-payment" button type="button" class="btn btn-primary">Make payment</button></a>
                                     </h4>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline mb-0">
@@ -71,7 +75,7 @@
                                                     <td>
                                                         @if(in_array('Can delete payment', auth()->user()->getUserPermisions()))
                                                         <a href="/delet-payment/{{ $payments->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                        <span style="color:red;"><i class="fa fa-trash"></i></span></a>
+                                                        <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
                                                     </td>
                                                     @endif 
                                                 </tr>

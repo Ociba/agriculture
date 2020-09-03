@@ -43,6 +43,7 @@ class ItemController extends Controller
     private function checkPayment(){
         $check_payment_status= Payment::join('users','payments.user_id','users.id')
         ->where('payments.user_id',auth()->user()->id)
+        //->where('users.role_id', 10)
         ->where('payments.amount','>=',10000);
         return $check_payment_status;
     }
@@ -338,7 +339,7 @@ class ItemController extends Controller
         ->get();
 
         $noconscent_available = "Sorry, Consent is not available. Please check again later";
-        if($this->checkPayment()->doesntExist()){
+        if($this->checkPayment() && $this->BuyerViewConscent()->doesntExist()){
             return redirect()->back()->with('emessage','Please make payments to continue viewing conscent Details for the item(s)');
         }elseif(Payment::join('users','payments.user_id','users.id')
         ->where('payments.user_id',auth()->user()->id)
@@ -347,6 +348,11 @@ class ItemController extends Controller
         }else{
         return view('admin.conscent-page',compact('display_all_conscent_details', 'noconscent_available'));
         }
+    }
+    private function BuyerViewConscent(){
+        $check_buyer_status= User::where('users.id',auth()->user()->id)
+        ->where('users.role_id', 10);
+        return $check_buyer_status;
     }
     public function displayConscentForm($id){
         $edit_sell_items =Item::where('id',$id)->get();
@@ -357,12 +363,14 @@ class ItemController extends Controller
         return view('admin.conscent-form', compact('edit_sell_items','pick_doctor','pick_role','get_county','get_subcounty'));
     }
     public function createConscent(Request $request){
+        $get_county_id= County::where(\strtolower("county"), strtolower($request->county))->value('id');
+        $get_subcounty_id= Subcounty::where(\strtolower("subcounty"), strtolower($request->subcounty))->value('id');
         Conscent::create(array(
             'user_id'=>Auth::user()->id,
             'item_id'=>$request->item_id,
             'doctor_id'=>$request->names,
-            'county_id'=>$request->county,
-            'subcounty_id'=>$request->subcounty,
+            'county_id'=>$get_county_id,
+            'subcounty_id'=>$get_subcounty_id,
             'role_id'=>$request->role,
             'declaration'=>$request->declaration
         ));

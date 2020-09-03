@@ -24,15 +24,20 @@
                 <!-- Breadcrumbs -->
                 @include('layouts.breadcrumb')
                 <section  id="file-export">
-                    <div class="row">
+                    <div class="row m-2">
                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                           <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title pull-right">
+                                    @if(in_array('Can add recent news', auth()->user()->getUserPermisions()))
+                                    <a href="/display-recent-news-form" button type="button" class="btn btn-primary">Add Recent News</button></a>
+                                    @endif
+                                    </h4>
+                                </div>
+                            </div>
                             <div class="card">
                                 <div class="card-header">
                                 <h4 class="card-title pull-right">
-                                @if(in_array('Can add recent news', auth()->user()->getUserPermisions()))
-                                <a href="/display-recent-news-form" button type="button" class="btn btn-primary">Add Recent News</button></a>
-                                @endif
-                                    </h4>
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline mb-0">
@@ -67,11 +72,11 @@
                                                   <td>
                                                   @if(in_array('Can edit recent news', auth()->user()->getUserPermisions()))
                                                   <a href="/display-edit-recent-news/{{ $recent->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                  <span style="color:green;"><i class="fa fa-edit"></i></span></a>
+                                                  <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
                                                   @endif
                                                   @if(in_array('Can delete recent news', auth()->user()->getUserPermisions()))
                                                   <a href="/delete-recent-news/{{ $recent->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                  <span style="color:red;"><i class="fa fa-trash"></i></span></a>
+                                                  <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
                                                       
                                                   </td>
                                                   @endif

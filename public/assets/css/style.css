@@ -5898,12 +5898,129 @@ Search Overlay CSS
   width: 100%;
   height: 650px;
   margin-bottom: -5px; }
+  /*===========================
+    20. Buyers form css 
+===========================*/
+.contact-massage-area-buyer .contact-massage {
+  background: #eef2fb;
+  position: relative; }
+  .contact-massage-area-buyer .contact-massage::before {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 37%;
+    background-image: url(../images/got.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; }
+    @media (max-width: 767px) {
+      .contact-massage-area-buyer .contact-massage::before {
+        width: 0; } }
+  .contact-massage-area-buyer .contact-massage .contact-massage-item {
+    padding: 71px 30px 80px; }
+    @media only screen and (min-width: 320px) and (max-width: 991px) {
+      .contact-massage-area-buyer .contact-massage .contact-massage-item {
+        margin-left: 0; } }
+    @media (max-width: 767px) {
+      .contact-massage-area-buyer .contact-massage .contact-massage-item {
+        margin-left: 0; } }
+    .contact-massage-area-buyer .contact-massage .contact-massage-item form .input-box {
+      position: relative; }
+      .contact-massage-area-buyer .contact-massage .contact-massage-item form .input-box > i {
+        position: absolute;
+        right: 25px;
+        top: 23px;
+        font-size: 14px;
+        color: #6cbe03; }
+      .contact-massage-area-buyer .contact-massage .contact-massage-item form .input-box input {
+        width: 100%;
+        border: 0;
+        padding-left: 25px;
+        line-height: 60px;
+        font-size: 14px;
+        color: #8a8a8a; }
+        .contact-massage-area-buyer .contact-massage .contact-massage-item form .input-box input::placeholder {
+          opacity: 1; }
+      .contact-massage-area-buyer .contact-massage .contact-massage-item form .input-box textarea {
+        margin-bottom: 20px;
+        width: 100%;
+        border: 0;
+        padding-left: 25px;
+        height: 120px;
+        resize: none;
+        padding-top: 18px;
+        font-size: 14px;
+        color: #8a8a8a; }
+        .contact-massage-area-buyer .contact-massage .contact-massage-item form .input-box textarea::placeholder {
+          opacity: 1; }
+    .contact-massage-area-buyer .contact-massage .contact-massage-item form .input-box.item-1 {
+      margin-right: -5px; }
+      @media only screen and (min-width: 768px) and (max-width: 991px) {
+        .contact-massage-area-buyer .contact-massage .contact-massage-item form .input-box.item-1 {
+          margin-right: 0; } }
+      @media (max-width: 767px) {
+        .contact-massage-area-buyer .contact-massage .contact-massage-item form .input-box.item-1 {
+          margin-right: 0; } }
+    .contact-massage-area-buyer .contact-massage .contact-massage-item form .input-box.item-2 {
+      margin-left: -5px; }
+      @media only screen and (min-width: 768px) and (max-width: 991px) {
+        .contact-massage-area-buyer .contact-massage .contact-massage-item form .input-box.item-2 {
+          margin-left: 0; } }
+      @media (max-width: 767px) {
+        .contact-massage-area-buyer .contact-massage .contact-massage-item form .input-box.item-2 {
+          margin-left: 0; } }
+    .contact-massage-area-buyer .contact-massage .contact-massage-item .massage-title {
+      padding-bottom: 38px; }
+      .contact-massage-area-buyer .contact-massage .contact-massage-item .massage-title .title {
+        font-size: 30px;
+        font-weight: 600;
+        position: relative; }
+        .contact-massage-area-buyer .contact-massage .contact-massage-item .massage-title .title::before {
+          position: absolute;
+          content: '';
+          left: 0;
+          bottom: -18px;
+          height: 2px;
+          width: 10px;
+          background: #; }
+        .contact-massage-area-buyer .contact-massage .contact-massage-item .massage-title .title::after {
+          position: absolute;
+          content: '';
+          left: 18px;
+          bottom: -18px;
+          height: 2px;
+          width: 25px;
+          background: ; }
+
+.contact-info-area .contact-info {
+  background: #02060e;
+  position: relative;
+  margin-bottom: -90px; }
+  .contact-info-area .contact-info .contact-info-item {
+    padding-top: 80px;
+    padding-bottom: 76px; }
+    .contact-info-area .contact-info .contact-info-item i {
+      font-size: 40px;
+      color: #f4a700;
+      padding-bottom: 17px; }
+    .contact-info-area .contact-info .contact-info-item ul li {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 28px;
+      color: #fff; }
+.contact-info-area .map iframe {
+  width: 100%;
+  height: 650px;
+  margin-bottom: -5px; }
 
   /*===========================
     21.Login css 
 ===========================*/
 .login-massage-area .login-massage {
-  background: #79e264;
+  background: #8ed480;
+  font-size: 25px;
   position: relative; }
   .login-massage-area .login-massage::before {
     position: absolute;
@@ -5911,23 +6028,17 @@ Search Overlay CSS
     left: 0;
     top: 0;
     height: 100%;
-    width: 37%;
+    width: 40%;
     background-image: url(../images/arms.PNG);
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;}
-    @media only screen and (min-width: 768px) and (max-width: 991px) {
-      .login-massage-area .login-massage::before {
-        width: 0; } }
-        @media only screen and (min-device-width: 400px) and (max-device-width: 400px) {
-          .login-massage-area .login-massage::before {
-            width: 0; } }
     @media (max-width: 767px) {
       .login-massage-area .login-massage::before {
         width: 0; } }
   .login-massage-area .login-massage .login-massage-item {
     padding: 71px 30px 80px; }
-    @media only screen and (min-width: 768px) and (max-width: 991px) {
+    @media only screen and (min-width: 320px) and (max-width: 991px) {
       .login-massage-area .login-massage .login-massage-item {
         margin-left: 0; } }
     @media (max-width: 767px) {
@@ -5939,7 +6050,7 @@ Search Overlay CSS
         position: absolute;
         right: 25px;
         top: 23px;
-        font-size: 14px;
+        font-size: 20px;
         color: #6cbe03; }
       .login-massage-area .login-massage .login-massage-item form .input-box input {
         width: 100%;
@@ -5947,6 +6058,7 @@ Search Overlay CSS
         padding-left: 25px;
         line-height: 60px;
         font-size: 14px;
+        font-weight: bold;
         color: #8a8a8a; }
         .login-massage-area .login-massage .login-massage-item form .input-box input::placeholder {
           opacity: 1; }
@@ -5959,6 +6071,7 @@ Search Overlay CSS
         resize: none;
         padding-top: 18px;
         font-size: 14px;
+        font-weight: bold;
         color: #8a8a8a; }
         .login-massage-area .login-massage .login-massage-item form .input-box textarea::placeholder {
           opacity: 1; }
@@ -5991,6 +6104,7 @@ Search Overlay CSS
           bottom: -18px;
           height: 2px;
           width: 10px;
+          font-weight: bold;
           background: #6cbe03; }
         .login-massage-area .login-massage .login-massage-item .massage-title .title::after {
           position: absolute;
@@ -5999,6 +6113,8 @@ Search Overlay CSS
           bottom: -18px;
           height: 2px;
           width: 25px;
+          font-weight:bold;
+          font-size: 25px;
           background: #6cbe03; }
 
 .login-info-area .login-info {
@@ -6032,6 +6148,7 @@ Search Overlay CSS
   .register-massage-area  .register-massage::before {
     position: absolute;
     content: '';
+    margin-left: 2px;
     left: 0;
     top: 0;
     height: 100%;
@@ -6040,15 +6157,12 @@ Search Overlay CSS
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat; }
-    @media only screen and (min-width: 768px) and (max-width: 991px) {
-      .register-massage-area .register-massage::before {
-        width: 0; } }
     @media (max-width: 767px) {
       .register-massage-area .register-massage::before {
         width: 0; } }
   .register-massage-area .register-massage .register-massage-item {
     padding: 71px 30px 80px; }
-    @media only screen and (min-width: 768px) and (max-width: 991px) {
+    @media only screen and (min-width: 320px) and (max-width: 991px) {
       .register-massage-area .register-massage .register-massage-item {
         margin-left: 0; } }
     @media (max-width: 767px) {
@@ -6061,7 +6175,7 @@ Search Overlay CSS
         right: 25px;
         top: 23px;
         font-size: 14px;
-        color: #6cbe03; }
+        color: #9cd157; }
       .register-massage-area .register-massage .register-massage-item form .input-box input {
         width: 100%;
         border: 0;
@@ -6112,7 +6226,7 @@ Search Overlay CSS
           bottom: -18px;
           height: 2px;
           width: 10px;
-          background: #6cbe03; }
+          background: #70973c; }
         .register-massage-area .register-massage .register-massage-item .massage-title .title::after {
           position: absolute;
           content: '';
@@ -6120,7 +6234,7 @@ Search Overlay CSS
           bottom: -18px;
           height: 2px;
           width: 25px;
-          background: #6cbe03; }
+          background: #70973c; }
 
 .register-info-area .register-info {
   background: #02060e;

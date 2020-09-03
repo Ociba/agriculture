@@ -24,15 +24,19 @@
                 <!-- Breadcrumbs -->
                 @include('layouts.breadcrumb')
                 <section  id="file-export">
-                    <div class="row">
+                    <div class="row m-2">
                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title pull-right">
                                         @if(in_array('Can add doctor', auth()->user()->getUserPermisions()))
-                                        <a href="/display-veterinary-form" button type="button" class="btn btn-primary">Add doctor</button></a>
+                                        <a href="/display-veterinary-form" button type="button" class="btn btn-primary">Add Officer</button></a>
                                         @endif
                                     </h4>
+                                 </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline mb-0">
@@ -50,8 +54,9 @@
                                                 <tr>
                                                     <th>District</th>
                                                     <th>Name</th>
-                                                    <th>Phone Number 1</th>
-                                                    <th>Phone Number 2</th>
+                                                    <th>Role</th>
+                                                    <th>Contact 1</th>
+                                                    <th>Contact 2</th>
                                                     @if(in_array('Can see doctor created by', auth()->user()->getUserPermisions()))
                                                     <th>Created By</th>
                                                     @endif
@@ -65,6 +70,7 @@
                                                 <tr>
                                                     <td>{{ $doctor->district }}</td>
                                                     <td>{{ $doctor->names }}</td>
+                                                    <td>{{ $doctor->role }}</td>
                                                     <td>{{ $doctor->phone_number_1 }}</td>
                                                     <td>{{ $doctor->phone_number_2 }}</td>
                                                     @if(in_array('Can see doctor createdby name', auth()->user()->getUserPermisions()))
@@ -73,11 +79,11 @@
                                                     @if(in_array('Can edit doctor', auth()->user()->getUserPermisions()))
                                                     <td>
                                                         <a href="/display-edit-veterinary-doctor/{{ $doctor->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                        <span style="color:blue;"><i class="fa fa-edit"></i></span></a>
+                                                        <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
                                                         @endif
                                                         @if(in_array('Can delete doctor', auth()->user()->getUserPermisions()))
                                                         <a href="/delete-veterinary-doctor/{{ $doctor->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                        <span style="color:red;"><i class="fa fa-trash"></i></span></a>
+                                                        <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
                                                     </td>
                                                     @endif
                                                 </tr>

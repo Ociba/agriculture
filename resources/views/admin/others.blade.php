@@ -24,15 +24,19 @@
                 <!-- Breadcrumbs -->
                 @include('layouts.breadcrumb')
                 <section  id="file-export">
-                    <div class="row">
+                    <div class="row m-2">
                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                             <div class="card">
                                 <div class="card-header">
-                                <h4 class="card-title pull-right">
-                                @if(in_array('Can add news', auth()->user()->getUserPermisions()))
-                                <a href="/display-news-form" button type="button" class="btn btn-primary">Add news</button></a>
-                                @endif
+                                    <h4 class="card-title pull-right">
+                                    @if(in_array('Can add others', auth()->user()->getUserPermisions()))
+                                    <a href="/display-others-form" button type="button" class="btn btn-primary">Add others</button></a>
+                                    @endif
                                     </h4>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline mb-0">
@@ -50,7 +54,7 @@
                                                 <tr>
                                                 <th>Subject</th>
                                                 <th>Image</th>
-                                                @if(in_array('Can see news action', auth()->user()->getUserPermisions()))
+                                                @if(in_array('Can see others action', auth()->user()->getUserPermisions()))
                                                 <th>Action</th>
                                                 @endif
                                                 </tr>
@@ -60,15 +64,14 @@
                                               <tr>
                                                   <td>{{ $others->title }}</td>
                                                   <td>{{ $others->number }}</td>
-                                                  <td>{{ $others->name }}</td>
                                                   <td>
                                                   @if(in_array('Can edit others', auth()->user()->getUserPermisions()))
                                                   <a href="/display-edit-others/{{ $others->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                  <span style="color:green;"><i class="fa fa-edit"></i></span></a>
+                                                  <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
                                                   @endif
                                                   @if(in_array('Can delete others', auth()->user()->getUserPermisions()))
                                                   <a href="/delete-others/{{ $others->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                  <span style="color:red;"><i class="fa fa-trash"></i></span></a>
+                                                  <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
                                                       
                                                   </td>
                                                   @endif

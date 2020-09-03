@@ -26,7 +26,7 @@
     <!-- Breadcrumbs -->
     @include('layouts.breadcrumb')
     <section class="content">
-        <div class="row">
+        <div class="row m-2">
         @include('layouts.message')
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
         <div class="card">

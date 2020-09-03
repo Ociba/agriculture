@@ -27,16 +27,16 @@
     
     @include('layouts.breadcrumb')
     <section class="content">
-    <div class="row">
-    <div class="card m-3">
       <div class="container-fluid">
-        @include('layouts.cards')
+      @include('layouts.cards')
+    <div class="row m-2">
+    <div class="card col-lg-12 col-md-12 col-xs-12 col-sm-12">
         <div class="row">
         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="background-color:white;">
             <!-- Bar CHART -->
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h5 class="box-title">Average Price Of Products as Reported from various markets in all the regions in uganda</h5>
+                    <h5 class="box-title text-center">Average Price Of Products as Reported from various markets in all the regions in uganda</h5>
                 </div>
                 <div class="box-body chart-responsive">
                 <canvas id="myChart"></canvas>
@@ -48,37 +48,38 @@
                             
         </div>
         </div>
-      <div class="row">
-                        <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6" style="background-color:white;">
-                            <div class="box box-danger">
-                                <div class="box-header with-border">
-                                    <h5 class="box-title">Employees | no. of emergency</h5>
-                                </div>
-                                <div class="box-body chart-responsive">
-                                <canvas id="piechart" style="height: 300px;"></canvas>
-                                </div>
-                                <!-- /.box-body -->
-                            </div>
-                            <!-- /.box -->
-                        </div>
-                        <!-- /.col (LEFT) -->
-                        <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6" style="background-color:white;">
-                            
-                            <div class="box box-success">
-                                <div class="box-header with-border">
-                                    <h5 class="box-title">Products|Farms|Markets|Sponsors|Breeds</h5>
-                                </div>
-                                <div class="box-body chart-responsive">
-                                    <canvas id="product"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
+        </div>
       </div>
-    </section>
     <!-- /.content -->
+    
+  <div class="row m-1">
+        <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+            <div class="box box-danger "  style="background-color:white;">
+                <div class="box-header with-border">
+                    <h5 class="box-title text-center">Employees | no. of emergency</h5>
+                </div>
+                <div class="box-body chart-responsive">
+                <canvas id="piechart" style="height: 300px;"></canvas>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    <!-- /.col (LEFT) -->
+        <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6" style="background-color:white;">
+            
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h5 class="box-title text-center">Products|Farms|Markets|Sponsors|Breeds</h5>
+                </div>
+                <div class="box-body chart-responsive">
+                    <canvas id="product"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
   </div>
+</section>
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
   </aside>

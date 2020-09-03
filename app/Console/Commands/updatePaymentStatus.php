@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use App\Payment;
 use Illuminate\Console\Command;
-use Carbon;
+use Carbon\Carbon;
 
 class updatePaymentStatus extends Command
 {
@@ -45,7 +45,8 @@ class updatePaymentStatus extends Command
         *payment was made. 
          */
          Payment::join('users','payments.user_id','users.id')
-        ->whereDate('payments.created_at', '2020-08-23')->update(['payments.status'=>'deleted']);
+         ->where('payments.status','deleted')
+        ->whereYear('payments.created_at', '>',Carbon::now()->subYear(1))->update(['payments.status'=>'deleted']);
         echo "You have updated status to deleted";
     }
 }

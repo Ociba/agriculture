@@ -27,7 +27,7 @@
                                 
                            </div>
                            @endforeach
-                           <p class="text">Conveniently customize proactive Production services for leveraged products without globally continually aggregate frictionlent without globally wellies richard.
+                           <p class="text text-justify">Conveniently customize proactive Production services for leveraged products without globally continually aggregate frictionlent without globally wellies richard.
 
                             Authoritatively plagiarize synergistic total linkage before cost effective leadership skills. Proactively innovate distributed be practices through seamless deliverables. Uniquely maximize granular benefits before exceptional deliverables.</p>
                            <div class="blog-tag-share d-sm-flex d-block justify-content-between align-items-center mb-80">
@@ -61,7 +61,7 @@
                         <div class="blog-details-box">
                             <img style="border-radius:50%; width:70px; height:70px;" src="{{asset('assets/images/james ociba.png')}}" alt="user">
                             <h4 class="title">Ociba James</h4>
-                            <p>It is our pleasure to receive your comments and ideas so that it helps us to adjust and develop our agricultural sector for the more production to meet the world market demands and quality, therefore i encourage to participate.</p>
+                            <p class="text-justify">It is our pleasure to receive your comments and ideas so that it helps us to adjust and develop our agricultural sector for the more production to meet the world market demands and quality, therefore i encourage to participate.</p>
                             <ul>
                                 <li><a href="ocibajames@yahoo.com"><i class="fab fa-facebook-f"></i></a></li>
                                 <li><a href="#"><i class="fab fa-twitter"></i></a></li>
@@ -77,44 +77,54 @@
                             @foreach($display_comments as $comment)
                                 <div class="item justify">
                                     <img style="border-radius:50%; width:70px; height:70px;" src="{{asset('assets/images/'.$comment->photo)}}" alt="comments">
-                                    <h5 class="title">{{$comment->name}} <span>{{ date('d F, Y', strtotime($comment->created_at))}} {{ date('g:ia', strtotime($comment->created_at))}}</span></h5>
-                                    <p>{{$comment->comment}}</p>
+                                    <h5 class="title">{{$comment->name}} <span style="color:green;">{{ date('d F, Y', strtotime($comment->created_at))}} {{ date('g:ia', strtotime($comment->created_at))}}</span></h5>
+                                    <p class="text-justify">{{$comment->comment}}</p>
+                                    <p class="text-info font-weight-bold">{{$comment->reply}}</p><i class="fa fa-user"></i> admin
                                    
+                                    {{--
                                     <button>Reply Commet</button>
                                     <p>This is a paragraph with little content.</p>
+                                    --}}
                                 </div>
                             @endforeach
                             </div>
                         </div>
                         <div class="blog-massage mt-70">
+                        @include('layouts.message')
                             <div class="massage-title">
                                 <h3 class="title">Send A Message</h3>
                             </div>
-                            <form action="/save-comment" method="get" enctype="multipart/form-data">
+                            <form action="/save-comment" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="blog-massage-item">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-md-6">
                                         <div class="input-box mt-30">
-                                            <input type="text" name="name" placeholder="Your Full Name">
+                                            <input type="text" name="name" placeholder="Your Full Name" required>
                                             <i class="far fa-user"></i>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-md-6">
                                         <div class="input-box mt-30">
-                                            <input type="email" name="email" placeholder="Your Email ">
+                                            <input type="email" name="email" placeholder="Your Email " required>
                                             <i class="far fa-envelope"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-md-12">
+                                        <div class="input-box mt-30">
+                                            <input type="text" name="contact" placeholder="Enter Your phon number " required>
+                                            <i class="far fa-phone"></i>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="input-box mt-30">
-                                            <textarea name="comment" id="#" cols="30" rows="10" placeholder="Write comment"></textarea>
+                                            <textarea name="comment" id="#" cols="30" rows="10" placeholder="Write comment" required></textarea>
                                             <i class="far fa-pen"></i>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="input-box mt-30">
-                                            <input type="file" name="photo" placeholder="Your Email ">
+                                            <input type="file" name="photo" placeholder="Your Email " required>
                                             <i class="far fa-user"></i>
                                         </div>
                                     </div>
@@ -139,7 +149,7 @@
                                     <a href="#">
                                         <h6 class="title">{{$recent_news->title}} </h6>
                                     </a>
-                                    <span>{{ date('d F, Y',($recent_news->created_at))}}</span>
+                                    <span>{{ date('d F, Y', strtotime($recent_news->created_at))}}</span>
                                     <img src="{{asset('assets/images/'.$recent_news->image)}}" alt="news">
                                 </div>
                             </div>
@@ -147,12 +157,12 @@
                         </div>
                         <div class="blog-category box">
                             <div class="title-item">
-                                <h4 class="title">Other Category</h4>
+                                <h4 class="title">Our Major Concern</h4>
                             </div>
-                            <div class="blog-category-item">
+                            <div class="blog-category-item text-center font-weight-bold text-justify">
                             @foreach($display_others as $others)
                                 <ul>
-                                    <li><a href="#"><span>{{$others->title}}</span> <span>({{$others->number}})</span></a></li>
+                                    <li><span>{{$others->title}}</span> <span>{{--({{$others->number}})--}}</span></li>
                                 </ul>
                             @endforeach
                             </div>
@@ -163,19 +173,19 @@
                             </div>
                             <div class="blog-tag-item mt-30">
                                 <ul>
-                                    <li><a href="#">Cleaning</a></li>
-                                    <li><a href="#">Business</a></li>
-                                    <li><a href="#">Booking</a></li>
+                                    <li><a href="/sell-and-buy">Advertising</a></li>
+                                    <li><a href="/sell-and-buy">Buying</a></li>
+                                    <li><a href="/about">About</a></li>
                                 </ul>
                                 <ul>
-                                    <li><a href="#">Car</a></li>
-                                    <li><a href="#">House</a></li>
-                                    <li><a href="#">Apartment</a></li>
+                                    <li><a href="/farm">Farms</a></li>
+                                    <li><a href="/contact">Contact</a></li>
+                                    <li><a href="/project">Project</a></li>
                                 </ul>
                                 <ul>
-                                    <li><a href="#">Washing</a></li>
-                                    <li><a href="#">Agency</a></li>
-                                    <li><a href="#">Listing</a></li>
+                                    <li><a href="/services">Services</a></li>
+                                    <li><a href="/blog">Blog</a></li>
+                                    <li><a href="/">Home</a></li>
                                 </ul>
                             </div>
                         </div>

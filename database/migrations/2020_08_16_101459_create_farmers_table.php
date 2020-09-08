@@ -17,6 +17,7 @@ class CreateFarmersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('profile_id');
+            $table->string('type_of_farming');
             $table->enum('status',['active','deleted'])->default('active');
             $table->timestamps();
         });

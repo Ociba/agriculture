@@ -47,7 +47,7 @@
                                 <p class="small"><span class="fa-li"></span> <b>Phone No:</b> {{$items_to_be_bought->contact}}</p>
                                 </div>
                                 <div class="col-5 text-center">
-                                <img src="{{asset('items/images/'.$items_to_be_bought->item_image)}}" style="transform: scaleX(-1);" alt="" class="img-square img-fluid">
+                                <img src="{{asset('items/images/'.$items_to_be_bought->item_image)}}" width="60" height="30" alt="" class="img-square thumbnail responsive">
                                 </div>
                             </div>
                             </div>
@@ -56,7 +56,7 @@
                                 <a href="/send-message/{{$items_to_be_bought->id}}" class="btn btn-sm bg-teal">
                                 <i class="fas fa-comments"></i> Send Message
                                 </a>
-                                <a href="/view-conscent/{{$items_to_be_bought->id}}" class="btn btn-sm btn-primary">
+                                <a href="/buyer-view_conscent/{{$items_to_be_bought->id}}" class="btn btn-sm btn-primary">
                                 <i class="fas fa-eye"></i> View Conscent
                                 </a>
                             </div>

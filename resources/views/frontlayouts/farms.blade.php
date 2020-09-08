@@ -36,7 +36,7 @@
                         </div>
                         <div class="item">
                             <span>Subcounty</span>
-                            <p>{{$farms->village}}</p>
+                            <p>{{$farms->subcounty}}</p>
                         </div>
                     </div>
                 </div>

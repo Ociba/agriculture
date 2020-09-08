@@ -83,21 +83,21 @@
                         <div class="features-counter item-3 mt-30 text-center text-sm-left">
                             <span>Doctors</span>
                             <h3 class="title counter">{{$display_doctors_count}}</h3>
-                            <i class="far fa-trophy-alt"></i>
+                            <i class="far fa-cow"></i>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-6 col-sm-6">
                         <div class="features-counter item-3 mt-30 text-center text-sm-left">
                             <span>Agric</span>
                             <h3 class="title counter">{{$count_all_agriculture_officers}}</h3>
-                            <i class="far fa-trophy-alt"></i>
+                            <i class="flaticon-vegetable"></i>
                         </div>
                     </div>
                     <div class="col-lg-2 col-md-6 col-sm-6">
                         <div class="features-counter item-4 mt-30 text-center text-sm-left">
-                            <span>Products</span>
-                            <h3 class="title counter">{{$display_products_count}}</h3>
-                            <i class="far fa-coffee"></i>
+                            <span>Fisheries</span>
+                            <h3 class="title counter">{{$count_all_fisheries_officers}}</h3>
+                            <i class="far fa-fish"></i>
                         </div>
                     </div>
                 </div>

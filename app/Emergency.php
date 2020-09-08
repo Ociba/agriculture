@@ -14,7 +14,7 @@ use App\User;
 class Emergency extends Model
 {
     //
-    protected $fillable =['user_id','role_id','district_id','county_id','village_id','product_id',
+    protected $fillable =['user_id','role_id','district_id','county_id','subcounty_id','product_id',
                           'problem','affected_number','image'];
 public function products()
 {

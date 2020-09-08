@@ -29,8 +29,6 @@ class VetReportController extends Controller
             'user_id'=>Auth::user()->id,
             'farmer_name'=>$request->farmer_name,
             'farmer_contact'=>$request->farmer_contact,
-            'doctor_name'=>$request->doctor_name,
-            'doctor_contact'=>$request->doctor_contact,
             'treatment'=>$request->treatment,
             'number'=>$request->number
         ));
@@ -39,19 +37,27 @@ class VetReportController extends Controller
     public function displayDoctorsReport(){
         $display_doctors_report =VetReport::join('users','vet_reports.user_id','users.id')
         ->where('vet_reports.status','active')
-        ->select('vet_reports.farmer_name','users.name','vet_reports.farmer_contact','vet_reports.doctor_name','vet_reports.doctor_contact',
+        ->where('users.id',auth()->user()->id)
+        ->select('vet_reports.farmer_name','users.name','vet_reports.farmer_contact','users.contact',
         'vet_reports.treatment','vet_reports.number','vet_reports.id','vet_reports.created_at')
         ->orderBy('vet_reports.created_at','DESC')
         ->get();
         return view('admin.vet-report-table',compact('display_doctors_report'));
+    }
+    public function displayAllDoctorsReport(){
+        $display_doctors_report =VetReport::join('users','vet_reports.user_id','users.id')
+        ->where('vet_reports.status','active')
+        ->select('vet_reports.farmer_name','users.name','vet_reports.farmer_contact','users.contact',
+        'vet_reports.treatment','vet_reports.number','vet_reports.id','vet_reports.created_at')
+        ->orderBy('vet_reports.created_at','DESC')
+        ->get();
+        return view('admin.all-vet-reports',compact('display_doctors_report'));
     }
     public function updateDoctorReports($id, Request $request){
         VetReport::where('id',$id)->update(array(
             'user_id'=>Auth::user()->id,
             'farmer_name'=>$request->farmer_name,
             'farmer_contact'=>$request->farmer_contact,
-            'doctor_name'=>$request->doctor_name,
-            'doctor_contact'=>$request->doctor_contact,
             'treatment'=>$request->treatment,
             'number'=>$request->number
         ));

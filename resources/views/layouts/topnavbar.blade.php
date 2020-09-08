@@ -20,7 +20,7 @@
         </a>
 
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
+          <a href="/display-feedback" class="dropdown-item">
             <!-- Message Start -->
             @foreach(auth()->user()->getFeedBack() as $feedback)
             <div class="media">
@@ -62,11 +62,15 @@
             <span class="float-right text-muted text-sm">{{ date('g:ia', strtotime(auth()->user()->timeForSubscription()))}}</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="display-emergency-reports" class="dropdown-item">
+          <a href="/display-emergency-reports" class="dropdown-item">
             <i class="fa fa-plus-square mr-2" style="color:red;"></i>{{auth()->user()->getNumberOfEmergencyReports()}} emergncy reports
             <span class="float-right text-muted text-sm">{{ date('g:ia', strtotime(auth()->user()->timeForEmergency()))}}</span>
           </a>
           <div class="dropdown-divider"></div>
+          <a href="/display-comments-for-approval" class="dropdown-item"><i class="fa fa-comment mr-2" style="color:blue"></i>
+          {{auth()->user()->numberOfIncomingComments()}} incoming comments
+          <span class="float-right text-muted text-sm">{{ date('g:ia', strtotime(auth()->user()->timeForComments()))}}</span>
+          </a>
           {{--<a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>--}}
         </div>
       </li>

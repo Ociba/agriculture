@@ -30,10 +30,19 @@
       <!-- title row -->
       <div class="row m-2">
         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+        @if(sizeof($display_permits) > 0)
             @foreach($display_permits as $permit)
-          <h2 class="page-header">
+          <h3 class="text-center text-justify">This permit serves as Evidence that the Product is approved by the responsible person under Ministry of Agriculture</h3>
+          <h2 class="page-header row invoice-info">
+          <div class="col-4 invoice-col">
             <i class="fa fa-leaf"></i> Permit.
-            <small class="pull-right">Date: {{$permit->created_at}}</small>
+          </div>
+          <div class="col-4 invoice-col">
+            <img src="{{asset('assets/images/arms.png')}}" style="width:60px" height="30px" alt="">
+          </div>
+          <div class="col-4 invoice-col">
+            {{$permit->created_at}}
+          </div>
           </h2>
         </div>
         <!-- /.col -->
@@ -44,7 +53,7 @@
          <b> From</b>
           <address>
             <strong>{{$permit->sellers_name}}</strong><br>
-            <strong>District:</strong> {{$permit->from_destination}}<br>
+            <strong>District:</strong> {{$permit->district}}<br>
             <strong>ID No:</strong> {{$permit->sellers_ID}}<br>
             <strong>Phone:</strong> {{$permit->contact}}<br>
           </address>
@@ -61,10 +70,10 @@
         </div>
         <!-- /.col -->
         <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4 invoice-col">
-          <b>Invoice <span style="color:red;">#00{{$permit->id}}</span></b><br>
+          <b>Receipt No: <span style="color:red;">{{$permit->receipt_number}}</span></b><br>
           <br>
           <b>Item No.:</b> {{$permit->Number_of_items}}<br>
-          <b>Item:</b> <img src="{{asset('images/profile_pictures/'.$permit->item_image)}}" style="width:60px" height="30px" alt=""><br>
+          <b>Item:</b> <img src="{{asset('images/profile_pictures/'.$permit->item_image)}}" width="60" height="40" alt=""><br>
           
         </div>
         <!-- /.col -->
@@ -90,7 +99,7 @@
               <td>{{$permit->product}}</td>
               <td>{{$permit->Number_of_items}}</td>
               <td>{{$permit->description}}</td>
-              <td>Cleared</td>
+              <td class="btn btn-success btn-sm">Cleared</td>
             </tr>
             </tbody>
           </table>
@@ -111,9 +120,9 @@
         </div>
         <!-- /.col -->
         <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
-          <p class="lead"><strong>{{$permit->role}}</strong></p>
-          <p><strong>Officers'Name:</strong>{{$permit->vet_officer}}</p>
-          <p><strong>Phone Number:</strong>{{$permit->vet_contact}}</p>
+          <p class="lead"><strong>{{auth()->user()->getUsersRole()}}</strong></p>
+          <p><strong>Officers'Name:</strong>{{$permit->name}}</p>
+          <p><strong>Phone Number:</strong>{{$permit->contact}}</p>
           <p><strong>Stamp:</strong></p>
           <p><strong>Date & sign:</strong></p>
         </div>
@@ -125,16 +134,19 @@
       <div class="row no-print m-2">
         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-122">
         @if(in_array('Can see print Permit', auth()->user()->getUserPermisions()))
-          <a href="/invoice-print" button class="btn btn-success"><i class="fa fa-print"></i> Print</button></a>
+          <a href="/print-permit" button class="btn btn-success"><i class="fa fa-print"></i> Print</button></a>
         @endif
           <div class="pull-right">
           <button type="button" class="btn btn-warning pull-right" style="margin-right: 5px;">
-            <i class="fa fa-warning" style="color:red;"></i> Note:&nbsp;Copy is Valid with original Stamp and sign for responsible person
+            <i class="fa fa-warning" style="color:red;"></i> Note:&nbsp;This Permit is Valid with original Stamp and sign from responsible person
           </button>
           </div>
         </div>
       </div>
       @endforeach
+      @else
+        <p class="text-center">{{$noPermit_available}}</p>
+        @endif
     </section>
     <div class="clearfix"></div>
   </div>

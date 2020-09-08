@@ -101,6 +101,19 @@ class PriceController extends Controller
         ->get();
         return view('admin.price-table',compact('show_all_prices'));
     }
+    public function displayOfficersPriceReports(){
+        $show_all_prices =Price::join('users','prices.user_id','users.id')
+        ->join('products','prices.product_id','products.id')
+        ->join('districts','prices.district_id','districts.id')
+        ->join('counties','prices.county_id','counties.id')
+        ->join('days','prices.day_id','days.id')
+        ->where('prices.status','active')
+        ->where('users.id',auth()->user()->id)
+        ->select('users.name','prices.price','prices.id','prices.market_name','prices.created_at','prices.quantity','days.day','products.product','districts.district','counties.county')
+        ->orderBy('created_at', 'desc')
+        ->get();
+        return view('admin.officers-price-table',compact('show_all_prices'));
+    }
     public function updatePriceInformation($id, Request $request){
         $get_district_id= District::where(\strtolower("district"), strtolower($request->district))->value('id');
         $get_county_id= County::where(\strtolower("county"), strtolower($request->county))->value('id');

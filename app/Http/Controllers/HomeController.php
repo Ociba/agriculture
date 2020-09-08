@@ -58,4 +58,7 @@ class HomeController extends Controller
     public function conclusion(){
         return view('admin.conclusion');
     }
+    public function emailResponse(){
+        return view('admin.email-response');
+    }
 }

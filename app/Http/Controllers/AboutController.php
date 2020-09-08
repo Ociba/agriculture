@@ -10,6 +10,7 @@ use App\Farm;
 use App\User;
 use App\Product;
 use App\Doctors;
+use App\Faq;
 class AboutController extends Controller
 {
     //
@@ -17,7 +18,7 @@ class AboutController extends Controller
         $show_farmer_detail =Farmer::join('users','farmers.user_id','users.id')
         ->join('profiles','farmers.profile_id','profiles.id','farmers.id')
         ->where('farmers.status','active')
-        ->select('users.name','profiles.image')->get();
+        ->select('users.name','profiles.image','farmers.type_of_farming','users.email','users.contact')->get();
         $display_feedback =Feedbacks::where('status','active')->get();
         $display_members_count =User::join('roles','users.role_id','roles.id')
         ->where('users.role_id',4)
@@ -36,10 +37,20 @@ class AboutController extends Controller
         ->join('users','doctors.user_id','users.id')
         ->where('doctors.role_id',6)
         ->where('doctors.status','active')->count();
+        $count_all_fisheries_officers = Doctors::join('roles','doctors.role_id','roles.id')
+        ->join('districts','doctors.district_id','districts.id')
+        ->join('users','doctors.user_id','users.id')
+        ->where('doctors.role_id',7)
+        ->where('doctors.status','active')->count();
         $display_products_count =Product::join('users','products.user_id','users.id')
         ->where('products.status','active')
         ->count();
+        $display_frequently_asked_questions =Faq::join('users','faqs.user_id','users.id')
+        ->where('faqs.status','active')
+        ->select('faqs.question','users.name','faqs.id','faqs.reply')
+        ->get();
         return view('front.about-us',compact('show_farmer_detail','display_feedback','display_members_count',
-                     'display_doctors_count','display_farms_count','display_products_count','count_all_agriculture_officers'));
+                     'display_doctors_count','display_farms_count','display_products_count','count_all_agriculture_officers',
+                    'display_frequently_asked_questions','count_all_fisheries_officers'));
     }
 }

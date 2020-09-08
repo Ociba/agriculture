@@ -28,8 +28,6 @@
    @include('frontlayouts.gallery')
 
     @include('frontlayouts.feedback')
-
-    @include('frontlayouts.frequently')
     @include('frontlayouts.news-blog')
     @include('frontlayouts.sponsor')
     

@@ -2,11 +2,12 @@
         <div class="container">
             <div class="row">
             <div class="col-lg-12">
+            @include('layouts.message')
                     <div class="contact-massage">
                         <div class="row justify-content-end">
                             <div class="col-lg-8">
                                 <div class="contact-massage-item ml-35">
-                                    <form action="save-message" method="get">
+                                    <form action="/save-message" method="get">
                                     @csrf
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -16,25 +17,25 @@
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                                 <div class="input-box item-1 mt-20">
-                                                    <input type="text" name="name" placeholder="Your Full Name">
+                                                    <input type="text" name="name" placeholder="Your Full Name" required>
                                                     <i class="far fa-user"></i>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                                 <div class="input-box item-2 mt-20">
-                                                    <input type="email" name="email" placeholder="Your Email">
+                                                    <input type="email" name="email" placeholder="Your Email" required>
                                                     <i class="far fa-envelope"></i>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <div class="input-box mt-20">
-                                                    <input type="text" name="subject" placeholder="Your Subject">
+                                                    <input type="text" name="subject" placeholder="Your Subject" required>
                                                     <i class="far fa-edit"></i>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <div class="input-box mt-20">
-                                                    <textarea name="message" id="#" cols="30" rows="10" placeholder="Write Message"></textarea>
+                                                    <textarea name="message" id="#" cols="30" rows="10" placeholder="Write Message" required></textarea>
                                                     <i class="far fa-pen"></i>
                                                     <button type="submit" class="main-btn">send message </button>
                                                 </div>

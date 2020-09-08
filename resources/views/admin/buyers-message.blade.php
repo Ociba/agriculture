@@ -55,8 +55,8 @@
                                             <tbody>
                                                 @foreach ($get_messages_from_buyer as $buyers_message)
                                                 <tr>
-                                                    <td>{{ $buyers_message->name }}</td>
-                                                    <td>{{ $buyers_message->contact }}</td>
+                                                    <td>{{ $buyers_message->buyers_name }}</td>
+                                                    <td>{{ $buyers_message->phone_number }}</td>
                                                     <td>{{ $buyers_message->message }}</td>
                                                     <td>
                                                         @if(in_array('Can delete buyers message', auth()->user()->getUserPermisions()))

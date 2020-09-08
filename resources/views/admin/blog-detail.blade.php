@@ -73,7 +73,7 @@
                                                   <td>{{ $blog->twitter }}</td>
                                                   <td>{{ $blog->google }}</td>
                                                   <td>
-                                                  <img src="{{asset('assets/images/'.$blog->image)}}" style="width:60px" height="30px" alt="">
+                                                  <img src="{{asset('assets/images/'.$blog->image)}}" class="thumbnail responsive" width="60" height="30" alt="">
                                                   </td>
                                                   <td>{{ $blog->name }}</td>
                                                   <td>

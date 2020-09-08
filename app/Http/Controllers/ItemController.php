@@ -43,7 +43,6 @@ class ItemController extends Controller
     private function checkPayment(){
         $check_payment_status= Payment::join('users','payments.user_id','users.id')
         ->where('payments.user_id',auth()->user()->id)
-        //->where('users.role_id', 10)
         ->where('payments.amount','>=',10000);
         return $check_payment_status;
     }
@@ -292,6 +291,20 @@ class ItemController extends Controller
         ->get();
         return view('admin.all-doctors-requests', compact('display_all_doctors_requests_details'));
     }
+    public function myDoctorsRequests(){
+        $display_all_doctors_requests_details =DoctorRequest::join('users','doctor_requests.user_id','users.id')
+        ->join('products','doctor_requests.product_id','products.id')
+        ->join('districts','doctor_requests.district_id','districts.id')
+        ->join('counties','doctor_requests.county_id','counties.id')
+        ->join('villages','doctor_requests.village_id','villages.id')
+        ->where('doctor_requests.status','active')
+        ->where('users.id', auth()->user()->id)
+        ->select('users.name','users.contact','products.product','districts.district','counties.county',
+                  'villages.village','doctor_requests.number','doctor_requests.photo','doctor_requests.id','doctor_requests.conditions')
+        ->orderBy('doctor_requests.created_at','desc')
+        ->get();
+        return view('admin.my-doctors-request', compact('display_all_doctors_requests_details'));
+    }
     
     public function updateDoctorsRequests($id,Request $request){
             $get_district_id= District::where(\strtolower("district"), strtolower($request->district))->value('id');
@@ -339,7 +352,7 @@ class ItemController extends Controller
         ->get();
 
         $noconscent_available = "Sorry, Consent is not available. Please check again later";
-        if($this->checkPayment() && $this->BuyerViewConscent()->doesntExist()){
+        if($this->checkPayment()->doesntExist()){
             return redirect()->back()->with('emessage','Please make payments to continue viewing conscent Details for the item(s)');
         }elseif(Payment::join('users','payments.user_id','users.id')
         ->where('payments.user_id',auth()->user()->id)
@@ -349,10 +362,25 @@ class ItemController extends Controller
         return view('admin.conscent-page',compact('display_all_conscent_details', 'noconscent_available'));
         }
     }
-    private function BuyerViewConscent(){
-        $check_buyer_status= User::where('users.id',auth()->user()->id)
-        ->where('users.role_id', 10);
-        return $check_buyer_status;
+    public function BuyerViewConscent(Request $id){
+        // $check_buyer_status= User::where('users.id',auth()->user()->id)
+        // ->where('users.role_id', 10);
+        // return $check_buyer_status;
+        $display_all_conscent_details =Conscent::join('users','conscents.user_id','users.id')
+        ->join('roles','conscents.role_id','roles.id')
+        ->join('doctors','conscents.doctor_id','doctors.id')
+        ->join('counties','conscents.county_id','counties.id')
+        ->join('subcounties','conscents.subcounty_id','subcounties.id')
+        ->join('items','conscents.item_id','items.id')
+        ->where(['conscents.status'=>'active', 'conscents.item_id'=>$id->id])
+        ->select('doctors.names','roles.role','users.contact','users.name','doctors.phone_number_1','doctors.phone_number_2','conscents.declaration',
+                 'counties.county','subcounties.subcounty','conscents.id','conscents.created_at')
+        ->orderBy('conscents.created_at','desc')
+        ->limit(1)
+        ->get();
+
+        $noconscent_available = "Sorry, Consent is not available. Please check again later";
+        return view('admin.conscent-to-buyer',compact('display_all_conscent_details', 'noconscent_available'));
     }
     public function displayConscentForm($id){
         $edit_sell_items =Item::where('id',$id)->get();

@@ -70,7 +70,7 @@
             </div>
             </div>
             <!-- /.box-header -->
-            <div class="box-body no-padding m-4">
+            <div class="box-body no-padding m-4 text-justify">
             <p class=""><b>Blog details</b>-Authorized system user view blog details, search blog, deletes ,can add blog details and can edit blog details.</p>
             <p class=""><b>Comments</b>-Authorized system user should view comments, approves it to be display in the front pages.</p>
             <p class=""><b>Reply</b>-Authorized system user should view replies.</p>

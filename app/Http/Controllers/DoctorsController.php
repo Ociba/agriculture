@@ -25,6 +25,12 @@ class DoctorsController extends Controller
            ));
            
           } 
+          if(Doctors::where(\strtolower('phone_number_1'), strtolower($request->phone_number_1))->exists()){
+              return redirect()->back()->withErrors("Phone number Already exists");
+          }
+          if(Doctors::where(\strtolower('names'), strtolower($request->names))->exists()){
+            return redirect()->back()->withErrors("Name already exists");
+        }
           $get_district_id= District::where(\strtolower("district"), strtolower($request->district))->value('id');
           $get_role_id= Role::where(\strtolower("role"), strtolower($request->role))->value('id');
         Doctors::create(array(
@@ -42,9 +48,30 @@ class DoctorsController extends Controller
         ->join('districts','doctors.district_id','districts.id')
         ->join('roles','doctors.role_id','roles.id')
         ->where('doctors.status','active')
+        ->where('doctors.role_id', 5)
         ->select('doctors.names','doctors.id','roles.role','doctors.phone_number_1','doctors.phone_number_2','districts.district','users.name')
         ->get();
         return view('admin.doctors-table', compact('display_doctors_details'));
+    }
+    public function displayAgricOfficers(){
+        $display_doctors_details =Doctors::join('users','doctors.user_id','users.id')
+        ->join('districts','doctors.district_id','districts.id')
+        ->join('roles','doctors.role_id','roles.id')
+        ->where('doctors.status','active')
+        ->where('doctors.role_id', 6)
+        ->select('doctors.names','doctors.id','roles.role','doctors.phone_number_1','doctors.phone_number_2','districts.district','users.name')
+        ->get();
+        return view('admin.agric-officers', compact('display_doctors_details'));
+    }
+    public function displayFisheryOfficers(){
+        $display_doctors_details =Doctors::join('users','doctors.user_id','users.id')
+        ->join('districts','doctors.district_id','districts.id')
+        ->join('roles','doctors.role_id','roles.id')
+        ->where('doctors.status','active')
+        ->where('doctors.role_id', 7)
+        ->select('doctors.names','doctors.id','roles.role','doctors.phone_number_1','doctors.phone_number_2','districts.district','users.name')
+        ->get();
+        return view('admin.fisheries-officers', compact('display_doctors_details'));
     }
     public function editDoctor($id){
         $edit_doctor =Doctors::where('id',$id)->get();

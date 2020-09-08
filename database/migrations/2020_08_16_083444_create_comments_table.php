@@ -19,6 +19,7 @@ class CreateCommentsTable extends Migration
             $table->string('email');
             $table->string('comment');
             $table->string('photo');
+            $table->string('reply')->default('Null');
             $table->enum('status',['active','deleted','approve'])->default('active');
             $table->timestamps();
         });

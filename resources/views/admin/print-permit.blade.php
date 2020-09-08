@@ -13,23 +13,31 @@
   <!-- Main content -->
   <section class="invoice mr-3">
     <!-- title row -->
-    <div class="row">
+    <div class="row m-2">
       <div class="col-12">
       @foreach($display_permits as $permit)
-          <h2 class="page-header">
+          <h3 class="text-center text-justify">This permit serves as Evidence that the Product is approved by the responsible person under Ministry of Agriculture</h3>
+          <h2 class="page-header row invoice-info">
+          <div class="col-4 invoice-col">
             <i class="fa fa-leaf"></i> Permit.
-            <small class="pull-right">Date: {{$permit->created_at}}</small>
+          </div>
+          <div class="col-4 invoice-col">
+            <img src="{{asset('assets/images/arms.png')}}" style="width:60px" height="30px" alt="">
+          </div>
+          <div class="col-4 invoice-col">
+            {{$permit->created_at}}
+          </div>
           </h2>
       </div>
       <!-- /.col -->
     </div>
     <!-- info row -->
-    <div class="row invoice-info">
+    <div class="row m-2 invoice-info">
       <div class="col-4 invoice-col">
       <strong>From</strong>
         <address>
         <strong>{{$permit->sellers_name}}</strong><br>
-        <strong>District:</strong>{{$permit->from_destination}}<br>
+        <strong>District:</strong>{{$permit->district}}<br>
         <strong>ID No:</strong> {{$permit->sellers_ID}}<br>
         <strong>Phone:</strong> {{$permit->contact}}<br>
         </address>
@@ -46,7 +54,7 @@
       </div>
       <!-- /.col -->
       <div class="col-4 invoice-col">
-        <b>Invoice <span style="color:red;">#00{{$permit->id}}</span></b><br>
+        <b>Invoice <span style="color:red;">{{$permit->receipt_number}}</span></b><br>
         <br>
         <b>Item No.:</b> {{$permit->Number_of_items}}<br>
           <b>Item:</b> <img src="{{asset('images/profile_pictures/'.$permit->item_image)}}" style="width:60px" height="30px" alt=""><br>
@@ -56,7 +64,7 @@
     <!-- /.row -->
 
     <!-- Table row -->
-    <div class="row">
+    <div class="row m-2">
       <div class="col-12 table-responsive">
         <table class="table table-striped">
           <thead>
@@ -83,20 +91,20 @@
     </div>
     <!-- /.row -->
 
-    <div class="row">
+    <div class="row m-2">
       <!-- accepted payments column -->
       <div class="col-6">
       <p class="lead"><strong>Local Council:</strong></p>
-          <p><strong>Name of LC1:</strong>{{$permit->local_council_one_name}}</p>
-          <p><strong>Phone Number:</strong>{{$permit->phone_number}}</p>
+          <p><strong>Name of LC1:</strong> {{$permit->local_council_one_name}}</p>
+          <p><strong>Phone Number:</strong> {{$permit->phone_number}}</p>
           <p><strong>Stamp:</strong></p>
           <p><strong>Date & sign:</strong></p>
       </div>
       <!-- /.col -->
       <div class="col-6">
-      <p class="lead"><strong>{{$permit->role}}</strong></p>
-          <p><strong>Officers'Name:</strong>{{$permit->vet_officer}}</p>
-          <p><strong>Phone Number:</strong>{{$permit->vet_contact}}</p>
+      <p class="lead"><strong>{{auth()->user()->getUsersRole()}}</strong></p>
+          <p><strong>Officers'Name:</strong> {{$permit->name}}</p>
+          <p><strong>Phone Number:</strong> {{$permit->contact}}</p>
           <p><strong>Stamp:</strong></p>
           <p><strong>Date & sign:</strong></p>
         </div>
@@ -104,10 +112,15 @@
       <!-- /.col -->
     </div>
     @endforeach
-    <div class="row text-center">
-    <button type="button" class="btn btn-warning" style="margin-right: 5px;">
-            <i class="fa fa-warning" style="color:red;"></i> Note:&nbsp;Copy is Valid with original Stamp and sign for responsible person
-      </button>
+    <div class="row m-2">
+      <div class="col-2 invoice-col"></div>
+      <div class="col-8 invoice-col">
+      <button type="button" class="btn btn-warning offset-2">
+              <i class="fa fa-warning" style="color:red; text-align:center;"></i> Note:&nbsp;This Permit is Valid with original Stamp and sign from responsible person
+        </button><br></br>
+        <span class="text-center font-weight-bold offset-4" style="font-style: italic;"><i class="fa fa-registered"></i> {{ date('Y') }} {{auth()->user()->getUsersRole()}}</span>
+      </div>
+      <div class="col-2 invoice-col"></div>
     </div>
     <!-- /.row -->
   </section>

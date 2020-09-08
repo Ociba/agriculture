@@ -42,7 +42,7 @@
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Users name</label>
                     <div class="col-sm-10">
-                    <input type="text" name="name" list="names" class="form-control" autocomplete="off">
+                    <input type="text" name="name" list="names" class="form-control" autocomplete="off" required>
                    <datalist id="names" style="width: 100%;">
                         @foreach($select_username as $pick_from_users_table)
                         <option selected="selected" value="{{$pick_from_users_table->id}}">{{ $pick_from_users_table->name }}</option>
@@ -53,12 +53,18 @@
                   <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Profile</label>
                     <div class="col-sm-10">
-                    <input type="text" name="image" list="images" class="form-control" autocomplete="off">
+                    <input type="text" name="image" list="images" class="form-control" autocomplete="off" required>
                    <datalist id="images" style="width: 100%;">
                         @foreach($select_profile_image as $pick_from_profiles_table)
                         <option selected="selected" value="{{$pick_from_profiles_table->id}}">{{ $pick_from_profiles_table->image }}</option>
                         @endforeach
                     </datalist>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Type of Farming</label>
+                    <div class="col-sm-10">
+                    <input type="text" name="type_of_farming"class="form-control" autocomplete="off" required>
                     </div>
                   </div>
                 </div>

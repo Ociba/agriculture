@@ -35,7 +35,8 @@ class FarmerController extends Controller
         // }
         Farmer::create(array(
         'user_id'=>$request->name,
-        'profile_id'=>$request->image 
+        'profile_id'=>$request->image,
+        'type_of_farming'=>$request->type_of_farming
     )); 
     return Redirect()->back()->with('message',"Farmers details created Successfully"); 
      }
@@ -44,7 +45,7 @@ class FarmerController extends Controller
          $show_farmer_detail =Farmer::join('users','farmers.user_id','users.id')
          ->join('profiles','farmers.profile_id','profiles.id','farmers.id')
          ->where('farmers.status','active')
-         ->select('users.name','profiles.image','farmers.id')
+         ->select('users.name','profiles.image','farmers.id','farmers.type_of_farming')
          ->get();
          return view('admin.farmers',compact('show_farmer_detail'));
         }else{
@@ -62,7 +63,8 @@ class FarmerController extends Controller
      public function updateFarmerDetail($id, Request $request){
          Farmer::where('id',$id)->update(array(
             'user_id'=>$request->name,
-            'profile_id'=>$request->image   
+            'profile_id'=>$request->image,
+            'type_of_farming'=>$request->type_of_farming 
          ));
          return Redirect()->back()->with('message',"Farmers Details has been updated successfully");
      }

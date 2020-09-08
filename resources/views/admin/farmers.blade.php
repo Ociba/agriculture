@@ -54,6 +54,7 @@
                                                 <tr>
                                                 <th>Name</th>
                                                 <th>Profile Image</th>
+                                                <th>Type of Farming</th>
                                                 @if(in_array('Can see farmers action', auth()->user()->getUserPermisions()))
                                                 <th>Action</th>
                                                 @endif
@@ -66,6 +67,7 @@
                                                   <td>
                                                   <img src="{{asset('images/profile_pictures/'.$farmers->image)}}" style="width:60px" height="30px" alt="">
                                                   </td>
+                                                  <td>{{ $farmers->type_of_farming}}</td>
                                                   <td>
                                                   @if(in_array('Can edit farmers', auth()->user()->getUserPermisions()))
                                                   <a href="/display-edit-farmers/{{ $farmers->id }}" data-widget="edit" data-toggle="tooltip" title="edit">

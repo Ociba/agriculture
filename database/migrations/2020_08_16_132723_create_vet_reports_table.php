@@ -18,8 +18,6 @@ class CreateVetReportsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('farmer_name');
             $table->string('farmer_contact');
-            $table->string('doctor_name');
-            $table->string('doctor_contact');
             $table->string('treatment');
             $table->string('number');
             $table->enum('status',['active','suspended','deleted'])->default('active');

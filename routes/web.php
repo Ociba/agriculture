@@ -19,6 +19,15 @@ Route::get('/try', function () {
 Route::get('/display-item','ProduceController@index');
 
 Route::group(['middleware' => ['auth']], function () {
+Route::get('/send-email-notification','MailController@sendEmailOnAccountCreation');
+Route::get('/email-response','HomeController@emailResponse');
+Route::get('/reply-question/{id}','FaqController@replyFaqQuestion')->name('Reply Question');
+Route::get('/save-replies/{id}','FaqController@saveFaqReply');
+Route::get('/buyer-view_conscent/{id}','ItemController@BuyerViewConscent')->name('Conscent');
+Route::get('/permit-details-for-admin','PermitController@displayAdminPermit')->name('Permit Detail');
+Route::get('/view-permit/{id}','PermitController@viewPermit')->name('Permit');
+Route::get('/all-vet-reports','VetReportController@displayAllDoctorsReport')->name('All Vetenary Reports');
+Route::get('all-emergency-reports','EmergencyController@displayAllEmergency')->name('All Emergencies');
 Route::get('/payment','PaymentController@getPayment')->name('Payment');
 Route::get('/make-payment','PaymentController@makePayment')->name('Payment Form');
 Route::get('/create-payment','PaymentController@validatePayment');
@@ -40,6 +49,8 @@ Route::get('/404', function () { return view('admin.errorpage');})->name('Error'
  Route::get('/search-items-bought','DoctorsController@searchBoughtItems');
  Route::get('/save-edited-veterinary-doctor/{id}','DoctorsController@updateDoctorsInformation');
  Route::get('/delete-veterinary-doctor/{id}','DoctorsController@deleteDoctor');
+ Route::get('/show-agriculture-officers','DoctorsController@displayAgricOfficers')->name('Agric Officers');
+ Route::get('/show-fisheries-officers','DoctorsController@displayFisheryOfficers')->name('Fisheries Officers');
 //Breed
 Route::get('/add-breed-form','BreedController@addBreedForm')->name('Add Breed');
 Route::get('/edit-breed-form/{id}','BreedController@editBreedForm')->name('Edit Breed');
@@ -150,6 +161,7 @@ Route::get('/display-doctors-form','ItemController@DoctorsRequestForm')->name('R
 Route::get('/edit-doctor-req-form/{id}','ItemController@editDoctorsForm')->name('Edit Doctor Request');
 Route::post('/save-doctor-request','ItemController@createDoctorsRequest');
 Route::get('/display-doctor-req','ItemController@displayDoctorsRequests')->name('Doctors Request');
+Route::get('/my-doctors-request','ItemController@myDoctorsRequests')->name('My Doctors Request');
 Route::get('/search-doctor-req','ItemController@searchDoctorsRequest')->name('Searched Doctor');
 Route::post('/save-request/{id}','ItemController@updateDoctorsRequests');
 Route::get('/delete-doctors-req/{id}','ItemController@deleteDoctorsRequest');
@@ -205,6 +217,7 @@ Route::get('/display-prices','PriceController@displayPrice')->name('Current Mark
 Route::get('/search-price','PriceController@searchPrice')->name('Prices Prices');
 Route::get('/update-price/{id}','PriceController@updatePriceInformation');
 Route::get('/delet-price/{id}','PriceController@deletePrice');
+Route::get('/officers-price-report','PriceController@displayOfficersPriceReports')->name('My Price Report');
 //Product
 Route::get('/display-product-form','ProductController@addProductForm')->name('Add Product Form');
 Route::get('/edit-product-form/{id}','ProductController@editProductForm')->name('Edit Product');
@@ -230,8 +243,8 @@ Route::post('/save-emergency','EmergencyController@createEmergency');
 Route::post('/update-emergency/{id}','EmergencyController@updateEmergency');
 Route::get('/delete-emergency/{id}','EmergencyController@deleteEmergency');
 // Permit
-Route::get('/display-permit','PermitController@displayPermit')->name('Permit Details')->name('Permit Details');
-Route::get('/invoice-print','PermitController@PrintForm')->name('Print Invoice');
+Route::get('/display-permit','PermitController@displayPermit')->name('Permit Details');
+Route::get('/print-permit','PermitController@PrintForm')->name('Print Invoice');
 Route::get('/display-permit-form','PermitController@addPermitForm')->name('Permit Form');
 Route::post('/save-print-information','PermitController@createPermit');
 //Subcounty
@@ -352,10 +365,12 @@ Route::get('/display-edit-blog/{id}','BlogDetailsController@editBlogDetailForm')
 Route::get('/update-blog-detail/{id}','BlogDetailsController@updateBlogDetails');
 Route::get('/delete-blog/{id}','BlogDetailsController@deleteBlogDetail');
 //Comments
-Route::get('/save-comment','CommentController@createComment');
-Route::get('/display-comments-for approval','CommentController@displayComments')->name('UnApproved Comments');
+Route::post('/save-comment','CommentController@createComment');
+Route::get('/display-comments-for-approval','CommentController@displayComments')->name('UnApproved Comments');
 Route::get('/display-approve-comment/{id}','CommentController@approveComment');
 Route::get('/delete-comment/{id}','CommentController@deleteComment');
+Route::get('/reply-comment/{id}','CommentController@replyCommentForm')->name('Reply Comment');
+Route::get('/save-reply/{id}','CommentController@saveReply');
 //Contact or Messages
 Route::get('/save-message','ContactController@createMessage');
 Route::get('/display-messages','ContactController@displayMessages')->name('Messages Table');

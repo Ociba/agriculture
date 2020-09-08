@@ -168,6 +168,16 @@
             </a>
             </li>
             @endif
+            @if(in_array('Can view my doctors request', auth()->user()->getUserPermisions()))
+            <li class="nav-item" @if(\Request::route()->getName() == "My Doctors Request")class="active" @endif>
+            <a href="/my-doctors-request" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+               My Doctors Request
+              </p>
+            </a>
+            </li>
+            @endif
             @if(in_array('Can view standard prices', auth()->user()->getUserPermisions()))
             <li class="nav-item" @if(\Request::route()->getName() == "My Savings")class="active" @endif>
             <a href="/display-prices" class="nav-link">
@@ -178,12 +188,32 @@
             </a>
             </li>
            @endif
+           @if(in_array('Can view my prices reports', auth()->user()->getUserPermisions()))
+            <li class="nav-item" @if(\Request::route()->getName() == "My Price Report")class="active" @endif>
+            <a href="/officers-price-report" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+                My Market Prices Report
+              </p>
+            </a>
+            </li>
+           @endif
            @if(in_array('Can view Permit form', auth()->user()->getUserPermisions()))
             <li class="nav-item" @if(\Request::route()->getName() == "Permit")class="active" @endif>
             <a href="/display-permit-form" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>
-                Permit Permit Form
+                Permit Form
+              </p>
+            </a>
+            </li>
+           @endif
+           @if(in_array('Can view admin Permit', auth()->user()->getUserPermisions()))
+            <li class="nav-item" @if(\Request::route()->getName() == "Admin Permit View")class="active" @endif>
+            <a href="/permit-details-for-admin" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+                Permit Admin View
               </p>
             </a>
             </li>
@@ -223,7 +253,23 @@
             <li class="nav-item" @if(\Request::route()->getName() == "Pests")class="active" @endif>
                 <a href="/show-veterinary-doctors" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Officers</p>
+                  <p>Vetenary Officers</p>
+                </a>
+              </li>
+              @endif
+              @if(in_array('Can view veterinary doctors', auth()->user()->getUserPermisions()))
+            <li class="nav-item" @if(\Request::route()->getName() == "Pests")class="active" @endif>
+                <a href="/show-agriculture-officers" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Agriculture Officers</p>
+                </a>
+              </li>
+              @endif
+              @if(in_array('Can view veterinary doctors', auth()->user()->getUserPermisions()))
+            <li class="nav-item" @if(\Request::route()->getName() == "Pests")class="active" @endif>
+                <a href="/show-fisheries-officers" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Fisheries Officers</p>
                 </a>
               </li>
               @endif
@@ -370,6 +416,22 @@
                 <a href="/display-doctors-report" class="nav-link">
                   <i class="fa fa-linux nav-icon"></i>
                   <p>Doctors Report</p>
+                </a>
+              </li>
+              @endif
+              @if(in_array('Can view all doctors treatment records', auth()->user()->getUserPermisions()))
+              <li class="nav-item" @if(\Request::route()->getName() == "All Vetenary Reports")class="active" @endif>
+                <a href="/all-vet-reports" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                  <p>All Officers Report</p>
+                </a>
+              </li>
+              @endif
+              @if(in_array('Can view all emergency reports', auth()->user()->getUserPermisions()))
+              <li class="nav-item" @if(\Request::route()->getName() == "All Emergencies")class="active" @endif>
+                <a href="/all-emergency-reports" class="nav-link">
+                  <i class="fa fa-linux nav-icon"></i>
+                  <p>All Emergency Reports</p>
                 </a>
               </li>
               @endif

@@ -5,7 +5,7 @@
                     <div class="faq-content">
                         <span>FAQ</span>
                         <h3 class="title">Frequently Ask Questions</h3>
-                        <p>These are the most asked quesions from our customers, buyers and sellers concerning the transaction and the system,please for more information send us message through our contacts.</p>
+                        <p class="text-justify">These are the most asked quesions from our customers, buyers and sellers concerning the transaction and the system,please for more information send us message through our contacts.</p>
                         {{--<a class="main-btn" href="#">get a quote</a>--}}
                     </div>
                 </div>
@@ -23,7 +23,7 @@
 
                                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        <p>We thank you for the questions you asked and appreciate your effort to have such questions so far these are the question we have received from you , we shall adjust accordingly</p>
+                                        <p class="text-justify">We thank you for the questions you asked and appreciate your effort to have such questions so far these are the question we have received from you , we shall adjust accordingly</p>
                                     </div>
                                 </div>
                             </div>
@@ -31,13 +31,14 @@
                                 <div class="card-header" id="headingTwo">
                                     <h2 class="mb-0">
                                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                            Relationship Between seller And Buyer ?
+                                            
+                                            {{$display_frequently_asked_questions[0]["question"] }}
                                         </button>
                                     </h2>
                                 </div>
                                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        <p>We thank you for the questions you asked and appreciate your effort to have such uestions so far these are the question we have received from you , we shall adjust accordingly</p>
+                                        <p class="text-justify">{{$display_frequently_asked_questions[0]["reply"] }}}}</p> <i class="fa fa-user"></i> admin
                                     </div>
                                 </div>
                             </div>
@@ -45,13 +46,13 @@
                                 <div class="card-header" id="headingThree">
                                     <h2 class="mb-0">
                                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                            How can i sell my items? 
+                                        {{$display_frequently_asked_questions[1]["question"] }} 
                                         </button>
                                     </h2>
                                 </div>
                                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        <p>We thank you for the questions you asked and appreciate your effort to have such uestions so far these are the question we have received from you , we shall adjust accordingly</p>
+                                        <p class="text-justify">{{$display_frequently_asked_questions[1]["reply"] }}</p> <i class="fa fa-user"></i> admin
                                     </div>
                                 </div>
                             </div>
@@ -59,13 +60,13 @@
                                 <div class="card-header" id="heading4">
                                     <h2 class="mb-0">
                                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                                            Is there some payment or not to be a member ? 
+                                        {{$display_frequently_asked_questions[2]["question"] }}
                                         </button>
                                     </h2>
                                 </div>
                                 <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        <p>We thank you for the questions you asked and appreciate your effort to have such uestions so far these are the question we have received from you , we shall adjust accordingly</p>
+                                        <p class="text-justify">{{$display_frequently_asked_questions[2]["reply"] }}</p> <i class="fa fa-user"></i> admin
                                     </div>
                                 </div>
                             </div>
@@ -73,13 +74,13 @@
                                 <div class="card-header" id="heading5">
                                     <h2 class="mb-0">
                                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                                            How can access vetenary officer in my subcounty ?
+                                        {{$display_frequently_asked_questions[3]["question"] }}
                                         </button>
                                     </h2>
                                 </div>
                                 <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        <p>We thank you for the questions you asked and appreciate your effort to have such uestions so far these are the question we have received from you , we shall adjust accordingly</p>
+                                        <p class="text-justify">{{$display_frequently_asked_questions[3]["reply"] }}</p> <i class="fa fa-user"></i> admin
                                     </div>
                                 </div>
                             </div>
@@ -87,13 +88,13 @@
                                 <div class="card-header" id="heading6">
                                     <h2 class="mb-0">
                                         <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
-                                            Do we need to pay vet,agric,fisheries and forestry officers ?
+                                        {{$display_frequently_asked_questions[4]["question"] }}
                                         </button>
                                     </h2>
                                 </div>
                                 <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        <p>We thank you for the questions you asked and appreciate your effort to have such uestions so far these are the question we have received from you , we shall adjust accordingly</p>
+                                        <p class="text-justify">{{$display_frequently_asked_questions[4]["reply"] }}</p> <i class="fa fa-user"></i> admin
                                     </div>
                                 </div>
                             </div>

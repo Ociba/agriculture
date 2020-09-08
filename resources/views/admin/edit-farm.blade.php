@@ -30,7 +30,6 @@
         <div class="row">
         @include('layouts.message')
             <div class="col-12">
-        <div class="card">
         <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">Edit Farm</h3>
@@ -70,8 +69,8 @@
                     <div class="col-sm-10">
                     <select class="form-control select2" style="width: 100%;" name="village" required>
                     <option value="">Select Subcounty</option>
-                    @foreach($get_village as $pick_from_village_table)
-                    <option selected="selected" value="{{$pick_from_village_table->id}}">{{ $pick_from_village_table->village }} 
+                    @foreach($get_subcounty as $pick_from_village_table)
+                    <option selected="selected" value="{{$pick_from_village_table->id}}">{{ $pick_from_village_table->subcounty }} 
                     </option>
                     @endforeach
                    </select>
@@ -111,7 +110,6 @@
               </form>
               @endforeach
             </div>
-        </div>
             <!-- /.card -->
             </div>
             </div>

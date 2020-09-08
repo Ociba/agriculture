@@ -13,6 +13,7 @@ use App\Item;
 use App\Price;
 use App\Doctors;
 use App\Message;
+use App\Comment;
 use DB;
 
 class User extends Authenticatable
@@ -100,13 +101,24 @@ class User extends Authenticatable
         ->count();
         return $count_employees;
     }
+    //count number of incoming comments
+    public function numberOfIncomingComments(){
+        $count_comments =Comment::where('status','approve')
+        ->count();
+        return $count_comments;
+    }
+    //get time for particular comment
+    public function timeForComments(){
+    $display_comment_time =Comment::where('status','approve')->select('created_at')->orderBy('created_at','desc')->value('created_at');
+        return $display_comment_time;
+    }
     public function getNumberOfEmergencies(){
       $determine_number_of_emergencies =Emergency::join('users','emergencies.user_id','users.id')
       ->join('products','emergencies.product_id','products.id')
       ->join('roles','emergencies.role_id','roles.id')
       ->join('districts','emergencies.district_id','districts.id')
       ->join('counties','emergencies.county_id','counties.id')
-      ->join('villages','emergencies.village_id','villages.id')
+      ->join('subcounties','emergencies.subcounty_id','subcounties.id')
       ->where('emergencies.status','active')
       ->count();
       return $determine_number_of_emergencies;
@@ -175,7 +187,7 @@ class User extends Authenticatable
         $count_all_farms =Farm::join('users','farms.user_id','users.id')
         ->join('districts','farms.district_id','districts.id')
         ->join('counties','farms.county_id','counties.id')
-        ->join('villages','farms.village_id','villages.id')
+        ->join('subcounties','farms.subcounty_id','subcounties.id')
         ->where('farms.status','active')->count();
         return $count_all_farms;
     }
@@ -256,11 +268,13 @@ class User extends Authenticatable
         $display_emergency =Emergency::where('status','active')->select('created_at')->orderBy('created_at','desc')->value('created_at');
         return $display_emergency;
     }
+    //total number of notifications
     public function totalAllNotifications(){
         $count_subScriptions =Subscription::all()->count();
         $count_messages =Message::where('messages.status','approve')->count();
         $count_emergency_reports =Emergency::where('emergencies.status','active')->count();
-        $total_all_notifications =$count_emergency_reports+$count_messages+$count_subScriptions;
+        $count_comments =Comment::where('status','approve')->count();
+        $total_all_notifications =$count_emergency_reports+$count_messages+$count_subScriptions + $count_comments;
         return $total_all_notifications;
     }
     public function getFeedBack(){
@@ -270,5 +284,23 @@ class User extends Authenticatable
     public function getNumberOfApprovedFeedback(){
         $count_approved_feedback =DB::table('feedbacks')->where('status','approve')->count();
         return $count_approved_feedback;
+    }
+    public function greetings(){
+        $greetings = "";
+        
+                 if(date("H") < 12){
+ 
+                    $greetings= "good morning";
+                
+                }elseif(date("H") > 11 && date("H") < 18){
+                
+                    $greetings= "good afternoon";
+                
+                }elseif(date("H") > 17){
+                
+                    $greetings ="good evening";
+                
+                }
+            return $greetings;
     }
 }

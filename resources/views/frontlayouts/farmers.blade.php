@@ -9,91 +9,28 @@
                 </div>
             </div>
             <div class="row farmers-active">
+            @foreach($show_farmer_detail as $farmer)
                 <div class="col-lg-3">
                     <div class="farmers-item mt-30">
-                        <img src="{{asset('images/profile_pictures/james ociba.PNG')}}" alt="farmers">
+                        <img src="{{asset('images/profile_pictures/'.$farmer->image)}}" style="height:200px;" alt="farmers">
                         <div class="farmers-overlay">
-                            <div class="item">
-                                <h4 class="title">Aisu Godfrey</h4>
-                                <span>Poultry Farmer</span>
-                                <ul>
+                            <div class="item text-center">
+                                <h4 class="title">{{$farmer->name}}</h4>
+                                <span>{{$farmer->type_of_farming}}</span>
+                                <p class="font-weight-bold text-white">{{$farmer->email}}</p>
+                                <p class="font-weight-bold  text-white">{{$farmer->contact}}</p>
+                                {{--<ul>
                                     <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                                     <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                                     <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                                     <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
                                 </ul>
+                                --}}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <div class="farmers-item mt-30">
-                        <img src="{{asset('images/profile_pictures/james ociba.PNG')}}" alt="farmers">
-                        <div class="farmers-overlay">
-                            <div class="item">
-                                <h4 class="title">Ociba james</h4>
-                                <span>Animal Farmer</span>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="farmers-item mt-30">
-                        <img src="{{asset('images/profile_pictures/james ociba.PNG')}}" alt="farmers">
-                        <div class="farmers-overlay">
-                            <div class="item">
-                                <h4 class="title">Ojinga Aaaron Ociba</h4>
-                                <span>Fish Farmer</span>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="farmers-item mt-30">
-                        <img src="{{asset('assets/images/farmers-4.jpg')}}" alt="farmers">
-                        <div class="farmers-overlay">
-                            <div class="item">
-                                <h4 class="title">Atim Esther Ociba</h4>
-                                <span>Mixed Farmer</span>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="farmers-item mt-30">
-                        <img src="{{asset('assets/images/farmers-4.jpg')}}" alt="farmers">
-                        <div class="farmers-overlay">
-                            <div class="item">
-                                <h4 class="title">Oliba Moses Ociba</h4>
-                                <span>Crops Farmer</span>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            @endforeach
             </div>
         </div>
     </section>

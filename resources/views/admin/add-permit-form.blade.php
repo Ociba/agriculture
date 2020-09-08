@@ -111,36 +111,29 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Officer Incharge</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">District</label>
                     <div class="col-sm-10">
-                    <input type="text" name="role" list="roles" class="form-control" autocomplete="off">
-                    <datalist id="roles" style="width: 100%;">
-                        @foreach($get_role as $pick_from_roles_table)
-                        <option selected="selected" value="{{$pick_from_roles_table->role}}"></option>
+                    <input type="text" name="district" list="district" class="form-control" autocomplete="off">
+                    <datalist id="district" style="width: 100%;">
+                        @foreach($get_district as $pick_from_district)
+                        <option selected="selected" value="{{$pick_from_district->district}}"></option>
                         @endforeach
                     </datalist>
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Officers' Name</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Officers Title</label>
                     <div class="col-sm-10">
-                    <input type="text" selected="selected" class="form-control" id="inputEmail3" name="vet_officer"  placeholder="" required>
+                    <input type="text" name="role" list="roles" class="form-control" autocomplete="off">
+                    <datalist id="roles" style="width: 100%;">
+                        @foreach($get_role as $pick_from_role)
+                        <option selected="selected" value="{{$pick_from_role->role}}"></option>
+                        @endforeach
+                    </datalist>
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Contact</label>
-                    <div class="col-sm-10">
-                    <input type="text" selected="selected" class="form-control" id="inputEmail3" name="vet_contact"  placeholder="" required>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">From</label>
-                    <div class="col-sm-10">
-                    <input type="text" selected="selected" class="form-control" id="inputEmail3" name="from_destination"  placeholder="" required>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">To</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">To District</label>
                     <div class="col-sm-10">
                     <input type="text" selected="selected" class="form-control" id="inputEmail3" name="to_destination"  placeholder="" required>
                     </div>

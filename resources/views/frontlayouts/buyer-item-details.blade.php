@@ -7,6 +7,7 @@
                         <div class="blog-details-content">
                             {{--<h2 class="title">Item Detail</h2>--}}
                             <img src="{{asset('items/images/'.$item_details->item_image)}}" style="height:350px; width:700px;" alt="thumb">
+                             <div class="title text-center">{{$item_details->product}}</div>
                         </div>
                     @endforeach
                     </div>

@@ -20,6 +20,7 @@ class CommentController extends Controller
         Comment::create(array(
          'name'=>$request->name,
          'email'=>$request->email,
+         'contact'=>$request->contact,
          'comment'=>$request->comment,
          'photo'=>$file_name
         ));
@@ -30,7 +31,9 @@ class CommentController extends Controller
 }
      public function displayComments(){
         if(in_array('Can view comments', auth()->user()->getUserPermisions())){
-         $display_comments =Comment::where('status','approve')->get();
+         $display_comments =Comment::where('status','approve')
+         ->orwhere('status','active')
+         ->get();
          return view('admin.comments', compact('display_comments'));
         }else{
             return redirect('/404');
@@ -38,8 +41,18 @@ class CommentController extends Controller
      }
      public function approveComment($id, Request $request){
          Comment::where('id',$id)->update(array('status'=>'active'));
-         return Redirect()->back()->withErrors("Comment has been approved successfully");
+         return Redirect()->back()->with("message","Comment has been approved successfully");
      }
+     public function replyCommentForm($id){
+        $reply_comment=Comment::where('id',$id)->get();
+        return view('admin.reply-comment',compact('reply_comment'));
+    }
+    public function saveReply($id,Request $request){
+        Comment::where('id',$id)->update(array(
+            'reply'=>$request->reply
+        ));
+        return redirect()->back()->with('message',"Your have Reply Comment successfully");
+    }
      public function deleteComment($id){
          Comment::where('id',$id)->update(array('status'=>'deleted'));
          return Redirect()->back()->withErrors("Comment has been deleted successfully");

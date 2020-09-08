@@ -9,65 +9,30 @@
                 </div>
             </div>
             <div class="row justify-content-center">
+            @if ($get_items_to_sell->currentPage() > 1)
+            @php($i =  1 + (($get_items_to_sell->currentPage() - 1) * $get_items_to_sell->perPage()))
+            @else
+            @php($i = 1)
+            @endif
              @foreach($get_items_to_sell as $item_on_sell)
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                     <div class="what-we-do-item text-center mt-30">
                     <img src="{{asset('items/images/'.$item_on_sell->item_image)}}" style=" width:300px; height:150px;" alt="">
                         <h4 class="title">{{$item_on_sell->product}}</h4>
-                        <p>{{$item_on_sell->category}} </p>
-                        <span class="text-primary font-weight-bold">Ugx:{{$item_on_sell->price}}</span>
-                        <a href="/buyer-view-item-details/{{$item_on_sell->id}}">view more</button></a>
+                        <p class="font-weight-bold">{{$item_on_sell->category}} </p>
+                        <span class="text-white font-weight-bold btn btn-info">Ugx:{{$item_on_sell->price}}</span>
+                        <a href="/buyer-view-item-details/{{$item_on_sell->id}}" button type="button" class="btn btn-warning btn-xs">View More</button></a>
                     </div>
                 </div>
             @endforeach
-            {{--
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <div class="what-we-do-item text-center mt-30">
-                    <img src="{{asset('assets/images/shop-thumb.jpg')}}" style=" width:300px; height:150px;" alt="">
-                        <h4 class="title">Advertise your Products</h4>
-                        <p>Display your Products sample</p>
-                        <span class="text-primary font-weight-bold">Ugx:102,000</span>
-                        <a href="/buyer-view-item-details">view more</a>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <div class="what-we-do-item text-center mt-30">
-                    <img src="{{asset('assets/images/gallery-item-8.jpg')}}" style=" width:300px; height:150px;" alt="">
-                        <h4 class="title">Demonstration</h4>
-                        <p>Connect you with Farmers</p>
-                        <span class="text-primary font-weight-bold">Ugx:40,000</span>
-                        <a href="/buyer-view-item-details">view more</a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <div class="what-we-do-item text-center mt-30">
-                    <img src="{{asset('assets/images/cattle treat.JPG')}}" style=" width:300px; height:150px;" alt="">
-                        <h4 class="title">Treatment</h4>
-                        <p>Connect you nearest Vetenary,Agricultural officer for</p>
-                        <span class="text-primary font-weight-bold">Ugx:125,000</span>
-                        <a href=/buyer-view-item-details">view more</a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <div class="what-we-do-item text-center mt-30">
-                    <img src="{{asset('assets/images/gran2.jpg')}}" style=" width:300px; height:150px;" alt="">
-                        <h4 class="title">Security & Safety</h4>
-                        <p>Advice on how to harvest and keep dry crops for long time to avoid losses</p>
-                        <span class="text-primary font-weight-bold">Ugx:55,000</span>
-                        <a href="/buyer-view-item-details">view more</a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <div class="what-we-do-item text-center mt-30">
-                    <img src="{{asset('assets/images/tractor.jpg')}}" style=" width:300px; height:150px;" alt="">
-                        <h4 class="title">Modern Equipment</h4>
-                        <p>Linkinng farmers to buy modern farming equipments</p>
-                        <span class="text-primary font-weight-bold">Ugx:375,000</span>
-                        <a href="/buyer-view-item-details">view more</a>
-                    </div>
-                </div>
-                --}}
+            
+            </div><br>
+            <div class="row justify-content-center">
+            @if(isset($search_query))
+            {{ $get_items_to_sell->appends(['name' => $search_query])->links() }}
+            @else
+            {{ $get_items_to_sell->links() }}
+            @endif
             </div>
         </div>
     </section>

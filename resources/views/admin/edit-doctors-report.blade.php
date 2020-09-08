@@ -54,18 +54,6 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Vet Doctors Name</label>
-                    <div class="col-sm-10">
-                    <input type="text" selected="selected" class="form-control" id="inputEmail3" name="doctor_name" value="{{$doctors_report->doctor_name}}" placeholder="" required>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Vets Contact</label>
-                    <div class="col-sm-10">
-                    <input type="text" selected="selected" class="form-control" id="inputEmail3" name="doctor_contact" value="{{$doctors_report->doctor_contact}}" placeholder="" required>
-                    </div>
-                  </div>
-                  <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Treatment Given</label>
                     <div class="col-sm-10">
                     <input type="text" selected="selected" class="form-control" id="inputEmail3" name="treatment" value="{{$doctors_report->treatment}}" placeholder="Brief statement" required>

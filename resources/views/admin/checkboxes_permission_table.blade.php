@@ -29,7 +29,6 @@
         <div class="row m-2">
         @include('layouts.message')
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-        <div class="card">
         <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">Select Permission</h3>
@@ -74,7 +73,6 @@
             </div>
         </div>
             <!-- /.card -->
-            </div>
             </div>
     </section>
   </div>

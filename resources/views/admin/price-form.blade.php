@@ -103,7 +103,7 @@
                   </div>
                 <!-- /.card-body -->
                 <div class="text-center mb-3">
-                <a href="/display-prices"><button type="button" class="btn btn-warning">Back</button></a>
+                {{--<a href="/display-prices"><button type="button" class="btn btn-warning">Back</button></a>--}}
                   <button type="submit" class="btn btn-success ">Save</button>
                 </div>
                 <!-- /.card-footer -->

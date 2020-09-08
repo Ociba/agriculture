@@ -21,9 +21,10 @@ class FrontPageController extends Controller
 {
     //
     public function displayFrontHomePage(){
-        $display_frequently_asked_questions =Faq::join('users','faqs.user_id','users.id')
+        $frequently_asked_questions =Faq::join('users','faqs.user_id','users.id')
         ->where('faqs.status','active')
-        ->select('faqs.question')->get();
+        ->select('faqs.question','users.name','faqs.id','faqs.reply')
+        ->get();
         $show_feature =Feature::join('users','features.user_id','users.id')
         ->where('features.status','active')
         ->select('users.name','features.id','features.heading','features.statement','features.image')
@@ -42,7 +43,7 @@ class FrontPageController extends Controller
         ->select('sponsors.sponsor','sponsors.image','users.name','sponsors.id')
         ->get();
         $display_subscription =Subscription::where('status','active')->get();
-        return view('front.template' ,compact('display_frequently_asked_questions','show_feature',
+        return view('front.template' ,compact('frequently_asked_questions','show_feature',
         'display_feedback','show_market_products','show_news','show_sponsors','display_subscription'));
     }
     public function showFrontPages(){
@@ -78,10 +79,16 @@ class FrontPageController extends Controller
         ->join('users','doctors.user_id','users.id')
         ->where('doctors.role_id',6)
         ->where('doctors.status','active')->count();
+        $count_all_fisheries_officers = Doctors::join('roles','doctors.role_id','roles.id')
+        ->join('districts','doctors.district_id','districts.id')
+        ->join('users','doctors.user_id','users.id')
+        ->where('doctors.role_id',7)
+        ->where('doctors.status','active')->count();
         $display_products_count =Product::join('users','products.user_id','users.id')
         ->where('products.status','active')
         ->count();
        return view('welcome', compact('show_feature','display_feedback','show_gallery','show_sponsors','display_members_count',
-                    'display_doctors_count','display_farms_count','display_products_count','count_all_agriculture_officers'));
+                    'display_doctors_count','display_farms_count','display_products_count','count_all_agriculture_officers',
+                'count_all_fisheries_officers'));
     }
 }

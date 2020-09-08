@@ -1,7 +1,6 @@
 div.img {
     margin: 5px;
     border: 1px solid #ccc;
-    float: left;
     width: 180px;
 }
 
@@ -19,9 +18,10 @@ div.desc {
     text-align: center;
 }
 .thumbnail:hover {
-    position:relative;
-    width:500px;
-    height:300px;
+    position:absolute;
+    width:700px;
+    height:500px;
     display:block;
+    margin: auto;
     z-index:999;
 }

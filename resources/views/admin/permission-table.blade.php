@@ -19,6 +19,7 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 @include('layouts.breadcrumb')
+                @include('layouts.message')
                 <section class="content">
                     <div class="row m-2">
                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
@@ -69,12 +70,9 @@
         <tr>
         <td>{{ $i++ }}</td>
         <td>{{$permission->permission}}</td>
-        <form action="/unsign-permission/{{$permission->id}}" method="get">
-        @csrf
         <td>
-        <button class="btn btn-primary" type="submit"><span class="text-white">Remove</span></button>
+        <a href="/unsign-permission/{{$permission->id}}" button type="submit" class="btn btn-primary"><span class="text-white">Remove</span></button></a>
         </td>
-        </form>
         </tr>
         @endforeach
         </tbody>

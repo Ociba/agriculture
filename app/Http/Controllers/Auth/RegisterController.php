@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\MailController;
 
 class RegisterController extends Controller
 {
@@ -39,6 +40,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+        $this->send_email = new MailController();
         $this->middleware('guest');
     }
 

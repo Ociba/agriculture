@@ -64,7 +64,7 @@
                                             <tbody>
                                             @foreach ($we_do_services as $do)
                                               <tr>
-                                                  <td>{{ $do->title }}</td>
+                                                  <td>{{ $do->statement }}</td>
                                                   <td>{{ $do->subject }}</td>
                                                   <td>
                                                   <img src="{{asset('assets/images/'.$do->image)}}" style="width:60px" height="30px" alt="">

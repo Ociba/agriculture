@@ -61,6 +61,12 @@
                     </select>
                     </div>
                   </div>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Type of Farming</label>
+                    <div class="col-sm-10">
+                    <input type="text" name="type_of_farming" list="images" class="form-control" value="{{$farmer->type_of_farming}}" autocomplete="off" required>
+                    </div>
+                  </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="text-center mb-3">

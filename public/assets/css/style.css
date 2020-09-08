@@ -2644,8 +2644,9 @@ Search Overlay CSS
     8.FEEDBACK css 
 ===========================*/
 .feedback-area {
-  padding-bottom: 100px;
-  padding-top: 60px;
+  padding-bottom: 50px;
+  padding-top: 40px;
+  height: ;
   background: #02060e;
   position: relative; }
   .feedback-area::before {
@@ -2653,7 +2654,7 @@ Search Overlay CSS
     content: '';
     left: 0;
     top: 0;
-    height: 80%;
+    height: 50%;
     width: 100%;
     background-image: url(../images/store-pattern.png);
     background-size: cover;
@@ -5069,8 +5070,7 @@ Search Overlay CSS
     .what-we-do-area .what-we-do-item a {
       font-size: 15px;
       font-weight: 700;
-      text-transform: uppercase;
-      color: #686868;
+      color: #03060c;
       position: relative; }
       .what-we-do-area .what-we-do-item a::before {
         position: absolute;
@@ -5079,7 +5079,7 @@ Search Overlay CSS
         bottom: -2px;
         width: 100%;
         height: 2px;
-        background: #686868; }
+        background: ; }
 
 .what-we-do-2-area {
   background: #f4f7fe;
@@ -5792,7 +5792,7 @@ Search Overlay CSS
     top: 0;
     height: 100%;
     width: 37%;
-    background-image: url(../images/got.jpg);
+    background-image: url(../images/feedback.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat; }

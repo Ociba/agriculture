@@ -84,12 +84,12 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Village</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Subcounty</label>
                     <div class="col-sm-10">
-                    <input type="text" name="village" list="villages" class="form-control" autocomplete="off">
+                    <input type="text" name="subcounty" list="villages" class="form-control" autocomplete="off">
                     <datalist id="villages" style="width: 100%;">
                         @foreach($pick_village as $pick_from_village_table)
-                        <option selected="selected" value="{{$pick_from_village_table->village}}"></option>
+                        <option selected="selected" value="{{$pick_from_village_table->subcounty}}"></option>
                         @endforeach
                     </datalist>
                     </div>
@@ -124,7 +124,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="text-center mb-3">
-                <a href="/display-emergency-reports"><button type="button" class="btn btn-warning">Back</button></a>
+                {{--<a href="/display-emergency-reports"><button type="button" class="btn btn-warning">Back</button></a>--}}
                   <button type="submit" class="btn btn-success ">Save</button>
                 </div>
                 <!-- /.card-footer -->

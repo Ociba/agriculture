@@ -64,7 +64,7 @@ class PermissionController extends Controller
     public function unsignPermission($id){
         PermissionRole::join('roles','permission_roles.role_id','roles.id')
         ->join('permissions','permission_roles.permission_id','permissions.id')
-        ->where('permission_roles.permission_id',$id)->delete();
+        ->where('permission_roles.role_id',$id)->delete();
         return redirect()->back()->with('message','Permission has been unsigned successfully');
     }
 }

@@ -11,7 +11,7 @@
                     <div class="about-content ml-70">
                         <span>Project</span>
                         <h3 class="title">We Are Best Award Winning Farms</h3>
-                        <p>We are awarding farmers who have improved Agricultural product through engaging themselves in modern methods of farming to fight against poverty levels and also competing with others in the world market. Encouraging farmers have demonstration sites for other farmers to boast large number of farmers in a particular region or district in uganda</p>
+                        <p class="text-justify">We are awarding farmers who have improved Agricultural product through engaging themselves in modern methods of farming to fight against poverty levels and also competing with others in the world market. Encouraging farmers have demonstration sites for other farmers to boast large number of farmers in a particular region or district in uganda</p>
                         <ul>
                             <li>
                                 <span><span class="counter">85</span>%</span>

@@ -46,7 +46,6 @@
         <div class="row">
         @include('layouts.message')
             <div class="col-12">
-        <div class="card">
         <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">Send Seller message</h3>
@@ -57,20 +56,28 @@
               <form class="form-horizontal mt-3" method="get" action="/send-message-to-seller">
               @csrf
                 <div class="card-body">
-                <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Seller Name</label>
+                
+                    <input type="hidden" class="form-control" id="inputEmail3" name="seller_id"  value="{{$send_message->user_id}}" readonly required>
+                  
+                  
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Your Name</label>
                     <div class="col-sm-10">
-                    <input type="text" selected="selected" class="form-control" id="inputEmail3" name="seller_id"  value="{{$send_message->user_id}}" readonly required>
+                    <input type="text" selected="selected" class="form-control" id="inputEmail3" name="buyers_name" required>
                     </div>
                   </div>
-                </div>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Your Phone Number</label>
+                    <div class="col-sm-10">
+                    <input type="text" selected="selected" class="form-control" id="inputEmail3" name="phone_number"  required>
+                    </div>
+                  </div>
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Message</label>
                     <div class="col-sm-10">
                     <textarea type="text" selected="selected" class="form-control" rows="5" id="inputEmail3" name="message"  value=""  required></textarea>
                     </div>
                   </div>
-                </div>
                 <!-- /.card-body -->
                 <div class="text-center mb-3">
                 <a href="/display-buyers-items-on-sell"><button type="button" class="btn btn-warning">Back</button></a>
@@ -82,7 +89,6 @@
             </div>
         </div>
             <!-- /.card -->
-            </div>
             </div>
     </section>
     <!-- /.content -->

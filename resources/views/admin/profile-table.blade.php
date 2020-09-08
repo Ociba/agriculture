@@ -67,8 +67,7 @@
                                                 @foreach ($show_all_profiles as $index =>$profiles)
                                                 <tr>
                                                     <td>
-                                                        <a target="_blank" href="{{asset('images/profile_pictures/'.$profiles->image)}}" style="width:200px" height="100px" alt="">
-                                                        <img src="{{asset('images/profile_pictures/'.$profiles->image)}}" style="width:60px" height="30px" alt="">
+                                                        <img src="{{asset('images/profile_pictures/'.$profiles->image)}}" class="thumbnail responsive" width="60" height="30" alt="">
                                                         </a>
                                                     </td>
                                                     @if(in_array('Can see profile createdby name', auth()->user()->getUserPermisions()))
@@ -77,11 +76,11 @@
                                                     @if(in_array('Can edit profile', auth()->user()->getUserPermisions()))
                                                     <td>
                                                         <a href="/change-profile-form" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                        <span class="btn btn-success btn-sm"><i class="fa fa-edit"></i></span></a>
+                                                        <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
                                                         @endif
                                                         @if(in_array('Can delete profile', auth()->user()->getUserPermisions()))
                                                         <a href="/delete-profile/{{ $profiles->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                        <span class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></span></a>
+                                                        <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
                                                     </td>
                                                     @endif
                                                 </tr>

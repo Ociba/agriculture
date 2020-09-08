@@ -32,7 +32,7 @@
             <div class="card-body table-responsive no-padding">
             <section class="content">
             <div class="row">
-        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3">
+        <div class="col-lg-3 col-md-3 col-xs-3 col-sm-3 sdebar-fixed">
           <a href="/display-documentation" class="btn btn-success btn-block margin-bottom">Menu Functionality</a>
 
           <div class="box box-solid card pt-2 mb-2 p-2 pl-2">
@@ -70,7 +70,7 @@
             </div>
             </div>
             <!-- /.box-header -->
-            <div class="box-body no-padding m-4">
+            <div class="box-body no-padding m-4 text-justify">
             <p class=""><b>Home</b></p>
             <p>User views Summary of Number of items, Number of markets,Average Price for Cereal crops, Animals Vegetables,Poultry, Products, emergency reports, Breeds, and others in pie-chart, Line graph and bar Graph.</p>
             <p class=""><b>Users</b></p>

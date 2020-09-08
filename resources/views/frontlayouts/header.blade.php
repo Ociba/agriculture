@@ -160,7 +160,7 @@
                                         <li class="nav-item">
                                             <a class="page-scroll" href="#">Contact<button class="sub-nav-toggler"> <i class="fa fa-angle-down"></i> </button></a>
                                             <ul class="sub-menu">
-                                                <li><a href="/contact"><i class="far fa-check-circle"></i>Cuntact Form</a></li>
+                                                <li><a href="/contact"><i class="far fa-check-circle"></i>Contact Form</a></li>
                                                 <li><a href="/front-page-feedback"><i class="far fa-trophy-alt"></i>Feedback Form</a></li>
                                             </ul>
                                         </li>

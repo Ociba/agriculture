@@ -37,7 +37,8 @@ class BoughtController extends Controller
     }
     private function sendSellerMessage(){
         $send_message_to_seller = new SellerMessage;
-        $send_message_to_seller->user_id   =Auth()->user()->id;
+        $send_message_to_seller->buyers_name   =request()->buyers_name;
+        $send_message_to_seller->phone_number   =request()->phone_number;
         $send_message_to_seller->seller_id      =request()->seller_id;
         $send_message_to_seller->message   =request()->message;
         $send_message_to_seller->save();
@@ -46,7 +47,11 @@ class BoughtController extends Controller
     protected function validateMessageSentToSeller(){
         if(empty(request()->seller_id)){
             return redirect()->back()->withErrors('Seller Id is required, please fill it to continue');
-        }elseif(empty(request()->message)){
+        }elseif(empty(request()->buyers_name)){
+            return redirect()->back()->withErrors('Your Name is required, please fill it to continue');
+        }elseif(empty(request()->phone_number)){
+        return redirect()->back()->withErrors('Your Phone Number is required, please fill it to continue');
+         }elseif(empty(request()->message)){
             return redirect()->back()->withErrors('Message is required, please fill it to continue');
         }else{
             return $this->sendSellerMessage();
@@ -56,7 +61,7 @@ class BoughtController extends Controller
         $get_messages_from_buyer =SellerMessage::join('users','seller_messages.seller_id','users.id')
         ->where('seller_messages.seller_id',auth()->user()->id)
         ->where('seller_messages.status','not read')
-        ->select('users.name','users.contact','seller_messages.message','seller_messages.id')
+        ->select('seller_messages.buyers_name','seller_messages.phone_number','seller_messages.message','seller_messages.id')
         ->paginate('10');
         return view('admin.buyers-message', compact('get_messages_from_buyer'));
     }
@@ -75,13 +80,14 @@ class BoughtController extends Controller
         ->select('users.id','users.name','products.product','breeds.breed','weights.weight','districts.district','categories.category',
                   'items.price','items.number','items.item_image','items.id','items.user_id')
         ->orderBy('items.created_at','DESC')
-        ->get();
+        ->paginate('9');
         return view('front.sell-buy', compact('get_items_to_sell'));
     }
     protected function viewItemDetails($id){
         $get_item_details_on_sell =Item::join('breeds','items.breed_id','breeds.id')
         ->join('categories','items.category_id','categories.id')
         ->join('districts','items.district_id','districts.id')
+        ->join('products','items.product_id','products.id')
         ->where('items.id',$id)->get();
         return view('front.item-details', compact('get_item_details_on_sell'));
     }

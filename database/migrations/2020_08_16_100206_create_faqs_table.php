@@ -17,6 +17,7 @@ class CreateFaqsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('question');
+            $table->string('reply')->default('Null');
             $table->enum('status',['active','deleted'])->default('active');
             $table->timestamps();
         });

@@ -66,8 +66,8 @@
                     <div class="col-sm-10">
                    <input type="text" name="village" list="villages" class="form-control" autocomplete="off">
                     <datalist id="villages" style="width: 100%;">
-                        @foreach($get_village as $pick_from_village_table)
-                        <option selected="selected" value="{{$pick_from_village_table->village}}"></option>
+                        @foreach($get_subcounty as $pick_from_village_table)
+                        <option selected="selected" value="{{$pick_from_village_table->subcounty}}"></option>
                         @endforeach
                     </datalist>
                   </div>

@@ -9,6 +9,7 @@ use App\Permit;
 use App\Product;
 use App\Role;
 use App\District;
+use App\Doctor;
 
 class PermitController extends Controller
 {
@@ -27,16 +28,17 @@ class PermitController extends Controller
         if(in_array('Can see print Permit', auth()->user()->getUserPermisions())){
         $display_permits =Permit::join('users','permits.user_id','users.id')
         ->join('products','permits.product_id','products.id')
-        ->join('roles','permits.role_id','roles.id')
+        ->join('districts','permits.district_id','districts.id')
         ->where('permits.status','active')
-        ->select('users.name','permits.sellers_name','permits.id','permits.contact','permits.buyers_name',
+        ->where('users.id',auth()->user()->id)
+        ->select('users.name','users.contact','permits.sellers_name','permits.id','permits.contact','permits.buyers_name',
         'permits.buyers_contact','permits.sellers_ID','permits.buyer_ID','permits.description','permits.Number_of_items',
-        'permits.local_council_one_name','permits.phone_number','roles.role','permits.vet_contact','permits.vet_officer',
-        'permits.item_image','permits.from_destination','permits.to_destination','permits.created_at','products.product')
+        'permits.local_council_one_name','permits.phone_number','districts.district','permits.item_image','permits.to_destination',
+        'permits.created_at','products.product','permits.receipt_number')
         ->orderBy('permits.created_at','desc')
         ->limit(1)
         ->paginate('1');
-        return view('admin.invoice-print',compact('display_permits'));
+        return view('admin.print-permit',compact('display_permits'));
         }else{
             return redirect('/404');
         }
@@ -49,25 +51,17 @@ class PermitController extends Controller
             return redirect('/404');
         }
     }
-    public function createPermit(Request $request){
+    protected function createPermit(Request $request){
         if(Product::where(\strtolower('product'), strtolower($request->product))->exists()){
             $get_product= Product::where("product", $request->product)->value('id');
           }
           else{
             Product::create(array('product'=>$request->product
            ));
-           
           }
-          if(Role::where(\strtolower('role'), strtolower($request->role))->exists()){
-            $get_role= Role::where("role", $request->role)->value('id');
-          }
-          else{
-            Role::create(array('role'=>$request->role
-           ));
-           
-          }
-          $get_product_id= Product::where(\strtolower("product"), strtolower($request->product))->value('id');
-          $get_role_id= Role::where(\strtolower("role"), strtolower($request->role))->value('id');
+        $get_product_id= Product::where(\strtolower("product"), strtolower($request->product))->value('id');
+        $get_district_id= District::where(\strtolower("district"), strtolower($request->district))->value('id');
+        $get_role_id= Role::where(\strtolower("role"), strtolower($request->role))->value('id');
         $files = $request->file('item_image');
         $extension = $files->getClientOriginalExtension();
         $file_name = $files->getClientOriginalName();
@@ -77,6 +71,7 @@ class PermitController extends Controller
         Permit::create(array(
             'user_id'=>Auth::user()->id,
             'product_id'=>$get_product_id,
+            'role_id'=>$get_role_id,
             'sellers_name'=>$request->sellers_name,
             'contact'=>$request->contact,
             'buyers_name'=>$request->buyers_name,
@@ -87,61 +82,78 @@ class PermitController extends Controller
             'Number_of_items'=>$request->Number_of_items,
             'local_council_one_name'=>$request->local_council_one_name,
             'phone_number'=>$request->phone_number,
-            'role_id'=>$get_role_id,
-            'vet_officer'=>$request->vet_officer,
-            'vet_contact'=>$request->vet_contact,
+            'district_id' =>$get_district_id,
+            'receipt_number'=>$this->getRecieptNumber(),
             'item_image'=>$file_name,
-            'from_destination'=>$request->from_destination,
             'to_destination'=>$request->to_destination
         ));
         return Redirect()->back()->withErrors("You have Save Permit Successfully");
     }
+    private function getRecieptNumber(){
+        $count_permits = count(Permit::all());
+        if($count_permits < 10){
+            $permit_random_number = '#000'.rand(0, 10). ( $count_permits+ 1);
+            return $permit_random_number;
+        }elseif($count_permits < 100){
+            $permit_random_number = '#00'.rand(10, 100). ( $count_permits+ 1);
+            return $permit_random_number;
+        }elseif($count_permits < 1000){
+            $permit_random_number = '#0'.rand(100, 1000). ( $count_permits+ 1);
+            return $permit_random_number;
+        }else{
+            $permit_random_number = '#'.rand(1000, 10000). ( $count_permits+ 1);
+            return $permit_random_number;
+        }
+    }
     public function displayPermit(){
         $display_permits =Permit::join('users','permits.user_id','users.id')
         ->join('products','permits.product_id','products.id')
-        ->join('roles','permits.role_id','roles.id')
+        ->join('districts','permits.district_id','districts.id')
         ->where('permits.status','active')
-        ->select('users.name','permits.sellers_name','permits.id','permits.contact','permits.buyers_name',
+        ->where('users.id',auth()->user()->id)
+        ->select('users.name','users.contact','permits.sellers_name','permits.id','permits.contact','permits.buyers_name',
         'permits.buyers_contact','permits.sellers_ID','permits.buyer_ID','permits.description','permits.Number_of_items',
-        'permits.local_council_one_name','permits.phone_number','roles.role','permits.vet_contact','permits.vet_officer',
-        'permits.item_image','permits.from_destination','permits.to_destination','permits.created_at','products.product')
+        'permits.local_council_one_name','permits.phone_number','permits.item_image','districts.district','permits.to_destination',
+        'permits.created_at','products.product','permits.receipt_number')
         ->orderBy('permits.created_at','desc')
         ->limit(1)
         ->paginate('1');
-        return view('admin.permit-table', compact('display_permits'));
+        $noPermit_available = "Sorry, Permit is not available. Please check again later";
+        return view('admin.permit-table', compact('display_permits','noPermit_available'));
     }
-    public function searchPermit(Request $request){
-        $display_Permits =Permit::join('users','permits.user_id','users.id')
+    public function viewPermit($id){
+        $display_permits =Permit::join('users','permits.user_id','users.id')
         ->join('products','permits.product_id','products.id')
+        ->join('districts','permits.district_id','districts.id')
         ->join('roles','permits.role_id','roles.id')
         ->where('permits.status','active')
-        ->where('permits.vet_officer',$request->vet_officer)
-        ->orwhere('users.name',$request->vet_officer)
-        ->orwhere('products.product',$request->vet_officer)
-        ->orwhere('permits.sellers_name',$request->vet_officer)
-        ->orwhere('permits.contact',$request->vet_officer)
-        ->orwhere('permits.buyers_name',$request->vet_officer)
-        ->orwhere('permits.buyers_contact',$request->vet_officer)
-        ->orwhere('permits.sellers_ID',$request->vet_officer)
-        ->orwhere('permits.buyer_ID',$request->vet_officer)
-        ->orwhere('permits.description',$request->vet_officer)
-        ->orwhere('permits.Number_of_items',$request->namvet_officere)
-        ->orwhere('permits.local_council_one_name',$request->vet_officer)
-        ->orwhere('permits.phone_number',$request->vet_officer)
-        ->orwhere('permits.vet_contact',$request->vet_officer)
-        ->orwhere('permits.item_image',$request->vet_officer)
-        ->orwhere('permits.from_destination',$request->vet_officer)
-        ->orwhere('permits.to_destination',$request->vet_officer)
-        ->select('users.name','permits.sellers_name','permits.id','permits.contact','permits.buyers_name',
+        ->where('permits.id',$id)
+        ->select('users.name','users.contact','roles.role','users.role_id','permits.sellers_name','permits.id','permits.contact','permits.buyers_name',
         'permits.buyers_contact','permits.sellers_ID','permits.buyer_ID','permits.description','permits.Number_of_items',
-        'permits.local_council_one_name','permits.phone_number','roles.role','permits.vet_contact','permits.vet_officer',
-        'permits.item_image','permits.from_destination','permits.to_destination','products.product')
-        ->paginate('10');
-        return view('admin.permit-table', compact('display_permits'));
+        'permits.local_council_one_name','permits.phone_number','permits.item_image','districts.district','permits.to_destination',
+        'permits.created_at','products.product','permits.receipt_number')
+        ->get();
+        $noPermit_available = "Sorry, Permit is not available. Please check again later";
+        return view('admin.view-permit', compact('display_permits','noPermit_available'));
     }
+    public function displayAdminPermit(){
+        $display_permits =Permit::join('users','permits.user_id','users.id')
+        ->join('products','permits.product_id','products.id')
+        ->join('districts','permits.district_id','districts.id')
+        ->where('permits.status','active')
+        ->select('users.name','users.contact','permits.sellers_name','permits.id','permits.contact','permits.buyers_name',
+        'permits.buyers_contact','permits.sellers_ID','permits.buyer_ID','permits.description','permits.Number_of_items',
+        'permits.local_council_one_name','permits.phone_number','permits.item_image','districts.district',
+        'permits.to_destination','permits.created_at','products.product','permits.receipt_number')
+        ->orderBy('permits.created_at','desc')
+        ->get();
+        $noPermit_available = "Sorry, Permit is not available. Please check again later";
+        return view('admin.admin-permit', compact('display_permits','noPermit_available'));
+    }
+    
     public function updatePermitInformation($id, Request $request){
         $get_product_id= Product::where(\strtolower("product"), strtolower($request->product))->value('id');
-        $get_role_id= Role::where(\strtolower("role"), strtolower($request->role))->value('id');
+        $get_district_id= District::where(\strtolower("district"), strtolower($request->district))->value('id');
         Permit::where('id', $id)->update(array(
             'user_id'=>Auth::user()->id,
             'product_id'=>$get_product_id,
@@ -155,11 +167,8 @@ class PermitController extends Controller
             'Number_of_items'=>$request->Number_of_items,
             'local_council_one_name'=>$request->local_council_one_name,
             'phone_number'=>$request->phone_number,
-            'role_id'=>$get_role_id,
-            'vet_officer'=>$request->vet_officer,
-            'vet_contact'=>$request->vet_contact,
             'item_image'=>$request->item_image,
-            'from_destination'=>$request->from_destination,
+            'district_id' =>$get_district_id,
             'to_destination'=>$request->to_destination
         ));
         return Redirect()->back()->with('message',"Permit has been updated successfully");

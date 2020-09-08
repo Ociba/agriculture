@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Farm;
 use App\District;
 use App\County;
-use App\Village;
+use App\Subcounty;
 
 class FarmController extends Controller
 {
@@ -16,10 +16,10 @@ class FarmController extends Controller
         $display_farms= Farm::join('users','farms.user_id','users.id')
         ->join('districts','farms.district_id','districts.id')
         ->join('counties','farms.county_id','counties.id')
-        ->join('villages','farms.village_id','villages.id')
+        ->join('subcounties','farms.subcounty_id','subcounties.id')
         ->where('farms.status','active')
         ->select('farms.farm_name','farms.activity','farms.statement','farms.image','districts.district',
-                'counties.county','villages.village','farms.id')
+                'counties.county','subcounties.subcounty','farms.id')
         ->get();
         return view('front.farming', compact('display_farms'));
     }
@@ -27,8 +27,8 @@ class FarmController extends Controller
         if(in_array('Can add farm', auth()->user()->getUserPermisions())){
         $get_districts =District::select('district','id')->get();
         $get_county =County::select('county','id')->get();
-        $get_village =Village::select('village','id')->get();
-        return view('admin.farms-form', compact('get_districts','get_county','get_village'));
+        $get_subcounty =Subcounty::select('subcounty','id')->get();
+        return view('admin.farms-form', compact('get_districts','get_county','get_subcounty'));
         }else{
             return redirect('/404');
         }
@@ -60,17 +60,17 @@ class FarmController extends Controller
        ));
        
       }
-      if(Village::where(\strtolower('village'), strtolower($request->village))->exists()){
-        $get_village= Village::where("village", $request->village)->value('id');
+      if(Subcounty::where(\strtolower('subcounty'), strtolower($request->subcounty))->exists()){
+        $get_subcounty= subcounty::where("subcounty", $request->subcounty)->value('id');
       }
       else{
-        Village::create(array('village'=>$request->village
+        Subcounty::create(array('subcounty'=>$request->subcounty
        ));
        
       }
        $get_district_id= District::where(\strtolower("district"), strtolower($request->district))->value('id');
        $get_county_id= County::where(\strtolower("county"), strtolower($request->county))->value('id');
-       $get_village_id= Village::where(\strtolower("village"), strtolower($request->village))->value('id');
+       $get_subcounty_id= Subcounty::where(\strtolower("subcounty"), strtolower($request->subcounty))->value('id');
         if($request->hasFile('image')) {
 
             $files = $request->file('image');
@@ -83,7 +83,7 @@ class FarmController extends Controller
           'user_id'=>Auth::user()->id,
           'district_id'=>$get_district_id,
           'county_id'=>$get_county_id,
-          'village_id'=>$get_village_id,
+          'subcounty_id'=>$get_subcounty_id,
           'farm_name'=>$request->farm_name,
           'activity'=>$request->activity,
           'statement'=>$request->statement,
@@ -100,10 +100,10 @@ class FarmController extends Controller
         $display_farms= Farm::join('users','farms.user_id','users.id')
         ->join('districts','farms.district_id','districts.id')
         ->join('counties','farms.county_id','counties.id')
-        ->join('villages','farms.village_id','villages.id')
+        ->join('subcounties','farms.subcounty_id','subcounties.id')
         ->where('farms.status','active')
         ->select('farms.farm_name','farms.activity','farms.statement','farms.image','districts.district',
-                'counties.county','villages.village','farms.id')
+                'counties.county','subcounties.subcounty','farms.id')
         ->get();
         return view('admin.farm', compact('display_farms'));
         }else{
@@ -115,8 +115,8 @@ class FarmController extends Controller
         $edit_farm_detail =Farm::where('id',$id)->get();
         $get_districts =District::select('district','id')->get();
         $get_county =County::select('county','id')->get();
-        $get_village =Village::select('village','id')->get();
-        return view('admin.edit-farm',compact('edit_farm_detail','get_districts','get_county','get_village'));
+        $get_subcounty =subcounty::select('subcounty','id')->get();
+        return view('admin.edit-farm',compact('edit_farm_detail','get_districts','get_county','get_subcounty'));
         }else{
             return redirect('/404');
         }
@@ -124,12 +124,12 @@ class FarmController extends Controller
     public function updateFarm(Request $request, $id){
         $get_district_id= District::where(\strtolower("district"), strtolower($request->district))->value('id');
         $get_county_id= County::where(\strtolower("county"), strtolower($request->county))->value('id');
-        $get_village_id= Village::where(\strtolower("village"), strtolower($request->village))->value('id');
+        $get_subcounty_id= Subcounty::where(\strtolower("subcounty"), strtolower($request->subcounty))->value('id');
         Farm::where('id',$id)->update(array(
           'user_id'=>Auth::user()->id,
           'district_id'=>$get_district_id,
           'county_id'=>$get_county_id,
-          'village_id'=>$get_village_id,
+          'subcounty_id'=>$get_subcounty_id,
           'farm_name'=>$request->farm_name,
           'activity'=>$request->activity,
           'statement'=>$request->statement,

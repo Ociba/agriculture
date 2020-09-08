@@ -45,8 +45,11 @@
                                                 <tr>
                                                 <th>Name</th>
                                                 <th>Email</th>
+                                                <th>Contact</th>
                                                 <th>Comment</th>
+                                                <th>Reply</th>
                                                 <th>Photo</th>
+                                                <th>Status</th>
                                                 @if(in_array('Can see comment action', auth()->user()->getUserPermisions()))
                                                 <th>Action</th>
                                                 @endif
@@ -57,14 +60,21 @@
                                             <tr>
                                                 <td>{{ $comment->name }}</td>
                                                 <td>{{ $comment->email }}</td>
+                                                <td>{{ $comment->contact }}</td>
                                                 <td>{{ $comment->comment }}</td>
+                                                <td>{{ $comment->reply }}</td>
                                                 <td>
                                                 <img src="{{asset('assets/images/'.$comment->photo)}}" style="width:60px" height="30px" alt="">
                                                 </td>
+                                                <td>{{ $comment->status }}</td>
                                                 <td>
                                                 @if(in_array('Can edit comment', auth()->user()->getUserPermisions()))
                                                 <a href="/display-approve-comment/{{ $comment->id }}" data-widget="edit" data-toggle="tooltip" title="approve">
                                                 <span class="btn btn-success btn-xs"><i class="fa fa-check-circle-o"></i></span></a>
+                                                @endif
+                                                @if(in_array('Can edit comment', auth()->user()->getUserPermisions()))
+                                                <a href="/reply-comment/{{ $comment->id }}" data-widget="edit" data-toggle="tooltip" title="reply">
+                                                <span class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></span></a>
                                                 @endif
                                                 @if(in_array('Can delete comment', auth()->user()->getUserPermisions()))
                                                 <a href="/delete-comment/{{ $comment->id }}" data-widget="deny" data-toggle="tooltip" title="delete">

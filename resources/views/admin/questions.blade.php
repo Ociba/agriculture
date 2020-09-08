@@ -53,6 +53,7 @@
                                             <thead>
                                                 <tr>
                                                 <th>Question</th>
+                                                <th>Reply</th>
                                                 <th>Created By</th>
                                                 @if(in_array('Can see question action', auth()->user()->getUserPermisions()))
                                                 <th>Action</th>
@@ -63,11 +64,16 @@
                                             @foreach ($display_frequently_asked_questions as $index =>$question)
                                               <tr>
                                                   <td>{{ $question->question }}</td>
+                                                  <td>{{ $question->reply }}</td>
                                                   <td>{{ $question->name }}</td>
                                                   <td>
                                                   @if(in_array('Can edit question', auth()->user()->getUserPermisions()))
                                                   <a href="/display-edit-question/{{ $question->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
                                                   <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
+                                                  @endif
+                                                  @if(in_array('Can reply question', auth()->user()->getUserPermisions()))
+                                                  <a href="/reply-question/{{ $question->id }}" data-widget="reply" data-toggle="tooltip" title="reply">
+                                                  <span class="btn btn-primary btn-xs"><i class="fa fa-reply"></i></span></a>
                                                   @endif
                                                   @if(in_array('Can delete question', auth()->user()->getUserPermisions()))
                                                   <a href="/delete-question/{{ $question->id }}" data-widget="deny" data-toggle="tooltip" title="delete">

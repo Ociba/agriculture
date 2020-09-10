@@ -17,6 +17,7 @@ class PermissionController extends Controller
         $get_all_permissions = PermissionRole::join('roles','permission_roles.role_id','roles.id')
         ->join('permissions','permission_roles.permission_id','permissions.id')
         ->where('roles.id',$id)
+        ->select('permission_roles.id','permissions.permission')
         ->paginate('10');
         
         return view('admin.permission-table',compact('get_all_permissions','get_selected_role'));
@@ -64,7 +65,7 @@ class PermissionController extends Controller
     public function unsignPermission($id){
         PermissionRole::join('roles','permission_roles.role_id','roles.id')
         ->join('permissions','permission_roles.permission_id','permissions.id')
-        ->where('permission_roles.role_id',$id)->delete();
+        ->where('permission_roles.id',$id)->delete();
         return redirect()->back()->with('message','Permission has been unsigned successfully');
     }
 }

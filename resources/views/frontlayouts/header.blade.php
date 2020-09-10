@@ -7,7 +7,8 @@
                             <div class="header-top-text d-sm-block d-lg-block d-xs-block d-md-block">
                                 <p>
                                 <img style="height:35px; width:50px;" src="{{asset('assets/images/flag.png')}}" alt="Image"> &nbsp;
-                                  Marketing products,connecting and improve Agriculture
+                                  {{--Marketing products,connecting and improve Agriculture--}}
+                                  Market products now
                                 </p>
                             </div>
                             <div class="header-top-text d-sm-block d-lg-block d-xs-block d-md-block">

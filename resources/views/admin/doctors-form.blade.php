@@ -32,11 +32,11 @@
             <div class="col-12">
         <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Doctors Form</h3>
+                <h3 class="card-title">Officer Form</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form class="form-horizontal mt-3" method="get" action="/save-veterinary-doctor">
+              <form class="form-horizontal mt-3" method="get" action="/save-officer">
               @csrf
                 <div class="card-body">
                 <div class="form-group row">

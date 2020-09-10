@@ -66,7 +66,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($display_doctors_details as $index =>$officer)
+                                                @foreach ($display_forestry_details as $index =>$officer)
                                                 <tr>
                                                     <td>{{ $officer->district }}</td>
                                                     <td>{{ $officer->names }}</td>

@@ -28,7 +28,7 @@ class BoughtController extends Controller
         ->select('users.name','users.contact','products.product','breeds.breed','districts.district','categories.category','items.number','items.item_image','items.id',
                 'items.price')
         ->orderBy('items.created_at','DESC')
-        ->paginate('10');
+        ->paginate('9');
         return view('admin.items-on-sell', compact('display_all_items_to_be_bought'));
     }
     protected function sendMessageToSellerForm($id){

@@ -16,16 +16,19 @@
     <div class="row m-2">
       <div class="col-12">
       @foreach($display_permits as $permit)
-          <h3 class="text-center text-justify">This permit serves as Evidence that the Product is approved by the responsible person under Ministry of Agriculture</h3>
+          <h3 class="text-center text-justify font-weight-bold">Ministry of Agriculture, Animal Industry and Fisheries</h3>
+          <h6 class="text-center">P.O Box 102,Entebbe Plot 16-18 | Lugard Avenue, Entebbe Uganda | Email:info@agriculture.go.ug | Tel: 0414-320004</h6>
+          <h3 class="text-center text-justify font-weight-bold"><u>Local Animal Movement Permit</u></h3>
           <h2 class="page-header row invoice-info">
           <div class="col-4 invoice-col">
             <i class="fa fa-leaf"></i> Permit.
           </div>
           <div class="col-4 invoice-col">
             <img src="{{asset('assets/images/arms.png')}}" style="width:60px" height="30px" alt="">
+            <img style="height:35px; width:50px;" src="{{asset('assets/images/flag.png')}}" alt="Image">
           </div>
           <div class="col-4 invoice-col">
-            {{$permit->created_at}}
+          {{ date('d M, Y', strtotime($permit->created_at))}}
           </div>
           </h2>
       </div>
@@ -55,7 +58,7 @@
       <!-- /.col -->
       <div class="col-4 invoice-col">
         <b>Invoice <span style="color:red;">{{$permit->receipt_number}}</span></b><br>
-        <br>
+        <b>Time:</b> {{ date('g:ia', strtotime($permit->created_at))}}<br>
         <b>Item No.:</b> {{$permit->Number_of_items}}<br>
           <b>Item:</b> <img src="{{asset('images/profile_pictures/'.$permit->item_image)}}" style="width:60px" height="30px" alt=""><br>
       </div>
@@ -112,6 +115,14 @@
       <!-- /.col -->
     </div>
     @endforeach
+    <div class="row m-3">
+         <span class="font-weight-bold underline"><u>Very Important Information</u></span>
+         <p><b>1.</b> Permits for the movement of animals, carcasses, hides and skins may be issued by an inspecting officer and shall be in the appropriate form.</p>
+         <p><b>2.</b> No permit for the movement of animals, carcasses,hides and skins from one district to another shall be granted except;</p>
+         <p>- With the permission of a veterinary officer,and</p></br>
+         <p>- On payment of a fee of five thousand shillings incase of a permit required for the movement of the animals.</p>
+         <p><b>3.</b> To and Fro Permits to transport cattle may be issued for a period of three months only and may not be issued for cattle other than transport. Cattle except with the permission of a veterinary officer and may not be used upon any route other than the one spcified in the permit</p>
+      </div>
     <div class="row m-2">
       <div class="col-2 invoice-col"></div>
       <div class="col-8 invoice-col">

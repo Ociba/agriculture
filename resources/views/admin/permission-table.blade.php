@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
-<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-    @include('layouts.stylecss')
-</head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+        @include('layouts.stylecss')
+   </head>
     <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
         <div class="wrapper">
             @include('layouts.topnavbar')
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    @include('layouts.sidebartoptext')
+            <!-- Brand Logo -->
+            @include('layouts.sidebartoptext')
 
-    <!-- Sidebar -->
-    @include('layouts.sidebar')
-    <!-- /.sidebar -->
-  </aside>
+            <!-- Sidebar -->
+            @include('layouts.sidebar')
+            <!-- /.sidebar -->
+            </aside>
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 @include('layouts.breadcrumb')
@@ -47,15 +47,22 @@
         <!-- /.col -->
         </div>
                                 <!-- /.col -->
-                                <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
-                                <div class="box">
+        <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+        <div class="box">
         <div class="box-header with-border">
-        <h3 class="box-title" style="color:blue;">Permissions</h3>
+        <h3 class="box-title" style="color:blue;">Permissions
+        <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4 pull-right">
+        <a href="/checkbox_permissions/{{request()->route()->id}}" button type="text" name="permission" class="form-control  btn btn-primary">
+        <li class="fa fa-plus"> Permissions</li>
+        </button>
+        </a>
+        </div>
+        </h3>
         </div>
         <div class="box-body table-responsive no-padding">
         <table class="table table-hover">
         <tr>
-        <th>Role</th>
+        <th>Number</th>
         <th>Permission(s)</th>
         <th>Action</th>
         </tr>
@@ -89,14 +96,6 @@
         </div>
         </div>
         </div>
-        <div class="row m-2">
-        <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4 pull-right">
-        <a href="/checkbox_permissions/{{request()->route()->id}}" button type="text" name="permission" class="form-control  btn btn-primary">
-        <li class="fa fa-plus"> Permissions</li>
-        </button>
-        </a>
-        </div>
-        </div>
         <!-- /.box-body -->
         </div>
                                 </div>
@@ -106,6 +105,7 @@
                     </div>
                 </section>
                 <!-- /.content -->
+            </div>
             </div>
             <!-- /.content-wrapper -->
             @include('layouts.footer')

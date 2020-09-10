@@ -29,8 +29,8 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title pull-right">
-                                        @if(in_array('Can add doctor', auth()->user()->getUserPermisions()))
-                                        <a href="/display-veterinary-form" button type="button" class="btn btn-primary">Add Officer</button></a>
+                                        @if(in_array('Can add officer', auth()->user()->getUserPermisions()))
+                                        <a href="/display-officer-form" button type="button" class="btn btn-primary">Add Officer</button></a>
                                         @endif
                                     </h4>
                                  </div>
@@ -57,32 +57,32 @@
                                                     <th>Role</th>
                                                     <th>Contact 1</th>
                                                     <th>Contact 2</th>
-                                                    @if(in_array('Can see doctor created by', auth()->user()->getUserPermisions()))
+                                                    @if(in_array('Can see officer created by', auth()->user()->getUserPermisions()))
                                                     <th>Created By</th>
                                                     @endif
-                                                    @if(in_array('Can see doctor action', auth()->user()->getUserPermisions()))
+                                                    @if(in_array('Can see officer action', auth()->user()->getUserPermisions()))
                                                     <th>Action</th>
                                                     @endif
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($display_doctors_details as $index =>$doctor)
+                                                @foreach ($display_fishery_details as $index =>$officer)
                                                 <tr>
-                                                    <td>{{ $doctor->district }}</td>
-                                                    <td>{{ $doctor->names }}</td>
-                                                    <td>{{ $doctor->role }}</td>
-                                                    <td>{{ $doctor->phone_number_1 }}</td>
-                                                    <td>{{ $doctor->phone_number_2 }}</td>
-                                                    @if(in_array('Can see doctor createdby name', auth()->user()->getUserPermisions()))
-                                                    <td>{{ $doctor->name }}</td>
+                                                    <td>{{ $officer->district }}</td>
+                                                    <td>{{ $officer->names }}</td>
+                                                    <td>{{ $officer->role }}</td>
+                                                    <td>{{ $officer->phone_number_1 }}</td>
+                                                    <td>{{ $officer->phone_number_2 }}</td>
+                                                    @if(in_array('Can see officer createdby name', auth()->user()->getUserPermisions()))
+                                                    <td>{{ $officer->name }}</td>
                                                     @endif
-                                                    @if(in_array('Can edit doctor', auth()->user()->getUserPermisions()))
+                                                    @if(in_array('Can edit officer', auth()->user()->getUserPermisions()))
                                                     <td>
-                                                        <a href="/display-edit-veterinary-doctor/{{ $doctor->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
+                                                        <a href="/display-edit-officer/{{ $officer->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
                                                         <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
                                                         @endif
-                                                        @if(in_array('Can delete doctor', auth()->user()->getUserPermisions()))
-                                                        <a href="/delete-veterinary-doctor/{{ $doctor->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
+                                                        @if(in_array('Can delete officer', auth()->user()->getUserPermisions()))
+                                                        <a href="/delete-officer/{{ $officer->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
                                                         <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
                                                     </td>
                                                     @endif

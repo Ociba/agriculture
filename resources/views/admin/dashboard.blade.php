@@ -14,7 +14,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     
     <a href="#" class="brand-link">
-      <span class="brand-text font-weight-light">Agriculture System</span>
+      <span class="brand-text font-weight-light">We Connect Now</span>
     </a>
 
     
@@ -108,9 +108,8 @@
                 'rgba(128, 0, 0)',
                 'rgba(220, 20, 60)',
                 'rgba(255, 215, 0)',
-                'rgba((255, 255,0)',
-                'rgba(0, 100, 0)',
                 'rgba(0, 250, 154)',
+                'rgba(0, 100, 0)',
                 'rgba(0, 128, 128)',
                 'rgba(255, 0, 255)',
                 'rgba(255, 20, 147)',

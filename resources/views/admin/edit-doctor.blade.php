@@ -38,7 +38,7 @@
               <!-- /.card-header -->
               <!-- form start -->
               @foreach($edit_doctor as $doctor)
-              <form class="form-horizontal mt-3" method="get" action="/save-edited-veterinary-doctor/{{$doctor->id}}">
+              <form class="form-horizontal mt-3" method="get" action="/save-edited-officer/{{$doctor->id}}">
               @csrf
                 <div class="card-body">
                 <div class="form-group row">

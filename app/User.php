@@ -194,13 +194,14 @@ class User extends Authenticatable
 
     public function getItemsAveragePrice(){
         /**
-         * get all the products from the products table,
+         * get all the products from the products table through joining price table with product table,
          * we use a for each loop to get the products ids, and push the id in a unique array.
          * use a for loop to loop through the array as we get the sum of the prices of the items_id[$i]
          */
         $items_id = [];
         $item_prices = [];
-        $all_items = Product::get();
+        //you really disturbed me
+        $all_items = Price::join('products','prices.product_id','products.id')->get();
         foreach($all_items as $item){
             if(in_array($item->id, $items_id)){
                 continue;
@@ -284,23 +285,5 @@ class User extends Authenticatable
     public function getNumberOfApprovedFeedback(){
         $count_approved_feedback =DB::table('feedbacks')->where('status','approve')->count();
         return $count_approved_feedback;
-    }
-    public function greetings(){
-        $greetings = "";
-        
-                 if(date("H") < 12){
- 
-                    $greetings= "good morning";
-                
-                }elseif(date("H") > 11 && date("H") < 18){
-                
-                    $greetings= "good afternoon";
-                
-                }elseif(date("H") > 17){
-                
-                    $greetings ="good evening";
-                
-                }
-            return $greetings;
     }
 }

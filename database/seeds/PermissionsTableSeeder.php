@@ -73,12 +73,12 @@ class PermissionsTableSeeder extends Seeder
                         "Can delete village","Can view emrgency report","Can search emergency","Can add emergency",
                          "Can see emergency action","Can edit emergency","Can delete emergency","Can see print Permit","Can view reports",
                         "Can view doctors treatment records","Can search vet reports","Can add vet reports","Can see vet reports action",
-                        "Can edit vet reports","Can delete vet reports","Can view documentation","Can view veterinary doctors","Can delete doctor",
-                        "Can edit doctor","Can see doctor createdby name","Can see doctor action","Can see doctor created by","Can add doctor",
-                        "Can search doctors","Can view notification messages","Can view notifications","Can view payments","Can see payment action",
+                        "Can edit vet reports","Can delete vet reports","Can view documentation","Can view veterinary doctors","Can delete officer",
+                        "Can edit officer","Can see officer createdby name","Can see officer action","Can see officer created by","Can add officer",
+                        "Can search officer","Can view notification messages","Can view notifications","Can view payments","Can see payment action",
                          "Can delete payment","Can view buyers items on sell","Can see buyers message action","Can delete buyers message","Can view buyers message",
                         "Can view all doctors treatment records","Can view all emergency reports","Can view admin Permit","Can view my prices reports",
-                        "Can edit comment","Can reply question","Can view my doctors request"];
+                        "Can edit comment","Can reply question","Can view my doctors request","Can view staff members"];
 
                     for($i=0; $i < count($permissions); $i++){
                         $permission = new permission();

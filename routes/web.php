@@ -19,6 +19,7 @@ Route::get('/try', function () {
 Route::get('/display-item','ProduceController@index');
 
 Route::group(['middleware' => ['auth']], function () {
+Route::get('/show-forestry-officers','DoctorsController@displayForestryryOfficers')->name('Forestry Officers');
 Route::get('/send-email-notification','MailController@sendEmailOnAccountCreation');
 Route::get('/email-response','HomeController@emailResponse');
 Route::get('/reply-question/{id}','FaqController@replyFaqQuestion')->name('Reply Question');
@@ -42,13 +43,13 @@ Route::get('/display-front-pages','HomeController@frontPages')->name('Functional
 Route::get('/display-conclusion','HomeController@conclusion')->name('Conclusion');
 Route::get('/404', function () { return view('admin.errorpage');})->name('Error');
 //Doctor
- Route::get('/display-veterinary-form','DoctorsController@addDoctorsForm')->name('Doctors Form');
- Route::get('/display-edit-veterinary-doctor/{id}','DoctorsController@editDoctor')->name('edit Doctor');
- Route::get('/save-veterinary-doctor','DoctorsController@createDoctor');
+ Route::get('/display-officer-form','DoctorsController@addOfficerForm')->name('Officer Form');
+ Route::get('/display-edit-officer/{id}','DoctorsController@editOfficer')->name('edit Doctor');
+ Route::get('/save-officer','DoctorsController@createOfficer');
  Route::get('/show-veterinary-doctors','DoctorsController@displayDoctor')->name('Doctor table');
  Route::get('/search-items-bought','DoctorsController@searchBoughtItems');
- Route::get('/save-edited-veterinary-doctor/{id}','DoctorsController@updateDoctorsInformation');
- Route::get('/delete-veterinary-doctor/{id}','DoctorsController@deleteDoctor');
+ Route::get('/save-edited-officer/{id}','DoctorsController@updateOfficersInformation');
+ Route::get('/delete-officer/{id}','DoctorsController@deleteOfficer');
  Route::get('/show-agriculture-officers','DoctorsController@displayAgricOfficers')->name('Agric Officers');
  Route::get('/show-fisheries-officers','DoctorsController@displayFisheryOfficers')->name('Fisheries Officers');
 //Breed

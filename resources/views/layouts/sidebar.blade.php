@@ -213,7 +213,7 @@
             <a href="/permit-details-for-admin" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>
-                Permit Admin View
+                View Permits
               </p>
             </a>
             </li>
@@ -231,25 +231,17 @@
             </ul>
           </li>
           @endif
-          @if(in_array('Can view vetenery services', auth()->user()->getUserPermisions()))
+          @if(in_array('Can view staff members', auth()->user()->getUserPermisions()))
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-home"></i>
+          <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-odnoklassniki"></i>
               <p>
-                Vetenary Services
-                <i class="right fas fa-angle-left"></i>
+                Personnel 
+                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-            @if(in_array('Can view signs and symptoms', auth()->user()->getUserPermisions()))
-            <li class="nav-item" @if(\Request::route()->getName() == "Pests")class="active" @endif>
-                <a href="/show-signs" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Signs & Symptoms</p>
-                </a>
-              </li>
-              @endif
-              @if(in_array('Can view veterinary doctors', auth()->user()->getUserPermisions()))
+            @if(in_array('Can view veterinary doctors', auth()->user()->getUserPermisions()))
             <li class="nav-item" @if(\Request::route()->getName() == "Pests")class="active" @endif>
                 <a href="/show-veterinary-doctors" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -270,6 +262,35 @@
                 <a href="/show-fisheries-officers" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Fisheries Officers</p>
+                </a>
+              </li>
+              @endif
+              @if(in_array('Can view veterinary doctors', auth()->user()->getUserPermisions()))
+            <li class="nav-item" @if(\Request::route()->getName() == "Pests")class="active" @endif>
+                <a href="/show-forestry-officers" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Forestry Officers</p>
+                </a>
+              </li>
+              @endif
+          </ul>
+          </li>
+          @endif
+          @if(in_array('Can view vetenery services', auth()->user()->getUserPermisions()))
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-home"></i>
+              <p>
+                Vetenary Services
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+            @if(in_array('Can view signs and symptoms', auth()->user()->getUserPermisions()))
+            <li class="nav-item" @if(\Request::route()->getName() == "Pests")class="active" @endif>
+                <a href="/show-signs" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Signs & Symptoms</p>
                 </a>
               </li>
               @endif

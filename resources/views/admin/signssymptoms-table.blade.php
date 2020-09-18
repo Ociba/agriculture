@@ -71,12 +71,12 @@
                                                     @endif
                                                     @if(in_array('Can edit sign and symptom action', auth()->user()->getUserPermisions()))
                                                     <td>
-                                                        <a href="/edit-signs/{{ $signs->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                        <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
+                                                        <a href="/edit-signs/{{ $signs->id }}" data-widget="edit" data-toggle="tooltip" title="edit sign and symptom">
+                                                        <span class="btn btn-success btn-xs">edit</span></a>
                                                         @endif
                                                         @if(in_array('Can delete sign and symptom', auth()->user()->getUserPermisions()))
-                                                        <a href="/delete-signs/{{ $signs->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                        <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                        <a href="/delete-signs/{{ $signs->id }}" data-widget="deny" data-toggle="tooltip" title="delete sign and symptoms">
+                                                        <span class="btn btn-danger btn-xs">delete</span></a>
                                                     </td>
                                                     @endif
                                                 </tr>

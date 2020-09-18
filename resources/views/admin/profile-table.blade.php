@@ -23,14 +23,14 @@
                 <!-- Breadcrumbs -->
                 @include('layouts.breadcrumb')
                 <!-- File export table -->
-                <section id="file-export">
+                <section>
                     <div class="row m-2">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title pull-right">
                                         @if(in_array('Can add profile', auth()->user()->getUserPermisions()))
-                                        <a href="/display-profile-form" button type="button" class="btn btn-primary">Add Image</button></a>
+                                        <a href="/display-profile-form" button type="button" class="btn btn-primary">Change Profile Image</button></a>
                                         @endif
                                     </h4>
                                 </div>
@@ -67,7 +67,7 @@
                                                 @foreach ($show_all_profiles as $index =>$profiles)
                                                 <tr>
                                                     <td>
-                                                        <img src="{{asset('images/profile_pictures/'.$profiles->image)}}" class="thumbnail responsive" width="60" height="30" alt="">
+                                                        <img src="{{asset('images/profile_pictures/'.$profiles->image)}}" class="responsive" width="60" height="30" alt="">
                                                         </a>
                                                     </td>
                                                     @if(in_array('Can see profile createdby name', auth()->user()->getUserPermisions()))
@@ -75,12 +75,12 @@
                                                     @endif
                                                     @if(in_array('Can edit profile', auth()->user()->getUserPermisions()))
                                                     <td>
-                                                        <a href="/change-profile-form" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                        <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
+                                                        <a href="/change-profile-form" data-widget="edit" data-toggle="tooltip" title="edit profile">
+                                                        <span class="btn btn-success btn-xs">edit</span></a>
                                                         @endif
                                                         @if(in_array('Can delete profile', auth()->user()->getUserPermisions()))
-                                                        <a href="/delete-profile/{{ $profiles->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                        <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                        <a href="/delete-profile/{{ $profiles->id }}" data-widget="deny" data-toggle="tooltip" title="delete image">
+                                                        <span class="btn btn-danger btn-xs">delete</span></a>
                                                     </td>
                                                     @endif
                                                 </tr>
@@ -107,18 +107,6 @@
         <!-- ./wrapper -->
         <!-- REQUIRED SCRIPTS -->
         @include('layouts.javascript')
-        <script src="{{asset('plugins/datatables/datatable-advanced.min.js')}}"></script>
-        <!-- BEGIN: Page Vendor JS-->
-        <script src="{{asset('plugins/datatables/datatables.min.js')}}"></script>
-        <script src="{{asset('plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
-        <script src="{{asset('plugins/datatables-buttons/js/buttons.flash.min.js')}}"></script>
-        <script src="{{asset('plugins/jszip/jszip.min.js')}}"></script>
-        <script src="{{asset('plugins/pdfmake/pdfmake.min.js')}}"></script>
-        <script src="{{asset('plugins/pdfmake/vfs_fonts.js')}}"></script>
-        <script src="{{asset('plugins/pdfmake/pdfmake.js.map')}}"></script>
-        <script src="{{asset('plugins/pdfmake/pdfmake.min.js.map')}}"></script>
-        <script src="{{asset('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
-        <script src="{{asset('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
-        <!-- END: Page Vendor JS-->
+        
 </body>
 </html>

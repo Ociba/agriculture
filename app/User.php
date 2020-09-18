@@ -201,7 +201,7 @@ class User extends Authenticatable
         $items_id = [];
         $item_prices = [];
         //you really disturbed me
-        $all_items = Price::join('products','prices.product_id','products.id')->get();
+        $all_items = Item::join('products','items.product_id','products.id')->get();
         foreach($all_items as $item){
             if(in_array($item->id, $items_id)){
                 continue;
@@ -210,9 +210,9 @@ class User extends Authenticatable
             }
         }
         for($i=0; $i<count($items_id); $i++){
-            $price_sum = Price::where('product_id',$items_id[$i])->sum('price');
+            $price_sum = Item::where('product_id',$items_id[$i])->sum('price');
             //get total number of items of the same id
-            $total_number_of_items =Price::where('product_id',$items_id[$i])->count();
+            $total_number_of_items =Item::where('product_id',$items_id[$i])->count();
             if($price_sum == 0){
                 continue;
             }else{
@@ -225,7 +225,7 @@ class User extends Authenticatable
     public function getItemsNames(){
         $items_id = [];
         $item_names = [];
-        $all_items_with_prices = Price::get();
+        $all_items_with_prices = Item::get();
         foreach($all_items_with_prices as $item){
             if(in_array($item->product_id, $items_id)){
                 continue;
@@ -234,7 +234,7 @@ class User extends Authenticatable
             }
         }
         for($i=0; $i<count($items_id); $i++){
-            $product_name = price::join('products','prices.product_id','products.id')
+            $product_name = Item::join('products','items.product_id','products.id')
             ->where('product_id',$items_id[$i])->value('product');
             if(in_array($product_name, $item_names)){
                 continue;

@@ -71,12 +71,12 @@
                                                     @endif
                                                     @if(in_array('Can edit category', auth()->user()->getUserPermisions()))
                                                     <td>
-                                                        <a href="/edit-category-form/{{ $category->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                        <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
+                                                        <a href="/edit-category-form/{{ $category->id }}" data-widget="edit" data-toggle="tooltip" title="edit category">
+                                                        <span class="btn btn-success btn-xs">edit</span></a>
                                                         @endif
                                                         @if(in_array('Can delete category', auth()->user()->getUserPermisions()))
-                                                        <a href="/delete-category/{{ $category->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                        <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                        <a href="/delete-category/{{ $category->id }}" data-widget="deny" data-toggle="tooltip" title="delete category">
+                                                        <span class="btn btn-danger btn-xs">delete</span></a>
                                                     </td>
                                                     @endif
                                                 </tr>

@@ -55,8 +55,8 @@
                                                   <td>{{ $subscription->email }}</td>
                                                   <td>
                                                   @if(in_array('Can delete subscription', auth()->user()->getUserPermisions()))
-                                                  <a href="/delete-subscription/{{ $subscription->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                  <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                  <a href="/delete-subscription/{{ $subscription->id }}" data-widget="deny" data-toggle="tooltip" title="delete subscription">
+                                                  <span class="btn btn-danger btn-xs">delete</span></a>
                                                       
                                                   </td>
                                                   @endif

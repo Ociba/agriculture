@@ -38,19 +38,20 @@
               <!-- form start -->
               @foreach($edit_sell_items as $make_conscent)
               @foreach($officer_details as $officer)
-              <form class="form-horizontal mt-3" method="post" action="/save-conscent">
+              @foreach($edit_sell_items as $upload_conscent)
+              <form class="form-horizontal mt-3" method="post" action="/save-conscent-with-upload" enctype="multipart/form-data">
               @csrf
                 <div class="card-body">
                   <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Sellers Name</label>
                     <div class="col-sm-10">
-                    <input type="text" name="names" value="" class="form-control" autocomplete="off" required>
+                    <input type="text" name="names" class="form-control" autocomplete="off" required>
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Sellers Contact</label>
                     <div class="col-sm-10">
-                    <input type="text" name="phone_number" value="" class="form-control" autocomplete="off" required>
+                    <input type="text" name="phone_number" class="form-control" autocomplete="off" required>
                     </div>
                   </div>
                   <div class="form-group row">
@@ -98,6 +99,12 @@
                     <textarea type="text" selected="selected" rows="7" class="form-control" id="inputEmail3" name="declaration"  placeholder="" required></textarea>
                     </div>
                   </div>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Upload Document</label>
+                    <div class="col-sm-10">
+                    <input type="file" name="attached_document" value="" class="form-control" autocomplete="off" required>
+                    </div>
+                  </div>
                 <!-- /.card-body -->
                 <div class="text-center mb-3">
                 <a href="/display-items-on-sell"><button type="button" class="btn btn-warning">Back</button></a>
@@ -105,6 +112,7 @@
                 </div>
                 <!-- /.card-footer -->
               </form>
+              @endforeach
               @endforeach
               @endforeach
             </div>

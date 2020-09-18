@@ -67,12 +67,12 @@
                                                   @endif
                                                   @if(in_array('Can edit county', auth()->user()->getUserPermisions()))
                                                   <td>
-                                                  <a href="/edit-county-form/{{ $county->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                  <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
+                                                  <a href="/edit-county-form/{{ $county->id }}" data-widget="edit" data-toggle="tooltip" title="edit county">
+                                                  <span class="btn btn-success btn-xs">edit</span></a>
                                                   @endif
                                                   @if(in_array('Can delete county', auth()->user()->getUserPermisions()))
-                                                  <a href="/delete-county/{{ $county->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                  <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                  <a href="/delete-county/{{ $county->id }}" data-widget="deny" data-toggle="tooltip" title="delete county">
+                                                  <span class="btn btn-danger btn-xs">delete</span></a>
                                                       
                                                   </td>
                                                   @endif

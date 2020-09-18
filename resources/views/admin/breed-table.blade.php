@@ -71,12 +71,12 @@
                                                     @endif
                                                     @if(in_array('Can edit breed', auth()->user()->getUserPermisions()))
                                                     <td>
-                                                        <a href="/edit-breed-form/{{ $breed->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                        <span class="btn btn-success btn-sm"><i class="fa fa-edit"></i></span></a>
+                                                        <a href="/edit-breed-form/{{ $breed->id }}" data-widget="edit" data-toggle="tooltip" title="edit breed">
+                                                        <span class="btn btn-success btn-sm">edit</span></a>
                                                         @endif
                                                         @if(in_array('Can delete breed', auth()->user()->getUserPermisions()))
-                                                        <a href="/delete-breed/{{ $breed->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                        <span class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></span></a>
+                                                        <a href="/delete-breed/{{ $breed->id }}" data-widget="deny" data-toggle="tooltip" title="delete breed">
+                                                        <span class="btn btn-danger btn-sm">delete</span></a>
                                                     </td>
                                                     @endif
                                                 </tr>

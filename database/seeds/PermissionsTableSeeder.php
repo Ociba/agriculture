@@ -78,7 +78,8 @@ class PermissionsTableSeeder extends Seeder
                         "Can search officer","Can view notification messages","Can view notifications","Can view payments","Can see payment action",
                          "Can delete payment","Can view buyers items on sell","Can see buyers message action","Can delete buyers message","Can view buyers message",
                         "Can view all doctors treatment records","Can view all emergency reports","Can view admin Permit","Can view my prices reports",
-                        "Can edit comment","Can reply question","Can view my doctors request","Can view staff members"];
+                        "Can edit comment","Can reply question","Can view my doctors request","Can view staff members","Can view my message",
+                        "Can see my message action","Can edit my message","Can delete my message","Can view market items to be approved"];
 
                     for($i=0; $i < count($permissions); $i++){
                         $permission = new permission();

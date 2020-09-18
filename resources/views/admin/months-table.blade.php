@@ -71,12 +71,12 @@
                                                 @endif
                                                 @if(in_array('Can edit month', auth()->user()->getUserPermisions()))
                                                 <td>
-                                                <a href="/edit-month-form/{{ $month->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
+                                                <a href="/edit-month-form/{{ $month->id }}" data-widget="edit" data-toggle="tooltip" title="edit month">
+                                                <span class="btn btn-success btn-xs">edit</span></a>
                                                 @endif
                                                 @if(in_array('Can delete month', auth()->user()->getUserPermisions()))
-                                                <a href="/delete-month/{{ $month->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                <a href="/delete-month/{{ $month->id }}" data-widget="deny" data-toggle="tooltip" title="delete month">
+                                                <span class="btn btn-danger btn-xs">delete</span></a>
                                                     
                                                 </td>
                                                 @endif

@@ -63,7 +63,7 @@
                                                     <th>Price(Shs)</th>
                                                     <th>Number</th>
                                                     @if(in_array('Can see item action', auth()->user()->getUserPermisions()))
-                                                    <th>Action</th>
+                                                    <th style="padding:40px;">Action</th>
                                                     @endif
                                                 </tr>
                                             </thead>
@@ -71,7 +71,7 @@
                                                 @foreach ($display_all_items_to_sell as $items)
                                                 <tr>
                                                     <td>{{ $items->product }}</td>
-                                                    <td><img src="{{asset('items/images/'.$items->item_image)}}" class="thumbnail responsive" height="30" width="60" alt=""></td>
+                                                    <td><img src="{{asset('items/images/'.$items->item_image)}}" class="responsive" height="30" width="60" alt=""></td>
                                                     <td>{{ $items->name }}</td>
                                                     <td>{{ $items->breed }}</td>
                                                     <td>{{ $items->district }}</td>
@@ -80,15 +80,23 @@
                                                     <td>{{ $items->number }}</td>
                                                     <td>
                                                         @if(auth()->user()->id == $items->user_id)
-                                                        <a href="/edit-sell-item-form/{{ $items->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                        <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
-                                                        <a href="/delete-item/{{ $items->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                        <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a><br>
+                                                        <a href="/delete-item/{{ $items->id }}" data-widget="deny" data-toggle="tooltip" title="delete item">
+                                                        <span class="btn btn-danger btn-xs">delete</span></a>
+                                                        <a href="/upload-conscent/{{ $items->id }}" data-widget="upload" data-toggle="tooltip" title="upload">
+                                                        <span class="btn btn-secondary btn-xs">upload</span></a><br>
+                                                        <a href="/edit-sell-item-form/{{ $items->id }}" data-widget="edit" data-toggle="tooltip" title="Edit Item Details">
+                                                        <span class="btn btn-success btn-xs mr-3">edit</span></a>
+                                                        @endif
+                                                        @if(auth()->user()->role_id == 5 || auth()->user()->role_id == 6 || auth()->user()->role_id == 7 || auth()->user()->role_id == 8 || auth()->user()->role_id == 9)
                                                         <a href="/view-conscent-form/{{ $items->id }}" data-widget="view conscent" data-toggle="tooltip" title="write conscent">
-                                                        <span class="btn btn-warning btn-xs"><i class="fa fa-plus-circle"></i></span></a>
+                                                        <span class="btn btn-warning btn-xs">write</span></a>
                                                         @endif
                                                         <a href="/view-conscent/{{ $items->id }}" data-widget="view conscent" data-toggle="tooltip" title="view conscent and Doctors Report">
-                                                        <span class="btn btn-primary btn-xs"><i class="fa fa-eye"></i></span></a>
+                                                        <span class="btn btn-primary btn-xs">view</span></a>
+                                                        @if(auth()->user()->id != $items->user_id)
+                                                        <a href="/display-buyers-items-on-sell/{{ $items->id }}" data-widget="buy item" data-toggle="tooltip" title="Buy This Item">
+                                                        <span class="btn btn-info btn-xs">Buy</span></a>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                                 @endforeach

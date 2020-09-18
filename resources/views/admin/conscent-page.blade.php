@@ -53,16 +53,22 @@
             <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">Conscent Document</h3>
+              <span class="pull-right"><img src="{{asset('items/images/'.$conscent->item_image)}}" style="height:80px; width:100px;" alt="thumb"></span>
             </div>
             <div class="box-body">
             <div class="text-justify">
               <p>Hi <b>{{auth()->user()->name}}</b>,<span class="pull-right"></span></p>
               <p>{{ date('F d, Y', strtotime($conscent->created_at))}}</p>
               <p><b>RE:<u>TO APPROVE AND CONFIRM WHAT IS TO BE SOLD</u></b></p>
-              <p>I hereby confirm that the animals/crops were checked by <b>{{$conscent->role}}</b><br>
-              Mr/Ms/Mrs/sis/Rev <b>{{$conscent->names}}</b> his/her Contact(s) is <b>{{$conscent->phone_number_1}} or {{$conscent->phone_number_2}}</b></p>
+              <p>I hereby confirm that the animals/crops for Mr/Ms/Mrs/sis/Rev <b>{{$conscent->names}}</b> on <b>{{$conscent->phone_number}}</b> were checked and confirmed ready for Sale</p> 
+              @if ($conscent->attached_document == null)
               <p>Therefore {{$conscent->declaration}}</p>
-              
+              @else
+              <p>Therefore view this document
+               <a href="{{asset('conscents-documents/'.$conscent->attached_document)}}" >{{asset('conscents-documents/'.$conscent->attached_document)}}</a>
+               </p>
+              @endif
+               <span style="font-style: oblique;">Approved by {{$conscent->role}}</span><br>
               <b>{{$conscent->county}} county</br>
               <b>{{$conscent->subcounty}} subcounty</b><br>
               <b>{{$conscent->contact}}</br>
@@ -72,7 +78,7 @@
             </div>
           @endforeach
         @else
-        <p class="text-center">{{$noconscent_available}}</p>
+        <p class="text-center text-white btn-block btn bg-warning">{{$noconscent_available}}</p>
         @endif
         
         <!-- /.box-footer-->

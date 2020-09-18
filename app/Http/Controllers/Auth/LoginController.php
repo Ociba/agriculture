@@ -38,11 +38,11 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
     protected function credentials()
-    {        
-        return ['email' => request()->{$this->username()}, 'password' => request()->password, 'status' => 'active'];
-    }
+        {        
+            return ['email' => request()->{$this->username()}, 'password' => request()->password, 'status' => 'active'];
+        }
     protected function getFailedLoginMessage()
-{
-    return 'what you want here.';
-}
+        {
+            return 'what you want here.';
+        }
 }

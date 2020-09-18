@@ -67,7 +67,7 @@
                                                     <th>Created By</th>
                                                     @endif
                                                     @if(in_array('Can see E & T action', auth()->user()->getUserPermisions()))
-                                                    <th>Action</th>
+                                                    <th style="padding:30px;">Action</th>
                                                     @endif
                                                 </tr>
                                             </thead>
@@ -89,12 +89,12 @@
                                                     @endif
                                                     @if(in_array('Can edit E & T', auth()->user()->getUserPermisions()))
                                                     <td>
-                                                        <a href="/edit-examine-treatment-form/{{ $treatment->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                        <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
+                                                        <a href="/edit-examine-treatment-form/{{ $treatment->id }}" data-widget="edit" data-toggle="tooltip" title="edit examination and treatment">
+                                                        <span class="btn btn-success btn-xs">edit</span></a>
                                                         @endif
                                                         @if(in_array('Can delete E & T', auth()->user()->getUserPermisions()))
-                                                        <a href="/delete-examine-treatment/{{ $treatment->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                        <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                        <a href="/delete-examine-treatment/{{ $treatment->id }}" data-widget="deny" data-toggle="tooltip" title="delete examination and treatment">
+                                                        <span class="btn btn-danger btn-xs">delete</span></a>
                                                     </td>
                                                     @endif
                                                 </tr>

@@ -61,7 +61,7 @@
                                                     <th>Created By</th>
                                                     @endif
                                                     @if(in_array('Can see officer action', auth()->user()->getUserPermisions()))
-                                                    <th>Action</th>
+                                                    <th style="padding:30px;">Action</th>
                                                     @endif
                                                 </tr>
                                             </thead>
@@ -78,12 +78,12 @@
                                                     @endif
                                                     @if(in_array('Can edit officer', auth()->user()->getUserPermisions()))
                                                     <td>
-                                                        <a href="/display-edit-officer/{{ $officer->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                        <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
+                                                        <a href="/display-edit-officer/{{ $officer->id }}" data-widget="edit" data-toggle="tooltip" title="edit officer">
+                                                        <span class="btn btn-success btn-xs">edit</span></a>
                                                         @endif
                                                         @if(in_array('Can delete officer', auth()->user()->getUserPermisions()))
-                                                        <a href="/delete-officer/{{ $officer->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                        <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                        <a href="/delete-officer/{{ $officer->id }}" data-widget="deny" data-toggle="tooltip" title="delete officer">
+                                                        <span class="btn btn-danger btn-xs">delete</span></a>
                                                     </td>
                                                     @endif
                                                 </tr>

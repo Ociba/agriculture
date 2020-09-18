@@ -71,12 +71,12 @@
                                                     @endif
                                                     @if(in_array('Can edit drug', auth()->user()->getUserPermisions()))
                                                     <td>
-                                                        <a href="/edit-drug-form/{{ $drug->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                        <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
+                                                        <a href="/edit-drug-form/{{ $drug->id }}" data-widget="edit" data-toggle="tooltip" title="edit drug">
+                                                        <span class="btn btn-success btn-xs">edit</span></a>
                                                         @endif
                                                         @if(in_array('Can delete drug', auth()->user()->getUserPermisions()))
-                                                        <a href="/delete-drug/{{ $drug->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                        <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                        <a href="/delete-drug/{{ $drug->id }}" data-widget="deny" data-toggle="tooltip" title="delete drug">
+                                                        <span class="btn btn-danger btn-xs">delete</span></a>
                                                     </td>
                                                     @endif
                                                 </tr>

@@ -52,17 +52,19 @@
             <div class="card-body">
             <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Conscent Document</h3>
+              <h3 class="box-title text-center">Conscent Document
+              <span class="pull-right"><img src="{{asset('items/images/'.$conscent->item_image)}}" style="height:80px; width:100px;" alt="thumb"></span>
+              </h3>
             </div>
             <div class="box-body">
             <div class="text-justify">
               <p>Hi <b>{{auth()->user()->name}}</b>,<span class="pull-right"></span></p>
               <p>{{ date('F d, Y', strtotime($conscent->created_at))}}</p>
               <p><b>RE:<u>TO APPROVE AND CONFIRM WHAT IS TO BE SOLD</u></b></p>
-              <p>I hereby confirm that the animals/crops were checked by <b>{{$conscent->role}}</b><br>
-              Mr/Ms/Mrs/sis/Rev <b>{{$conscent->names}}</b> his/her Contact(s) is <b>{{$conscent->phone_number_1}} or {{$conscent->phone_number_2}}</b></p>
+              <p>I hereby confirm that the animals/crops for Mr/Ms/Mrs/sis/Rev <b>{{$conscent->names}}</b> on <b>{{$conscent->phone_number}}</b> were checked and confirmed healthy for Sale</p>
               <p>Therefore {{$conscent->declaration}}</p>
-              
+               
+               <span>{{$conscent->role}}</span><br>
               <b>{{$conscent->county}} county</br>
               <b>{{$conscent->subcounty}} subcounty</b><br>
               <b>{{$conscent->contact}}</br>

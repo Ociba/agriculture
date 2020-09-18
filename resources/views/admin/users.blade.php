@@ -61,12 +61,12 @@
                                                     <td>{{ $users->email }}</td>
                                                     @if(in_array('Can edit user', auth()->user()->getUserPermisions()))
                                                     <td>
-                                                        <a href="/edit-user/{{ $users->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                        <span class="btn btn-success btn-sm"><i class="fa fa-edit"></i></span></a>
+                                                        <a href="/edit-user/{{ $users->id }}" data-widget="edit" data-toggle="tooltip" title="edit user">
+                                                        <span class="btn btn-success btn-sm">edit</span></a>
                                                         @endif
                                                         @if(in_array('Can delete User', auth()->user()->getUserPermisions()))
-                                                        <a href="/delete-user/{{ $users->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                        <span class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></span></a>
+                                                        <a href="/delete-user/{{ $users->id }}" data-widget="deny" data-toggle="tooltip" title="delete user">
+                                                        <span class="btn btn-danger btn-sm">delete</span></a>
                                                     </td>
                                                     @endif
                                                 </tr>

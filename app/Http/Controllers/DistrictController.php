@@ -37,7 +37,7 @@ class DistrictController extends Controller
         District::create(array(
             'district'=>$request->district
         ));
-        return Redirect()->back()->with('message',"District has been added Successfully");
+        return Redirect()->back()->with('message',"{$request->district} District has been added Successfully");
     }
     public function displayDistrict(){
         if(in_array('Can view districts', auth()->user()->getUserPermisions())){

@@ -63,6 +63,7 @@
                                                     </button>
                                                 </div>
                                             </div>
+                                            {{--<input type="" class="" name="" value="" required autocomplete="off" placeholder="">--}}
                                         </div>
                                         <a class="u-text-mute u-text-small" href="{{ route('register') }}">Don’t have an account yet? Get Started</a>
                                     </form>

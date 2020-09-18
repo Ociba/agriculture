@@ -147,11 +147,25 @@ class ItemController extends Controller
         ->join('districts','items.district_id','districts.id')
         ->join('categories','items.category_id','categories.id')
         ->where('items.status','available')
+        ->select('users.id','products.product','breeds.breed','weights.weight','districts.district','categories.category',
+                  'items.price','items.number','items.item_image','items.id','items.user_id','users.name','items.approved_by')
+        ->orderBy('items.created_at','DESC')
+        ->get();
+        return view('admin.sell-items', compact('display_all_items_to_sell'));
+    }
+    public function displaySellItemsForApproval(){
+        $display_all_items_to_sell =Item::join('users','items.user_id','users.id')
+        ->join('products','items.product_id','products.id')
+        ->join('breeds','items.breed_id','breeds.id')
+        ->join('weights','items.weight_id','weights.id')
+        ->join('districts','items.district_id','districts.id')
+        ->join('categories','items.category_id','categories.id')
+        ->where('items.status','pending')
         ->select('users.id','users.name','products.product','breeds.breed','weights.weight','districts.district','categories.category',
                   'items.price','items.number','items.item_image','items.id','items.user_id')
         ->orderBy('items.created_at','DESC')
         ->get();
-        return view('admin.sell-items', compact('display_all_items_to_sell'));
+        return view('admin.approve-items-on-sell', compact('display_all_items_to_sell'));
     }
     public function updateSellItems(Request $request,$id){
         $get_district_id= District::where(\strtolower("district"), strtolower($request->district))->value('id');
@@ -183,9 +197,16 @@ class ItemController extends Controller
     return Redirect()->back()->withInput()->withErrors("Image has not been created successfully");
     }
     }
-    public function deleteitemItems($id){
+    public function deleteItems($id){
         item::where('id',$id)->update(array('status'=>'deleted'));
         return Redirect()->back()->withErrors('Item has been deleted successfully');
+    }
+    protected function approveItemOnSell($id){
+        item::where('id',$id)->update(array(
+            'approved_by'=>auth()->user()->id,
+            'status' =>'available'
+        ));
+        return Redirect()->back()->with('message','You have approved Item on sell successfully');
     }
     //Doctor
     public function DoctorsRequestForm(){
@@ -339,19 +360,19 @@ class ItemController extends Controller
     }
     public function displayConscent(Request $id){
         $display_all_conscent_details =Conscent::join('users','conscents.user_id','users.id')
-        ->join('roles','conscents.role_id','roles.id')
-        ->join('doctors','conscents.doctor_id','doctors.id')
         ->join('counties','conscents.county_id','counties.id')
         ->join('subcounties','conscents.subcounty_id','subcounties.id')
         ->join('items','conscents.item_id','items.id')
+        ->join('roles','conscents.role_id','roles.id')
         ->where(['conscents.status'=>'active', 'conscents.item_id'=>$id->id])
-        ->select('doctors.names','roles.role','users.contact','users.name','doctors.phone_number_1','doctors.phone_number_2','conscents.declaration',
-                 'counties.county','subcounties.subcounty','conscents.id','conscents.created_at')
+        ->select('users.name','users.contact','roles.role','conscents.declaration','items.item_image',
+                 'counties.county','subcounties.subcounty','conscents.id','conscents.created_at','conscents.names','conscents.phone_number',
+                 'conscents.attached_document')
         ->orderBy('conscents.created_at','desc')
         ->limit(1)
         ->get();
 
-        $noconscent_available = "Sorry, Consent is not available. Please check again later";
+        $noconscent_available = "Sorry, Conscent is not available. Please check again later";
         if($this->checkPayment()->doesntExist()){
             return redirect()->back()->with('emessage','Please make payments to continue viewing conscent Details for the item(s)');
         }elseif(Payment::join('users','payments.user_id','users.id')
@@ -363,18 +384,14 @@ class ItemController extends Controller
         }
     }
     public function BuyerViewConscent(Request $id){
-        // $check_buyer_status= User::where('users.id',auth()->user()->id)
-        // ->where('users.role_id', 10);
-        // return $check_buyer_status;
         $display_all_conscent_details =Conscent::join('users','conscents.user_id','users.id')
         ->join('roles','conscents.role_id','roles.id')
-        ->join('doctors','conscents.doctor_id','doctors.id')
         ->join('counties','conscents.county_id','counties.id')
         ->join('subcounties','conscents.subcounty_id','subcounties.id')
         ->join('items','conscents.item_id','items.id')
         ->where(['conscents.status'=>'active', 'conscents.item_id'=>$id->id])
-        ->select('doctors.names','roles.role','users.contact','users.name','doctors.phone_number_1','doctors.phone_number_2','conscents.declaration',
-                 'counties.county','subcounties.subcounty','conscents.id','conscents.created_at')
+        ->select('users.name','users.contact','roles.role','conscents.declaration','items.item_image',
+                 'counties.county','subcounties.subcounty','conscents.id','conscents.created_at','conscents.names','conscents.phone_number')
         ->orderBy('conscents.created_at','desc')
         ->limit(1)
         ->get();
@@ -384,23 +401,60 @@ class ItemController extends Controller
     }
     public function displayConscentForm($id){
         $edit_sell_items =Item::where('id',$id)->get();
-        $pick_doctor=Doctors::select('names', 'id')->get();
-        $pick_role=Role::select('role', 'id')->get();
+        $officer_details =User::join('roles','users.role_id','roles.id')
+        ->where('users.id',auth()->user()->id)
+        ->select('users.*')
+        ->get();
+        $get_role=Role::select('role', 'id')->get();
         $get_county=County::select('county', 'id')->get();
         $get_subcounty=SubCounty::select('subcounty', 'id')->get();
-        return view('admin.conscent-form', compact('edit_sell_items','pick_doctor','pick_role','get_county','get_subcounty'));
+        return view('admin.conscent-form', compact('edit_sell_items','get_role','officer_details','get_county','get_subcounty'));
     }
     public function createConscent(Request $request){
+        $get_role_id= Role::where(\strtolower("role"), strtolower($request->role))->value('id');
         $get_county_id= County::where(\strtolower("county"), strtolower($request->county))->value('id');
         $get_subcounty_id= Subcounty::where(\strtolower("subcounty"), strtolower($request->subcounty))->value('id');
         Conscent::create(array(
             'user_id'=>Auth::user()->id,
+            'names' =>$request->names,
+            'phone_number' =>$request->phone_number,
             'item_id'=>$request->item_id,
-            'doctor_id'=>$request->names,
+            'role_id'=>$get_role_id,
             'county_id'=>$get_county_id,
             'subcounty_id'=>$get_subcounty_id,
-            'role_id'=>$request->role,
             'declaration'=>$request->declaration
+        ));
+        return Redirect()->back()->with('message',"Your Conscent(s) details Saved successfully");
+    }
+    protected function uploadConscentDocument($id){
+        $edit_sell_items =Item::where('id',$id)->get();
+        $officer_details =User::join('roles','users.role_id','roles.id')
+        ->where('users.id',auth()->user()->id)
+        ->select('users.*')
+        ->get();
+        $get_role=Role::select('role', 'id')->get();
+        $get_county=County::select('county', 'id')->get();
+        $get_subcounty=SubCounty::select('subcounty', 'id')->get();
+        return view('admin.upload-conscent', compact('edit_sell_items','get_role','officer_details','get_county','get_subcounty'));
+    }
+    public function createConscentWithUpload(Request $request){
+        $officer_conscent_document=$request->attached_document;
+        $attached_conscent=$officer_conscent_document->getClientOriginalName();
+        $request->file('attached_document')->move('conscents-documents/',$attached_conscent);
+
+        $get_role_id= Role::where(\strtolower("role"), strtolower($request->role))->value('id');
+        $get_county_id= County::where(\strtolower("county"), strtolower($request->county))->value('id');
+        $get_subcounty_id= Subcounty::where(\strtolower("subcounty"), strtolower($request->subcounty))->value('id');
+        Conscent::create(array(
+            'user_id'=>Auth::user()->id,
+            'names' =>$request->names,
+            'phone_number' =>$request->phone_number,
+            'item_id'=>$request->item_id,
+            'role_id'=>$get_role_id,
+            'county_id'=>$get_county_id,
+            'subcounty_id'=>$get_subcounty_id,
+            'declaration'=>$request->declaration,
+            'attached_document'=>$attached_conscent
         ));
         return Redirect()->back()->with('message',"Your Conscent(s) details Saved successfully");
     }

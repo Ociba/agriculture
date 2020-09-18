@@ -33,21 +33,21 @@
                     @php($i = 1)
                     @endif
                     @foreach($display_all_items_to_be_bought as $items_to_be_bought)
-                        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
-                        <div class="card bg-light">
+                        <div class="col-12 col-sm-12 col-md-12 d-flex align-items-stretch">
+                        <div class="card bg-light col-12">
                             <div class="card-header text-muted border-bottom-0">
                             <b>{{$items_to_be_bought->product}}</b><span style="color:blue;"> UGX: {{ $items_to_be_bought->price}}</span>
                             </div>
                             <div class="card-body pt-0">
                             <div class="row">
-                                <div class="col-7">
+                                <div class="col-5">
                                 <h2 class="lead"><b>{{$items_to_be_bought->name}}</b></h2>
                                 <p class="text-muted text-sm"><b>Category:</b> {{$items_to_be_bought->category}} </p>
                                 <p class="small"><span class="fa-li"></span> <b>District:</b> {{$items_to_be_bought->district}}</p>
                                 <p class="small"><span class="fa-li"></span> <b>Phone No:</b> {{$items_to_be_bought->contact}}</p>
                                 </div>
-                                <div class="col-5 text-center">
-                                <img src="{{asset('items/images/'.$items_to_be_bought->item_image)}}" width="60" height="30" alt="" class="img-square thumbnail responsive">
+                                <div class="col-7 text-center">
+                                <img src="{{asset('items/images/'.$items_to_be_bought->item_image)}}" width="120" height="100" alt="" class="img-square responsive">
                                 </div>
                             </div>
                             </div>

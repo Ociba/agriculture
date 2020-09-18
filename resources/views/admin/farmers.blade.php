@@ -70,12 +70,12 @@
                                                   <td>{{ $farmers->type_of_farming}}</td>
                                                   <td>
                                                   @if(in_array('Can edit farmers', auth()->user()->getUserPermisions()))
-                                                  <a href="/display-edit-farmers/{{ $farmers->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                  <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
+                                                  <a href="/display-edit-farmers/{{ $farmers->id }}" data-widget="edit" data-toggle="tooltip" title="edit farmer ">
+                                                  <span class="btn btn-success btn-xs">edit</span></a>
                                                   @endif
                                                   @if(in_array('Can delete farmers', auth()->user()->getUserPermisions()))
-                                                  <a href="/delete-farmers/{{ $farmers->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                  <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                  <a href="/delete-farmers/{{ $farmers->id }}" data-widget="deny" data-toggle="tooltip" title="delete farmer">
+                                                  <span class="btn btn-danger btn-xs">delete</span></a>
                                                       
                                                   </td>
                                                   @endif

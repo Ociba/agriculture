@@ -9,12 +9,14 @@
                                 <div class="contact-massage-item ml-35">
                                 <form method="get" action="/register-buyer">
                                     @csrf
+                                    
+                                       @foreach($get_item_id as $item)
                                         <div class="row">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <div class="massage-title text-center">
-                                                    <a href="{{ route('login') }}"><h5 style="color:blue;">If you have an account with us already please click here</h5></a>
-                                                    <h3 style="color:red; text-align:center;">OR</h3>
-                                                    <h3 class="title">Fill in your details to continue</h3>
+                                                    <a href="{{ route('login') }}"><h5>If you have an account with us already <span style="color:blue;"> click here</span></h5></a>
+                                                    <h3 class="title">OR</h3>
+                                                    <h3 class="title">Fill in the Form</h3>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -46,12 +48,14 @@
                                                 <input id="password-confirm" type="password" class="" name="password_confirmation" required autocomplete="off" placeholder="Confirm Password">
                                                 </div>
                                             </div>
+                                            <input type="hidden" class="" name="" value="{{$item->id}}" required autocomplete="off" placeholder="">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <div class="input-box mt-20">
                                                     <button type="submit" class="main-btn">Click Now </button>
                                                 </div>
                                             </div>
                                         </div>
+                                        @endforeach
                                     </form>
                                 </div>
                             </div>

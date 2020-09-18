@@ -6,6 +6,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         @include('layouts.stylecss')
         <link rel="stylesheet" href="{{asset('css/buttons.bootstrap4.min.css')}}">
+        <link rel="stylesheet" href="{{asset('css/dataTables.bootstrap4.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/select.dataTables.min.css')}}">
     </head>
     <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -23,18 +24,11 @@
             <div class="content-wrapper">
                 <!-- Breadcrumbs -->
                 @include('layouts.breadcrumb')
-                <section  id="file-export">
+                @include('layouts.errormessage')
+                @include('layouts.message')
+                <section class="content" id="file-export">
                     <div class="row m-2">
                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title pull-right">
-                                        @if(in_array('Can add officer', auth()->user()->getUserPermisions()))
-                                        <a href="/display-officer-form" button type="button" class="btn btn-primary">Add Officer</button></a>
-                                        @endif
-                                    </h4>
-                                 </div>
-                            </div>
                             <div class="card">
                                 <div class="card-header">
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
@@ -52,40 +46,52 @@
                                         <table class="table table-bordered table-hover file-export">
                                             <thead>
                                                 <tr>
-                                                    <th>District</th>
+                                                    <th>Product</th>
+                                                    <th>Image</th>
                                                     <th>Name</th>
-                                                    <th>Role</th>
-                                                    <th>Contact 1</th>
-                                                    <th>Contact 2</th>
-                                                    @if(in_array('Can see officer created by', auth()->user()->getUserPermisions()))
-                                                    <th>Created By</th>
-                                                    @endif
-                                                    @if(in_array('Can see officer action', auth()->user()->getUserPermisions()))
+                                                    <th>Breed</th>
+                                                    <th>Ditrict</th>
+                                                    <th>Category</th>
+                                                    <th>Price(Shs)</th>
+                                                    <th>Number</th>
+                                                    @if(in_array('Can see item action', auth()->user()->getUserPermisions()))
                                                     <th style="padding:30px;">Action</th>
                                                     @endif
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($display_fishery_details as $index =>$officer)
+                                                @foreach ($display_all_items_to_sell as $items)
                                                 <tr>
-                                                    <td>{{ $officer->district }}</td>
-                                                    <td>{{ $officer->names }}</td>
-                                                    <td>{{ $officer->role }}</td>
-                                                    <td>{{ $officer->phone_number_1 }}</td>
-                                                    <td>{{ $officer->phone_number_2 }}</td>
-                                                    @if(in_array('Can see officer createdby name', auth()->user()->getUserPermisions()))
-                                                    <td>{{ $officer->name }}</td>
-                                                    @endif
-                                                    @if(in_array('Can edit officer', auth()->user()->getUserPermisions()))
+                                                    <td>{{ $items->product }}</td>
+                                                    <td><img src="{{asset('items/images/'.$items->item_image)}}" class="responsive" height="30" width="60" alt=""></td>
+                                                    <td>{{ $items->name }}</td>
+                                                    <td>{{ $items->breed }}</td>
+                                                    <td>{{ $items->district }}</td>
+                                                    <td>{{ $items->category }}</td>
+                                                    <td>{{ $items->price }}</td>
+                                                    <td>{{ $items->number }}</td>
                                                     <td>
-                                                        <a href="/display-edit-officer/{{ $officer->id }}" data-widget="edit" data-toggle="tooltip" title="edit officer">
+                                                        @if(auth()->user()->id == $items->user_id)
+                                                        <a href="/edit-sell-item-form/{{ $items->id }}" data-widget="edit" data-toggle="tooltip" title="Edit Item Details">
                                                         <span class="btn btn-success btn-xs">edit</span></a>
+                                                        <a href="/approve-item/{{ $items->id }}" data-widget="deny" data-toggle="tooltip" title="approve item">
+                                                        <span class="btn btn-danger btn-xs">approve</span></a><br>
                                                         @endif
-                                                        @if(in_array('Can delete officer', auth()->user()->getUserPermisions()))
-                                                        <a href="/delete-officer/{{ $officer->id }}" data-widget="deny" data-toggle="tooltip" title="delete officer">
-                                                        <span class="btn btn-danger btn-xs">delete</span></a>
+                                                        @if(auth()->user()->role_id == 4)
+                                                        <a href="/upload-conscent/{{ $items->id }}" data-widget="upload" data-toggle="tooltip" title="upload">
+                                                        <span class="btn btn-default btn-xs">upload</span></a>
+                                                        @endif
+                                                        @if(auth()->user()->role_id == 5 || auth()->user()->role_id == 6 || auth()->user()->role_id == 7 || auth()->user()->role_id == 8 || auth()->user()->role_id == 9)
+                                                        <a href="/view-conscent-form/{{ $items->id }}" data-widget="view conscent" data-toggle="tooltip" title="write conscent">
+                                                        <span class="btn btn-warning btn-xs">write</span></a>
+                                                        @endif
+                                                        <a href="/view-conscent/{{ $items->id }}" data-widget="view conscent" data-toggle="tooltip" title="view conscent and Doctors Report">
+                                                        <span class="btn btn-primary btn-xs">view</span></a>
+                                                        @if(auth()->user()->id != $items->user_id)
+                                                        <a href="/display-buyers-items-on-sell/{{ $items->id }}" data-widget="buy item" data-toggle="tooltip" title="Buy This Item">
+                                                        <span class="btn btn-info btn-xs">Buy</span></a>
+                                                        @endif
                                                     </td>
-                                                    @endif
                                                 </tr>
                                                 @endforeach
                                             </tbody>

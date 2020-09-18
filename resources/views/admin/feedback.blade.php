@@ -48,7 +48,7 @@
                                                 <th>Feedback</th>
                                                 <th>Image</th>
                                                 @if(in_array('Can see feedback action', auth()->user()->getUserPermisions()))
-                                                <th>Action</th>
+                                                <th style="padding:40px;">Action</th>
                                                 @endif
                                                 </tr>
                                             </thead>
@@ -63,12 +63,12 @@
                                                   </td>
                                                   <td>
                                                   @if(in_array('Can edit feedback', auth()->user()->getUserPermisions()))
-                                                  <a href="/display-approve-feedback/{{ $feedback->id }}" data-widget="edit" data-toggle="tooltip" title="approve">
-                                                  <span class="btn btn-success btn-xs"><i class="fa fa-check-circle-o"></i></span></a>
+                                                  <a href="/display-approve-feedback/{{ $feedback->id }}" data-widget="edit" data-toggle="tooltip" title="approve feedbck">
+                                                  <span class="btn btn-success btn-xs">approve</span></a>
                                                   @endif
                                                   @if(in_array('Can delete feedback', auth()->user()->getUserPermisions()))
-                                                  <a href="/delete-feedback/{{ $feedback->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                  <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                  <a href="/delete-feedback/{{ $feedback->id }}" data-widget="deny" data-toggle="tooltip" title="delete feedback">
+                                                  <span class="btn btn-danger btn-xs">delete</span></a>
                                                       
                                                   </td>
                                                   @endif

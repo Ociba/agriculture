@@ -68,12 +68,12 @@
                                                   </td>
                                                   <td>
                                                   @if(in_array('Can edit news', auth()->user()->getUserPermisions()))
-                                                  <a href="/display-edit-news/{{ $news->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                  <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
+                                                  <a href="/display-edit-news/{{ $news->id }}" data-widget="edit" data-toggle="tooltip" title="edit news">
+                                                  <span class="btn btn-success btn-xs">edit</span></a>
                                                   @endif
                                                   @if(in_array('Can delete news', auth()->user()->getUserPermisions()))
-                                                  <a href="/delete-news/{{ $news->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                  <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                  <a href="/delete-news/{{ $news->id }}" data-widget="deny" data-toggle="tooltip" title="delete news">
+                                                  <span class="btn btn-danger btn-xs">delete</span></a>
                                                   @endif
                                                   </td>
                                               </tr>

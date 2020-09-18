@@ -72,12 +72,12 @@
                                                   <td>{{ $project_gallery->name }}</td>
                                                   <td>
                                                   @if(in_array('Can edit project gallery', auth()->user()->getUserPermisions()))
-                                                  <a href="/display-edit-project-gallery/{{ $project_gallery->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                  <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
+                                                  <a href="/display-edit-project-gallery/{{ $project_gallery->id }}" data-widget="edit" data-toggle="tooltip" title="edit project gallery">
+                                                  <span class="btn btn-success btn-xs">edit</span></a>
                                                   @endif
                                                   @if(in_array('Can delete project gallery', auth()->user()->getUserPermisions()))
-                                                  <a href="/delete-project-gallery/{{ $project_gallery->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                  <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                  <a href="/delete-project-gallery/{{ $project_gallery->id }}" data-widget="deny" data-toggle="tooltip" title="delete project gallery">
+                                                  <span class="btn btn-danger btn-xs">delete</span></a>
                                                       
                                                   </td>
                                                   @endif

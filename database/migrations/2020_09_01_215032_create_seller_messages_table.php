@@ -15,6 +15,12 @@ class CreateSellerMessagesTable extends Migration
     {
         Schema::create('seller_messages', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id ');
+            $table->unsignedBigInteger('seller_id ');
+            $table->string('buyers_name');
+            $table->string('phone_number');
+            $table->string('message');
+            $table->enum('status',['read','not read','deleted']);
             $table->timestamps();
         });
     }

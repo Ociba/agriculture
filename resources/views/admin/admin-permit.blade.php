@@ -80,7 +80,7 @@
                                                 <tr>
                                                     <td class="font-weight-bold"><a href="/view-permit/{{$reports->id}}">{{$reports->receipt_number}}</a></td>
                                                     <td>{{ $reports->product }}</td>
-                                                    <td><img src="{{asset('images/profile_pictures/'.$reports->item_image)}}" class="thumbnail responsive" width="60" height="30" alt=""></td>
+                                                    <td><img src="{{asset('images/profile_pictures/'.$reports->item_image)}}" class="responsive" width="60" height="30" alt=""></td>
                                                     <td>{{ $reports->sellers_name }}</td>
                                                     <td>{{ $reports->contact }}</td>
                                                     <td>{{ $reports->district }}</td>

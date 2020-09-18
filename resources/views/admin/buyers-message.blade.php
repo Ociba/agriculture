@@ -60,8 +60,8 @@
                                                     <td>{{ $buyers_message->message }}</td>
                                                     <td>
                                                         @if(in_array('Can delete buyers message', auth()->user()->getUserPermisions()))
-                                                        <a href="/delete-buyers-message/{{ $buyers_message->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                        <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                        <a href="/delete-buyers-message/{{ $buyers_message->id }}" data-widget="deny" data-toggle="tooltip" title="delete message">
+                                                        <span class="btn btn-danger btn-xs">delete</span></a>
                                                     </td>
                                                     @endif
                                                 </tr>

@@ -60,7 +60,7 @@
                                                 <th>Statement</th>
                                                 <th>Image</th>
                                                 @if(in_array('Can see farm action', auth()->user()->getUserPermisions()))
-                                                <th>Action</th>
+                                                <th style="padding:30px;">Action</th>
                                                 @endif
                                                 </tr>
                                             </thead>
@@ -78,12 +78,12 @@
                                                   </td>
                                                   @if(in_array('Can edit farms', auth()->user()->getUserPermisions()))
                                                   <td>
-                                                  <a href="/edit-farm/{{ $farms->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                  <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
+                                                  <a href="/edit-farm/{{ $farms->id }}" data-widget="edit" data-toggle="tooltip" title="edit farm">
+                                                  <span class="btn btn-success btn-xs">edit</span></a>
                                                   @endif
                                                   @if(in_array('Can delete farms', auth()->user()->getUserPermisions()))
-                                                  <a href="/delete-farm/{{ $farms->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                  <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                  <a href="/delete-farm/{{ $farms->id }}" data-widget="deny" data-toggle="tooltip" title="delete farm">
+                                                  <span class="btn btn-danger btn-xs">delete</span></a>
                                                       
                                                   </td>
                                                   @endif

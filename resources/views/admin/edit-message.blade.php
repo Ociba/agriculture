@@ -48,50 +48,27 @@
             <div class="col-12">
         <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Send Seller message</h3>
+                <h3 class="card-title">Edit My message</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              @foreach($send_seller_message as $send_message)
-              @foreach($get_buyers_id as $buyers)
-              <form class="form-horizontal mt-3" method="get" action="/send-message-to-seller">
+              @foreach($edit_my_message as $buyers)
+              <form class="form-horizontal mt-3" method="get" action="/save-message-edited/{{$buyers->id}}">
               @csrf
                 <div class="card-body">
-                
-                    <input type="hidden" class="form-control" id="inputEmail3" name="seller_id"  value="{{$send_message->user_id}}" readonly required>
-                    <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">{{$send_message->product}}</label>
-                    <div class="col-sm-10">
-                    <img src="{{asset('items/images/'.$send_message->item_image)}}" style="height:150px; width:200px;" alt="thumb">
-                    </div>
-                  </div>
-                  
-                  <div class="form-group row">
-                    {{--<label for="inputEmail3" class="col-sm-2 col-form-label">Your Name</label>--}}
-                    <div class="col-sm-10">
-                    <input type="hidden" selected="selected" class="form-control" id="inputEmail3" value="{{$buyers->name}}" name="buyers_name" required>
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    {{--<label for="inputEmail3" class="col-sm-2 col-form-label">Your Phone Number</label>--}}
-                    <div class="col-sm-10">
-                    <input type="hidden" selected="selected" class="form-control" id="inputEmail3" value="{{$buyers->contact}}" name="phone_number"  required>
-                    </div>
-                  </div>
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Message</label>
                     <div class="col-sm-10">
-                    <textarea type="text" selected="selected" class="form-control" rows="5" id="inputEmail3" name="message"  value=""  required></textarea>
+                    <input type="text" selected="selected" class="form-control" rows="5" id="inputEmail3" value="{{$buyers->message}}" name="message"  required>
                     </div>
                   </div>
                 <!-- /.card-body -->
                 <div class="text-center mb-3">
-                <a href="/display-buyers-items-on-sell"><button type="button" class="btn btn-warning">Back</button></a>
+                <a href="/view-my-message"><button type="button" class="btn btn-warning">Back</button></a>
                   <button type="submit" class="btn btn-success ">Save</button>
                 </div>
                 <!-- /.card-footer -->
               </form>
-              @endforeach
               @endforeach
             </div>
         </div>

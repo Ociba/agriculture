@@ -61,8 +61,8 @@
                                                   <td>{{ $message->message }}</td>
                                                   <td>
                                                   @if(in_array('Can delete message', auth()->user()->getUserPermisions()))
-                                                  <a href="/delete-message/{{ $message->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                  <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                  <a href="/delete-message/{{ $message->id }}" data-widget="deny" data-toggle="tooltip" title="delete message">
+                                                  <span class="btn btn-danger btn-xs">delete</span></a>
                                                       
                                                   </td>
                                                   @endif

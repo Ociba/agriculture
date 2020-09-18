@@ -20,7 +20,7 @@
                     <img src="{{asset('items/images/'.$item_on_sell->item_image)}}" style=" width:300px; height:150px;" alt="">
                         <h4 class="title">{{$item_on_sell->product}}</h4>
                         <p class="font-weight-bold">{{$item_on_sell->category}} </p>
-                        <span class="text-white font-weight-bold btn btn-info">Ugx:{{$item_on_sell->price}}</span>
+                        <span class="text-primary font-weight-bold">Ugx:{{$item_on_sell->price}}</span>
                         <a href="/buyer-view-item-details/{{$item_on_sell->id}}" button type="button" class="btn btn-warning btn-xs">View More</button></a>
                     </div>
                 </div>

@@ -31,7 +31,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-user"></i>
               <p>
-                Users 
+                User Information 
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -138,6 +138,16 @@
             </a>
             </li>
             @endif
+            @if(in_array('Can view market items to be approved', auth()->user()->getUserPermisions()))
+            <li class="nav-item" @if(\Request::route()->getName() == "Approve Items")class="active" @endif>
+            <a href="/approve-items-on-sell" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+                Approve Items on Sell 
+              </p>
+            </a>
+            </li>
+            @endif
             @if(in_array('Can view buyers items on sell', auth()->user()->getUserPermisions()))
             <li class="nav-item" @if(\Request::route()->getName() == "Buyers Items On Sell")class="active" @endif>
             <a href="/display-buyers-items-on-sell" class="nav-link">
@@ -154,6 +164,16 @@
               <i class="far fa-circle nav-icon"></i>
               <p>
                 Buyers Messages 
+              </p>
+            </a>
+            </li>
+            @endif
+            @if(in_array('Can view my message', auth()->user()->getUserPermisions()))
+            <li class="nav-item" @if(\Request::route()->getName() == "My Message")class="active" @endif>
+            <a href="/view-my-message" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>
+                My Messages 
               </p>
             </a>
             </li>

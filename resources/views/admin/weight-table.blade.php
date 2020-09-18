@@ -71,12 +71,12 @@
                                                   @endif
                                                   @if(in_array('Can edit weight', auth()->user()->getUserPermisions()))
                                                   <td>
-                                                  <a href="/edit-weight-form/{{ $weight->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                  <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
+                                                  <a href="/edit-weight-form/{{ $weight->id }}" data-widget="edit" data-toggle="tooltip" title="edit weight">
+                                                  <span class="btn btn-success btn-xs">edit</span></a>
                                                   @endif
                                                   @if(in_array('Can delete weight', auth()->user()->getUserPermisions()))
-                                                  <a href="/delete-weight/{{ $weight->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                  <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                  <a href="/delete-weight/{{ $weight->id }}" data-widget="deny" data-toggle="tooltip" title="delete weight">
+                                                  <span class="btn btn-danger btn-xs">delete</span></a>
                                                       
                                                   </td>
                                                   @endif

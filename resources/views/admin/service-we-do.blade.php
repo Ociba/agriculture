@@ -57,7 +57,7 @@
                                                 <th>Image</th>
                                                 <th>Created By</th>
                                                 @if(in_array('Can see do action', auth()->user()->getUserPermisions()))
-                                                <th>Action</th>
+                                                <th style="padding:30px;">Action</th>
                                                 @endif
                                                 </tr>
                                             </thead>
@@ -72,12 +72,12 @@
                                                   <td>{{ $do->name }}</td>
                                                   <td>
                                                   @if(in_array('Can edit service we do', auth()->user()->getUserPermisions()))
-                                                  <a href="/display-edit-service-we-do/{{ $do->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                  <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
+                                                  <a href="/display-edit-service-we-do/{{ $do->id }}" data-widget="edit" data-toggle="tooltip" title="edit services we do">
+                                                  <span class="btn btn-success btn-xs">edit</span></a>
                                                   @endif
                                                   @if(in_array('Can delete service we do', auth()->user()->getUserPermisions()))
-                                                  <a href="/delete-service-we-do/{{ $do->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                  <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                  <a href="/delete-service-we-do/{{ $do->id }}" data-widget="deny" data-toggle="tooltip" title="delete services we do">
+                                                  <span class="btn btn-danger btn-xs">delete</span></a>
                                                       
                                                   </td>
                                                   @endif

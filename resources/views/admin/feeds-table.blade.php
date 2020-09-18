@@ -73,12 +73,12 @@
                                                     @endif
                                                     @if(in_array('Can edit feeds', auth()->user()->getUserPermisions()))
                                                     <td>
-                                                        <a href="/edit-feed-form/{{ $feeds->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                        <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
+                                                        <a href="/edit-feed-form/{{ $feeds->id }}" data-widget="edit" data-toggle="tooltip" title="edit feed">
+                                                        <span class="btn btn-success btn-xs">edit</span></a>
                                                         @endif
                                                         @if(in_array('Can delete feeds', auth()->user()->getUserPermisions()))
-                                                        <a href="/delete-feed/{{ $feeds->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                        <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                        <a href="/delete-feed/{{ $feeds->id }}" data-widget="deny" data-toggle="tooltip" title="delete feed">
+                                                        <span class="btn btn-danger btn-xs">delete</span></a>
                                                     </td>
                                                     @endif
                                                 </tr>

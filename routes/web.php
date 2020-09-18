@@ -19,6 +19,18 @@ Route::get('/try', function () {
 Route::get('/display-item','ProduceController@index');
 
 Route::group(['middleware' => ['auth']], function () {
+Route::get('/delete-complain/{id}','ComplainController@deleteComplain');
+Route::get('/get-complains','ComplainController@getComplain')->name('Complains');
+Route::get('/get-complains-form','CompalainController@complainNow')->name('Complains Form');
+Route::get('/create-compalin','ComplainController@validateSubmitComplain');
+Route::get('/approve-item/{id}','ItemController@approveItemOnSell');
+Route::get('/approve-items-on-sell','ItemController@displaySellItemsForApproval')->name('Approve Items');
+Route::post('/save-conscent-with-upload','ItemController@createConscentWithUpload');
+Route::get('/upload-conscent/{id}','ItemController@uploadConscentDocument')->name('Upload Document');
+Route::get('delete-buyers-message/{id}','BoughtController@deleteMyMessage');
+Route::get('/save-message-edited/{id}','BoughtController@updateMessage');
+Route::get('/edit-buyers-message/{id}','BoughtController@editMyMessage')->name('Edit My Message');
+Route::get('/view-my-message','BoughtController@buyerViewMessage')->name('My Message');
 Route::get('/show-forestry-officers','DoctorsController@displayForestryryOfficers')->name('Forestry Officers');
 Route::get('/send-email-notification','MailController@sendEmailOnAccountCreation');
 Route::get('/email-response','HomeController@emailResponse');
@@ -157,7 +169,7 @@ Route::post('/save-item-on-sell','ItemController@createSellItem');
 Route::get('/display-items-on-sell','ItemController@displaySellItems')->name('Item Details');
 Route::get('/search-items','ItemController@searchitemItems')->name('Searched Item');
 Route::post('/update-items-on-sell/{id}','ItemController@updateSellItems');
-Route::get('/delete-item/{id}','ItemController@deleteitemItems');
+Route::get('/delete-item/{id}','ItemController@deleteItems');
 Route::get('/display-doctors-form','ItemController@DoctorsRequestForm')->name('Request Doctor');
 Route::get('/edit-doctor-req-form/{id}','ItemController@editDoctorsForm')->name('Edit Doctor Request');
 Route::post('/save-doctor-request','ItemController@createDoctorsRequest');
@@ -170,7 +182,7 @@ Route::get('/view-conscent/{id}','ItemController@displayConscent')->name('Consce
 Route::get('/view-conscent-form/{id}','ItemController@displayConscentForm')->name('Conscent Form');
 Route::post('/save-conscent','ItemController@createConscent');
 //Buyers Items View
-Route::get('/display-buyers-items-on-sell','BoughtController@displayBoughtItems')->name('Buyers Items On Sell');
+Route::get('/display-buyers-items-on-sell/{id}','BoughtController@displayBoughtItems')->name('Buyers Items On Sell');
 Route::get('/send-message/{id}','BoughtController@sendMessageToSellerForm')->name('Send Message To Seller');
 Route::get('/send-message-to-seller','BoughtController@validateMessageSentToSeller');
 Route::get('/get-buyers-message','BoughtController@getBuyersMessage')->name('Buyers Message');
@@ -434,7 +446,7 @@ Route::get('/delete-farm/{id}','FarmController@deleteFarm');
 
 //Sell and Buy
 Route::get('/sell-and-buy','BoughtController@getSellBuyItem');
-Route::get('/buyers-registration','BoughtController@registerBuyerForm');
+Route::get('/buyers-registration/{id}','BoughtController@registerBuyerForm');
 Route::get('/buyer-view-item-details/{id}','BoughtController@viewItemDetails');
 Route::get('/register-buyer','BoughtController@validateBuyerRegistration');
 

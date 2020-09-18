@@ -33,8 +33,12 @@ class HomeController extends Controller
     {
         if(in_array('Can view dashboard', auth()->user()->getUserPermisions())){
         return view('admin.dashboard');
+        }elseif(auth()->user()->role_id == 10){
+            return redirect('/display-buyers-items-on-sell');
+        }elseif(auth()->user()->role_id == 4){
+            return redirect("/get-buyers-message");
         }else{
-            return redirect("/display-profile");
+            return redirect("/approve-items-on-sell");
         }
     }
     public function documentationData(){

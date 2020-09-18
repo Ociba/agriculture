@@ -5,7 +5,7 @@
             
           </div><!-- /.col -->
           <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-          <span style="color:blue;">Hi {{auth()->user()->name}} !!</span>
+          {{--<span class="text-primary font-weight-bold">You are  Welcome {{auth()->user()->name}}</span>--}}
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li  class="breadcrumb-item active">{{\Request::route()->getName()}}</li>

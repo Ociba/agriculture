@@ -17,7 +17,7 @@ use App\SellerMessage;
 class BoughtController extends Controller
 {
     //
-    public function displayBoughtItems(){
+    public function displayBoughtItems($id){
         $display_all_items_to_be_bought =Item::join('users','items.user_id','users.id')
         ->join('products','items.product_id','products.id')
         ->join('breeds','items.breed_id','breeds.id')
@@ -25,6 +25,7 @@ class BoughtController extends Controller
         ->join('districts','items.district_id','districts.id')
         ->join('categories','items.category_id','categories.id')
         ->where('items.status','available')
+        ->where('items.id', $id)
         ->select('users.name','users.contact','products.product','breeds.breed','districts.district','categories.category','items.number','items.item_image','items.id',
                 'items.price')
         ->orderBy('items.created_at','DESC')
@@ -32,11 +33,14 @@ class BoughtController extends Controller
         return view('admin.items-on-sell', compact('display_all_items_to_be_bought'));
     }
     protected function sendMessageToSellerForm($id){
-        $send_seller_message =item::where('id',$id)->get();
-        return view('admin.send-seller-message', compact('send_seller_message'));
+        $send_seller_message =item::join('products','items.product_id','products.id')->where('items.id',$id)->select('items.*','products.product')->get();
+        $get_buyers_id =User::where('id',auth()->user()->id)
+        ->select('users.*')->get();
+        return view('admin.send-seller-message', compact('send_seller_message','get_buyers_id'));
     }
     private function sendSellerMessage(){
         $send_message_to_seller = new SellerMessage;
+        $send_message_to_seller->user_id      =auth()->user()->id;
         $send_message_to_seller->buyers_name   =request()->buyers_name;
         $send_message_to_seller->phone_number   =request()->phone_number;
         $send_message_to_seller->seller_id      =request()->seller_id;
@@ -57,6 +61,12 @@ class BoughtController extends Controller
             return $this->sendSellerMessage();
         }
     }
+    protected function buyerViewMessage(){
+        $view_my_message =SellerMessage::join('users','seller_messages.user_id','users.id')
+        ->where('seller_messages.user_id',auth()->user()->id)
+        ->select('seller_messages.*')->get();
+        return view('admin.my-message', compact('view_my_message'));
+    }
     protected function getBuyersMessage(){
         $get_messages_from_buyer =SellerMessage::join('users','seller_messages.seller_id','users.id')
         ->where('seller_messages.seller_id',auth()->user()->id)
@@ -64,6 +74,20 @@ class BoughtController extends Controller
         ->select('seller_messages.buyers_name','seller_messages.phone_number','seller_messages.message','seller_messages.id')
         ->paginate('10');
         return view('admin.buyers-message', compact('get_messages_from_buyer'));
+    }
+    protected function editMyMessage($id){
+        $edit_my_message =SellerMessage::where('id',$id)->get();
+        return view('admin.edit-message', compact('edit_my_message'));
+    }
+    protected function updateMessage($id){
+        SellerMessage::where('id',$id)->update(array(
+            'message' =>request()->message
+        ));
+        return redirect()->back()->with('message', 'You have Successfully edited Message');
+    }
+    protected function deleteMyMessage($id){
+        SellerMessage::where('id',$id)->update(array('status'=>'deleted'));
+        return redirect()->back()->with('message','You have deleted message successfully');
     }
     protected function deleteMessage($id){
         SellerMessage::where('id',$id)->update(array('status'=>'read'));
@@ -88,7 +112,9 @@ class BoughtController extends Controller
         ->join('categories','items.category_id','categories.id')
         ->join('districts','items.district_id','districts.id')
         ->join('products','items.product_id','products.id')
-        ->where('items.id',$id)->get();
+        ->where('items.id',$id)
+        ->select('categories.category','districts.district','products.product','breeds.breed','items.number','items.price','items.item_image','items.id')
+        ->get();
         return view('front.item-details', compact('get_item_details_on_sell'));
     }
     private function registerBuyer(){
@@ -102,8 +128,9 @@ class BoughtController extends Controller
         $register_buyer->save();
             return Redirect('/display-buyers-items-on-sell')->with('message', 'User has been created Successfully');
     }
-    protected function registerBuyerForm(){
-        return view('front.register-buyer');
+    protected function registerBuyerForm($id){
+        $get_item_id =Item::where('id',$id)->get();
+        return view('front.register-buyer', compact('get_item_id'));
     }
     protected function validateBuyerRegistration(){
         if(empty(request()->name)){

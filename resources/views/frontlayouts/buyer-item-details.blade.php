@@ -28,7 +28,7 @@
                                         <h6 class="title">District: <span style="color:blue;">{{$item_details->district}}</span></h6>
                                     <p>
                                     <a href="/sell-and-buy" button class="btn btn-warning text-white">Cancel</button></a>
-                                    <a href="/buyers-registration" button class="btn btn-info text-white">Continue</button></a>
+                                    <a href="/buyers-registration/{{$item_details->id}}" button class="btn btn-info text-white">Buy</button></a>
                                     </p>
                                     <span></span>
                                 </div>

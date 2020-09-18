@@ -56,7 +56,7 @@
                                                 <th>Reply</th>
                                                 <th>Created By</th>
                                                 @if(in_array('Can see question action', auth()->user()->getUserPermisions()))
-                                                <th>Action</th>
+                                                <th style="padding:30px;">Action</th>
                                                 @endif
                                                 </tr>
                                             </thead>
@@ -68,16 +68,16 @@
                                                   <td>{{ $question->name }}</td>
                                                   <td>
                                                   @if(in_array('Can edit question', auth()->user()->getUserPermisions()))
-                                                  <a href="/display-edit-question/{{ $question->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                  <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
+                                                  <a href="/display-edit-question/{{ $question->id }}" data-widget="edit" data-toggle="tooltip" title="edit question">
+                                                  <span class="btn btn-success btn-xs">edit</span></a>
                                                   @endif
                                                   @if(in_array('Can reply question', auth()->user()->getUserPermisions()))
-                                                  <a href="/reply-question/{{ $question->id }}" data-widget="reply" data-toggle="tooltip" title="reply">
-                                                  <span class="btn btn-primary btn-xs"><i class="fa fa-reply"></i></span></a>
+                                                  <a href="/reply-question/{{ $question->id }}" data-widget="reply" data-toggle="tooltip" title="reply question">
+                                                  <span class="btn btn-primary btn-xs">reply</span></a><br>
                                                   @endif
                                                   @if(in_array('Can delete question', auth()->user()->getUserPermisions()))
-                                                  <a href="/delete-question/{{ $question->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                  <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                  <a href="/delete-question/{{ $question->id }}" data-widget="deny" data-toggle="tooltip" title="delete question">
+                                                  <span class="btn btn-danger btn-xs">delete</span></a>
                                                       
                                                   </td>
                                                   @endif

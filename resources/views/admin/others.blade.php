@@ -66,12 +66,12 @@
                                                   <td>{{ $others->number }}</td>
                                                   <td>
                                                   @if(in_array('Can edit others', auth()->user()->getUserPermisions()))
-                                                  <a href="/display-edit-others/{{ $others->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                  <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
+                                                  <a href="/display-edit-others/{{ $others->id }}" data-widget="edit" data-toggle="tooltip" title="edit others item">
+                                                  <span class="btn btn-success btn-xs">edit</span></a>
                                                   @endif
                                                   @if(in_array('Can delete others', auth()->user()->getUserPermisions()))
-                                                  <a href="/delete-others/{{ $others->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                  <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                  <a href="/delete-others/{{ $others->id }}" data-widget="deny" data-toggle="tooltip" title="delete others item">
+                                                  <span class="btn btn-danger btn-xs">delete</span></a>
                                                       
                                                   </td>
                                                   @endif

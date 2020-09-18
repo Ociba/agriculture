@@ -60,7 +60,7 @@
                                                     <th>Condition</th>
                                                     <th>Number</th>
                                                     <th>Name</th>
-                                                    <th>Action</th>
+                                                    <th style="padding:30px;">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -68,7 +68,7 @@
                                                 <tr>
                                                     <td>{{ $doctors->product }}</td>
                                                     
-                                                    <td><img src="{{asset('assets/images/'.$doctors->photo)}}" class="thumbnail responsive" width="60" height="30" alt=""></td>
+                                                    <td><img src="{{asset('assets/images/'.$doctors->photo)}}" class="responsive" width="60" height="30" alt=""></td>
                                                     <td>{{ $doctors->district }}</td>
                                                     <td>{{ $doctors->county }}</td>
                                                     <td>{{ $doctors->village }}</td>
@@ -77,10 +77,10 @@
                                                     <td>{{ $doctors->number }}</td>
                                                     <td>{{ $doctors->name }}</td>
                                                     <td>
-                                                        <a href="/edit-doctor-req-form/{{ $doctors->id }}" data-widget="edit" data-toggle="tooltip" title="edit">
-                                                        <span class="btn btn-success btn-xs"><i class="fa fa-edit"></i></span></a>
-                                                        <a href="/delete-doctors-req/{{ $doctors->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                        <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                        <a href="/edit-doctor-req-form/{{ $doctors->id }}" data-widget="edit" data-toggle="tooltip" title="edit doctors request">
+                                                        <span class="btn btn-success btn-xs">edit</span></a>
+                                                        <a href="/delete-doctors-req/{{ $doctors->id }}" data-widget="deny" data-toggle="tooltip" title="delete doctors request">
+                                                        <span class="btn btn-danger btn-xs">delete</span></a>
                                                     </td>
                                                 </tr>
                                                 @endforeach

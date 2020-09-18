@@ -69,16 +69,16 @@
                                                 <td>{{ $comment->status }}</td>
                                                 <td>
                                                 @if(in_array('Can edit comment', auth()->user()->getUserPermisions()))
-                                                <a href="/display-approve-comment/{{ $comment->id }}" data-widget="edit" data-toggle="tooltip" title="approve">
-                                                <span class="btn btn-success btn-xs"><i class="fa fa-check-circle-o"></i></span></a>
+                                                <a href="/display-approve-comment/{{ $comment->id }}" data-widget="edit" data-toggle="tooltip" title="approve comment">
+                                                <span class="btn btn-success btn-xs">approve</span></a>
                                                 @endif
                                                 @if(in_array('Can edit comment', auth()->user()->getUserPermisions()))
-                                                <a href="/reply-comment/{{ $comment->id }}" data-widget="edit" data-toggle="tooltip" title="reply">
-                                                <span class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></span></a>
+                                                <a href="/reply-comment/{{ $comment->id }}" data-widget="edit" data-toggle="tooltip" title="edit comment">
+                                                <span class="btn btn-primary btn-xs">edit</span></a>
                                                 @endif
                                                 @if(in_array('Can delete comment', auth()->user()->getUserPermisions()))
-                                                <a href="/delete-comment/{{ $comment->id }}" data-widget="deny" data-toggle="tooltip" title="delete">
-                                                <span class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></span></a>
+                                                <a href="/delete-comment/{{ $comment->id }}" data-widget="deny" data-toggle="tooltip" title="delete comment">
+                                                <span class="btn btn-danger btn-xs">delete</span></a>
                                                     
                                                 </td>
                                                 @endif
